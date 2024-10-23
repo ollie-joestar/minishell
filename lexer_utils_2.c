@@ -1,3 +1,4 @@
+#include "minishell.h"
 // Checks for a single-quote enclosed string and ensures it is properly closed.
 int	check_single_quotes(char **input_start, char **input_end)
 {

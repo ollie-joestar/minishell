@@ -1,3 +1,4 @@
+#include "minishell.h"
 void	skip_space(char **input)
 {
 	while (ft_isspace(**input))

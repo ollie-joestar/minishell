@@ -1,3 +1,4 @@
+#include "minishell.h"
 // Identify a pipe (`|`)
 int	check_pipe_symbol(char **input_start, char **input_end)
 {

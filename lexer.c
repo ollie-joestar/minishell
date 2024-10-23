@@ -1,3 +1,16 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   lexer.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/10/23 14:52:39 by oohnivch          #+#    #+#             */
+/*   Updated: 2024/10/23 14:56:26 by oohnivch         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "minishell.h"
 // Initializes a new token with its type and string value
 void	initialize_token(t_token *token, char *content, int token_type)
 {
