@@ -6,10 +6,11 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 09:38:58 by oohnivch          #+#    #+#             */
-/*   Updated: 2024/10/24 11:39:38 by oohnivch         ###   ########.fr       */
+/*   Updated: 2024/10/24 12:08:57 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
 #include <stdio.h>
 #include <wait.h>
 #include <unistd.h>
@@ -139,6 +140,9 @@ int main(int argc, char **argv, char **envp)
 {
 	char cmdline[MAXLINE];
 
+	int e = 0;
+	get_next_line(1, &e);
+
 	while (1)
 	{
 		printf("%s", prompt);
@@ -152,7 +156,6 @@ int main(int argc, char **argv, char **envp)
 			exit(0);
 		}
 		cmdline[strlen(cmdline) - 1] = '\0';
-		
 		eval(cmdline);
 	}
 }
