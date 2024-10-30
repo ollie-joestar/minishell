@@ -6,156 +6,98 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 09:38:58 by oohnivch          #+#    #+#             */
-/*   Updated: 2024/10/24 12:08:57 by oohnivch         ###   ########.fr       */
+/*   Updated: 2024/10/30 14:38:12 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include <stdio.h>
-#include <wait.h>
-#include <unistd.h>
-#include <stdlib.h>
-#include <string.h>
-#include <error.h>
-
-int MAXLINE = 1024;
+#include "minishell.h"
 char prompt[] = "minishell> ";
 
-#define MAXARGS 128
-
-struct command
+void	runcmd(struct s_cmd *cmd)
 {
-	int	argc;
-	char *argv[MAXARGS];
-	enum builtin_t { NONE, QUIT, JOBS, BG, FG } builtin;
-};
+	int p[2];
+	struct s_backcmd *bcmd;
+	struct s_execcmd *ecmd;
+	struct s_listcmd *lcmd;
+	struct s_pipecmd *pcmd;
+	struct s_redircmd *rcmd;
 
-void	runSystemCommand(struct command *cmd, int bg)
-{
-	pid_t pid;
-	int status;
-
-	if ((pid = fork()) < 0)
-	{
-		perror("fork");
+	if (cmd == 0)
 		exit(1);
-	}
-	else if (pid == 0)
+	if (cmd->type == EXEC)
 	{
-		execvp(cmd->argv[0], cmd->argv);
-		perror("execvp");
-		exit(1);
+		ecmd = (struct s_execcmd*)cmd;
+		if (ecmd->argv[0] == 0)
+			exit(1);
+		execvp(ecmd->argv[0], ecmd->argv);
+		bruh("exec failed\n");
+	}
+	else if (cmd->type == REDIR)
+	{
+		rcmd = (struct s_redircmd*)cmd;
+		close(rcmd->fd);
+		if (open(rcmd->file, rcmd->mode) < 0)
+		{
+			ft_putstr_fd("open ", 2);
+			ft_putstr_fd(rcmd->file, 2);
+			bruh(" failed\n");
+		}
+		runcmd(rcmd->cmd);
+	}
+	else if (cmd->type == PIPE)
+	{
+		pcmd = (struct s_pipecmd*)cmd;
+		if (pipe(p) < 0)
+			bruh("pipe failed\n");
+		if (fork1() == 0)
+		{
+			close(1);
+			dup(p[1]);
+			close(p[0]);
+			close(p[1]);
+			runcmd(pcmd->left);
+		}
+		if (fork1() == 0)
+		{
+			close(0);
+			dup(p[0]);
+			close(p[0]);
+			close(p[1]);
+			runcmd(pcmd->right);
+		}
+		close(p[0]);
+		close(p[1]);
+		wait(0);
+		wait(0);
+	}
+	else if (cmd->type == LIST)
+	{
+		lcmd = (struct s_listcmd*)cmd;
+		if (fork1() == 0)
+			runcmd(lcmd->left);
+		wait(0);
+		runcmd(lcmd->right);
+	}
+	else if (cmd->type == BACK)
+	{
+		bcmd = (struct s_backcmd*)cmd;
+		if (fork1() == 0)
+			runcmd(bcmd->cmd);
 	}
 	else
-		if (bg)
-			printf("Child running in background [%d]\n", pid);
-		else
-			wait(&pid);
-}
-
-void	runBuiltinCommand(struct command *cmd, int bg)
-{
-	if (cmd->builtin == QUIT)
-		exit(0);
-	else if (cmd->builtin == JOBS)
-		printf("JOBS\n");
-	else if (cmd->builtin == BG)
-		printf("BG\n");
-	else if (cmd->builtin == FG)
-		printf("FG\n");
-}
-
-int	parseBuiltin(struct command *cmd)
-{
-	if (strcmp(cmd->argv[0], "quit") == 0)
-		return QUIT;
-	else if (strcmp(cmd->argv[0], "jobs") == 0)
-		return JOBS;
-	else if (strcmp(cmd->argv[0], "bg") == 0)
-		return BG;
-	else if (strcmp(cmd->argv[0], "fg") == 0)
-		return FG;
-	else
-		return NONE;
-}
-
-int	parse(char *cmdline, struct command *cmd)
-{
-	static char array[1024];
-	const char delims[10] = " \t\r\n";
-	char *line = array;
-	char *token;
-	char *endline;
-	int	is_bg = 0;
-
-	(void) strncpy(line, cmdline, MAXLINE);
-	endline = line + strlen(line);
-	cmd->argc = 0;
-
-	while (line < endline)
-	{
-		line += strspn(line, delims);
-		if (line >= endline)
-			break;
-		token = line + strcspn(line, delims);
-		*token = '\0';
-
-		cmd->argv[cmd->argc++] = line;
-		if (cmd->argc == MAXARGS - 1)
-			break;
-		line = token + 1;
-	}
-
-	cmd->argv[cmd->argc] = NULL;
-	if (cmd->argc == 0)
-		return -1;
-	cmd->builtin = parseBuiltin(cmd);
-
-	if ((is_bg = (*cmd->argv[cmd->argc - 1] == '&')) != 0)
-		cmd->argv[--cmd->argc] = NULL;
-
-	return is_bg;
-}
-
-void	eval(char *cmdline)
-{
-	int bg;
-	struct command cmd;
-
-	bg = parse(cmdline, &cmd);
-	if (bg == -1)
-	{
-		printf("Error parsing the command\n");
-		return;
-	}
-	if (cmd.argv[0] == NULL)
-		return;
-	if (cmd.builtin == NONE)
-		runSystemCommand(&cmd, bg);
-	else
-		runBuiltinCommand(&cmd, bg);
+		bruh("unknown runcmd\n");
+	exit(0);
 }
 
 int main(int argc, char **argv, char **envp)
 {
-	char cmdline[MAXLINE];
+	static char buf[1024];
 
-	int e = 0;
-	get_next_line(1, &e);
-
-	while (1)
+	while (getcmd(buf, sizeof(buf)) >= 0)
 	{
-		printf("%s", prompt);
-
-		if (fgets(cmdline, MAXLINE, stdin) == NULL && ferror(stdin))
-			exit(1);
-
-		if (feof(stdin))
-		{
-			printf("\n");
-			exit(0);
-		}
-		cmdline[strlen(cmdline) - 1] = '\0';
-		eval(cmdline);
+		if (fork1() == 0)
+			runcmd(parsecmd(buf));
+		wait(0);
 	}
+	exit(0);
 }
