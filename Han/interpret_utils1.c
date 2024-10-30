@@ -75,7 +75,7 @@ size_t	interpreted_str_len(t_var *var, char *start, char *end)
 		if (start[i] == '\'')
 			len += single_quote_len(start + i, end, &i);
 		else if (start[i] == '\"')
-			len += double_qoute_len(var, start + i, end, &i);
+			len += double_quote_len(var, start + i, end, &i);
 		else if (possible_var(var, start[i], start[i + 1]))
 			len += env_var_len(var, start + i, end, &i);
 		else
