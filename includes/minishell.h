@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 13:28:47 by oohnivch          #+#    #+#             */
-/*   Updated: 2024/10/30 14:34:25 by oohnivch         ###   ########.fr       */
+/*   Updated: 2024/11/06 15:26:06 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,13 @@
 # include "libft.h"
 # include <fcntl.h>
 # include <sys/wait.h>
+# include <sys/ioctl.h>
+# include <readline/readline.h>
+# include <readline/history.h>
+# include <limits.h>
+# include <stdbool.h>
+# include <signal.h>
+# include <errno.h>
 
 /* Token types */
 # define END 01
@@ -27,12 +34,12 @@
 # define TO_SPLIT CHAR_MAX
 
 /*Ollie start*/
-#define EXEC 1
-#define REDIR 2
-#define PIPE 3
-#define LIST 4
-#define BACK 5
-#define MAXARGS 128
+# define EXEC 1
+# define REDIR 2
+# define PIPE 3
+# define LIST 4
+# define BACK 5
+# define MAXARGS 128
 
 struct	s_cmd {
 	int type;
@@ -70,14 +77,15 @@ struct	s_backcmd {
 	struct s_cmd *cmd;
 }		t_backcmd;
 
-void			bruh(char *s);
-int				fork1(void);
 struct s_cmd	*execcmd(void);
 struct s_cmd	*redircmd(struct s_cmd *subcmd, char *file, char *efile, int mode, int fd);
 struct s_cmd	*pipecmd(struct s_cmd *left, struct s_cmd *right);
 struct s_cmd	*listcmd(struct s_cmd *left, struct s_cmd *right);
 struct s_cmd	*backcmd(struct s_cmd *subcmd);
 /*Ollie end*/
+
+
+
 
 /*HANJU*/
 typedef struct s_token
@@ -96,6 +104,11 @@ typedef struct s_lexer_context
 	size_t		len;
 }		t_lexer_context;
 
+typedef struct s_data
+{
+	t_token		*token;
+}				t_data;
+
 /* Lexer functions */
 t_token	*create_token(int type, char *str);
 t_token	*tokenize(t_lexer_context *lexer_ctx);
@@ -112,4 +125,7 @@ char	*ft_strndup(const char *s, size_t n);
 char	*token_end(char *start);
 void	reset_end(char *start, char **end, char *ptr, char *tkn_end);
 
+// OLLIE
+void	bruh(t_data *data, char *s, int status);
+int		fork1(t_data *data);
 #endif

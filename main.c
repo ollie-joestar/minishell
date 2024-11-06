@@ -6,11 +6,11 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 09:38:58 by oohnivch          #+#    #+#             */
-/*   Updated: 2024/10/28 11:04:56 by oohnivch         ###   ########.fr       */
+/*   Updated: 2024/11/06 14:18:57 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "libft/includes/libft.h"
 #include <stdio.h>
 #include <wait.h>
 #include <unistd.h>

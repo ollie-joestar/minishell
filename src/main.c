@@ -6,14 +6,14 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 09:38:58 by oohnivch          #+#    #+#             */
-/*   Updated: 2024/10/30 14:38:12 by oohnivch         ###   ########.fr       */
+/*   Updated: 2024/11/06 15:21:38 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 char prompt[] = "minishell> ";
 
-void	runcmd(struct s_cmd *cmd)
+void	runcmd(t_data *data, struct s_cmd *cmd)
 {
 	int p[2];
 	struct s_backcmd *bcmd;
@@ -49,7 +49,7 @@ void	runcmd(struct s_cmd *cmd)
 		pcmd = (struct s_pipecmd*)cmd;
 		if (pipe(p) < 0)
 			bruh("pipe failed\n");
-		if (fork1() == 0)
+		if (fork1(data) == 0)
 		{
 			close(1);
 			dup(p[1]);
@@ -57,7 +57,7 @@ void	runcmd(struct s_cmd *cmd)
 			close(p[1]);
 			runcmd(pcmd->left);
 		}
-		if (fork1() == 0)
+		if (fork1(data) == 0)
 		{
 			close(0);
 			dup(p[0]);
@@ -73,7 +73,7 @@ void	runcmd(struct s_cmd *cmd)
 	else if (cmd->type == LIST)
 	{
 		lcmd = (struct s_listcmd*)cmd;
-		if (fork1() == 0)
+		if (fork1(data) == 0)
 			runcmd(lcmd->left);
 		wait(0);
 		runcmd(lcmd->right);
@@ -81,7 +81,7 @@ void	runcmd(struct s_cmd *cmd)
 	else if (cmd->type == BACK)
 	{
 		bcmd = (struct s_backcmd*)cmd;
-		if (fork1() == 0)
+		if (fork1(data) == 0)
 			runcmd(bcmd->cmd);
 	}
 	else
@@ -92,10 +92,14 @@ void	runcmd(struct s_cmd *cmd)
 int main(int argc, char **argv, char **envp)
 {
 	static char buf[1024];
+	t_data *data;
+
+	data = ft_calloc(1, sizeof(t_data));
 
 	while (getcmd(buf, sizeof(buf)) >= 0)
 	{
-		if (fork1() == 0)
+		ft_printf("%s", prompt);
+		if (fork1(data) == 0)
 			runcmd(parsecmd(buf));
 		wait(0);
 	}

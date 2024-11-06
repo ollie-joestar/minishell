@@ -1,4 +1,5 @@
 #include "minishell.h"
+
 // Initializes a new token with its type and string value
 void	initialize_token(t_token *token, char *content, int token_type)
 {
