@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 14:18:21 by oohnivch          #+#    #+#             */
-/*   Updated: 2024/11/06 15:18:41 by oohnivch         ###   ########.fr       */
+/*   Updated: 2024/11/07 10:34:23 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,14 @@
 void	bruh(t_data *data, char *s, int status)
 {
 	if (s)
-	ft_putstr_fd(s, 2);
+		ft_putstr_fd(s, 2);
 	if (data)
+	{
 		if (data->token)
 			free_lst(data->token);
 		free(data);
-	exit(1);
+	}
+	exit(status);
 }
 
 int	fork1(t_data *data)

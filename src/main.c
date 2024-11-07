@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 09:38:58 by oohnivch          #+#    #+#             */
-/*   Updated: 2024/11/06 15:21:38 by oohnivch         ###   ########.fr       */
+/*   Updated: 2024/11/07 10:18:37 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	runcmd(t_data *data, struct s_cmd *cmd)
 		if (ecmd->argv[0] == 0)
 			exit(1);
 		execvp(ecmd->argv[0], ecmd->argv);
-		bruh("exec failed\n");
+		bruh(data, "exec failed\n", 1);
 	}
 	else if (cmd->type == REDIR)
 	{
@@ -40,22 +40,22 @@ void	runcmd(t_data *data, struct s_cmd *cmd)
 		{
 			ft_putstr_fd("open ", 2);
 			ft_putstr_fd(rcmd->file, 2);
-			bruh(" failed\n");
+			bruh(data, "failed\n", 1);
 		}
-		runcmd(rcmd->cmd);
+		runcmd(data, rcmd->cmd);
 	}
 	else if (cmd->type == PIPE)
 	{
 		pcmd = (struct s_pipecmd*)cmd;
 		if (pipe(p) < 0)
-			bruh("pipe failed\n");
+			bruh(data, "pipe failed\n", 1);
 		if (fork1(data) == 0)
 		{
 			close(1);
 			dup(p[1]);
 			close(p[0]);
 			close(p[1]);
-			runcmd(pcmd->left);
+			runcmd(data, pcmd->left);
 		}
 		if (fork1(data) == 0)
 		{
@@ -63,7 +63,7 @@ void	runcmd(t_data *data, struct s_cmd *cmd)
 			dup(p[0]);
 			close(p[0]);
 			close(p[1]);
-			runcmd(pcmd->right);
+			runcmd(data, pcmd->right);
 		}
 		close(p[0]);
 		close(p[1]);
@@ -74,18 +74,18 @@ void	runcmd(t_data *data, struct s_cmd *cmd)
 	{
 		lcmd = (struct s_listcmd*)cmd;
 		if (fork1(data) == 0)
-			runcmd(lcmd->left);
+			runcmd(data, lcmd->left);
 		wait(0);
-		runcmd(lcmd->right);
+		runcmd(data, lcmd->right);
 	}
 	else if (cmd->type == BACK)
 	{
 		bcmd = (struct s_backcmd*)cmd;
 		if (fork1(data) == 0)
-			runcmd(bcmd->cmd);
+			runcmd(data, bcmd->cmd);
 	}
 	else
-		bruh("unknown runcmd\n");
+		bruh(data, "unknown runcmd\n", 1);
 	exit(0);
 }
 

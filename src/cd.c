@@ -1,4 +1,4 @@
-#include "../inc/minishell.h"
+#include "minishell.h"
 
 int	valid_dotdot_path(char *path)
 {
