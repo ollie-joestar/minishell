@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 13:28:47 by oohnivch          #+#    #+#             */
-/*   Updated: 2024/11/07 16:05:19 by oohnivch         ###   ########.fr       */
+/*   Updated: 2024/11/07 16:49:10 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,14 +53,6 @@
 
 
 /*HANJU*/
-typedef struct s_lexer_context
-{
-	t_token		*tokens;
-	t_token		*last_token;
-	char		*line;
-	size_t		len;
-}		t_lexer_context;
-
 //
 // 
 // GOOD STUFF KIUNDA BUT STUKKL BAD FOR NOW
@@ -92,20 +84,30 @@ typedef struct s_token
 	char			*content;
 }		t_token;
 
-typedef struct s_exec_data {
-	int					type; // 0 = builtin, 1 = cmd;
-	t_redir				*redir;
-	int					pipe[2];
-	struct exec_data	*prev;
-	struct exec_data	*next;
-	char				**argv;
-}			t_exec_data;
+//???????
+typedef struct s_lexer_context
+{
+	t_token		*tokens;
+	t_token		*last_token;
+	char		*line;
+	size_t		len;
+}		t_lexer_context;
+
+typedef struct s_exec {
+	int				type; // BUILTIN | CMD
+	t_redir			*redir;
+	/*int				pipe[2];*/
+	struct s_exec	*prev;
+	struct s_exec	*next;
+	char			**av;
+}			t_exec;
 
 typedef struct s_data
 {
-	t_exec_data	*exec_data;
+	t_exec		*exec;
 	char		**ev;
-	/*t_token		*token;*/
+	int			status;
+	t_token		*token;
 }				t_data;
 
 

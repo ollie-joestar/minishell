@@ -6,62 +6,42 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 14:38:56 by oohnivch          #+#    #+#             */
-/*   Updated: 2024/11/07 11:53:10 by oohnivch         ###   ########.fr       */
+/*   Updated: 2024/11/07 16:51:46 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-struct s_cmd	*init_execcmd(void)
+t_exec	*create_exec(char **av, t_redir *redir)
 {
-	struct s_execcmd *cmd;
+	t_exec	*new_node;
 
-	cmd = ft_calloc(sizeof(struct s_cmd), 1);
-	cmd->type = EXEC;
-	return ((struct s_cmd*)cmd);
+	new_node = ft_calloc(1, sizeof(t_exec));
+	if (!new_node)
+		return (NULL);
+	new_node->type = check_builtin(av[0]);
+	if (new_node->type == 0)
+		return (NULL);
+	new_node->av = av;
+	new_node->redir = redir;
+	return (new_node);
 }
 
-struct s_cmd	*init_redircmd(struct s_cmd *subcmd, char *file, char *efile, int mode, int fd)
+t_exec *add_node(t_data *data, t_exec *head)
 {
-	struct s_redircmd *cmd;
+	t_exec		*tmp;
+	t_exec		*new_node;
 
-	cmd = ft_calloc(sizeof(struct s_cmd), 1);
-	cmd->type = REDIR;
-	cmd->cmd = subcmd;
-	cmd->file = file;
-	cmd->efile = efile;
-	cmd->mode = mode;
-	cmd->fd = fd;
-	return ((struct s_cmd*)cmd);
+	new_node = create_e_data(av, redir);
+	if (!new_node)
+		bruh(data, "malloc failed\n", 1);
+	if (!head)
+		return (new_node);
+	tmp = head;
+	while (tmp->next)
+		tmp = tmp->next;
+	tmp->next = new_node;
+	new_node->prev = tmp;
+	return (head);
 }
 
-struct s_cmd	*init_pipecmd(struct s_cmd *left, struct s_cmd *right)
-{
-	struct s_pipecmd *cmd;
-
-	cmd = ft_calloc(sizeof(struct s_cmd), 1);
-	cmd->type = PIPE;
-	cmd->left = left;
-	cmd->right = right;
-	return ((struct s_cmd*)cmd);
-}
-
-struct s_cmd	*init_listcmd(struct s_cmd *left, struct s_cmd *right)
-{
-	struct s_listcmd *cmd;
-
-	cmd = ft_calloc(sizeof(struct s_cmd), 1);
-	cmd->type = LIST;
-	cmd->left = left;
-	cmd->right = right;
-	return ((struct s_cmd*)cmd);
-}
-
-struct s_cmd	*init_backcmd(struct s_cmd *subcmd)
-{
-	struct s_cmd *cmd;
-
-	cmd = ft_calloc(sizeof(struct s_cmd), 1);
-	cmd->type = BACK;
-	return (cmd);
-}
