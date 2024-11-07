@@ -6,13 +6,13 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 14:38:56 by oohnivch          #+#    #+#             */
-/*   Updated: 2024/11/06 14:39:01 by oohnivch         ###   ########.fr       */
+/*   Updated: 2024/11/07 11:53:10 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-struct s_cmd	*execcmd(void)
+struct s_cmd	*init_execcmd(void)
 {
 	struct s_execcmd *cmd;
 
@@ -21,7 +21,7 @@ struct s_cmd	*execcmd(void)
 	return ((struct s_cmd*)cmd);
 }
 
-struct s_cmd	*redircmd(struct s_cmd *subcmd, char *file, char *efile, int mode, int fd)
+struct s_cmd	*init_redircmd(struct s_cmd *subcmd, char *file, char *efile, int mode, int fd)
 {
 	struct s_redircmd *cmd;
 
@@ -35,7 +35,7 @@ struct s_cmd	*redircmd(struct s_cmd *subcmd, char *file, char *efile, int mode, 
 	return ((struct s_cmd*)cmd);
 }
 
-struct s_cmd	*pipecmd(struct s_cmd *left, struct s_cmd *right)
+struct s_cmd	*init_pipecmd(struct s_cmd *left, struct s_cmd *right)
 {
 	struct s_pipecmd *cmd;
 
@@ -46,7 +46,7 @@ struct s_cmd	*pipecmd(struct s_cmd *left, struct s_cmd *right)
 	return ((struct s_cmd*)cmd);
 }
 
-struct s_cmd	*listcmd(struct s_cmd *left, struct s_cmd *right)
+struct s_cmd	*init_listcmd(struct s_cmd *left, struct s_cmd *right)
 {
 	struct s_listcmd *cmd;
 
@@ -57,7 +57,7 @@ struct s_cmd	*listcmd(struct s_cmd *left, struct s_cmd *right)
 	return ((struct s_cmd*)cmd);
 }
 
-struct s_cmd	*backcmd(struct s_cmd *subcmd)
+struct s_cmd	*init_backcmd(struct s_cmd *subcmd)
 {
 	struct s_cmd *cmd;
 

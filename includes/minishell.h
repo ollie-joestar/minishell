@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 13:28:47 by oohnivch          #+#    #+#             */
-/*   Updated: 2024/11/06 15:26:06 by oohnivch         ###   ########.fr       */
+/*   Updated: 2024/11/07 12:10:24 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,17 +41,17 @@
 # define BACK 5
 # define MAXARGS 128
 
-struct	s_cmd {
+typedef struct	s_cmd {
 	int type;
 }		t_cmd;
 
-struct	s_execcmd {
+typedef struct	s_execcmd {
 	int type;
 	char *argv[MAXARGS];
 	char *eargv[MAXARGS];
 }		t_execcmd;
 
-struct	s_redircmd {
+typedef struct	s_redircmd {
 	int type;
 	struct s_cmd *cmd;
 	char *file;
@@ -60,28 +60,23 @@ struct	s_redircmd {
 	int fd;
 }		t_redircmd;
 
-struct	s_pipecmd {
+typedef struct	s_pipecmd {
 	int type;
 	struct s_cmd *left;
 	struct s_cmd *right;
 }		t_pipecmd;
 
-struct	s_listcmd {
+typedef struct	s_listcmd {
 	int type;
 	struct s_cmd *left;
 	struct s_cmd *right;
 }		t_listcmd;
 
-struct	s_backcmd {
+typedef struct	s_backcmd {
 	int type;
 	struct s_cmd *cmd;
 }		t_backcmd;
 
-struct s_cmd	*execcmd(void);
-struct s_cmd	*redircmd(struct s_cmd *subcmd, char *file, char *efile, int mode, int fd);
-struct s_cmd	*pipecmd(struct s_cmd *left, struct s_cmd *right);
-struct s_cmd	*listcmd(struct s_cmd *left, struct s_cmd *right);
-struct s_cmd	*backcmd(struct s_cmd *subcmd);
 /*Ollie end*/
 
 
@@ -126,6 +121,19 @@ char	*token_end(char *start);
 void	reset_end(char *start, char **end, char *ptr, char *tkn_end);
 
 // OLLIE
-void	bruh(t_data *data, char *s, int status);
-int		fork1(t_data *data);
+t_cmd	*init_execcmd(void);
+t_cmd	*init_redircmd(t_cmd *subcmd, char *file, char *efile, int mode, int fd);
+t_cmd	*init_pipecmd(t_cmd *left, t_cmd *right);
+t_cmd	*init_listcmd(t_cmd *left, t_cmd *right);
+t_cmd	*init_backcmd(t_cmd *subcmd);
+
+void			runcmd(t_data *data, t_cmd *cmd);
+void			exec_exec(t_data *data, t_execcmd *ecmd);
+void			exec_redir(t_data *data, t_redircmd *rcmd);
+void			exec_pipe(t_data *data, t_pipecmd *pcmd);
+void			exec_list(t_data *data, t_listcmd *lcmd);
+void			exec_back(t_data *data, t_backcmd *bcmd);
+void			bruh(t_data *data, char *s, int status);
+int				fork1(t_data *data);
+
 #endif

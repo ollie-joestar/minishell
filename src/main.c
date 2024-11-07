@@ -6,87 +6,57 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 09:38:58 by oohnivch          #+#    #+#             */
-/*   Updated: 2024/11/07 10:18:37 by oohnivch         ###   ########.fr       */
+/*   Updated: 2024/11/07 12:13:00 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 char prompt[] = "minishell> ";
 
-void	runcmd(t_data *data, struct s_cmd *cmd)
+void	runcmd(t_data *data, t_cmd *cmd)
 {
-	int p[2];
-	struct s_backcmd *bcmd;
-	struct s_execcmd *ecmd;
-	struct s_listcmd *lcmd;
-	struct s_pipecmd *pcmd;
-	struct s_redircmd *rcmd;
-
 	if (cmd == 0)
-		exit(1);
+		bruh(data, "cmd is null\n", 1);
 	if (cmd->type == EXEC)
-	{
-		ecmd = (struct s_execcmd*)cmd;
-		if (ecmd->argv[0] == 0)
-			exit(1);
-		execvp(ecmd->argv[0], ecmd->argv);
-		bruh(data, "exec failed\n", 1);
-	}
+		exec_exec(data, (t_execcmd*)cmd);
 	else if (cmd->type == REDIR)
-	{
-		rcmd = (struct s_redircmd*)cmd;
-		close(rcmd->fd);
-		if (open(rcmd->file, rcmd->mode) < 0)
-		{
-			ft_putstr_fd("open ", 2);
-			ft_putstr_fd(rcmd->file, 2);
-			bruh(data, "failed\n", 1);
-		}
-		runcmd(data, rcmd->cmd);
-	}
+		exec_redir(data, (t_redircmd*)cmd);
 	else if (cmd->type == PIPE)
-	{
-		pcmd = (struct s_pipecmd*)cmd;
-		if (pipe(p) < 0)
-			bruh(data, "pipe failed\n", 1);
-		if (fork1(data) == 0)
-		{
-			close(1);
-			dup(p[1]);
-			close(p[0]);
-			close(p[1]);
-			runcmd(data, pcmd->left);
-		}
-		if (fork1(data) == 0)
-		{
-			close(0);
-			dup(p[0]);
-			close(p[0]);
-			close(p[1]);
-			runcmd(data, pcmd->right);
-		}
-		close(p[0]);
-		close(p[1]);
-		wait(0);
-		wait(0);
-	}
+		exec_pipe(data, (t_pipecmd*)cmd);
 	else if (cmd->type == LIST)
-	{
-		lcmd = (struct s_listcmd*)cmd;
-		if (fork1(data) == 0)
-			runcmd(data, lcmd->left);
-		wait(0);
-		runcmd(data, lcmd->right);
-	}
+		exec_list(data, (t_listcmd*)cmd);
 	else if (cmd->type == BACK)
-	{
-		bcmd = (struct s_backcmd*)cmd;
-		if (fork1(data) == 0)
-			runcmd(data, bcmd->cmd);
-	}
+		exec_back(data, (t_backcmd*)cmd);
 	else
 		bruh(data, "unknown runcmd\n", 1);
-	exit(0);
+}
+
+//DELETE THIS WHEN DONE
+t_cmd *parsecmd(char *s)
+{
+	t_cmd *cmd;
+
+	cmd = init_execcmd();
+	((t_execcmd*)cmd)->argv[0] = s;
+	((t_execcmd*)cmd)->argv[1] = 0;
+	return (cmd);
+}
+
+//DELETE THIS WHEN DONE
+//getcmd is a function that reads a line from the terminal
+//and stores it in the buffer
+//it returns the number of characters read
+int	getcmd(char *buf, int nbuf)
+{
+	if (isatty(fileno(stdin)))
+	{
+		fprintf(stdout, "%s", prompt);
+	}
+	memset(buf, 0, nbuf);
+	fgets(buf, nbuf, stdin);
+	if (buf[0] == 0)
+		return -1;
+	return 0;
 }
 
 int main(int argc, char **argv, char **envp)
@@ -98,10 +68,9 @@ int main(int argc, char **argv, char **envp)
 
 	while (getcmd(buf, sizeof(buf)) >= 0)
 	{
-		ft_printf("%s", prompt);
 		if (fork1(data) == 0)
-			runcmd(parsecmd(buf));
+			runcmd(data, (parsecmd(buf)));
 		wait(0);
 	}
-	exit(0);
+	bruh(data, NULL, 0);
 }
