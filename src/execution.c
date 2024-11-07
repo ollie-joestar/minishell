@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 11:54:00 by oohnivch          #+#    #+#             */
-/*   Updated: 2024/11/07 12:12:59 by oohnivch         ###   ########.fr       */
+/*   Updated: 2024/11/07 14:20:46 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	exec_exec(t_data *data, t_execcmd *ecmd)
 {
 	if (ecmd->argv[0] == 0)
 		bruh(data, "cmd is null\n", 1);
-	execvp(ecmd->argv[0], ecmd->argv);
+	execve(ecmd->argv[0], ecmd->argv, data->ev);
 	bruh(data, "exec failed\n", 1);
 }
 

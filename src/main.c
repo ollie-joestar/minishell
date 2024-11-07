@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 09:38:58 by oohnivch          #+#    #+#             */
-/*   Updated: 2024/11/07 12:13:00 by oohnivch         ###   ########.fr       */
+/*   Updated: 2024/11/07 16:05:22 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	runcmd(t_data *data, t_cmd *cmd)
 }
 
 //DELETE THIS WHEN DONE
-t_cmd *parsecmd(char *s)
+t_cmd *parsecmd(t_data *data, char *s)
 {
 	t_cmd *cmd;
 
@@ -48,29 +48,41 @@ t_cmd *parsecmd(char *s)
 //it returns the number of characters read
 int	getcmd(char *buf, int nbuf)
 {
-	if (isatty(fileno(stdin)))
-	{
-		fprintf(stdout, "%s", prompt);
-	}
-	memset(buf, 0, nbuf);
-	fgets(buf, nbuf, stdin);
-	if (buf[0] == 0)
-		return -1;
-	return 0;
 }
 
-int main(int argc, char **argv, char **envp)
+//
+//WORST CASE
+//minishell> < infile1 << "lim" > outfile1 echo hello world > outfile2 < infile2 | < infile3 "ca""t" > outfile3 *** BONUS PART***  && echo hello world
+// ";" not implemented
+//< infile > outfile NOT NEEDED !!!!!!!!!!
+//< infile cat > outfile should work
+//< infile cat | > outfile should NOT WORK
+
+int main(int argc, char **argv, char **ev)
 {
 	static char buf[1024];
 	t_data *data;
 
 	data = ft_calloc(1, sizeof(t_data));
+	data->ev = ev;
 
-	while (getcmd(buf, sizeof(buf)) >= 0)
+	while (1)
 	{
-		if (fork1(data) == 0)
-			runcmd(data, (parsecmd(buf)));
-		wait(0);
+		ft_putstr_fd(prompt, 1);
+		if (getcmd(buf, sizeof(buf)) >= 0)
+		{
+			syntax_check(buf);
+			if (data->built_in)
+				run_built_in(data);
+			else
+			{
+				if (fork1(data) == 0)
+					runcmd(data, (parsecmd(data, buf)));
+				wait(0);
+			}
+		}
+		else
+			break;
 	}
 	bruh(data, NULL, 0);
 }
