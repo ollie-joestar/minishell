@@ -77,7 +77,7 @@ char	*cat_interpreted_str(t_data *data, char *start, char *end)
 		return (NULL);
 	while (start < end)
 	{
-		if ((*start == '\'' || *start == '\"') && identify_quotes(&start, &ptr))
+		if ((*start == '\'' || *start == '\"') && identify_quotes(&start, &ptr, *start))
 			cat_quoted_string(data, str, &start, ptr, *start);
 		else if (possible_var(data, start[0], start[1]))
 			cat_env_var(data, str, &start, end);
