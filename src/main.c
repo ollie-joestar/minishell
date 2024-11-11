@@ -48,7 +48,7 @@ int	getcmd(char *buf, int nbuf)
 
 int main(int argc, char **argv, char **ev)
 {
-	static char buf[1024];
+//	static char buf[1024];
 	t_data *data;
 
 	data = ft_calloc(1, sizeof(t_data));
@@ -57,6 +57,12 @@ int main(int argc, char **argv, char **ev)
 	while (1)
 	{
 		ft_putstr_fd(prompt, 1);
+		//HAN SHIT ABOUT READING LINE AND STARTING TOKENIZING WORDS
+		data.line = readline(prompt);
+		if (!data.line)
+			break ;
+		data.token = tokenization(&data);
+		//END
 		if (getcmd(buf, sizeof(buf)) >= 0)
 			runcmd(data);
 		else
