@@ -39,7 +39,7 @@ t_token	*tokenize_input_string(t_token *token)
 	return (token->token_list_head);
 }
 
-t_token	*tokenize(t_var *var)
+t_token	*tokenization(t_data *data)
 {
 	char	*start;
 
