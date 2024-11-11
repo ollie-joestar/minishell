@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 13:28:47 by oohnivch          #+#    #+#             */
-/*   Updated: 2024/11/11 17:15:56 by oohnivch         ###   ########.fr       */
+/*   Updated: 2024/11/11 17:21:42 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ typedef struct s_data
 	t_lex_token		*last_token; //newly added
 	t_parse_token		*list; //newly added
 	t_parse_token		*curr_token; //newly added
-	char			*line_read; //line to store line read from cmd-line
+	char			*line; //line to store line read from cmd-line
 }		t_data;
 
 //
