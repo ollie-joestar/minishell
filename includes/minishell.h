@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 13:28:47 by oohnivch          #+#    #+#             */
-/*   Updated: 2024/11/11 16:47:36 by oohnivch         ###   ########.fr       */
+/*   Updated: 2024/11/11 16:54:04 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,8 +114,12 @@ typedef struct s_data
 	char		**ev;
 	char		**path;
 	int			status;
-	// check if we need this
-	t_token		*token;
+	
+	struct sigaction	sa; //newly added
+	t_lex_token		*token; //newly added
+	t_lex_token		*last_token; //newly added
+	t_parse_token	*list; //newly added
+	t_parse_token	*curr_token; //newly added
 }				t_data;
 
 //
