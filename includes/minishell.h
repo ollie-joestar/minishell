@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 13:28:47 by oohnivch          #+#    #+#             */
-/*   Updated: 2024/11/11 16:54:04 by oohnivch         ###   ########.fr       */
+/*   Updated: 2024/11/11 16:57:48 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,25 @@
 //
 //
 //
+
+//NEW HAN STUFF BEGIN
+typedef struct s_lex_token
+{
+	int		type; 
+	struct s_token	*left; //changed to left and right for better recognition of command order (like official doc says)
+	struct s_token	*right;
+	char		*word;
+}		t_lex_token;
+
+typedef struct s_parse_token 
+{
+	int		type;
+	struct s_node	*next;
+	struct s_node	*prev;
+	char		**content; //Double pointer to iterate over command flags during parsing
+}		t_parse_token;
+//NEW HAN STUFF END
+
 typedef struct s_input {
 	int				flag; // HERE_DOC | FILE
 	char			*file;
@@ -77,23 +96,6 @@ typedef struct s_redir {
 	t_input		*in;
 	t_output	*out;
 }			t_redir;
-
-typedef struct s_token
-{
-	int				type; 
-	struct s_token	*prev;
-	struct s_token	*next;
-	char			*content;
-}		t_token;
-
-//???????
-typedef struct s_lexer_context
-{
-	t_token		*tokens;
-	t_token		*last_token;
-	char		*line;
-	size_t		len;
-}		t_lexer_context;
 
 typedef struct s_exec {
 	int				type; // BUILTIN | CMD
@@ -118,9 +120,10 @@ typedef struct s_data
 	struct sigaction	sa; //newly added
 	t_lex_token		*token; //newly added
 	t_lex_token		*last_token; //newly added
-	t_parse_token	*list; //newly added
-	t_parse_token	*curr_token; //newly added
-}				t_data;
+	t_parse_token		*list; //newly added
+	t_parse_token		*curr_token; //newly added
+	char			*line_read; //line to store line read from cmd-line
+}		t_data;
 
 //
 //

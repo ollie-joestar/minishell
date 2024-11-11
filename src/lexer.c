@@ -38,3 +38,21 @@ t_token	*tokenize_input_string(t_token *token)
 
 	return (token->token_list_head);
 }
+
+t_token	*tokenize(t_var *var)
+{
+	char	*start;
+
+	start = data->line;
+	data->last_token = NULL;
+	while (*start)
+	{
+		skip_whitespace(&start);
+		if (!*start)
+			break ;
+		add_token(var, &start)
+	}
+	if (!add_token(data, &start))
+		return (free_tokens(data), NULL);
+	return (data->tokens);
+}

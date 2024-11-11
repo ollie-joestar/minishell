@@ -45,3 +45,19 @@ void	free_tokens(t_lexer_context *lex)
 		temp = lex->tokens;
 	}
 }
+
+void	append_token_to_list(t_data *data, t_lex_token *new_token)
+{
+	if (!data->tokens && !data->last_token)
+	{
+		data->tokens = new_token;
+		data->tokens->left = NULL;
+		data->last_token = new_token;
+	}
+	else
+	{
+		new_token->left = data->last_token;
+		data->last_token->right = new_token;
+		data->last_token = new_token;
+	}
+}
