@@ -1,23 +1,26 @@
 #include "minishell.h"
 
-void	cat_quoted_string(t_data *data, char *str, char **start, char *end, char quote_type)
+void	cat_single_quotes(char *str, char **start, char *end, size_t len)
 {
 	*end = 0;
-	if (quote_type == '\'')
-		ft_strlcat(str, (*start) + 1, (end - *start));
-	else if (quote_type == '\"')
-	{
-		(*start)++;
-		while (*start < end)
-		{
-			if (possible_var(data, start[0][0], start[0][1]))
-				cat_env_var(data, str, start, end);
-			else
-				ft_strlcat(str, (*start)++, strlen(str) + 2);
-		}
-	}
-	*end = quote_type;
+	ft_strlcat(str, (*start) + 1, len + 1);
+	*end = '\'';
 	*start = end;
+}
+
+void	cat_double_quotes(t_data *data, char *str, char **start, char *end)
+{
+	*end = 0;
+	(*start)++;
+	while (*start < end)
+	{
+		if (possible_var(var, start[0][0], start[0][1]))
+			cat_env_var(var, str, start, end);
+		else
+			cat_char_to_str(str, **start, data->len);
+		(*start)++;
+	}
+	*end = '\"';
 }
 
 void	cat_status(char *str, int status, size_t len)
@@ -72,13 +75,15 @@ char	*cat_interpreted_str(t_data *data, char *start, char *end)
 	char	*ptr;
 	char	*str;
 
-	str = ft_calloc(data->len + 1, sizeof(char));
+	str = ft_calloc(data->len + 1, sizeof (char));
 	if (!str)
 		return (NULL);
 	while (start < end)
 	{
-		if ((*start == '\'' || *start == '\"') && identify_quotes(&start, &ptr, *start))
-			cat_quoted_string(data, str, &start, ptr, *start);
+		if (*start == '\'' && check_single_quotes(&start, &ptr))
+			cat_single_quotes(str, &start, ptr, data->len);
+		else if (*start == '\"' && check_double_quotes(&start, &ptr))
+			cat_double_quotes(data, str, &start, ptr);
 		else if (possible_var(data, start[0], start[1]))
 			cat_env_var(data, str, &start, end);
 		else if (!lone_dollar_sign(start, end))
