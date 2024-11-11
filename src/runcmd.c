@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 10:49:02 by oohnivch          #+#    #+#             */
-/*   Updated: 2024/11/11 15:31:56 by oohnivch         ###   ########.fr       */
+/*   Updated: 2024/11/11 15:37:13 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,9 +62,9 @@ void	run_builtin(t_data *data)
 	if (!(ft_strncmp(data->exec->av[0], "exit", 5)))
 		bruh(data, NULL, 0);
 	if (!(ft_strncmp(data->exec->av[0], "cd", 3)))
-		return (cd(data));
+		cd(data);
 	if (!(ft_strncmp(data->exec->av[0], "echo", 5)))
-		return (echo(data));
+		echo(data);
 	reset_stds(stdin_copy, stdout_copy);
 }
 

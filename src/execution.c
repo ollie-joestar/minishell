@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 11:54:00 by oohnivch          #+#    #+#             */
-/*   Updated: 2024/11/11 15:23:25 by oohnivch         ###   ########.fr       */
+/*   Updated: 2024/11/11 16:45:56 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,7 @@
 void	do_child_stuff(t_data *data)
 {
 	reroute(data);
-	find_access(data);
-	execve(data->exec->av[0], data->exec->av, data->ev);
+	execve(data->exec->cmd, data->exec->av, data->ev);
 	if (ft_strchr(data->exec->av[0], '/'))
 	{
 		if (0 == access(data->exec->av[0], F_OK))
@@ -39,35 +38,45 @@ void	do_child_stuff(t_data *data)
 	}
 }
 
+void	do_stuff(t_data *data, t_exec *exec)
+{
+	if (exec->next)
+	{
+		if (pipe(exec->pipe) == -1)
+			bruh(data, "Pipe failed", 1);
+	}
+	data->pid = fork1(data);
+	if (data->pid == -1)
+		bruh(data, "Fork failed", 1);
+	if (data->pid == 0)
+		do_child_stuff(data);
+	if (exec->prev)
+		(close(exec->prev->pipe[RD]), close(exec->prev->pipe[WR]));
+	if (exec->next)
+		do_stuff(data, exec->next);
+	else
+		(close(exec->pipe[WR]), close(exec->pipe[RD]));
+}
+
 void	run_exec(t_data *data)
 {
-	int	p[2];
 	t_exec	*exec;
-	pid_t pid;
+	int		exit_status;
+	int		wait_status;
 
+	exit_status = 0;
 	exec = data->exec;
 	while(exec)
-	{
-		if (exec->next)
-		{
-			if (pipe(p) == -1)
-				bruh(data, "Pipe failed", 1);
-		}
-		pid = fork1(data);
-		if (pid == -1)
-			bruh(data, "Fork failed", 1);
-		if (pid == 0)
-		{
-			do_child_stuff(data);
-		}
-		else
-		{
-			if (exec->next)
-				close(p[WR]);
-			if (exec->prev)
-				close(p[RD]);
-			waitpid(pid, &data->status, 0);
-		}
-		exec = exec->next;
-	}
+		do_stuff(data, exec);
+	wait_status = 1;
+	while (wait_status > 0 && wait_status != data->pid)
+		wait_status = wait(&exit_status);
+	if (WIFEXITED(exit_status))
+		data->status = WEXITSTATUS(exit_status);
+	else if (WIFSIGNALED(exit_status))
+		data->status = WTERMSIG(exit_status) + 128;
+	while (wait(NULL) > 0)
+		;
+	clean_exec(data);
+	return ;
 }

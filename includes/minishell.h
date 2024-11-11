@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 13:28:47 by oohnivch          #+#    #+#             */
-/*   Updated: 2024/11/11 14:01:21 by oohnivch         ###   ########.fr       */
+/*   Updated: 2024/11/11 16:47:36 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,16 +99,22 @@ typedef struct s_exec {
 	int				type; // BUILTIN | CMD
 	t_redir			*redir;
 	int				pipe[2];
+
+	char			*cmd;
+	char			**av;
+
 	struct s_exec	*prev;
 	struct s_exec	*next;
-	char			**av;
 }			t_exec;
 
 typedef struct s_data
 {
+	pid_t		pid;
 	t_exec		*exec;
 	char		**ev;
+	char		**path;
 	int			status;
+	// check if we need this
 	t_token		*token;
 }				t_data;
 
@@ -142,5 +148,7 @@ void	runcmd(t_data *data);
 void	bruh(t_data *data, char *s, int status);
 int		fork1(t_data *data);
 void	run_exec(t_data *data);
+void	run_builtin(t_data *data);
+void	clean_exec(t_data *data);
 
 #endif
