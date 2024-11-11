@@ -56,12 +56,15 @@ int main(int argc, char **argv, char **ev)
 
 	while (1)
 	{
-		ft_putstr_fd(prompt, 1);
 		//HAN SHIT ABOUT READING LINE AND STARTING TOKENIZING WORDS
 		data.line = readline(prompt);
 		if (!data.line)
 			break ;
 		data.token = tokenization(&data);
+		if (parse_tokens(&data) == true)
+			EXECUTE_CMD(&data); //need exec function
+		if (*data.line && data.line)
+			add_to_history(&data.line); //need function
 		//END
 		if (getcmd(buf, sizeof(buf)) >= 0)
 			runcmd(data);
