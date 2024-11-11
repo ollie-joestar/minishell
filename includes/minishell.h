@@ -61,6 +61,25 @@
 //
 //
 //
+
+//NEW HAN STUFF BEGIN
+typedef struct s_lex_token
+{
+	int		type; 
+	struct s_token	*next;
+	struct s_token	*prev;
+	char		*word;
+}		t_lex_token;
+
+typedef struct s_parse_token 
+{
+	int		type;
+	struct s_node	*next;
+	struct s_node	*prev;
+	char		**content; //Double pointer to iterate over command flags during parsing
+}		t_parse_token;
+//NEW HAN STUFF END
+
 typedef struct s_input {
 	int				flag; // HERE_DOC | FILE
 	char			*file;
@@ -78,22 +97,6 @@ typedef struct s_redir {
 	t_output	*out;
 }			t_redir;
 
-typedef struct s_lex_token
-{
-	int		type; 
-	struct s_token	*next;
-	struct s_token	*prev;
-	char		*word;
-}		t_lex_token;
-
-typedef struct s_parse_token
-{
-	int		type;
-	struct s_node	*next;
-	struct s_node	*prev;
-	char		**content;
-}		t_parse_token;
-
 typedef struct s_exec {
 	int				type; // BUILTIN | CMD
 	t_redir			*redir;
@@ -105,12 +108,12 @@ typedef struct s_exec {
 
 typedef struct s_data
 {
-	struct sigaction	sa;
-	t_lex_token		*token;
-	t_parse_token		*list;
-	t_parse_token		*curr_token;
+	struct sigaction	sa; //newly added
+	t_lex_token		*token; //newly added
+	t_parse_token		*list; //newly added
+	t_parse_token		*curr_token; //newly added
 	t_exec			*exec;
-	char			*line_read;
+	char			*line_read; //line to store line read from cmd-line
 	char			**ev;
 	int			status;
 }		t_data;
