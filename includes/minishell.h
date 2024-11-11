@@ -66,8 +66,8 @@
 typedef struct s_lex_token
 {
 	int		type; 
-	struct s_token	*next;
-	struct s_token	*prev;
+	struct s_token	*left; //changed to left and right for better recognition of command order (like official doc says)
+	struct s_token	*right;
 	char		*word;
 }		t_lex_token;
 
@@ -110,6 +110,7 @@ typedef struct s_data
 {
 	struct sigaction	sa; //newly added
 	t_lex_token		*token; //newly added
+	t_lex_token		*last_token; //newly added
 	t_parse_token		*list; //newly added
 	t_parse_token		*curr_token; //newly added
 	t_exec			*exec;
