@@ -78,22 +78,21 @@ typedef struct s_redir {
 	t_output	*out;
 }			t_redir;
 
-typedef struct s_token
+typedef struct s_lex_token
 {
-	int				type; 
-	struct s_token	*prev;
+	int		type; 
 	struct s_token	*next;
-	char			*content;
-}		t_token;
+	struct s_token	*prev;
+	char		*word;
+}		t_lex_token;
 
-//???????
-typedef struct s_lexer_context
+typedef struct s_parse_token
 {
-	t_token		*tokens;
-	t_token		*last_token;
-	char		*line;
-	size_t		len;
-}		t_lexer_context;
+	int		type;
+	struct s_node	*next;
+	struct s_node	*prev;
+	char		**content;
+}		t_parse_token;
 
 typedef struct s_exec {
 	int				type; // BUILTIN | CMD
@@ -106,11 +105,15 @@ typedef struct s_exec {
 
 typedef struct s_data
 {
-	t_exec		*exec;
-	char		**ev;
+	struct sigaction	sa;
+	t_lex_token		*token;
+	t_parse_token		*list;
+	t_parse_token		*curr_token;
+	t_exec			*exec;
+	char			*line_read;
+	char			**ev;
 	int			status;
-	t_token		*token;
-}				t_data;
+}		t_data;
 
 //
 //
