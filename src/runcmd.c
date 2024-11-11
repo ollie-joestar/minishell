@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 10:49:02 by oohnivch          #+#    #+#             */
-/*   Updated: 2024/11/11 14:02:22 by oohnivch         ###   ########.fr       */
+/*   Updated: 2024/11/11 15:37:13 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,29 +52,29 @@ void	echo(t_data *data)
 
 void	run_builtin(t_data *data)
 {
+	int	stdin_copy;
+	int	stdout_copy;
+
+	stdin_copy = dup(STDIN_FILENO);
+	stdout_copy = dup(STDOUT_FILENO);
 	if (data->exec->av[0] == 0)
 		bruh(data, "cmd is null\n", 1);
 	if (!(ft_strncmp(data->exec->av[0], "exit", 5)))
 		bruh(data, NULL, 0);
 	if (!(ft_strncmp(data->exec->av[0], "cd", 3)))
-		return (cd(data));
+		cd(data);
 	if (!(ft_strncmp(data->exec->av[0], "echo", 5)))
-		return (echo(data));
+		echo(data);
+	reset_stds(stdin_copy, stdout_copy);
 }
 
 void	runcmd(t_data *data)
 {
 	t_exec *exec;
 
-	int	stdin_copy;
-	int	stdout_copy;
-
-	stdin_copy = dup(STDIN_FILENO);
-	stdout_copy = dup(STDOUT_FILENO);
 	exec = data->exec;
 	if (exec->type == BUILTIN)
 		return (run_builtin(data));
 	else
 		return (run_exec(data));
-	reset_stds(stdin_copy, stdout_copy);
 }
