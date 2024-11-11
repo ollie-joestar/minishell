@@ -6,16 +6,12 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 09:38:58 by oohnivch          #+#    #+#             */
-/*   Updated: 2024/11/11 13:15:51 by oohnivch         ###   ########.fr       */
+/*   Updated: 2024/11/11 17:15:25 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 char prompt[] = "minishell> ";
-
-void	runcmd(t_data *data)
-{
-}
 
 //DELETE THIS WHEN DONE
 t_exec	*parsecmd(t_data *data, char *s)
@@ -58,10 +54,10 @@ int main(int argc, char **argv, char **ev)
 	{
 		ft_putstr_fd(prompt, 1);
 		//HAN SHIT ABOUT READING LINE AND STARTING TOKENIZING WORDS
-		data.line = readline(prompt);
-		if (!data.line)
+		data->line_read = readline(prompt);
+		if (!data->line_read)
 			break ;
-		data.token = tokenization(&data);
+		data->token = tokenization(&data);
 		//END
 		if (getcmd(buf, sizeof(buf)) >= 0)
 			runcmd(data);

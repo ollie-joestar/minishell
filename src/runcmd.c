@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 10:49:02 by oohnivch          #+#    #+#             */
-/*   Updated: 2024/11/11 15:37:13 by oohnivch         ###   ########.fr       */
+/*   Updated: 2024/11/11 17:13:00 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,11 +70,7 @@ void	run_builtin(t_data *data)
 
 void	runcmd(t_data *data)
 {
-	t_exec *exec;
-
-	exec = data->exec;
-	if (exec->type == BUILTIN)
+	if (data->exec->type == BUILTIN)
 		return (run_builtin(data));
-	else
-		return (run_exec(data));
+	return (run_exec(data));
 }

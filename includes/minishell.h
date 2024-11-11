@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 13:28:47 by oohnivch          #+#    #+#             */
-/*   Updated: 2024/11/11 17:09:15 by oohnivch         ###   ########.fr       */
+/*   Updated: 2024/11/11 17:15:56 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,6 +122,7 @@ void	ft_strncpy(char	*dest, const char *str, size_t n);
 char	*ft_strndup(const char *s, size_t n);
 char	*token_end(char *start);
 void	reset_end(char *start, char **end, char *ptr, char *tkn_end);
+t_token	*tokenization(t_data *data);
 
 // OLLIE
 void	reroute(t_data *data);
