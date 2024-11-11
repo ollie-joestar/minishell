@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 09:38:58 by oohnivch          #+#    #+#             */
-/*   Updated: 2024/11/11 11:23:11 by oohnivch         ###   ########.fr       */
+/*   Updated: 2024/11/11 13:15:51 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,9 +58,7 @@ int main(int argc, char **argv, char **ev)
 	{
 		ft_putstr_fd(prompt, 1);
 		if (getcmd(buf, sizeof(buf)) >= 0)
-		{
 			runcmd(data);
-		}
 		else
 			break;
 	}

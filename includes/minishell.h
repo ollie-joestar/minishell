@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 13:28:47 by oohnivch          #+#    #+#             */
-/*   Updated: 2024/11/11 10:47:24 by oohnivch         ###   ########.fr       */
+/*   Updated: 2024/11/11 14:01:21 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@
 # define INTERPRET 040
 # define NO_VAR 0200
 # define TO_SPLIT CHAR_MAX
+# define RD 0
+# define WR 1
 
 /*redir *here_doc() */
 /*{*/
@@ -61,19 +63,19 @@
 //
 typedef struct s_input {
 	int				flag; // HERE_DOC | FILE
-	char			*file_name;
+	char			*file;
 	struct s_input	*next;
 	struct s_input	*prev;
 }			t_input;
 
 typedef struct s_output {
 	int		type; // REPLACE | APPEND
-	char	*file_name;
+	char	*file;
 }			t_output;
 
 typedef struct s_redir {
-	t_input		*input;
-	t_output	*output;
+	t_input		*in;
+	t_output	*out;
 }			t_redir;
 
 typedef struct s_token
@@ -96,7 +98,7 @@ typedef struct s_lexer_context
 typedef struct s_exec {
 	int				type; // BUILTIN | CMD
 	t_redir			*redir;
-	/*int				pipe[2];*/
+	int				pipe[2];
 	struct s_exec	*prev;
 	struct s_exec	*next;
 	char			**av;
@@ -109,7 +111,6 @@ typedef struct s_data
 	int			status;
 	t_token		*token;
 }				t_data;
-
 
 //
 //
@@ -136,15 +137,10 @@ char	*token_end(char *start);
 void	reset_end(char *start, char **end, char *ptr, char *tkn_end);
 
 // OLLIE
-
-
+void	reroute(t_data *data);
 void	runcmd(t_data *data);
-/*void	exec_exec(t_data *data, t_execcmd *ecmd);*/
-/*void	exec_redir(t_data *data, t_redircmd *rcmd);*/
-/*void	exec_pipe(t_data *data, t_pipecmd *pcmd);*/
-/*void	exec_list(t_data *data, t_listcmd *lcmd);*/
-/*void	exec_back(t_data *data, t_backcmd *bcmd);*/
 void	bruh(t_data *data, char *s, int status);
 int		fork1(t_data *data);
+void	run_exec(t_data *data);
 
 #endif

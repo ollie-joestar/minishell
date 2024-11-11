@@ -6,71 +6,68 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 11:54:00 by oohnivch          #+#    #+#             */
-/*   Updated: 2024/11/07 14:20:46 by oohnivch         ###   ########.fr       */
+/*   Updated: 2024/11/11 15:23:25 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	exec_exec(t_data *data, t_execcmd *ecmd)
+void	do_child_stuff(t_data *data)
 {
-	if (ecmd->argv[0] == 0)
-		bruh(data, "cmd is null\n", 1);
-	execve(ecmd->argv[0], ecmd->argv, data->ev);
-	bruh(data, "exec failed\n", 1);
-}
-
-void	exec_redir(t_data* data, t_redircmd *rcmd)
-{
-	close(rcmd->fd);
-	if (open(rcmd->file, rcmd->mode) < 0)
+	reroute(data);
+	find_access(data);
+	execve(data->exec->av[0], data->exec->av, data->ev);
+	if (ft_strchr(data->exec->av[0], '/'))
 	{
-		ft_putstr_fd("open ", 2);
-		ft_putstr_fd(rcmd->file, 2);
-		bruh(data, "failed\n", 1);
+		if (0 == access(data->exec->av[0], F_OK))
+		{
+			write(2, "pipex: permission denied: ", 26);
+			bruh(data, data->exec->av[0], 126);
+		}
+		write(2, "pipex: no such file or directory: ", 34);
+		bruh(data, data->exec->av[0], 127);
 	}
-	runcmd(data, rcmd->cmd);
-}
-
-void exec_pipe(t_data* data, t_pipecmd *pcmd)
-{
-	int p[2];
-
-	if (pipe(p) < 0)
-		bruh(data, "pipe failed\n", 1);
-	if (fork1(data) == 0)
+	else
 	{
-		close(1);
-		dup(p[1]);
-		close(p[0]);
-		close(p[1]);
-		runcmd(data, pcmd->left);
+		if (0 == access(data->exec->av[0], F_OK))
+		{
+			write(2, "pipex: permission denied: ", 26);
+			bruh(data, data->exec->av[0], 126);
+		}
+		write(2, "pipex: command not found: ", 26);
+		bruh(data, data->exec->av[0], 127);
 	}
-	if (fork1(data) == 0)
+}
+
+void	run_exec(t_data *data)
+{
+	int	p[2];
+	t_exec	*exec;
+	pid_t pid;
+
+	exec = data->exec;
+	while(exec)
 	{
-		close(0);
-		dup(p[0]);
-		close(p[0]);
-		close(p[1]);
-		runcmd(data, pcmd->right);
+		if (exec->next)
+		{
+			if (pipe(p) == -1)
+				bruh(data, "Pipe failed", 1);
+		}
+		pid = fork1(data);
+		if (pid == -1)
+			bruh(data, "Fork failed", 1);
+		if (pid == 0)
+		{
+			do_child_stuff(data);
+		}
+		else
+		{
+			if (exec->next)
+				close(p[WR]);
+			if (exec->prev)
+				close(p[RD]);
+			waitpid(pid, &data->status, 0);
+		}
+		exec = exec->next;
 	}
-	close(p[0]);
-	close(p[1]);
-	wait(0);
-	wait(0);
-
-}
-
-void exec_list(t_data* data, t_listcmd *lcmd)
-{
-	if (fork1(data) == 0)
-		runcmd(data, lcmd->left);
-	wait(0);
-	runcmd(data, lcmd->right);
-}
-
-void exec_back(t_data* data, t_backcmd *bcmd)
-{
-	if (fork1(data) == 0)
-		runcmd(data, bcmd->cmd);
 }
