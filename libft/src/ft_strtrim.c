@@ -6,7 +6,7 @@
 /*   By: oohnivch <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 14:29:12 by oohnivch          #+#    #+#             */
-/*   Updated: 2024/07/03 15:24:29 by oohnivch         ###   ########.fr       */
+/*   Updated: 2024/11/11 11:16:12 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@ static size_t	size_calc(char const *s1, char const *set, size_t *sptr)
 	return (size);
 }
 
+// Allocates (with malloc(3)) and returns a copy of ’s1’ with the characters specified in ’set’ removed from the beginning and the end of the string.
+// Returns the trimmed string, or NULL if the allocation fails.
 char	*ft_strtrim(char const *s1, char const *set)
 {
 	size_t	start;

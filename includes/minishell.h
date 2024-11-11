@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 13:28:47 by oohnivch          #+#    #+#             */
-/*   Updated: 2024/11/07 16:49:10 by oohnivch         ###   ########.fr       */
+/*   Updated: 2024/11/11 10:47:24 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@
 /*HANJU*/
 //
 // 
-// GOOD STUFF KIUNDA BUT STUKKL BAD FOR NOW
+// GOOD STUFF KINDA BUT STILL BAD FOR NOW
 //
 //
 //
@@ -114,7 +114,7 @@ typedef struct s_data
 //
 //
 //
-// GOOD STUFF KIUNDA BUT STUKKL BAD FOR NOW END
+// GOOD STUFF KINDA BUT STILL BAD FOR NOW END
 //
 //
 //
@@ -136,20 +136,15 @@ char	*token_end(char *start);
 void	reset_end(char *start, char **end, char *ptr, char *tkn_end);
 
 // OLLIE
-/*t_cmd	*init_execcmd(void);*/
-/*t_cmd	*init_redircmd(t_cmd *subcmd, char *file, char *efile, int mode, int fd);*/
-/*t_cmd	*init_pipecmd(t_cmd *left, t_cmd *right);*/
-/*t_cmd	*init_listcmd(t_cmd *left, t_cmd *right);*/
-/*t_cmd	*init_backcmd(t_cmd *subcmd);*/
 
 
-void			runcmd(t_data *data);
-/*void			exec_exec(t_data *data, t_execcmd *ecmd);*/
-/*void			exec_redir(t_data *data, t_redircmd *rcmd);*/
-/*void			exec_pipe(t_data *data, t_pipecmd *pcmd);*/
-/*void			exec_list(t_data *data, t_listcmd *lcmd);*/
-/*void			exec_back(t_data *data, t_backcmd *bcmd);*/
-void			bruh(t_data *data, char *s, int status);
-int				fork1(t_data *data);
+void	runcmd(t_data *data);
+/*void	exec_exec(t_data *data, t_execcmd *ecmd);*/
+/*void	exec_redir(t_data *data, t_redircmd *rcmd);*/
+/*void	exec_pipe(t_data *data, t_pipecmd *pcmd);*/
+/*void	exec_list(t_data *data, t_listcmd *lcmd);*/
+/*void	exec_back(t_data *data, t_backcmd *bcmd);*/
+void	bruh(t_data *data, char *s, int status);
+int		fork1(t_data *data);
 
 #endif

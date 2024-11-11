@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 13:47:26 by oohnivch          #+#    #+#             */
-/*   Updated: 2024/10/23 13:51:03 by oohnivch         ###   ########.fr       */
+/*   Updated: 2024/11/11 11:20:03 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,9 @@ static char	*end_check(char **buffer, char *content, ssize_t bytes, int *e)
 	return (content);
 }
 
+// Reads a line from a file descriptor and returns it without the newline character.
+// Returns NULL in case of an error or when the file has ended.
+// Changes the value of the exit_code variable to -1 in case of an error.
 char	*get_next_line_2(int fd, char **buffer, int *exit_code)
 {
 	char		*content;

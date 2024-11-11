@@ -6,12 +6,14 @@
 /*   By: oohnivch <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 14:57:07 by oohnivch          #+#    #+#             */
-/*   Updated: 2024/07/03 13:03:54 by oohnivch         ###   ########.fr       */
+/*   Updated: 2024/11/11 11:05:44 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/libft.h"
 
+// Outputs the integer n to the standard output.
+// Returns the number of characters printed.
 int	ft_putnbr(int nb)
 {
 	int		len;

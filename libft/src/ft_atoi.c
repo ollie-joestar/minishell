@@ -6,17 +6,17 @@
 /*   By: oohnivch <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 13:50:46 by oohnivch          #+#    #+#             */
-/*   Updated: 2024/07/03 13:09:56 by oohnivch         ###   ########.fr       */
+/*   Updated: 2024/11/11 10:55:17 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/libft.h"
 
-static int	isspace(int c)
-{
-	return ((c >= 9 && c <= 13) || (c == 32));
-}
-
+// Converts the initial portion of the string pointed to by str to int representation.
+// The expected string format is an optional plus or minus sign, followed by a sequence of digits.
+// The function stops reading the string at the first character that cannot be converted to a number.
+// The function returns the converted number.
+// If the string is empty or does not contain any digits, the function returns 0.
 int	ft_atoi(const char *str)
 {
 	int	i;
@@ -26,7 +26,7 @@ int	ft_atoi(const char *str)
 	sign = 1;
 	num = 0;
 	i = 0;
-	while (isspace(str[i]))
+	while (ft_isspace(str[i]))
 		i++;
 	if (str[i] == '-' || str[i] == '+')
 		sign = sign - (2 * (str[i++] == '-'));
@@ -34,19 +34,3 @@ int	ft_atoi(const char *str)
 		num = num * 10 + sign * (str[i++] - '0');
 	return (num);
 }
-/*
-#include <stdio.h>
-#include <stdlib.h>
-
-int main(int argc, char **argv)
-{
-    if (argc == 2)
-    {
-        (void) argc;
-        printf("ft_atoi result : %d\n", ft_atoi(argv[1]));
-        printf("atoi result : %d\n", atoi(argv[1]));
-        return (0);
-    }
-    else
-        return (1);
-}*/

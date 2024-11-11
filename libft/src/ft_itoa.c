@@ -6,7 +6,7 @@
 /*   By: oohnivch <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/11 18:11:54 by oohnivch          #+#    #+#             */
-/*   Updated: 2024/08/09 14:18:08 by oohnivch         ###   ########.fr       */
+/*   Updated: 2024/11/11 10:56:15 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,8 @@ static void	reverse(char *str)
 	}
 }
 
+// Allocates memory and returns a string representing the integer received as an argument.
+// The function returns NULL if the allocation fails.
 char	*ft_itoa(int n)
 {
 	int		size;
@@ -81,20 +83,3 @@ char	*ft_itoa(int n)
 	reverse(ptr);
 	return (ptr);
 }
-/*
-int	main(int argc, char **argv)
-{
-	if (argc == 2)
-	{
-		int	num;
-
-		num = ft_atoi(argv[1]);
-		printf("The number given: %d\n", num);
-		printf("Space needed for it: %d\n", ft_calc(num));
-		printf("String result: %s\n", ft_itoa(num));
-//		printf("Real result: %s\n", itoa(num));
-		return (0);
-	}
-	else
-		return (1);
-}*/

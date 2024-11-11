@@ -6,7 +6,7 @@
 /*   By: oohnivch <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 13:45:45 by oohnivch          #+#    #+#             */
-/*   Updated: 2024/07/03 15:25:24 by oohnivch         ###   ########.fr       */
+/*   Updated: 2024/11/11 11:07:25 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,10 @@ static char	**ft_process(char **list, const char *s, char c)
 	return (list);
 }
 
+// Splits the string s using the character c as a delimiter.
+// Returns an array of strings obtained by splitting s using c as a delimiter.
+// The array is terminated by a NULL pointer.
+// If the allocation fails, the function returns NULL.
 char	**ft_split(char const *s, char c)
 {
 	char	**list;

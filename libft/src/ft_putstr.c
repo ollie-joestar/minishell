@@ -6,12 +6,15 @@
 /*   By: oohnivch <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 12:27:35 by oohnivch          #+#    #+#             */
-/*   Updated: 2024/07/03 13:03:57 by oohnivch         ###   ########.fr       */
+/*   Updated: 2024/11/11 11:06:21 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/libft.h"
 
+// Outputs the string s to the standard output.
+// Returns the number of characters printed.
+// If s is NULL, "(null)" is printed instead.
 int	ft_putstr(char *s)
 {
 	size_t	len;
