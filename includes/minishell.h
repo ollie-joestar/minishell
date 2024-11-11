@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 13:28:47 by oohnivch          #+#    #+#             */
-/*   Updated: 2024/11/11 16:57:48 by oohnivch         ###   ########.fr       */
+/*   Updated: 2024/11/11 17:04:12 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,6 @@
 # include <limits.h>
 # include <stdbool.h>
 # include <signal.h>
-# include <errno.h>
-
-//TOKEN TYPES
-//HERE_DOC
-//input
-//pipe
-//output
-//words
 
 
 # define FILE 02
@@ -37,31 +29,13 @@
 # define CMD 420
 # define REPLACE 010
 # define APPEND 020
-/*# define PIPE 020*/
 # define INTERPRET 040
 # define NO_VAR 0200
 # define TO_SPLIT CHAR_MAX
 # define RD 0
 # define WR 1
 
-/*redir *here_doc() */
-/*{*/
-/*	int flag_type; // 0 = expand, 1 = no expand*/
-/*	// if lim = expand*/
-/*	// if "lim" = not expand*/
-/**/
-/*};*/
-
-
-
 /*HANJU*/
-//
-// 
-// GOOD STUFF KINDA BUT STILL BAD FOR NOW
-//
-//
-//
-
 //NEW HAN STUFF BEGIN
 typedef struct s_lex_token
 {
@@ -134,13 +108,13 @@ typedef struct s_data
 //
 
 /* Lexer functions */
-t_token	*create_token(int type, char *str);
-t_token	*tokenize(t_lexer_context *lexer_ctx);
-int		add_token(t_lexer_context *lexer_ctx, char **start);
-void	add_token_to_list(t_lexer_context *lexer_ctx, t_token *new_token);
-void	free_tokens(t_lexer_context *lexer_ctx);
+/*t_token	*create_token(int type, char *str);*/
+/*t_token	*tokenize(t_lexer_context *lexer_ctx);*/
+/*int		add_token(t_lexer_context *lexer_ctx, char **start);*/
+/*void	add_token_to_list(t_lexer_context *lexer_ctx, t_token *new_token);*/
+/*void	free_tokens(t_lexer_context *lexer_ctx);*/
+/*int		identify_token_type(t_lexer_context *lexer_ctx, char **start, char **end);*/
 void	skip_whitespace(char **input);
-int		identify_token_type(t_lexer_context *lexer_ctx, char **start, char **end);
 int		identify_pipe(char **start, char **end);
 int		identify_single_quotes(char **start, char **end);
 int		identify_double_quotes(char **start, char **end);
