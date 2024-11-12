@@ -6,40 +6,35 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 09:38:58 by oohnivch          #+#    #+#             */
-/*   Updated: 2024/11/12 16:24:48 by hanjkim          ###   ########.fr       */
+/*   Updated: 2024/11/12 17:31:44 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#include "libft.h"
+#include "minishell.h"
 char prompt[] = "minishell> ";
-
-//DELETE THIS WHEN DONE
-t_exec	*parsecmd(t_data *data, char *s)
-{
-	t_exec *exec;
-
-	return (exec);
-}
 
 //DELETE THIS WHEN DONE
 //getcmd is a function that reads a line from the terminal
 //and stores it in the buffer
 //it returns the number of characters read
-int	getcmd(char *buf, int nbuf)
+void	parse_cmd(t_data *data)
 {
-	if (fgets(buf, nbuf, stdin) == NULL)
-		return -1;
-	if (buf[0] == 0)
-		return -1;
-	return 0;
+	int i = 0;
+
+	data->exec = ft_calloc(1, sizeof(t_exec));
+	while (data->token)
+	{
+		if (i == 0)
+			data->exec->cmd = ft_strdup(data->token->word);
+		data->exec->av = ft_calloc(10 + 1, sizeof(char *));
+		data->exec->av[i] = ft_strdup(data->token->word);
+		data->exec->type = CMD;
+		data->token = data->token->right;
+		i++;
+	}
 }
 
-bool	parse_tokens(t_data *data)
-{
-	if (data->token == NULL)
-		return (false);
-	return (true);
-}
 
 // UNSAFE FUNCTION FIX LATER
 void	store_env(t_data *data, char **ev)
@@ -71,10 +66,8 @@ int main(int argc, char **argv, char **ev)
 		if (!data->line)
 			bruh(data, "Failed to read line", 1);
 		tokenization(data);
-		if (parse_tokens(data) == true)
-			runcmd(data); //need exec function
-		else
-			break;
+		parse_cmd(data);
+		runcmd(data); //need exec function
 	}
 	bruh(data, NULL, 0);
 }

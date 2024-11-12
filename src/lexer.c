@@ -39,19 +39,61 @@ t_token	*create_token(int type, char *str)
 /*	return (token->token_list_head);*/
 /*}*/
 /**/
+
+t_lex_token	*create_token(int type, char *str)
+{
+	t_lex_token	*token;
+
+	token = (t_lex_token *)malloc(sizeof(t_lex_token));
+	if (!token)
+	{
+		free(str);
+		return (NULL);
+	}
+	token->type = type;
+	token->word = str;
+	token->right = NULL;
+	token->left = NULL;
+	return (token);
+}
+
+void	tokenization(t_data *data)
+{
+	int		i;
+	char	**av;
+	t_lex_token	*temp;
+
+	av = ft_split(data->line, ' ');
+	if (!av)
+		bruh(data, "Failed to split line", 1);
+	i = -1;
+	while (av[++i])
+	{
+		temp = data->token;
+		data->token = create_token(CMD, av[i]);
+		if (!data->token)
+			bruh(data, "Failed to create token", 1);
+		if (temp) 
+		{
+			temp->right = data->token;
+			data->token->left = temp;
+		}
+	}
+}
+/*
 void	tokenization(t_data *data)
 {
 	char	*start;
 
 	start = data->line;
 	data->last_token = NULL;
-	while (*start)
+	if (*start)
 	{
 		skip_space(&start);
 		if (!*start)
-			break ;
+			return ;
 //		if (!add_token(data, &start))
 //			return (free_tokens(data), NULL);
 	}
 	return ;
-}
+}*/

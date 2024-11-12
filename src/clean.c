@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 16:15:50 by oohnivch          #+#    #+#             */
-/*   Updated: 2024/11/12 16:18:05 by oohnivch         ###   ########.fr       */
+/*   Updated: 2024/11/12 17:11:31 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ void	clean_exec(t_data *data)
 {
 	t_exec	*tmp;
 
-	if (data->exec->prev)
+	if (data->exec && data->exec->prev)
 		data->exec = data->exec->prev;
 	while (data->exec)
 	{
