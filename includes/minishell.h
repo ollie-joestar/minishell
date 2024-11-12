@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 13:28:47 by oohnivch          #+#    #+#             */
-/*   Updated: 2024/11/12 13:53:01 by oohnivch         ###   ########.fr       */
+/*   Updated: 2024/11/12 15:22:11 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,24 +35,23 @@
 # define RD 0
 # define WR 1
 
-/*HANJU*/
-//NEW HAN STUFF BEGIN
 typedef struct s_lex_token
 {
-	int		type; 
-	struct s_token	*left; //changed to left and right for better recognition of command order (like official doc says)
-	struct s_token	*right;
-	char		*word;
+	int					type; // word, pipe, redirect, etc.
+	char				*word;
+
+	struct s_lex_token	*left; //changed to left and right for better recognition of command order (like official doc says)
+	struct s_lex_token	*right;
 }		t_lex_token;
 
 typedef struct s_parse_token 
 {
-	int		type;
-	struct s_node	*next;
-	struct s_node	*prev;
-	char		**content; //Double pointer to iterate over command flags during parsing
+	int					type;
+	char				**content; //Double pointer to iterate over command flags during parsing
+	//
+	struct s_parse_token	*next;
+	struct s_parse_token	*prev;
 }		t_parse_token;
-//NEW HAN STUFF END
 
 typedef struct s_input {
 	int				flag; // HERE_DOC | FILE
@@ -61,42 +60,50 @@ typedef struct s_input {
 	struct s_input	*prev;
 }			t_input;
 
+
 typedef struct s_output {
 	int		type; // REPLACE | APPEND
 	char	*file;
 }			t_output;
 
-typedef struct s_redir {
-	t_input		*in;
-	t_output	*out;
-}			t_redir;
+typedef struct s_envlist {
+	char				*name;
+	char				*value;
+	struct s_envlist	*next;
+	struct s_envlist	*prev;
+}			t_envlist;
+
 
 typedef struct s_exec {
 	int				type; // BUILTIN | CMD
-	t_redir			*redir;
-	int				pipe[2];
+	t_input			*input; // linked list of input files
+	t_output		*output; // linked list of output files
+	int				pipe[2]; // pipe file descriptors
 
-	char			*cmd;
+	char			*cmd; // full path to the command
 	char			**av;
 
 	struct s_exec	*prev;
 	struct s_exec	*next;
 }			t_exec;
 
+
 typedef struct s_data
 {
-	pid_t		pid;
-	t_exec		*exec;
-	char		**ev;
-	char		**path;
-	int			status;
+	pid_t				pid; // to store last child process id
+	t_exec				*exec; // to store the current command data
+	char				**ev; // to store the environment variables
 	
-	struct sigaction	sa; //newly added
-	t_lex_token		*token; //newly added
-	t_lex_token		*last_token; //newly added
-	t_parse_token		*list; //newly added
+	t_envlist			*env; // to store the environment variables in a linked list
+	char				**path; // to store the path variable after splitting
+	int					status; // to store the exit status of the last command
+	struct sigaction	sa; // to store the signal action
+
+	char				*line; //lineread (add to history and free after execution)
+	t_lex_token			*token; // to store the list of tokenized commands
+	t_lex_token			*last_token; // to point to the last token in the list
+	t_parse_token		*list; // to store the list of parsed commands 
 	t_parse_token		*curr_token; //newly added
-	char			*line; //line to store line read from cmd-line
 }		t_data;
 
 //
@@ -122,7 +129,7 @@ void	ft_strncpy(char	*dest, const char *str, size_t n);
 char	*ft_strndup(const char *s, size_t n);
 char	*token_end(char *start);
 void	reset_end(char *start, char **end, char *ptr, char *tkn_end);
-t_token	*tokenization(t_data *data);
+void	tokenization(t_data *data);
 
 // OLLIE
 void	reset_stds(int	stdin_copy, int	stdout_copy);

@@ -6,10 +6,11 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 09:38:58 by oohnivch          #+#    #+#             */
-/*   Updated: 2024/11/11 17:23:49 by oohnivch         ###   ########.fr       */
+/*   Updated: 2024/11/12 15:14:44 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
 #include "minishell.h"
 char prompt[] = "minishell> ";
 
@@ -34,36 +35,45 @@ int	getcmd(char *buf, int nbuf)
 	return 0;
 }
 
-//
-//WORST CASE
-//minishell> < infile1 << "lim" > outfile1 echo hello world > outfile2 < infile2 | < infile3 "ca""t" > outfile3 *** BONUS PART***  && echo hello world
-// ";" not implemented
-//< infile > outfile NOT NEEDED !!!!!!!!!!
-//< infile cat > outfile should work
-//< infile cat | > outfile should NOT WORK
+bool	parse_tokens(t_data *data)
+{
+	if (data->token == NULL)
+		return (false);
+	return (true);
+}
+
+// UNSAFE FUNCTION FIX LATER
+void	store_env(t_data *data, char **ev)
+{
+	int i;
+	int j;
+
+	i = 0;
+	while (ev[i])
+		i++;
+	data->ev = ft_calloc(i + 1, sizeof(char *));
+	i = 0;
+	while (ev[i])
+	{
+		data->ev[i] = ft_strdup(ev[i]);
+		i++;
+	}
+}
 
 int main(int argc, char **argv, char **ev)
 {
-//	static char buf[1024];
 	t_data *data;
 
 	data = ft_calloc(1, sizeof(t_data));
-	data->ev = ev;
-
+	store_env(data, ev);
 	while (1)
 	{
-		//HAN SHIT ABOUT READING LINE AND STARTING TOKENIZING WORDS
-		data->line= readline(prompt);
+		data->line = readline(prompt);
 		if (!data->line)
-			break ;
-		data->token = tokenization(&data);
-		if (parse_tokens(&data) == true)
-			EXECUTE_CMD(&data); //need exec function
-		if (*data->line && data->line)
-			add_to_history(&data->line); //need function
-		//END
-		if (getcmd(buf, sizeof(buf)) >= 0)
-			runcmd(data);
+			bruh(data, "Failed to read line", 1);
+		tokenization(data);
+		if (parse_tokens(data) == true)
+			runcmd(data); //need exec function
 		else
 			break;
 	}

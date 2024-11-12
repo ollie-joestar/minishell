@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 11:54:00 by oohnivch          #+#    #+#             */
-/*   Updated: 2024/11/12 13:51:59 by oohnivch         ###   ########.fr       */
+/*   Updated: 2024/11/12 14:24:29 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,7 @@ void	runcmd(t_data *data)
 			run_builtin(data);
 		exec = exec->next;
 	}
+	add_history(data->line);
 	wait_status = 1;
 	while (wait_status > 0 && wait_status != data->pid)
 		wait_status = wait(&exit_status);

@@ -39,3 +39,12 @@ Our `minishell` with **Hanju-kun** *UwU*
     - If the command is not a builtin command, execute the external command.
     `execute()`
     returns *None*
+
+//WORST CASE
+//minishell> < infile1 << "lim" > outfile1 echo hello world > outfile2 < infile2 | < infile3 "ca""t" > outfile3 *** BONUS PART***  && echo hello world
+// ";" not implemented
+//< infile > outfile NOT NEEDED !!!!!!!!!!
+//< infile cat > outfile should work
+//< infile cat | > outfile should NOT WORK
+//
+
