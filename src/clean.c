@@ -6,20 +6,20 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 16:15:50 by oohnivch          #+#    #+#             */
-/*   Updated: 2024/11/12 14:25:21 by oohnivch         ###   ########.fr       */
+/*   Updated: 2024/11/12 16:01:29 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	clean_input(t_redir *redir)
+void	clean_input(t_data *data)
 {
 	t_input	*tmp;
 
-	while (redir->in)
+	while (data->in)
 	{
-		tmp = redir->in;
-		redir->in = redir->in->next;
+		tmp = data->in;
+		data->in = data->in->next;
 		if (tmp->flag == HEREDOC)
 			unlink(tmp->file);
 		if (tmp->file)
@@ -29,27 +29,27 @@ void	clean_input(t_redir *redir)
 	}
 }
 
-void	clean_output(t_redir *redir)
+void	clean_output(t_data *data)
 {
 	t_output	*tmp;
 
-	if (redir->out)
+	if (data->out)
 	{
-		if (redir->out->file)
+		if (data->out->file)
 		{
-			free(redir->out->file);
-			redir->out->file = NULL;
+			free(data->out->file);
+			data->out->file = NULL;
 		}
-		free(redir->out);
-		redir->out = NULL;
+		free(data->out);
+		data->out = NULL;
 	}
 }
 
 void	clean_redir(t_exec *exec)
 {
-	clean_input(exec->redir);
-	clean_output(exec->redir);
-	free(exec->redir);
+	clean_input(exec->data);
+	clean_output(exec->data);
+	free(exec->data);
 	exec->redir = NULL;
 }
 

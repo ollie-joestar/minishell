@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 11:54:00 by oohnivch          #+#    #+#             */
-/*   Updated: 2024/11/12 14:24:29 by oohnivch         ###   ########.fr       */
+/*   Updated: 2024/11/12 15:56:47 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ void	run_builtin(t_data *data)
 	if (data->exec->av[0] == 0)
 		bruh(data, "cmd is null\n", 1);
 	if (!(ft_strncmp(data->exec->av[0], "exit", 5)))
-		bruh(data, NULL, 0);
+		bruh(data, NULL, data->status);
 	/*if (!(ft_strncmp(data->exec->av[0], "cd", 3)))*/
 	/*	cd(data);*/
 	/*if (!(ft_strncmp(data->exec->av[0], "echo", 5)))*/

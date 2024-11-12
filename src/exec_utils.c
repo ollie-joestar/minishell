@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 10:49:02 by oohnivch          #+#    #+#             */
-/*   Updated: 2024/11/12 13:53:07 by oohnivch         ###   ########.fr       */
+/*   Updated: 2024/11/12 16:03:59 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,16 @@ void	reset_stds(int	stdin_copy, int	stdout_copy)
 	close(stdout_copy);
 }
 
+
+int	fork1(t_data *data)
+{
+	int	pid;
+
+	pid = fork();
+	if (pid == -1)
+		bruh(data, "fork failed\n", 1);
+	return (pid);
+}
 /*void	cd(t_data *data)*/
 /*{*/
 /*	if (!data->exec->av[1])*/

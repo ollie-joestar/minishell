@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 14:18:21 by oohnivch          #+#    #+#             */
-/*   Updated: 2024/11/07 10:34:23 by oohnivch         ###   ########.fr       */
+/*   Updated: 2024/11/12 16:09:56 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,14 +23,4 @@ void	bruh(t_data *data, char *s, int status)
 		free(data);
 	}
 	exit(status);
-}
-
-int	fork1(t_data *data)
-{
-	int	pid;
-
-	pid = fork();
-	if (pid == -1)
-		bruh(data, "fork failed\n", 1);
-	return (pid);
 }

@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 13:28:47 by oohnivch          #+#    #+#             */
-/*   Updated: 2024/11/12 15:22:11 by oohnivch         ###   ########.fr       */
+/*   Updated: 2024/11/12 15:45:45 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@
 # define TO_SPLIT CHAR_MAX
 # define RD 0
 # define WR 1
+# define SQ '\''
+# define DQ '\"'
 
 typedef struct s_lex_token
 {
