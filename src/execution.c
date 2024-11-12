@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 11:54:00 by oohnivch          #+#    #+#             */
-/*   Updated: 2024/11/11 16:45:56 by oohnivch         ###   ########.fr       */
+/*   Updated: 2024/11/12 13:51:59 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,13 +52,30 @@ void	do_stuff(t_data *data, t_exec *exec)
 		do_child_stuff(data);
 	if (exec->prev)
 		(close(exec->prev->pipe[RD]), close(exec->prev->pipe[WR]));
-	if (exec->next)
-		do_stuff(data, exec->next);
-	else
+	if (!exec->next)
 		(close(exec->pipe[WR]), close(exec->pipe[RD]));
 }
 
-void	run_exec(t_data *data)
+
+void	run_builtin(t_data *data)
+{
+	int	stdin_copy;
+	int	stdout_copy;
+
+	stdin_copy = dup(STDIN_FILENO);
+	stdout_copy = dup(STDOUT_FILENO);
+	if (data->exec->av[0] == 0)
+		bruh(data, "cmd is null\n", 1);
+	if (!(ft_strncmp(data->exec->av[0], "exit", 5)))
+		bruh(data, NULL, 0);
+	/*if (!(ft_strncmp(data->exec->av[0], "cd", 3)))*/
+	/*	cd(data);*/
+	/*if (!(ft_strncmp(data->exec->av[0], "echo", 5)))*/
+	/*	echo(data);*/
+	reset_stds(stdin_copy, stdout_copy);
+}
+
+void	runcmd(t_data *data)
 {
 	t_exec	*exec;
 	int		exit_status;
@@ -67,7 +84,13 @@ void	run_exec(t_data *data)
 	exit_status = 0;
 	exec = data->exec;
 	while(exec)
-		do_stuff(data, exec);
+	{
+		if (exec->type == CMD)
+			do_stuff(data, exec);
+		else
+			run_builtin(data);
+		exec = exec->next;
+	}
 	wait_status = 1;
 	while (wait_status > 0 && wait_status != data->pid)
 		wait_status = wait(&exit_status);

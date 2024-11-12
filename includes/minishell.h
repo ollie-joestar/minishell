@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 13:28:47 by oohnivch          #+#    #+#             */
-/*   Updated: 2024/11/11 17:21:42 by oohnivch         ###   ########.fr       */
+/*   Updated: 2024/11/12 13:53:01 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,6 +125,7 @@ void	reset_end(char *start, char **end, char *ptr, char *tkn_end);
 t_token	*tokenization(t_data *data);
 
 // OLLIE
+void	reset_stds(int	stdin_copy, int	stdout_copy);
 void	reroute(t_data *data);
 void	runcmd(t_data *data);
 void	bruh(t_data *data, char *s, int status);
