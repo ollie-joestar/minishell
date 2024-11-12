@@ -1,23 +1,23 @@
 #include "minishell.h"
+/*
+t_token	*create_token(int type, char *str)
+{
+	t_token	*token;
 
-/*t_token	*create_token(int type, char *str)*/
-/*{*/
-/*	t_token	*token;*/
-/**/
-/*	token = (t_token *)malloc(sizeof(t_token));*/
-/*	if (!token)*/
-/*	{*/
-/*		free(str);*/
-/*		return (NULL);*/
-/*	}*/
-/*	token->type = type;*/
-/*	token->str = str;*/
-/*	token->right = NULL;*/
-/*	token->left = NULL;*/
-/*	return (token);*/
-/*}*/
-/**/
-/*// Tokenizes the entire input string to break it down into individual tokens*/
+	token = (t_token *)malloc(sizeof(t_token));
+	if (!token)
+	{
+		free(str);
+		return (NULL);
+	}
+	token->type = type;
+	token->str = str;
+	token->right = NULL;
+	token->left = NULL;
+	return (token);
+}
+*/
+// Tokenizes the entire input string to break it down into individual tokens
 /*t_token	*tokenize_input_string(t_token *token)*/
 /*{*/
 /*	char	*input_start = env->input_line;*/
@@ -47,11 +47,11 @@ void	tokenization(t_data *data)
 	data->last_token = NULL;
 	while (*start)
 	{
-		skip_whitespace(&start);
+		skip_space(&start);
 		if (!*start)
 			break ;
-		if (!add_token(data, &start))
-			return (free_tokens(data), NULL);
+//		if (!add_token(data, &start))
+//			return (free_tokens(data), NULL);
 	}
 	return ;
 }

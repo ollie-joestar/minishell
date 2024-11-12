@@ -1,5 +1,5 @@
 #include "minishell.h"
-
+/*
 size_t	single_quote_len(char *s, char *end, size_t *i)
 {
 	size_t	len;
@@ -108,4 +108,4 @@ size_t	interpreted_str_len(t_data *data, char *start, char *end)
 		i++;
 	}
 	return (len);
-}
+}*/

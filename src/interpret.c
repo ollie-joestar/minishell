@@ -1,5 +1,5 @@
 #include "minishell.h"
-
+/*
 void	cat_single_quotes(char *str, char **start, char *end, size_t len)
 {
 	*end = 0;
@@ -91,4 +91,4 @@ char	*cat_interpreted_str(t_data *data, char *start, char *end)
 		start++;
 	}
 	return (str);
-}
+}*/

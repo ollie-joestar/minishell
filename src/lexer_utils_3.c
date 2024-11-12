@@ -1,6 +1,6 @@
 
 #include "minishell.h"
-
+/*
 // Identify a pipe (`|`)
 int	check_pipe_symbol(char **input_start, char **input_end)
 {
@@ -27,4 +27,4 @@ void	reset_token_end(char *input_start, char **input_end, char *quote_ptr, char 
 		*input_end = input_start;
 	else
 		*input_end = token_end;
-}
+}*/

@@ -6,12 +6,11 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 09:38:58 by oohnivch          #+#    #+#             */
-/*   Updated: 2024/11/12 15:55:13 by oohnivch         ###   ########.fr       */
+/*   Updated: 2024/11/12 16:24:48 by hanjkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include "minishell.h"
+#include "../includes/minishell.h"
 char prompt[] = "minishell> ";
 
 //DELETE THIS WHEN DONE

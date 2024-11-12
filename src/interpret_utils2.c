@@ -1,5 +1,5 @@
 #include "minishell.h"
-
+/*
 bool	possible_var(t_var *var, char c, char d)
 {
 	if (var->last_token && var->last_token->type & HEREDOC)
@@ -51,4 +51,4 @@ int	identify_nonexistent_var(t_var *var, char **start, char **end)
 	}
 	reset_end(*start, end, ptr, tkn_end);
 	return (ptr == tkn_end);
-}
+}*/

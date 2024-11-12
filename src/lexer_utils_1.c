@@ -5,7 +5,7 @@ void	skip_space(char **input)
 	while (ft_isspace(**input))
 		(*input)++;
 }
-
+/*
 void	ft_strncpy(char	*dest, const char *str, size_t n)
 {
 	size_t	i;
@@ -60,4 +60,4 @@ void	append_token_to_list(t_data *data, t_lex_token *new_token)
 		data->last_token->right = new_token;
 		data->last_token = new_token;
 	}
-}
+}*/
