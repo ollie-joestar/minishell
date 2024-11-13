@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 13:39:47 by oohnivch          #+#    #+#             */
-/*   Updated: 2024/11/13 14:35:37 by oohnivch         ###   ########.fr       */
+/*   Updated: 2024/11/13 16:57:51 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,18 +35,18 @@ char	*random_name(void)
 	return (name);
 }
 
-void	here_doc(t_lex_token *token, t_data *data)
+char	*here_doc(t_data *data, char *l)
 {
-	int	fd;
+	int		fd;
 	char	*line;
 	char	*file;
-	char	*lim;
 	char	*buffer;
+	char	*lim;
 
 	line = random_name();
 	file = ft_strjoin("/tmp/", line);
 	ft_free(&line);
-	lim = ft_strjoin(token->right->word, "\n");
+	lim = ft_strjoin(l, "\n");
 	fd = open(file, O_CREAT | O_RDWR, 0664);
 	if (fd < 0)
 		bruh(data, "minishell: failed here_doc creation", 2);
@@ -62,5 +62,7 @@ void	here_doc(t_lex_token *token, t_data *data)
 		if (line)
 			write(fd, line, ft_strlen(line));
 	}
+	ft_free(&lim);
 	ft_free(&buffer);
+	return (file);
 }

@@ -1,44 +1,16 @@
-#include "minishell.h"
-/*
-t_token	*create_token(int type, char *str)
-{
-	t_token	*token;
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   lexer.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/11/13 17:03:47 by oohnivch          #+#    #+#             */
+/*   Updated: 2024/11/13 17:03:49 by oohnivch         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-	token = (t_token *)malloc(sizeof(t_token));
-	if (!token)
-	{
-		free(str);
-		return (NULL);
-	}
-	token->type = type;
-	token->str = str;
-	token->right = NULL;
-	token->left = NULL;
-	return (token);
-}
-*/
-// Tokenizes the entire input string to break it down into individual tokens
-/*t_token	*tokenize_input_string(t_token *token)*/
-/*{*/
-/*	char	*input_start = env->input_line;*/
-/**/
-/*	env->last_token = NULL;*/
-/**/
-/*	while (*input_start)*/
-/*	{*/
-/*		skip_whitespace(&input_start);*/
-/*		if (!*input_start)*/
-/*			break;*/
-/*		if (!append_token(env, &input_start))*/
-/*			return (free_token_list(env), NULL);*/
-/*	}*/
-/**/
-/*	if (!append_token(token, &input_start))*/
-/*		return (free_token_list(env), NULL);*/
-/**/
-/*	return (token->token_list_head);*/
-/*}*/
-/**/
+#include "minishell.h"
 
 t_lex_token	*create_token(void)
 {
@@ -75,17 +47,25 @@ void	init_tokens(t_data *data)
 	}
 }
 
+void	free_token(t_lex_token **token)
+{
+	if ((*token)->word)
+		ft_free(&(*token)->word);
+	free(*token);
+	*token = NULL;
+}
+
 void	check_token_type(t_lex_token *token)
 {
 
 	if (*token->word && ft_strncmp(token->word, "<", 2))
 		token->type = INPUT;
 	else if (*token->word && ft_strncmp(token->word, "<<", 3))
-		token->type = INPUT;
+		token->type = HEREDOC;
 	else if (*token->word && ft_strncmp(token->word, ">", 2))
-		token->type = OUTPUT;
+		token->type = REPLACE;
 	else if (*token->word && ft_strncmp(token->word, ">>", 3))
-		token->type = OUTPUT;
+		token->type = APPEND;
 	else if (*token->word && ft_strncmp(token->word, "|", 2))
 		token->type = PIPE;
 }
@@ -94,6 +74,7 @@ void	tokenization(t_data *data)
 {
 	t_lex_token *token;
 	t_lex_token *temp;
+	char		*temp_word;
 
 	while (data->token && data->token->left)
 		data->token = data->token->left;
@@ -110,17 +91,36 @@ void	tokenization(t_data *data)
 			token->type = INPUT;
 			free_token(&temp); //still need the function to free token and set to null
 		}
-		else if (token->type == OUTPUT)
+		else if (token->type == REPLACE)
 		{
 			token->left->right = token->right;
 			token->right->left = token->left;
 			temp = token;
 			token = token->right;
-			token->type = OUTPUT;
+			token->type = REPLACE;
+			free_token(&temp); //still need the function to free token and set to null
+		}
+		else if (token->type == APPEND)
+		{
+			token->left->right = token->right;
+			token->right->left = token->left;
+			temp = token;
+			token = token->right;
+			token->type = APPEND;
+			free_token(&temp); //still need the function to free token and set to null
+		}
+		else if (token->type == HEREDOC)
+		{
+			token->left->right = token->right;
+			token->right->left = token->left;
+			temp = token;
+			token = token->right;
+			token->type = HEREDOC;
+			temp_word = token->word;
+			token->word = here_doc(data, token->word);
+			ft_free(&temp_word);
 			free_token(&temp); //still need the function to free token and set to null
 		}
 		token = token->right;
 	}
 }
-
-
