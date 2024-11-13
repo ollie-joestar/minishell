@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 14:38:56 by oohnivch          #+#    #+#             */
-/*   Updated: 2024/11/13 16:30:18 by oohnivch         ###   ########.fr       */
+/*   Updated: 2024/11/13 16:42:25 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,12 +46,17 @@ void	add_input(t_exec *exec, t_lex_token *token)
 	input = ft_calloc(1, sizeof(t_input));
 	if (!input)
 		return ;
-	input->flag = token->type;
+	input->type = token->type;
 	input->file = ft_strdup(token->word);
 	if (!input->file)
 	{
 		free(input);
 		return ;
+	}
+	if (exec->in)
+	{
+		exec->in->next = input;
+		input->prev = exec->in;
 	}
 	exec->in = input;
 }
@@ -76,7 +81,7 @@ void	init_exec_data(t_data *data)
 		}
 		if (token->type == INPUT)
 			add_input(exec, token);
-		else if (token->type == OUTPUT)
+		else if (token->type == REPLACE)
 			add_output(exec, token);
 		else if (token->type == PIPE)
 		{
