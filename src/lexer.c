@@ -40,24 +40,15 @@ t_token	*create_token(int type, char *str)
 /*}*/
 /**/
 
-t_lex_token	*create_token(int type, char *str)
+t_lex_token	*create_token(void)
 {
 	t_lex_token	*token;
 
-	token = (t_lex_token *)malloc(sizeof(t_lex_token));
-	if (!token)
-	{
-		free(str);
-		return (NULL);
-	}
-	token->type = type;
-	token->word = str;
-	token->right = NULL;
-	token->left = NULL;
+	token = (t_lex_token *)ft_calloc(1, (sizeof(t_lex_token)));
 	return (token);
 }
 
-void	tokenization(t_data *data)
+void	init_tokens(t_data *data)
 {
 	int		i;
 	char	**av;
@@ -69,31 +60,67 @@ void	tokenization(t_data *data)
 	i = -1;
 	while (av[++i])
 	{
-		temp = data->token;
-		data->token = create_token(CMD, av[i]);
-		if (!data->token)
+		temp = create_token();
+		if (!temp)
 			bruh(data, "Failed to create token", 1);
-		if (temp) 
+		temp->word = av[i];
+		if (!data->token)
+			data->token = temp;
+		if(data->token)
 		{
-			temp->right = data->token;
-			data->token->left = temp;
+			data->token->right = temp;
+			temp->left = data->token;
+			data->token = temp;
 		}
 	}
 }
-/*
+
+void	check_token_type(t_lex_token *token)
+{
+
+	if (*token->word && ft_strncmp(token->word, "<", 2))
+		token->type = INPUT;
+	else if (*token->word && ft_strncmp(token->word, "<<", 3))
+		token->type = INPUT;
+	else if (*token->word && ft_strncmp(token->word, ">", 2))
+		token->type = OUTPUT;
+	else if (*token->word && ft_strncmp(token->word, ">>", 3))
+		token->type = OUTPUT;
+	else if (*token->word && ft_strncmp(token->word, "|", 2))
+		token->type = PIPE;
+}
+		
 void	tokenization(t_data *data)
 {
-	char	*start;
+	t_lex_token *token;
+	t_lex_token *temp;
 
-	start = data->line;
-	data->last_token = NULL;
-	if (*start)
+	while (data->token && data->token->left)
+		data->token = data->token->left;
+	token = data->token;
+	while (token)
 	{
-		skip_space(&start);
-		if (!*start)
-			return ;
-//		if (!add_token(data, &start))
-//			return (free_tokens(data), NULL);
+		check_token_type(token);
+		if (token->type == INPUT)
+		{
+			token->left->right = token->right;
+			token->right->left = token->left;
+			temp = token;
+			token = token->right;
+			token->type = INPUT;
+			free_token(&temp); //still need the function to free token and set to null
+		}
+		else if (token->type == OUTPUT)
+		{
+			token->left->right = token->right;
+			token->right->left = token->left;
+			temp = token;
+			token = token->right;
+			token->type = OUTPUT;
+			free_token(&temp); //still need the function to free token and set to null
+		}
+		token = token->right;
 	}
-	return ;
-}*/
+}
+
+
