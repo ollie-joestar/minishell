@@ -6,12 +6,20 @@
 /*   By: hanjkim <@student.42vienna.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 18:49:14 by hanjkim           #+#    #+#             */
-/*   Updated: 2024/11/13 18:49:29 by hanjkim          ###   ########.fr       */
+/*   Updated: 2024/11/13 20:57:33 by hanjkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include <readline/readline.h>
+
+void	free_token(t_lex_token **token)
+{
+	if ((*token)->word)
+		ft_free(&(*token)->word);
+	free(*token);
+	*token = NULL;
+}
 
 t_lex_token	*create_token(void)
 {
@@ -48,13 +56,6 @@ void	init_tokens(t_data *data)
 	}
 }
 
-void	free_token(t_lex_token **token)
-{
-	if ((*token)->word)
-		ft_free(&(*token)->word);
-	free(*token);
-	*token = NULL;
-}
 
 void	check_token_type(t_lex_token *token)
 {
@@ -71,57 +72,40 @@ void	check_token_type(t_lex_token *token)
 		token->type = PIPE;
 }
 
+void	process_token(t_data *data, t_lex_token **token, int type)
+{
+	t_lex_token *temp = *token;
+
+	(*token)->left->right = (*token)->right;
+	(*token)->right->left = (*token)->left;
+	*token = (*token)->right;
+	(*token)->type = type;
+
+	if (type == HEREDOC)
+	{
+		char *temp_word = (*token)->word;
+		(*token)->word = here_doc(data, (*token)->word);
+		ft_free(&temp_word);
+	}
+	free_token(&temp);
+}
+
 void	tokenization(t_data *data)
 {
 	t_lex_token *token;
-	t_lex_token *temp;
-	char		*temp_word;
 
 	while (data->token && data->token->left)
 		data->token = data->token->left;
 	token = data->token;
+
 	while (token)
 	{
 		check_token_type(token);
-		if (token->type == INPUT)
-		{
-			token->left->right = token->right;
-			token->right->left = token->left;
-			temp = token;
+		if (token->type == INPUT || token->type == REPLACE || 
+			token->type == APPEND || token->type == PIPE || 
+			token->type == HEREDOC)
+			process_token(data, &token, token->type);
+		else
 			token = token->right;
-			token->type = INPUT;
-			free_token(&temp); //still need the function to free token and set to null
-		}
-		else if (token->type == REPLACE)
-		{
-			token->left->right = token->right;
-			token->right->left = token->left;
-			temp = token;
-			token = token->right;
-			token->type = REPLACE;
-			free_token(&temp); //still need the function to free token and set to null
-		}
-		else if (token->type == APPEND)
-		{
-			token->left->right = token->right;
-			token->right->left = token->left;
-			temp = token;
-			token = token->right;
-			token->type = APPEND;
-			free_token(&temp); //still need the function to free token and set to null
-		}
-		else if (token->type == HEREDOC)
-		{
-			token->left->right = token->right;
-			token->right->left = token->left;
-			temp = token;
-			token = token->right;
-			token->type = HEREDOC;
-			temp_word = token->word;
-			token->word = here_doc(data, token->word);
-			ft_free(&temp_word);
-			free_token(&temp); //still need the function to free token and set to null
-		}
-		token = token->right;
 	}
 }
