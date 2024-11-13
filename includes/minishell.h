@@ -6,13 +6,13 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 13:28:47 by oohnivch          #+#    #+#             */
-/*   Updated: 2024/11/12 16:35:44 by hanjkim          ###   ########.fr       */
+/*   Updated: 2024/11/13 14:27:27 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
-# include "libft.h"
+# include "../libft/includes/libft.h"
 # include <fcntl.h>
 # include <sys/wait.h>
 # include <sys/ioctl.h>
@@ -21,7 +21,6 @@
 # include <limits.h>
 # include <stdbool.h>
 # include <signal.h>
-
 
 # define FILE 02
 # define HEREDOC 04
@@ -108,14 +107,6 @@ typedef struct s_data
 	t_parse_token		*curr_token; //newly added
 }		t_data;
 
-//
-//
-//
-// GOOD STUFF KINDA BUT STILL BAD FOR NOW END
-//
-//
-//
-
 /* Lexer functions */
 /*t_token	*create_token(int type, char *str);*/
 /*t_token	*tokenize(t_lexer_context *lexer_ctx);*/
@@ -134,13 +125,33 @@ void	reset_end(char *start, char **end, char *ptr, char *tkn_end);
 void	tokenization(t_data *data);
 
 // OLLIE
-void	reset_stds(int	stdin_copy, int	stdout_copy);
-void	reroute(t_data *data);
+
+// Executing functions
 void	runcmd(t_data *data);
-void	bruh(t_data *data, char *s, int status);
-int		fork1(t_data *data);
 void	run_exec(t_data *data);
 void	run_builtin(t_data *data);
 void	clean_exec(t_data *data);
+int		fork1(t_data *data);
+void	reroute(t_data *data);
+void	reset_stds(int	stdin_copy, int	stdout_copy);
+
+// Environment functions
+void	parse_env(t_data *data, char **ev);
+void	free_env_list(t_data *data);
+void	free_ev(t_data *data);
+size_t	env_len(t_envlist *env);
+
+// Path functions
+void	update_path(t_data *data);
+void	parse_path(t_data *data);
+void	free_path(t_data *data);
+void	add_slash(char **path);
+
+// Builtins
+void	echo(t_data *data, t_exec *exec);
+
+char	*random_name(void);
+// General utils
+void	bruh(t_data *data, char *s, int status);
 
 #endif

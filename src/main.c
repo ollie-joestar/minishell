@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 09:38:58 by oohnivch          #+#    #+#             */
-/*   Updated: 2024/11/12 17:31:44 by oohnivch         ###   ########.fr       */
+/*   Updated: 2024/11/13 13:54:42 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,31 +35,12 @@ void	parse_cmd(t_data *data)
 	}
 }
 
-
-// UNSAFE FUNCTION FIX LATER
-void	store_env(t_data *data, char **ev)
-{
-	int i;
-	int j;
-
-	i = 0;
-	while (ev[i])
-		i++;
-	data->ev = ft_calloc(i + 1, sizeof(char *));
-	i = 0;
-	while (ev[i])
-	{
-		data->ev[i] = ft_strdup(ev[i]);
-		i++;
-	}
-}
-
 int main(int argc, char **argv, char **ev)
 {
 	t_data *data;
 
 	data = ft_calloc(1, sizeof(t_data));
-	store_env(data, ev);
+	parse_env(data, ev);
 	while (1)
 	{
 		data->line = readline(prompt);

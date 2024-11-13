@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 11:54:00 by oohnivch          #+#    #+#             */
-/*   Updated: 2024/11/12 16:18:36 by oohnivch         ###   ########.fr       */
+/*   Updated: 2024/11/13 14:16:39 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,20 +20,20 @@ void	do_child_stuff(t_data *data)
 	{
 		if (0 == access(data->exec->av[0], F_OK))
 		{
-			write(2, "pipex: permission denied: ", 26);
+			ft_putstr_fd("minishell: permission denied: ", 2);
 			bruh(data, data->exec->av[0], 126);
 		}
-		write(2, "pipex: no such file or directory: ", 34);
+		ft_putstr_fd("minishell: no such file or directory: ", 2);
 		bruh(data, data->exec->av[0], 127);
 	}
 	else
 	{
 		if (0 == access(data->exec->av[0], F_OK))
 		{
-			write(2, "pipex: permission denied: ", 26);
+			ft_putstr_fd("minishell: permission denied: ", 2);
 			bruh(data, data->exec->av[0], 126);
 		}
-		write(2, "pipex: command not found: ", 26);
+		ft_putstr_fd("minishell: command not found: ", 2);
 		bruh(data, data->exec->av[0], 127);
 	}
 }
@@ -68,6 +68,8 @@ void	run_builtin(t_data *data)
 		bruh(data, "cmd is null\n", 1);
 	if (!(ft_strncmp(data->exec->av[0], "exit", 5)))
 		bruh(data, NULL, data->status);
+	else if (!(ft_strncmp(data->exec->av[0], "echo", 5)))
+		echo(data, data->exec);
 	reset_stds(stdin_copy, stdout_copy);
 }
 

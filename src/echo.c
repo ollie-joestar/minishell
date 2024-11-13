@@ -1,22 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   general_utils.c                                    :+:      :+:    :+:   */
+/*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/30 14:18:21 by oohnivch          #+#    #+#             */
-/*   Updated: 2024/11/13 14:28:26 by oohnivch         ###   ########.fr       */
+/*   Created: 2024/11/13 13:31:08 by oohnivch          #+#    #+#             */
+/*   Updated: 2024/11/13 14:18:36 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#include "minishell.h"
 
-void	bruh(t_data *data, char *s, int status)
+void	echo(t_data *data, t_exec *exec)
 {
-	if (s)
-		ft_putstr_fd(s, 2);
-	if (data)
-		free(data);
-	exit(status);
+	int	i;
+	int	n;
+
+	i = 0;
+	n = 0;
+	if (exec->av[1] && *exec->av[1] && !ft_strncmp(exec->av[1], "-n", 3))
+		n = 1;
+	i += n;
+	while (exec->av[++i])
+	{
+		ft_putstr(exec->av[i]);
+		if (exec->av[i + 1])
+			ft_putchar(' ');
+	}
+	if (!n)
+		ft_putchar('\n');
+	data->status = 0;
 }
