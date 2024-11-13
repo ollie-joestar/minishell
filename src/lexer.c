@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
+/*   By: hanjkim <@student.42vienna.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/13 17:03:47 by oohnivch          #+#    #+#             */
-/*   Updated: 2024/11/13 17:03:49 by oohnivch         ###   ########.fr       */
+/*   Created: 2024/11/13 18:49:14 by hanjkim           #+#    #+#             */
+/*   Updated: 2024/11/13 18:49:29 by hanjkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+#include <readline/readline.h>
 
 t_lex_token	*create_token(void)
 {
@@ -69,7 +70,7 @@ void	check_token_type(t_lex_token *token)
 	else if (*token->word && ft_strncmp(token->word, "|", 2))
 		token->type = PIPE;
 }
-		
+
 void	tokenization(t_data *data)
 {
 	t_lex_token *token;
