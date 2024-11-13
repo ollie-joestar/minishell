@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 13:28:47 by oohnivch          #+#    #+#             */
-/*   Updated: 2024/11/13 14:27:27 by oohnivch         ###   ########.fr       */
+/*   Updated: 2024/11/13 16:37:52 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,45 +22,42 @@
 # include <stdbool.h>
 # include <signal.h>
 
-# define FILE 02
-# define HEREDOC 04
+// exec types
 # define BUILTIN 69
 # define CMD 420
-# define REPLACE 010
-# define APPEND 020
+
 # define INTERPRET 040
 # define NO_VAR 0200
 # define TO_SPLIT CHAR_MAX
+// pipes
 # define RD 0
 # define WR 1
+// quotes
 # define SQ '\''
 # define DQ '\"'
+// Token types
+# define WORD 0
+# define PIPE 1
+# define INPUT 2
+# define HEREDOC 04
+# define REPLACE 010
+# define APPEND 020
 
 typedef struct s_lex_token
 {
-	int					type; // word, pipe, redirect, etc.
+	int					type; // WORD | PIPE | INPUT | HEREDOC | REPLACE | APPEND
 	char				*word;
 
 	struct s_lex_token	*left; //changed to left and right for better recognition of command order (like official doc says)
 	struct s_lex_token	*right;
 }		t_lex_token;
 
-typedef struct s_parse_token 
-{
-	int					type;
-	char				**content; //Double pointer to iterate over command flags during parsing
-	//
-	struct s_parse_token	*next;
-	struct s_parse_token	*prev;
-}		t_parse_token;
-
 typedef struct s_input {
-	int				flag; // HERE_DOC | FILE
+	int				type; // HERE_DOC | FILE
 	char			*file;
 	struct s_input	*next;
 	struct s_input	*prev;
 }			t_input;
-
 
 typedef struct s_output {
 	int		type; // REPLACE | APPEND
@@ -73,7 +70,6 @@ typedef struct s_envlist {
 	struct s_envlist	*next;
 	struct s_envlist	*prev;
 }			t_envlist;
-
 
 typedef struct s_exec {
 	int				type; // BUILTIN | CMD
@@ -102,9 +98,6 @@ typedef struct s_data
 
 	char				*line; //lineread (add to history and free after execution)
 	t_lex_token			*token; // to store the list of tokenized commands
-	t_lex_token			*last_token; // to point to the last token in the list
-	t_parse_token		*list; // to store the list of parsed commands 
-	t_parse_token		*curr_token; //newly added
 }		t_data;
 
 /* Lexer functions */
@@ -150,6 +143,13 @@ void	add_slash(char **path);
 // Builtins
 void	echo(t_data *data, t_exec *exec);
 
+char	**create_argv(t_data *data, t_lex_token *token);
+void	free_arr(char **arr);
+size_t	argv_size(t_lex_token *token);
+void	free_arr(char **arr);
+void	init_exec_data(t_data *data);
+
+// HereDoc
 char	*random_name(void);
 // General utils
 void	bruh(t_data *data, char *s, int status);
