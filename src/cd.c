@@ -1,4 +1,95 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cd.c                                               :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/11/14 13:49:00 by oohnivch          #+#    #+#             */
+/*   Updated: 2024/11/14 15:27:34 by oohnivch         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
+
+char	*get_home(t_data *data)
+{
+	t_envlist	*env;
+
+	env = data->env;
+	while (env)
+	{
+		if (!ft_strncmp(env->name, "HOME", 5))
+			return (env->value);
+		env = env->next;
+	}
+	return (NULL);
+}
+
+void	cd_home(t_data *data, t_exec *exec)
+{
+	char	*path;
+
+	path = get_home(data);
+	if (!path)
+	{
+		ft_putstr_fd("minishell: cd: HOME not set", 2);
+		data->status = EXIT_FAILURE;
+		return ;
+	}
+	if (chdir(path) == -1)
+	{
+		ft_putstr_fd("cd: ", STDERR_FILENO);
+		perror(path);
+		data->status = EXIT_FAILURE;
+	}
+}
+
+char	*cd_special_path_check(t_data *data, char *path)
+{
+	char	*home;
+	char	*tmp;
+
+	if (!ft_strncmp(path, "~", 2))
+		return (get_home(data));
+	else if (!ft_strncmp(path, "~/", 3))
+	{
+		home = get_home(data);
+		tmp = ft_strjoin(home, path + 1);
+		return (tmp);
+	}
+	else if (!ft_strncmp(path, "-", 2))
+		return (get_oldpwd(data)->value);
+	else
+		return (path);
+}
+
+void	cd(t_data *data, t_exec *exec)
+{
+	char	*path;
+
+	if (ft_arrlen(exec->av) > 2)
+	{
+		ft_putstr_fd("minishell: cd: too many arguments", 2);
+		data->status = 1;
+		return ;
+	}
+	else if (ft_arrlen(exec->av) == 2)
+	{
+		path = cd_special_path_check(data, exec->av[1]);
+		if (chdir(path) == -1)
+		{
+			ft_putstr_fd("minishell: cd: no such file of directory", 2);
+			ft_putstr_fd(path, 2);
+			data->status = EXIT_FAILURE;
+			return ;
+		}
+	}
+	else
+		cd_home(data, exec);
+	if (data->status == EXIT_SUCCESS)
+		update_pwd(data);
+}
 
 /*int	valid_dotdot_path(char *path)*/
 /*{*/
@@ -15,23 +106,7 @@
 /*	}*/
 /*	return (true);*/
 /*}*/
-/**/
-/*void	update_env_after_cd(t_var *var, char *env_var_name, char *path)*/
-/*{*/
-/*	char	*str;*/
-/*	size_t	size;*/
-/**/
-/*	size = ft_strlen(env_var_name) + ft_strlen(path) + 1;*/
-/*	str = malloc(size * sizeof (char));*/
-/*	if (!str)*/
-/*		return ;*/
-/*	ft_strlcpy(str, env_var_name, size);*/
-/*	ft_strlcat(str, path, size);*/
-/*	free(str);*/
-/*	if (!var->env)*/
-/*		return (perror("exiting"), free_all(var), exit(EXIT_FAILURE));*/
-/*}*/
-/**/
+
 /*bool	too_many_arguments(t_var *var, t_node *cmd)*/
 /*{*/
 /*	if (cmd->content[1] && cmd->content[2])*/
@@ -90,3 +165,4 @@
 /*		update_env_after_cd(var, "PWD=", var->cwd);*/
 /*	var->status = EXIT_SUCCESS;*/
 /*}*/
+/**/

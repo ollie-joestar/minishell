@@ -1,40 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   general_utils.c                                    :+:      :+:    :+:   */
+/*   expander.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/30 14:18:21 by oohnivch          #+#    #+#             */
-/*   Updated: 2024/11/14 13:59:57 by oohnivch         ###   ########.fr       */
+/*   Created: 2024/11/14 10:41:38 by oohnivch          #+#    #+#             */
+/*   Updated: 2024/11/14 10:54:03 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#include "minishell.h"
 
-void	bruh(t_data *data, char *s, int status)
+void	expand(t_data *data, t_lex_token *token)
 {
-	if (s)
-		ft_putstr_fd(s, 2);
-	clean_exec(data);
-	free_env_list(data);
-	free_arr(data->ev);
-	free_arr(data->path);
-	ft_free(&data->line);
-	free_tokens(data);
-	if (data)
-		free(data);
-	exit(status);
-}
+	t_envlist	*env;
+	t_lex_token	*tmp_token;
+	char		*expanded;
 
-size_t	ft_arrlen(char **arr)
-{
-	size_t	i;
-
-	if (!arr || !*arr)
-		return (0);
-	i = 0;
-	while (arr[i])
-		i++;
-	return (i);
+	expanded = NULL;
+	tmp_token = token;
+	env = data->env;
+	while (env)
+	{
+		if (ft_strncmp(env->name, tmp_token->word + 1, ft_strlen(env->name) + 1) == 0)
+		{
+			tmp_token->word = ft_strdup(env->value);
+			return ;
+		}
+		env = env->next;
+	}
 }

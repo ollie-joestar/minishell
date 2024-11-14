@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 16:15:50 by oohnivch          #+#    #+#             */
-/*   Updated: 2024/11/12 17:11:31 by oohnivch         ###   ########.fr       */
+/*   Updated: 2024/11/14 11:49:29 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	clean_input(t_exec *exec)
 	{
 		tmp = exec->in;
 		exec->in = exec->in->next;
-		if (tmp->flag == HEREDOC)
+		if (tmp->type == HEREDOC)
 			unlink(tmp->file);
 		if (tmp->file)
 			free(tmp->file);
@@ -35,29 +35,10 @@ void	clean_output(t_exec *exec)
 
 	if (exec->out)
 	{
-		if (exec->out->file)
-		{
-			free(exec->out->file);
-			exec->out->file = NULL;
-		}
+		ft_free(&exec->out->file);
 		free(exec->out);
 		exec->out = NULL;
 	}
-}
-
-void	clean_av(t_exec *exec)
-{
-	int	i;
-
-	i = 0;
-	while (exec->av && *exec->av && exec->av[i])
-	{
-		free(exec->av[i]);
-		exec->av[i] = NULL;
-		i++;
-	}
-	free(exec->av);
-	exec->av = NULL;
 }
 
 void	clean_exec(t_data *data)
@@ -71,7 +52,7 @@ void	clean_exec(t_data *data)
 		tmp = data->exec;
 		data->exec = data->exec->next;
 		ft_free(&tmp->cmd);
-		clean_av(tmp);
+		free_arr(tmp->av);
 		clean_input(tmp);
 		clean_output(tmp);
 		free(tmp);

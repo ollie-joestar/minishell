@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 11:54:00 by oohnivch          #+#    #+#             */
-/*   Updated: 2024/11/13 14:16:39 by oohnivch         ###   ########.fr       */
+/*   Updated: 2024/11/14 13:48:23 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,19 +57,21 @@ void	do_stuff(t_data *data, t_exec *exec)
 }
 
 
-void	run_builtin(t_data *data)
+void	run_builtin(t_data *data, t_exec *exec)
 {
 	int	stdin_copy;
 	int	stdout_copy;
 
 	stdin_copy = dup(STDIN_FILENO);
 	stdout_copy = dup(STDOUT_FILENO);
-	if (data->exec->av[0] == 0)
+	if (exec->av[0] == 0)
 		bruh(data, "cmd is null\n", 1);
-	if (!(ft_strncmp(data->exec->av[0], "exit", 5)))
+	if (!(ft_strncmp(exec->av[0], "exit", 5)))
 		bruh(data, NULL, data->status);
-	else if (!(ft_strncmp(data->exec->av[0], "echo", 5)))
+	else if (!(ft_strncmp(exec->av[0], "echo", 5)))
 		echo(data, data->exec);
+	else if (!(ft_strncmp(exec->av[0], "cd", 3)))
+		cd(data, data->exec);
 	reset_stds(stdin_copy, stdout_copy);
 }
 
@@ -86,7 +88,7 @@ void	runcmd(t_data *data)
 		if (exec->type == CMD)
 			do_stuff(data, exec);
 		else
-			run_builtin(data);
+			run_builtin(data, exec);
 		exec = exec->next;
 	}
 	add_history(data->line);

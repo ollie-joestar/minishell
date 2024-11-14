@@ -1,0 +1,103 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   pwd.c                                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/11/14 14:56:43 by oohnivch          #+#    #+#             */
+/*   Updated: 2024/11/14 15:13:03 by oohnivch         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "minishell.h"
+
+t_envlist	*get_oldpwd(t_data *data)
+{
+	t_envlist	*env;
+
+	while (data->env->prev)
+		data->env = data->env->prev;
+	env = data->env;
+	while (env)
+	{
+		if (!ft_strncmp(env->name, "OLDPWD", 7))
+			return (env);
+		env = env->next;
+	}
+	env = ft_calloc(1, sizeof(t_envlist));
+	if (!env)
+		bruh(data, "Malloc failed in get_oldpwd", 1);
+	env->name = ft_strdup("OLDPWD");
+	env->value = ft_strdup("");
+	if (!env->name || !env->value)
+		bruh(data, "Malloc failed in get_oldpwd", 1);
+	while (data->env->next)
+		data->env = data->env->next;
+	return (env->prev = data->env, data->env->next = env, env);
+}
+
+t_envlist	*get_pwd(t_data *data)
+{
+	t_envlist	*env;
+
+	while (data->env->prev)
+		data->env = data->env->prev;
+	env = data->env;
+	while (env)
+	{
+		if (!ft_strncmp(env->name, "PWD", 4))
+			return (env);
+		env = env->next;
+	}
+	env = ft_calloc(1, sizeof(t_envlist));
+	if (!env)
+		bruh(data, "Malloc failed in get_pwd", 1);
+	env->name = ft_strdup("PWD");
+	env->value = ft_strdup("");
+	if (!env->name || !env->value)
+		bruh(data, "Malloc failed in get_pwd", 1);
+	while (data->env->next)
+		data->env = data->env->next;
+	return (env->prev = data->env, data->env->next = env, env);
+}
+
+void	update_pwd(t_data *data)
+{
+	t_envlist	*env;
+	t_envlist	*oldpwd;
+	t_envlist	*pwd;
+	char		*cwd;
+
+	while (data->env->prev)
+		data->env = data->env->prev;
+	env = data->env;
+	oldpwd = get_oldpwd(data);
+	pwd = get_pwd(data);
+	cwd = getcwd(NULL, 0);
+	if (!cwd)
+	{
+		ft_putstr_fd("pwd: error retrieving current directory:", STDERR_FILENO);
+		data->status = 1;
+		return ;
+	}
+	ft_free(&oldpwd->value);
+	oldpwd->value = pwd->value;
+	pwd->value = cwd;
+}
+
+void	pwd(t_data *data, t_exec *exec)
+{
+	char	*pwd;
+
+	(void)exec;
+	pwd = getcwd(NULL, 0);
+	if (!pwd)
+	{
+		ft_putstr_fd("pwd: error retrieving current directory:", STDERR_FILENO);
+		data->status = 1;
+		return ;
+	}
+	ft_putendl_fd(pwd, STDOUT_FILENO);
+	ft_free(&pwd);
+}

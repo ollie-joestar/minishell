@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 16:29:57 by oohnivch          #+#    #+#             */
-/*   Updated: 2024/11/13 16:30:31 by oohnivch         ###   ########.fr       */
+/*   Updated: 2024/11/14 11:49:27 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,19 +25,6 @@ size_t	argv_size(t_lex_token *token)
 	return (size);
 }
 
-void	free_arr(char **arr)
-{
-	int	i;
-
-	i = 0;
-	while (arr[i])
-	{
-		ft_free(&arr[i]);
-		i++;
-	}
-	free(arr);
-}
-
 char	**create_argv(t_data *data, t_lex_token *token)
 {
 	char	**av;
@@ -53,7 +40,7 @@ char	**create_argv(t_data *data, t_lex_token *token)
 	{
 		av[i] = ft_strdup(token->word);
 		if (!av[i])
-			return (free_arr(av), NULL); // need to implement free_arr
+			return (free_arr(av), NULL);
 		data->token = token;
 		token = token->right;
 		i++;

@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 14:38:56 by oohnivch          #+#    #+#             */
-/*   Updated: 2024/11/13 16:42:25 by oohnivch         ###   ########.fr       */
+/*   Updated: 2024/11/14 11:22:06 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,17 +26,22 @@ void	add_output(t_exec *exec, t_lex_token *token)
 {
 	t_output	*output;
 
-	output = ft_calloc(1, sizeof(t_output));
-	if (!output)
-		return ;
+	if (!exec->out)
+	{
+		output = ft_calloc(1, sizeof(t_output));
+		if (!output)
+			return ;
+	}
+	else
+		output = exec->out;
 	output->type = token->type;
+	ft_free(&output->file);
 	output->file = ft_strdup(token->word);
 	if (!output->file)
 	{
 		free(output);
 		return ;
 	}
-	exec->out = output;
 }
 
 void	add_input(t_exec *exec, t_lex_token *token)
@@ -71,23 +76,18 @@ void	init_exec_data(t_data *data)
 	while (token)
 	{
 		exec = new_exec();
-		if (!data->exec)
-			data->exec = exec;
-		else
+		if (data->exec)
 		{
 			data->exec->next = exec;
 			exec->prev = data->exec;
-			data->exec = exec;
 		}
-		if (token->type == INPUT)
+		data->exec = exec;
+		if (token->type == INPUT || token->type == HEREDOC)
 			add_input(exec, token);
-		else if (token->type == REPLACE)
+		else if (token->type == REPLACE || token->type == APPEND)
 			add_output(exec, token);
 		else if (token->type == PIPE)
-		{
-			data->token = token->right;
-			return (init_exec_data(data));
-		}
+			return ((data->token = token->right), (init_exec_data(data)));
 		else 
 		{
 			exec->av = create_argv(data, token);

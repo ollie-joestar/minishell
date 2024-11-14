@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 11:39:11 by oohnivch          #+#    #+#             */
-/*   Updated: 2024/11/13 14:07:00 by oohnivch         ###   ########.fr       */
+/*   Updated: 2024/11/14 11:36:04 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,17 +51,4 @@ void	parse_path(t_data *data)
 	}
 	if (data->path)
 		add_slash(data->path);
-}
-
-void	free_path(t_data *data)
-{
-	int	i;
-
-	i = -1;
-	if (!data->path)
-		return ;
-	while (data->path[++i])
-		ft_free(&data->path[i]);
-	free(data->path);
-	data->path = NULL;
 }

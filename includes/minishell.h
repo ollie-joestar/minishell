@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 13:28:47 by oohnivch          #+#    #+#             */
-/*   Updated: 2024/11/13 17:02:03 by oohnivch         ###   ########.fr       */
+/*   Updated: 2024/11/14 15:19:42 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,8 +121,8 @@ void	tokenization(t_data *data);
 
 // Executing functions
 void	runcmd(t_data *data);
-void	run_exec(t_data *data);
-void	run_builtin(t_data *data);
+/*void	run_exec(t_data *data);*/
+void	run_builtin(t_data *data, t_exec *exec);
 void	clean_exec(t_data *data);
 int		fork1(t_data *data);
 void	reroute(t_data *data);
@@ -130,8 +130,6 @@ void	reset_stds(int	stdin_copy, int	stdout_copy);
 
 // Environment functions
 void	parse_env(t_data *data, char **ev);
-void	free_env_list(t_data *data);
-void	free_ev(t_data *data);
 size_t	env_len(t_envlist *env);
 
 // Path functions
@@ -141,18 +139,31 @@ void	free_path(t_data *data);
 void	add_slash(char **path);
 
 // Builtins
-void	echo(t_data *data, t_exec *exec);
+void		echo(t_data *data, t_exec *exec);
 
-char	**create_argv(t_data *data, t_lex_token *token);
-void	free_arr(char **arr);
-size_t	argv_size(t_lex_token *token);
-void	free_arr(char **arr);
-void	init_exec_data(t_data *data);
+void		cd(t_data *data, t_exec *exec);
+void		cd_home(t_data *data, t_exec *exec);
+char		*get_home(t_data *data);
+
+void		pwd(t_data *data, t_exec *exec);
+void		update_pwd(t_data *data);
+t_envlist	*get_pwd(t_data *data);
+t_envlist	*get_oldpwd(t_data *data);
+
+
+char		**create_argv(t_data *data, t_lex_token *token);
+size_t		argv_size(t_lex_token *token);
+void		init_exec_data(t_data *data);
 
 // HereDoc
 char	*random_name(void);
 char	*here_doc(t_data *data, char *l);
 // General utils
 void	bruh(t_data *data, char *s, int status);
+size_t	ft_arrlen(char **arr);
+// Free functions
+void	free_tokens(t_data *data);
+void	free_env_list(t_data *data);
+void	free_arr(char **arr);
 
 #endif
