@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 13:28:47 by oohnivch          #+#    #+#             */
-/*   Updated: 2024/11/14 15:19:42 by oohnivch         ###   ########.fr       */
+/*   Updated: 2024/11/14 17:13:01 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,6 +131,7 @@ void	reset_stds(int	stdin_copy, int	stdout_copy);
 // Environment functions
 void	parse_env(t_data *data, char **ev);
 size_t	env_len(t_envlist *env);
+char	*expand(t_data *data, char *s);
 
 // Path functions
 void	update_path(t_data *data);
@@ -140,16 +141,13 @@ void	add_slash(char **path);
 
 // Builtins
 void		echo(t_data *data, t_exec *exec);
-
 void		cd(t_data *data, t_exec *exec);
 void		cd_home(t_data *data, t_exec *exec);
 char		*get_home(t_data *data);
-
 void		pwd(t_data *data, t_exec *exec);
 void		update_pwd(t_data *data);
 t_envlist	*get_pwd(t_data *data);
 t_envlist	*get_oldpwd(t_data *data);
-
 
 char		**create_argv(t_data *data, t_lex_token *token);
 size_t		argv_size(t_lex_token *token);
