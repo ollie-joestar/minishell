@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 09:38:58 by oohnivch          #+#    #+#             */
-/*   Updated: 2024/11/14 10:33:26 by oohnivch         ###   ########.fr       */
+/*   Updated: 2024/11/14 17:43:35 by hanjkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ char prompt[] = "minishell> ";
 /*	}*/
 /*}*/
 
+//Hello World
 int main(int argc, char **argv, char **ev)
 {
 	t_data *data;
@@ -45,6 +46,7 @@ int main(int argc, char **argv, char **ev)
 		data->line = readline(prompt);
 		if (!data->line)
 			bruh(data, "Failed to read line", 1);
+		init_tokens(data);
 		tokenization(data);
 		parse_cmd(data);
 		runcmd(data); //need exec function

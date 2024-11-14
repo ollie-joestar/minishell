@@ -31,34 +31,18 @@ char	*ft_strndup(const char *s, size_t n)
 	ft_strncpy(dest, s, n);
 	return (dest);
 }
-/*
-//free all tokens later on
-void	free_tokens(t_lex_token *lex)
-{
-	t_token	*temp;
 
-	temp = lex->tokens;
-	while (temp)
-	{
-		lex->token = temp->right;
-		free(temp->str);
-		free(temp);
-		temp = lex->token;
-	}
-}
 
-void	append_token_to_list(t_data *data, t_lex_token *new_token)
+void	insert_token_to_list(t_data *data, t_lex_token *new_token)
 {
-	if (!data->token && !data->last_token)
+	if (data->token)
 	{
-		data->token = new_token;
-		data->token->left = NULL;
-		data->last_token = new_token;
+		t_lex_token *tmp = data->token;
+		while (tmp->left)
+			tmp = tmp->left;
+		tmp->left = new_token;
 	}
 	else
-	{
-		new_token->left = data->last_token;
-		data->last_token->right = new_token;
-		data->last_token = new_token;
-	}
-}*/
+		data->token = new_token;
+
+}

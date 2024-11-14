@@ -1,4 +1,14 @@
-
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   lexer_utils_2.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hanjkim <@student.42vienna.com>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/11/14 18:18:27 by hanjkim           #+#    #+#             */
+/*   Updated: 2024/11/14 18:21:59 by hanjkim          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 #include "minishell.h"
 
 // Checks for a single-quote enclosed string and ensures it is properly closed.
@@ -41,6 +51,7 @@ int	check_double_quotes(char **input_start, char **input_end)
 	return (false);
 }
 
+/*
 // Identifies the type of a token by checking for special symbols or commands.
 int	detect_token_type(t_env *env, char **input_start, char **input_end)
 {
@@ -58,24 +69,4 @@ int	detect_token_type(t_env *env, char **input_start, char **input_end)
 		return (token_type);
 
 	return (identify_general_token_type(env, input_start, input_end));
-}
-
-// Initializes a new token with its type and string value.
-void	initialize_token(t_token *token, char *content, int token_type)
-{
-	token->type = token_type;
-	token->content = content;
-	token->right = NULL;
-}
-
-// Creates a new token, initializing its values and allocating memory.
-t_token	*create_new_token(int token_type, char *content)
-{
-	t_token	*token = (t_token *)malloc(sizeof(t_token));
-
-	if (!token)
-		return (free(content), NULL);
-
-	initialize_token(token, content, token_type);
-	return (token);
-}
+}*/
