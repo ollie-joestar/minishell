@@ -6,7 +6,7 @@
 #    By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/14 10:24:00 by oohnivch          #+#    #+#              #
-#    Updated: 2024/11/14 17:31:35 by hanjkim          ###   ########.fr        #
+#    Updated: 2024/11/17 21:44:45 by hanjkim          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 #									Variables								   #
@@ -51,12 +51,12 @@ SRC = main.c \
 	  execution.c \
 	  general_utils.c \
 	  here_doc.c \
-	  interpret.c \
-	  interpret_utils1.c \
-	  interpret_utils2.c \
 	  lexer.c \
-	  lexer_utils_1.c \
-	  lexer_utils_2.c \
+	  lexer_check_quotes.c \
+	  lexer_init_tokens.c \
+	  lexer_token_expand.c \
+	  lexer_token_linking.c \
+	  lexer_word_processing.c \
 	  parser.c \
 	  parser_utils1.c \
 	  parser_utils2.c \

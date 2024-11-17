@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 11:25:45 by oohnivch          #+#    #+#             */
-/*   Updated: 2024/11/14 18:09:41 by hanjkim          ###   ########.fr       */
+/*   Updated: 2024/11/17 15:20:48 by hanjkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,4 +68,12 @@ void	free_token_node(t_lex_token **token)
 		ft_free(&(*token)->word);
 	free(*token);
 	*token = NULL;
+}
+
+void	free_old_token(t_lex_token *token)
+{
+	if (!token)
+		return;
+	ft_free(&token->word);
+	ft_free((char **)&token);
 }

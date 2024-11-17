@@ -6,47 +6,10 @@
 /*   By: hanjkim <@student.42vienna.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 18:49:14 by hanjkim           #+#    #+#             */
-/*   Updated: 2024/11/14 18:25:27 by hanjkim          ###   ########.fr       */
+/*   Updated: 2024/11/17 17:38:19 by hanjkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "minishell.h"
-
-t_lex_token	*create_token(void)
-{
-	t_lex_token	*token;
-
-	token = (t_lex_token *)ft_calloc(1, (sizeof(t_lex_token)));
-	if (!token)
-		return (NULL);
-	return (token);
-}
-
-void	init_tokens(t_data *data)
-{
-	int		i;
-	char	**av;
-	t_lex_token	*temp;
-
-	av = ft_split(data->line, ' ');
-	if (!av)
-		bruh(data, "Failed to split line", 1);
-	i = -1;
-	while (av[++i])
-	{
-		temp = create_token();
-		if (!temp)
-			bruh(data, "Failed to create token", 1);
-		temp->word = av[i];
-		if (!data->token)
-			data->token = temp;
-		if(data->token)
-		{
-			data->token->right = temp;
-			temp->left = data->token;
-			data->token = temp;
-		}
-	}
-}
 
 void	check_token_type(t_lex_token *token)
 {
@@ -87,11 +50,11 @@ void	tokenization(t_data *data)
 
 	while (data->token && data->token->left)
 		data->token = data->token->left;
+	check_for_needed_expansion(data);
 	token = data->token;
 	while (token)
 	{
 		check_token_type(token);
-//write expander here
 		if (token->type == INPUT || token->type == REPLACE || 
 			token->type == APPEND || token->type == PIPE || 
 			token->type == HEREDOC)

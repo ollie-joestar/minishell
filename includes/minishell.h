@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 13:28:47 by oohnivch          #+#    #+#             */
-/*   Updated: 2024/11/14 18:13:08 by hanjkim          ###   ########.fr       */
+/*   Updated: 2024/11/17 21:36:35 by hanjkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@
 // quotes
 # define SQ '\''
 # define DQ '\"'
+# define SLASH '\\'
+# define DOLLAR '$'
 // Token types
 # define WORD 0
 # define PIPE 1
@@ -106,20 +108,25 @@ void		init_tokens(t_data *data);
 void		check_token_type(t_lex_token *token);
 void		process_token(t_data *data, t_lex_token **token, int type);
 void		tokenization(t_data *data);
-/*t_token	*create_token(int type, char *str);*/
-/*t_token	*tokenize(t_lexer_context *lexer_ctx);*/
-/*int		add_token(t_lexer_context *lexer_ctx, char **start);*/
-/*void		add_token_to_list(t_lexer_context *lexer_ctx, t_token *new_token);*/
-/*void		free_tokens(t_lexer_context *lexer_ctx);*/
-/*int		identify_token_type(t_lexer_context *lexer_ctx, char **start, char **end);*/
 void		skip_whitespace(char **input);
 int			identify_pipe(char **start, char **end);
-int			identify_single_quotes(char **start, char **end);
-int			identify_double_quotes(char **start, char **end);
-void		ft_strncpy(char	*dest, const char *str, size_t n);
-char		*ft_strndup(const char *s, size_t n);
 char		*token_end(char *start);
 void		reset_end(char *start, char **end, char *ptr, char *tkn_end);
+
+// Expander functions
+int		find_start_index(int current_index);
+int		find_end_index(char *word, int start_index, char quote);
+void	read_single_quotes(char **buffer, char *word, int *i);
+void	read_double_quotes(t_data *data, char **buffer, char *word, int *i);
+void	check_for_needed_expansion(t_data *data);
+void	insert_expanded_tokens(t_data *data, t_lex_token **current);
+void	update_token_links(t_lex_token *fntok, t_lex_token *lntok, t_lex_token *old_token);
+char	**expand_token_to_words(t_data *data, char *word);
+int		requires_expansion(char *word);
+void	insert_token(t_lex_token *fntok, t_lex_token *lntok, t_lex_token *old_token);
+char	*process_word_expansion(t_data *data, char *word);
+char	*process_quotes(t_data *data, char *expanded_word, char *word);
+void	process_env_variable(t_data *data, char **buffer, int *index);
 
 // OLLIE
 
@@ -165,6 +172,7 @@ void	bruh(t_data *data, char *s, int status);
 size_t	ft_arrlen(char **arr);
 // Free functions
 void	free_tokens(t_data *data);
+void	free_old_token(t_lex_token *token);
 void	free_env_list(t_data *data);
 void	free_arr(char **arr);
 void	free_token_node(t_lex_token **token);
