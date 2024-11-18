@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 14:38:56 by oohnivch          #+#    #+#             */
-/*   Updated: 2024/11/14 11:22:06 by oohnivch         ###   ########.fr       */
+/*   Updated: 2024/11/18 10:42:25 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ t_exec	*new_exec(void)
 	return (exec);
 }
 
-void	add_output(t_exec *exec, t_lex_token *token)
+void	add_output(t_exec *exec, t_token *token)
 {
 	t_output	*output;
 
@@ -44,7 +44,7 @@ void	add_output(t_exec *exec, t_lex_token *token)
 	}
 }
 
-void	add_input(t_exec *exec, t_lex_token *token)
+void	add_input(t_exec *exec, t_token *token)
 {
 	t_input	*input;
 
@@ -70,7 +70,7 @@ void	add_input(t_exec *exec, t_lex_token *token)
 void	init_exec_data(t_data *data)
 {
 	t_exec		*exec;
-	t_lex_token	*token;
+	t_token	*token;
 
 	token = data->token;
 	while (token)

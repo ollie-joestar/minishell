@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 10:41:38 by oohnivch          #+#    #+#             */
-/*   Updated: 2024/11/14 17:11:51 by oohnivch         ###   ########.fr       */
+/*   Updated: 2024/11/18 10:42:25 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,10 @@ char	*expand(t_data *data, char *name)
 	return (ft_strdup(""));
 }
 
-/*char	expand(t_data *data, t_lex_token *token)*/
+/*char	expand(t_data *data, t_token *token)*/
 /*{*/
 /*	t_envlist	*env;*/
-/*	t_lex_token	*tmp_token;*/
+/*	t_token	*tmp_token;*/
 /*	char		*expanded;*/
 /**/
 /*	expanded = NULL;*/

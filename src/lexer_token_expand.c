@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   token_expand.c                                     :+:      :+:    :+:   */
+/*   lexer_token_expand.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hanjkim <@student.42vienna.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 15:28:15 by hanjkim           #+#    #+#             */
-/*   Updated: 2024/11/17 17:41:54 by hanjkim          ###   ########.fr       */
+/*   Updated: 2024/11/18 14:40:45 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,13 +31,13 @@ char	**expand_token_to_words(t_data *data, char *word)
 	return (tokens);
 }
 
-void	insert_expanded_tokens(t_data *data, t_lex_token **current)
+void	insert_expanded_tokens(t_data *data, t_token **current)
 {
-	t_lex_token	*old_token;
-	t_lex_token	*new_tokens;
-	t_lex_token	*last_new_token;
-	t_lex_token	*temp;
-	char		**expanded_words;
+	t_token	*old_token;
+	t_token	*new_tokens;
+	t_token	*last_new_token;
+	t_token	*temp;
+	char	**expanded_words;
 	int		i;
 	
 	old_token = *current;
@@ -66,15 +66,14 @@ void	insert_expanded_tokens(t_data *data, t_lex_token **current)
 
 void	check_for_needed_expansion(t_data *data)
 {
-	t_lex_token	*current;
+	t_token	*current;
 
 	current = data->token;
 	while (current)
 	{
 		if (requires_expansion(current->word))
 			insert_expanded_tokens(data, &current);
-		else
-			current = current->right;
+			/*current = insert_expanded_tokens(data, current);*/
 		current = current->right;
 	}
 }

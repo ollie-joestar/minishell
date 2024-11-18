@@ -6,7 +6,7 @@
 /*   By: hanjkim <@student.42vienna.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 15:32:27 by hanjkim           #+#    #+#             */
-/*   Updated: 2024/11/17 21:42:33 by hanjkim          ###   ########.fr       */
+/*   Updated: 2024/11/18 14:51:44 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,8 @@ void	process_env_variable(t_data *data, char **buffer, int *index)
 	if (!var_name)
 		return;
 	//var_value = GIVE ME ENV VALUE, BABE. I'M GOING CRAZY
+	var_value = expand(data, var_name);
+	// You mean like this? ^^^^^^^^^^^^^
 	free(var_name);
 	if (!var_value)
 		return;

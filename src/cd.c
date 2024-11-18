@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 13:49:00 by oohnivch          #+#    #+#             */
-/*   Updated: 2024/11/14 15:27:34 by oohnivch         ###   ########.fr       */
+/*   Updated: 2024/11/18 10:37:03 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ void	cd_home(t_data *data, t_exec *exec)
 {
 	char	*path;
 
+	(void)exec;
 	path = get_home(data);
 	if (!path)
 	{

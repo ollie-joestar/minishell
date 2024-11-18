@@ -6,7 +6,7 @@
 #    By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/14 10:24:00 by oohnivch          #+#    #+#              #
-#    Updated: 2024/11/17 21:44:45 by hanjkim          ###   ########.fr        #
+#    Updated: 2024/11/18 10:31:39 by oohnivch         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 #									Variables								   #
@@ -120,18 +120,14 @@ $(LIB):
 clean:
 	@make $(MFLAGS) $(LIBDIR) clean
 	@rm -rf $(OBJ_PATH)
-	# @rm -rf $(OBJ_PATH_BONUS)
 	@rm -f error.txt
-	# @echo "$(YELLOW)Deleting $(words $(OBJ) $(OBJ_BONUS)) object file(s) $(NORMAL)"
 	@echo "$(YELLOW)Deleting $(words $(OBJ)) object file(s) $(NORMAL)"
 	@echo "$(GREEN)Deletion success! $(NORMAL)"
 
 fclean:
 	@make $(MFLAGS) $(LIBDIR) fclean
 	@rm -rf $(OBJ_PATH)
-	# @rm -rf $(OBJ_PATH_BONUS)
 	@rm -f $(NAME) $(BONUS) error.txt
-	# @echo "$(YELLOW)Deleting $(NAME) $(BONUS) and $(words $(OBJ) $(OBJ_BONUS)) object file(s) $(NORMAL)" 
 	@echo "$(YELLOW)Deleting $(NAME) and $(words $(OBJ)) object file(s) $(NORMAL)" 
 	@echo "$(GREEN)Deletion success! $(NORMAL)"
 

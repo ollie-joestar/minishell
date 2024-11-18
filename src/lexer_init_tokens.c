@@ -6,31 +6,28 @@
 /*   By: hanjkim <@student.42vienna.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 16:41:49 by hanjkim           #+#    #+#             */
-/*   Updated: 2024/11/17 16:42:40 by hanjkim          ###   ########.fr       */
+/*   Updated: 2024/11/18 15:04:14 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-t_lex_token	*create_token(void)
+t_token	*create_token(void)
 {
-	t_lex_token	*token;
+	t_token	*token;
 
-	token = (t_lex_token *)ft_calloc(1, (sizeof(t_lex_token)));
+	token = (t_token *)ft_calloc(1, (sizeof(t_token)));
 	if (!token)
 		return (NULL);
 	return (token);
 }
 
-void	init_tokens(t_data *data)
+t_token	*init_tokens(t_data *data, char **av)
 {
 	int		i;
-	char	**av;
-	t_lex_token	*temp;
+	t_token	*new_token;
+	t_token	*temp;
 
-	av = ft_split(data->line, ' ');
-	if (!av)
-		bruh(data, "Failed to split line", 1);
 	i = -1;
 	while (av[++i])
 	{
@@ -38,13 +35,49 @@ void	init_tokens(t_data *data)
 		if (!temp)
 			bruh(data, "Failed to create token", 1);
 		temp->word = av[i];
-		if (!data->token)
-			data->token = temp;
-		if(data->token)
+		if (new_token)
 		{
-			data->token->right = temp;
-			temp->left = data->token;
-			data->token = temp;
+			new_token->right = temp;
+			temp->left = new_token;
 		}
+		new_token = temp;
 	}
+	return (new_token);
 }
+
+void	parse_line(t_data *data)
+{
+	char	**av;
+	
+	av = ft_split(data->line, ' ');
+	if (!av)
+		bruh(data, "Failed to split line", 1);
+	data->token = init_tokens(data, av);
+}
+
+/*void	init_tokens(t_data *data)*/
+/*{*/
+/*	int		i;*/
+/*	char	**av;*/
+/*	t_token	*temp;*/
+/**/
+/*	av = ft_split(data->line, ' ');*/
+/*	if (!av)*/
+/*		bruh(data, "Failed to split line", 1);*/
+/*	i = -1;*/
+/*	while (av[++i])*/
+/*	{*/
+/*		temp = create_token();*/
+/*		if (!temp)*/
+/*			bruh(data, "Failed to create token", 1);*/
+/*		temp->word = av[i];*/
+/*		if (!data->token)*/
+/*			data->token = temp;*/
+/*		if(data->token)*/
+/*		{*/
+/*			data->token->right = temp;*/
+/*			temp->left = data->token;*/
+/*			data->token = temp;*/
+/*		}*/
+/*	}*/
+/*}*/

@@ -46,7 +46,7 @@ void	free_tokens(t_lexer_context *lex)
 	}
 }
 
-void	append_token_to_list(t_data *data, t_lex_token *new_token)
+void	append_token_to_list(t_data *data, t_token *new_token)
 {
 	if (!data->tokens && !data->last_token)
 	{

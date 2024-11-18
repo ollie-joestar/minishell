@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 09:38:58 by oohnivch          #+#    #+#             */
-/*   Updated: 2024/11/14 17:43:35 by hanjkim          ###   ########.fr       */
+/*   Updated: 2024/11/18 10:36:50 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ char prompt[] = "minishell> ";
 int main(int argc, char **argv, char **ev)
 {
 	t_data *data;
+	(void)argc;
+	(void)argv;
 
 	data = ft_calloc(1, sizeof(t_data));
 	parse_env(data, ev);
@@ -48,7 +50,8 @@ int main(int argc, char **argv, char **ev)
 			bruh(data, "Failed to read line", 1);
 		init_tokens(data);
 		tokenization(data);
-		parse_cmd(data);
+		init_exec_data(data);
+		/*parse_cmd(data);*/
 		runcmd(data); //need exec function
 	}
 	bruh(data, NULL, 0);

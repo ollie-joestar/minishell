@@ -6,13 +6,13 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 16:29:57 by oohnivch          #+#    #+#             */
-/*   Updated: 2024/11/14 11:49:27 by oohnivch         ###   ########.fr       */
+/*   Updated: 2024/11/18 10:42:25 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-size_t	argv_size(t_lex_token *token)
+size_t	argv_size(t_token *token)
 {
 	size_t	size;
 
@@ -25,7 +25,7 @@ size_t	argv_size(t_lex_token *token)
 	return (size);
 }
 
-char	**create_argv(t_data *data, t_lex_token *token)
+char	**create_argv(t_data *data, t_token *token)
 {
 	char	**av;
 	size_t	size;

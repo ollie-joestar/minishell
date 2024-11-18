@@ -6,11 +6,16 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 14:18:21 by oohnivch          #+#    #+#             */
-/*   Updated: 2024/11/14 13:59:57 by oohnivch         ###   ########.fr       */
+/*   Updated: 2024/11/18 15:38:34 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
+
+int	is_not_meta(char c)
+{
+	return (c != '>' && c != '<' && c != '|' &&  c != ' ' && c != '$' && c != '\'' && c != '\"');
+}
 
 void	bruh(t_data *data, char *s, int status)
 {

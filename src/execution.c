@@ -6,35 +6,35 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 11:54:00 by oohnivch          #+#    #+#             */
-/*   Updated: 2024/11/14 13:48:23 by oohnivch         ###   ########.fr       */
+/*   Updated: 2024/11/18 13:57:12 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	do_child_stuff(t_data *data)
+void	do_child_stuff(t_data *data, t_exec *exec)
 {
-	reroute(data);
-	execve(data->exec->cmd, data->exec->av, data->ev);
-	if (ft_strchr(data->exec->av[0], '/'))
+	reroute(data, exec);
+	execve(exec->cmd, exec->av, data->ev);
+	if (ft_strchr(exec->av[0], '/'))
 	{
-		if (0 == access(data->exec->av[0], F_OK))
+		if (0 == access(exec->av[0], F_OK))
 		{
 			ft_putstr_fd("minishell: permission denied: ", 2);
-			bruh(data, data->exec->av[0], 126);
+			bruh(data, exec->av[0], 126);
 		}
 		ft_putstr_fd("minishell: no such file or directory: ", 2);
-		bruh(data, data->exec->av[0], 127);
+		bruh(data, exec->av[0], 127);
 	}
 	else
 	{
-		if (0 == access(data->exec->av[0], F_OK))
+		if (0 == access(exec->av[0], F_OK))
 		{
 			ft_putstr_fd("minishell: permission denied: ", 2);
-			bruh(data, data->exec->av[0], 126);
+			bruh(data, exec->av[0], 126);
 		}
 		ft_putstr_fd("minishell: command not found: ", 2);
-		bruh(data, data->exec->av[0], 127);
+		bruh(data, exec->av[0], 127);
 	}
 }
 
@@ -64,6 +64,8 @@ void	run_builtin(t_data *data, t_exec *exec)
 
 	stdin_copy = dup(STDIN_FILENO);
 	stdout_copy = dup(STDOUT_FILENO);
+	/*if (exec->next || exec->prev)*/
+	/*	spawn_child(data, exec);*/
 	if (exec->av[0] == 0)
 		bruh(data, "cmd is null\n", 1);
 	if (!(ft_strncmp(exec->av[0], "exit", 5)))
@@ -102,5 +104,4 @@ void	runcmd(t_data *data)
 	while (wait(NULL) > 0)
 		;
 	clean_exec(data);
-	return ;
 }

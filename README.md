@@ -48,3 +48,16 @@ Our `minishell` with **Hanju-kun** *UwU*
 //< infile cat | > outfile should NOT WORK
 //
 
+test="boobs"
+another="anything here"
+[echo] [-n] ['$pipi'N$test"something] [else"] [$another] [|] [cat] // input line
+[echo] [-n] [$pipiN$test"something] [else"] [$another] [|] [cat] // open single quote
+[echo] [-n] [$pipiNboobs"something] [else"] [$another] [|] [cat] // expand variable
+[echo] [-n] [$pipiNboobssomething else] [$another] [|] [cat] // open double quote
+[echo] [-n] [$pipiNboobssomething] [else] [$another] [|] [cat] // split by space
+[echo] [-n] [$pipiNboobssomething] [else] [anything here] [|] [cat] // expand variable
+[echo] [-n] [$pipiNboobssomething] [else] [anything] [here] [|] [cat] // split by space
+
+open double quote -> expand variable -> split by space
+expand variable -> split by space
+open single quote -> split by space

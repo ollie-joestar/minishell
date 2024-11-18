@@ -6,14 +6,13 @@
 /*   By: hanjkim <@student.42vienna.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 18:49:14 by hanjkim           #+#    #+#             */
-/*   Updated: 2024/11/17 17:38:19 by hanjkim          ###   ########.fr       */
+/*   Updated: 2024/11/18 15:38:32 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "minishell.h"
 
-void	check_token_type(t_lex_token *token)
+void	check_token_type(t_token *token)
 {
-
 	if (*token->word && ft_strncmp(token->word, "<", 2))
 		token->type = INPUT;
 	else if (*token->word && ft_strncmp(token->word, "<<", 3))
@@ -26,9 +25,9 @@ void	check_token_type(t_lex_token *token)
 		token->type = PIPE;
 }
 
-void	process_token(t_data *data, t_lex_token **token, int type)
+void	process_token(t_data *data, t_token **token, int type)
 {
-	t_lex_token *temp;
+	t_token *temp;
 
 	temp = *token;
 	(*token)->left->right = (*token)->right;
@@ -46,15 +45,15 @@ void	process_token(t_data *data, t_lex_token **token, int type)
 
 void	tokenization(t_data *data)
 {
-	t_lex_token *token;
+	t_token *token;
 
 	while (data->token && data->token->left)
 		data->token = data->token->left;
-	check_for_needed_expansion(data);
 	token = data->token;
 	while (token)
 	{
 		check_token_type(token);
+		check_for_needed_expansion(data);
 		if (token->type == INPUT || token->type == REPLACE || 
 			token->type == APPEND || token->type == PIPE || 
 			token->type == HEREDOC)
