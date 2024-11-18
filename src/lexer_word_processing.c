@@ -6,7 +6,7 @@
 /*   By: hanjkim <@student.42vienna.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 15:32:27 by hanjkim           #+#    #+#             */
-/*   Updated: 2024/11/18 14:51:44 by oohnivch         ###   ########.fr       */
+/*   Updated: 2024/11/18 15:45:19 by hanjkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,20 @@ int find_start_index(int current_index)
 	return(current_index + 1);
 }
 
+int find_end_index(t_data *data, t_token *token, int start_index, char quote)
+{
+	int end_index;
+
+	end_index = start_index;
+	while (token->word[end_index] && token->word[end_index] != quote)
+		end_index++;
+	if (token->word[end_index] == quote)
+		return (end_index);
+	else;
+		return (-1); //in case of error when no closing quote is found
+	return (end_index);
+}
+/*
 int find_end_index(char *word, int start_index, char quote)
 {
 	int end_index;
@@ -28,7 +42,7 @@ int find_end_index(char *word, int start_index, char quote)
 		return (end_index);
 	else 
 		return (-1); //in case of error when no closing quote is found
-}
+}*/
 
 void	process_env_variable(t_data *data, char **buffer, int *index)
 {

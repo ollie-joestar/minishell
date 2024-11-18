@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 13:28:47 by oohnivch          #+#    #+#             */
-/*   Updated: 2024/11/18 16:17:29 by oohnivch         ###   ########.fr       */
+/*   Updated: 2024/11/18 17:38:08 by hanjkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,7 +112,7 @@ void		skip_whitespace(char **input);
 int			identify_pipe(char **start, char **end);
 char		*token_end(char *start);
 void		reset_end(char *start, char **end, char *ptr, char *tkn_end);
-
+void		parse_line(t_data *data);
 // Token utils
 void		free_token_slice(t_token *first, t_token *last);
 t_token		*get_first_token(t_token *token);
