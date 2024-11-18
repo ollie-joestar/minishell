@@ -32,58 +32,59 @@ char	**expand_token_to_words(t_data *data, char *word)
 	return (tokens);
 }
 
-void	insert_expanded_tokens(t_data *data, t_token **current)
+t_token *expand_token(t_data *data, const char *word)
 {
-	t_token	*old_token;
-	t_token	*new_tokens;
-	t_token	*last_new_token;
-	t_token	*temp;
-	char	**expanded_words;
-	int		i;
-	
-	old_token = *current;
-	i = -1;
-	new_tokens = NULL;
-	last_new_token = NULL;
-	expanded_words = expand_token_to_words(data, old_token->word);
-	if (!expanded_words)
-		bruh(data, "Failed to expand token", 1);
-	while(expanded_words[++i])
-	{
-		temp = create_token();
-		if (!temp)
-			bruh(data, "Failed to create token", 1);
-		temp->word = expanded_words[i];
-		if (!new_tokens)
-			new_tokens = temp;
-		else
-			last_new_token->right = temp;
-		temp->left = last_new_token;
-		last_new_token = temp;
-	}
-	free_arr(expanded_words);
-	update_token_links(new_tokens, last_new_token, old_token);
-	*current = new_tokens;
-	free_old_token(old_token);
+    char    **expanded_words;
+    t_token *new_tokens;
+
+    expanded_words = expand_token_to_words(data, word);
+    if (!expanded_words)
+        bruh(data, "Failed to expand token", 1);
+    new_tokens = init_tokens(data, expanded_words);
+    if (!new_tokens)
+    {
+        free_arr(expanded_words);
+        bruh(data, "Failed to create expanded tokens", 1);
+    }
+    free(expanded_words);
+    return new_tokens;
 }
 
-void	check_for_needed_expansion(t_data *data)
+void insert_new_token_into_list(t_token *expanded_tokens, t_token *old_token)
 {
-	t_token	*current;
-	t_token *next;
-	printf("assigning current\n");	
-	current = data->token;
-	printf("assigned current\n");	
-	while (current)
-	{
-		printf("current->word: %s\n", current->word);
-		next = current->right;
-		if (requires_expansion(current->word))
-		{
-			insert_expanded_tokens(data, &current);
-			if (current)
-				next = current->right;
-		}
-		current = current->right;
-	}
+    t_token *last_new_token;
+
+    last_new_token = expanded_tokens;
+    while (last_new_token->right)
+        last_new_token = last_new_token->right;
+    update_token_links(expanded_tokens, last_new_token, old_token);
+    free_old_token(old_token);
+}
+
+void check_for_needed_expansion(t_data *data)
+{
+    t_token *current;
+    t_token *next;
+    t_token *expanded_tokens;
+
+    printf("assigning current\n");
+    current = data->token;
+    printf("assigned current\n");
+    while (current)
+    {
+        printf("current->word: %s\n", current->word);
+        next = current->right;
+        if (requires_expansion(current->word))
+        {
+            expanded_tokens = expand_token(data, current->word);
+            if (!expanded_tokens)
+                bruh(data, "Failed to expand token", 1);
+            insert_token(expanded_tokens, current);
+            next = expanded_tokens;
+            while (next && next->right)
+                next = next->right;
+            next = next->right;
+        }
+        current = next;
+    }
 }
