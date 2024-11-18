@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 10:41:38 by oohnivch          #+#    #+#             */
-/*   Updated: 2024/11/18 10:42:25 by oohnivch         ###   ########.fr       */
+/*   Updated: 2024/11/18 17:03:15 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,9 @@ char	*expand(t_data *data, char *name)
 {
 	t_envlist	*env;
 
+
+	if (ft_strncmp(name, "?", 2) == 0)
+		return (ft_strdup(ft_itoa(data->status)));
 	while (data->env->prev)
 		data->env = data->env->prev;
 	env = data->env;
