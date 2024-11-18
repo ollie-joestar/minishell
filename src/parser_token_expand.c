@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lexer_token_expand.c                               :+:      :+:    :+:   */
+/*   parser_token_expand.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hanjkim <@student.42vienna.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 15:28:15 by hanjkim           #+#    #+#             */
-/*   Updated: 2024/11/18 16:34:33 by hanjkim          ###   ########.fr       */
+/*   Updated: 2024/11/18 20:51:55 by hanjkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	requires_expansion(char *word)
 {
-    return (ft_strchr(word, DOLLAR) || ft_strchr(word, SQ) || ft_strchr(word, DQ));
+	return (ft_strchr(word, DOLLAR) || ft_strchr(word, SQ) || ft_strchr(word, DQ));
 }
 
 char	**expand_token_to_words(t_data *data, char *word)
@@ -22,6 +22,7 @@ char	**expand_token_to_words(t_data *data, char *word)
 	char	*expanded_word;
 	char	**tokens;
 
+	bruh(data, "Failed to expand token words", 1);
 	expanded_word = process_word_expansion(data, word);
 	if (!expanded_word)
 		bruh(data, "Failed to expand line", 1);
@@ -42,6 +43,8 @@ void	insert_expanded_tokens(t_data *data, t_token **current)
 	
 	old_token = *current;
 	i = -1;
+	new_tokens = NULL;
+	last_new_token = NULL;
 	expanded_words = expand_token_to_words(data, old_token->word);
 	if (!expanded_words)
 		bruh(data, "Failed to expand token", 1);
@@ -67,13 +70,20 @@ void	insert_expanded_tokens(t_data *data, t_token **current)
 void	check_for_needed_expansion(t_data *data)
 {
 	t_token	*current;
-
+	t_token *next;
+	printf("assigning current\n");	
 	current = data->token;
+	printf("assigned current\n");	
 	while (current)
 	{
+		printf("current->word: %s\n", current->word);
+		next = current->right;
 		if (requires_expansion(current->word))
+		{
 			insert_expanded_tokens(data, &current);
-			/*current = insert_expanded_tokens(data, current);*/
+			if (current)
+				next = current->right;
+		}
 		current = current->right;
 	}
 }

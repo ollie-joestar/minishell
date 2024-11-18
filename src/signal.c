@@ -16,22 +16,22 @@ void	save_sigint(int signal)
 	g_signal = signal;
 }
 
-void	sigint_handler_non_interactive_mode(t_var *var)
+void	sigint_handler_non_interactive_mode(t_data *data)
 {
-	var->sa.sa_handler = save_sigint;
-	sigaction(SIGINT, &var->sa, NULL);
+	data->sa.sa_handler = save_sigint;
+	sigaction(SIGINT, &data->sa, NULL);
 }
 
-void	sigint_handler_interactive_mode(t_var *var)
+void	sigint_handler_interactive_mode(t_data *data)
 {
-	var->sa.sa_handler = handle_sigint;
-	sigaction(SIGINT, &var->sa, NULL);
+	data->sa.sa_handler = handle_sigint;
+	sigaction(SIGINT, &data->sa, NULL);
 }
 
-void	setup_signal_handlers(t_var *var)
+void	setup_signal_handlers(t_data *data)
 {
 	signal(SIGQUIT, SIG_IGN);
-	var->sa.sa_flags = SA_RESTART;
-	sigemptyset(&var->sa.sa_mask);
-	sigint_handler_interactive_mode(var);
+	data->sa.sa_flags = SA_RESTART;
+	sigemptyset(&data->sa.sa_mask);
+	sigint_handler_interactive_mode(data);
 }

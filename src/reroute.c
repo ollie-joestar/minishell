@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 11:41:48 by oohnivch          #+#    #+#             */
-/*   Updated: 2024/11/18 13:57:14 by oohnivch         ###   ########.fr       */
+/*   Updated: 2024/11/18 18:24:47 by hanjkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@
 //   - write to pipe
 //   - write to STDOUT_FILENO
 
-static void	rerouteinfile(t_data *data, t_exec *exec)
+static void	rerouteinfile(t_exec *exec)
 {
 	int	fd;
 
@@ -48,7 +48,7 @@ static void	rerouteinfile(t_data *data, t_exec *exec)
 	close(fd);
 }
 
-static void	rerouteoutfile(t_data *data ,t_exec *exec)
+static void	rerouteoutfile(t_exec *exec)
 {
 	int fd;
 
@@ -67,28 +67,28 @@ static void	rerouteoutfile(t_data *data ,t_exec *exec)
 	close(fd);
 }
 
-static void	rerouteinpipe(t_data *data ,t_exec *exec)
+static void	rerouteinpipe(t_exec *exec)
 {
 	dup2(exec->prev->pipe[RD], STDIN_FILENO);
 	close(exec->prev->pipe[RD]);
 	close(exec->prev->pipe[WR]);
 }
 
-static void	rerouteoutpipe(t_data *data ,t_exec *exec)
+static void	rerouteoutpipe(t_exec *exec)
 {
 	dup2(exec->pipe[WR], STDOUT_FILENO);
 	close(exec->pipe[RD]);
 	close(exec->pipe[WR]);
 }
 
-void	reroute(t_data *data, t_exec *exec)
+void	reroute(t_exec *exec)
 {
 	if (exec->in)
-		rerouteinfile(data, exec);
+		rerouteinfile(exec);
 	if (exec->out)
-		rerouteoutfile(data, exec);
+		rerouteoutfile(exec);
 	if (!exec->in && exec->prev)
-		rerouteinpipe(data ,exec);
+		rerouteinpipe(exec);
 	if (!exec->out && exec->next)
-		rerouteoutpipe(data ,exec);
+		rerouteoutpipe(exec);
 }

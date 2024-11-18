@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 11:39:11 by oohnivch          #+#    #+#             */
-/*   Updated: 2024/11/14 11:36:04 by oohnivch         ###   ########.fr       */
+/*   Updated: 2024/11/18 18:54:03 by hanjkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	parse_path(t_data *data)
 {
 	t_envlist	*curr_env_node;
 
-	free_path(data);
+//	free_path(data);
 	if (!data->env)
 		return ;
 	while (data->env->prev)

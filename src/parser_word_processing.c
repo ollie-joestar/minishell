@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lexer_word_processing.c                            :+:      :+:    :+:   */
+/*   parser_word_processing.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hanjkim <@student.42vienna.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 15:32:27 by hanjkim           #+#    #+#             */
-/*   Updated: 2024/11/18 15:45:19 by hanjkim          ###   ########.fr       */
+/*   Updated: 2024/11/18 18:41:39 by hanjkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int find_start_index(int current_index)
 	return(current_index + 1);
 }
 
-int find_end_index(t_data *data, t_token *token, int start_index, char quote)
+int find_end_index(t_token *token, int start_index, char quote)
 {
 	int end_index;
 
@@ -30,19 +30,6 @@ int find_end_index(t_data *data, t_token *token, int start_index, char quote)
 		return (-1); //in case of error when no closing quote is found
 	return (end_index);
 }
-/*
-int find_end_index(char *word, int start_index, char quote)
-{
-	int end_index;
-
-	end_index = start_index;
-	while (word[end_index] && word[end_index] != quote)
-		end_index++;
-	if (word[end_index] == quote)
-		return (end_index);
-	else 
-		return (-1); //in case of error when no closing quote is found
-}*/
 
 void	process_env_variable(t_data *data, char **buffer, int *index)
 {
@@ -59,9 +46,7 @@ void	process_env_variable(t_data *data, char **buffer, int *index)
 	var_name = ft_substr(data->token->word, start_index, end_index - start_index);
 	if (!var_name)
 		return;
-	//var_value = GIVE ME ENV VALUE, BABE. I'M GOING CRAZY
 	var_value = expand(data, var_name);
-	// You mean like this? ^^^^^^^^^^^^^
 	free(var_name);
 	if (!var_value)
 		return;
@@ -83,9 +68,9 @@ char	*process_word_expansion(t_data *data, char *word)
 	while (word[++i])
 	{
 		if (word[i] == SQ)
-			read_single_quotes(&expanded_word, word, &i);
+			read_single_quotes(&expanded_word, data->token, &i);
 		else if (word[i] == DQ)
-			read_double_quotes(data, &expanded_word, word, &i);
+			read_double_quotes(data, data->token, &expanded_word, &i);
 		else if (word[i] == DOLLAR)
 			process_env_variable(data, &expanded_word, &i);
 		else

@@ -6,14 +6,14 @@
 #    By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/14 10:24:00 by oohnivch          #+#    #+#              #
-#    Updated: 2024/11/18 10:31:39 by oohnivch         ###   ########.fr        #
+#    Updated: 2024/11/18 20:12:22 by hanjkim          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 #									Variables								   #
 # **************************************************************************** #
 
 CC = cc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -g
 MFLAGS = --no-print-directory -C
 HEADER = -I./includes
 # HEADER_BONUS = -I./includes_bonus/
@@ -22,6 +22,7 @@ NAME = minishell
 
 LIBDIR = ./libft
 LIB = $(LIBDIR)/libft.a
+LINKFLAG = -lreadline
 
 NORMAL = \033[0m
 GREEN = \033[1;32m
@@ -52,18 +53,18 @@ SRC = main.c \
 	  general_utils.c \
 	  here_doc.c \
 	  lexer.c \
-	  lexer_check_quotes.c \
 	  lexer_init_tokens.c \
-	  lexer_token_expand.c \
-	  lexer_token_linking.c \
-	  lexer_word_processing.c \
-	  parser.c \
-	  parser_utils1.c \
-	  parser_utils2.c \
+	  parser_check_quotes.c \
+	  parser_token_expand.c \
+	  parser_token_linking.c \
+	  parser_word_processing.c \
 	  path.c \
 	  reroute.c \
-	  signal.c \
-	  syntax_check.c
+	  useless.c \
+	  token_utils.c \
+	  free.c \
+	  pwd.c \
+	  expander.c \
 
 # SRC_BONUS = main_bonus.c annihilate_bonus.c extract_bonus.c access_bonus.c \
 			# general_utils_bonus.c process_bonus.c reroute_bonus.c here_doc_bonus.c
@@ -83,7 +84,7 @@ all: $(OBJ_PATH) $(NAME)
 
 # $(NAME): $(OBJS) $(LIB) | bernhard
 $(NAME): $(OBJS) $(LIB) | logo
-	@$(CC) $(CFLAGS) $(OBJS) $(LIB) -o $(NAME) 
+	@$(CC) $(CFLAGS) $(OBJS) $(LIB) -o $(NAME) $(LINKFLAG)
 	@echo "\n$(GREEN)******** $(NAME) Created! ********$(NORMAL)\n"
 
 # $(BONUS): $(OBJS_BONUS) $(LIB)

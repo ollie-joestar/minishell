@@ -6,7 +6,7 @@
 /*   By: hanjkim <@student.42vienna.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 18:49:14 by hanjkim           #+#    #+#             */
-/*   Updated: 2024/11/18 15:38:32 by oohnivch         ###   ########.fr       */
+/*   Updated: 2024/11/18 21:25:37 by hanjkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "minishell.h"
@@ -30,8 +30,10 @@ void	process_token(t_data *data, t_token **token, int type)
 	t_token *temp;
 
 	temp = *token;
-	(*token)->left->right = (*token)->right;
-	(*token)->right->left = (*token)->left;
+	if ((*token)->left)
+		(*token)->left->right = (*token)->right;
+	if ((*token)->right)
+		(*token)->right->left = (*token)->left;
 	*token = (*token)->right;
 	(*token)->type = type;
 	if (type == HEREDOC)
@@ -47,16 +49,17 @@ void	tokenization(t_data *data)
 {
 	t_token *token;
 
+	if (!data->token)
+		bruh(data, "No words to tokenize", 1);
 	while (data->token && data->token->left)
 		data->token = data->token->left;
 	token = data->token;
-	while (token)
+		if (token)
 	{
 		check_token_type(token);
 		check_for_needed_expansion(data);
-		if (token->type == INPUT || token->type == REPLACE || 
-			token->type == APPEND || token->type == PIPE || 
-			token->type == HEREDOC)
+		if (token->type == INPUT || token->type == REPLACE || \
+token->type == APPEND || token->type == PIPE || token->type == HEREDOC)
 			process_token(data, &token, token->type);
 		else
 			token = token->right;

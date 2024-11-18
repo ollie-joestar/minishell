@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 09:38:58 by oohnivch          #+#    #+#             */
-/*   Updated: 2024/11/18 17:39:05 by hanjkim          ###   ########.fr       */
+/*   Updated: 2024/11/18 20:56:45 by hanjkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,13 +74,13 @@ int	skill_check(t_data *data)
 	return (0);
 }
 
+#include <stdio.h>
 //Hello World
 int main(int argc, char **argv, char **ev)
 {
 	t_data *data;
 	(void)argc;
 	(void)argv;
-
 	data = ft_calloc(1, sizeof(t_data));
 	parse_env(data, ev);
 	while (1)
@@ -92,7 +92,9 @@ int main(int argc, char **argv, char **ev)
 			bruh(data, "Failed to read line", 1);
 		parse_line(data);
 		tokenization(data);
+		printf("after tokenization\n");
 		init_exec_data(data);
+		printf("after init_exec_data\n");
 		/*parse_cmd(data);*/
 		runcmd(data); //need exec function
 	}

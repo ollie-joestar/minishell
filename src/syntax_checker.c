@@ -12,12 +12,13 @@ void	unexpected_token(char *str)
 		ft_putstr_fd("\'\n", STDERR_FILENO);
 	}
 }
+/*
 //NOT YET
 bool	double_pipe(t_token *token)
 {
 	return (token->type == PIPE \
 	&& token->right && token->right->type & (PIPE | END));
-}
+}*/
 
 bool	missing_filename(t_token *token)
 {

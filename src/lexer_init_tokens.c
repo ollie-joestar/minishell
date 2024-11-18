@@ -6,7 +6,7 @@
 /*   By: hanjkim <@student.42vienna.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 16:41:49 by hanjkim           #+#    #+#             */
-/*   Updated: 2024/11/18 15:04:14 by oohnivch         ###   ########.fr       */
+/*   Updated: 2024/11/18 20:02:47 by hanjkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,8 @@ void	parse_line(t_data *data)
 {
 	char	**av;
 	
+	if (!data->line)
+		bruh(data, "No Input. bruh.", 1);
 	av = ft_split(data->line, ' ');
 	if (!av)
 		bruh(data, "Failed to split line", 1);

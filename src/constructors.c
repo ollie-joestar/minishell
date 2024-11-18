@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 14:38:56 by oohnivch          #+#    #+#             */
-/*   Updated: 2024/11/18 10:42:25 by oohnivch         ###   ########.fr       */
+/*   Updated: 2024/11/18 21:21:01 by hanjkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ void	add_input(t_exec *exec, t_token *token)
 void	init_exec_data(t_data *data)
 {
 	t_exec		*exec;
-	t_token	*token;
+	t_token		*token;
 
 	token = data->token;
 	while (token)

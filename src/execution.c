@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 11:54:00 by oohnivch          #+#    #+#             */
-/*   Updated: 2024/11/18 13:57:12 by oohnivch         ###   ########.fr       */
+/*   Updated: 2024/11/18 18:26:03 by hanjkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	do_child_stuff(t_data *data, t_exec *exec)
 {
-	reroute(data, exec);
+	reroute(exec);
 	execve(exec->cmd, exec->av, data->ev);
 	if (ft_strchr(exec->av[0], '/'))
 	{
@@ -49,7 +49,7 @@ void	do_stuff(t_data *data, t_exec *exec)
 	if (data->pid == -1)
 		bruh(data, "Fork failed", 1);
 	if (data->pid == 0)
-		do_child_stuff(data);
+		do_child_stuff(data, exec);
 	if (exec->prev)
 		(close(exec->prev->pipe[RD]), close(exec->prev->pipe[WR]));
 	if (!exec->next)

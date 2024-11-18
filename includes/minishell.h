@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 13:28:47 by oohnivch          #+#    #+#             */
-/*   Updated: 2024/11/18 17:38:08 by hanjkim          ###   ########.fr       */
+/*   Updated: 2024/11/18 18:57:35 by hanjkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,11 +118,11 @@ void		free_token_slice(t_token *first, t_token *last);
 t_token		*get_first_token(t_token *token);
 t_token		*get_last_token(t_token *token);
 
-// Expander functions
+// Parser functions
 int		find_start_index(int current_index);
-int		find_end_index(char *word, int start_index, char quote);
-void	read_single_quotes(char **buffer, char *word, int *i);
-void	read_double_quotes(t_data *data, char **buffer, char *word, int *i);
+int		find_end_index(t_token *token, int start_index, char quote);
+void	read_single_quotes(char **buffer, t_token *token, int *i);
+void	read_double_quotes(t_data *data, t_token *token, char **buffer, int *i);
 void	check_for_needed_expansion(t_data *data);
 void	insert_expanded_tokens(t_data *data, t_token **current);
 void	update_token_links(t_token *fntok, t_token *lntok, t_token *old_token);
@@ -132,6 +132,11 @@ void	insert_token(t_token *fntok, t_token *lntok, t_token *old_token);
 char	*process_word_expansion(t_data *data, char *word);
 char	*process_quotes(t_data *data, char *expanded_word, char *word);
 void	process_env_variable(t_data *data, char **buffer, int *index);
+size_t	var_len(char *name);
+void	expand_vars_in_token(t_data *data, t_token *token, int i);
+void	expand_vars_in_token_list(t_data *data, t_token *token);
+void	expand_dquote(t_data *data, t_token *token, char *word);
+void	expand_squote(t_data *data, t_token *token, char *word);
 
 // OLLIE
 // Executing functions
@@ -140,7 +145,7 @@ void	runcmd(t_data *data);
 void	run_builtin(t_data *data, t_exec *exec);
 void	clean_exec(t_data *data);
 int		fork1(t_data *data);
-void	reroute(t_data *data, t_exec *exec);
+void	reroute(t_exec *exec);
 void	reset_stds(int	stdin_copy, int	stdout_copy);
 
 // Environment functions
