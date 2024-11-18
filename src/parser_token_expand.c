@@ -32,7 +32,7 @@ char	**expand_token_to_words(t_data *data, char *word)
 	return (tokens);
 }
 
-t_token *expand_token(t_data *data, const char *word)
+t_token *expand_token(t_data *data, char *word)
 {
     char    **expanded_words;
     t_token *new_tokens;
