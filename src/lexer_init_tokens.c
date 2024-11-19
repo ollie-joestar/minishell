@@ -6,7 +6,7 @@
 /*   By: hanjkim <@student.42vienna.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 16:41:49 by hanjkim           #+#    #+#             */
-/*   Updated: 2024/11/19 15:27:28 by hanjkim          ###   ########.fr       */
+/*   Updated: 2024/11/19 16:13:55 by hanjkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,35 +58,5 @@ void	parse_line(t_data *data)
 	data->token = init_tokens(data, av);
 	if (!data->token)
 		bruh(data, "Failed to create tokens", 1);
-	/*ft_printf("Tokens created\n");*/
-	/*print_tokens(data->token);*/
-	/*print_arr(av);*/
 	free_arr(&av);
 }
-
-/*void	init_tokens(t_data *data)*/
-/*{*/
-/*	int		i;*/
-/*	char	**av;*/
-/*	t_token	*temp;*/
-/**/
-/*	av = ft_split(data->line, ' ');*/
-/*	if (!av)*/
-/*		bruh(data, "Failed to split line", 1);*/
-/*	i = -1;*/
-/*	while (av[++i])*/
-/*	{*/
-/*		temp = create_token();*/
-/*		if (!temp)*/
-/*			bruh(data, "Failed to create token", 1);*/
-/*		temp->word = av[i];*/
-/*		if (!data->token)*/
-/*			data->token = temp;*/
-/*		if(data->token)*/
-/*		{*/
-/*			data->token->right = temp;*/
-/*			temp->left = data->token;*/
-/*			data->token = temp;*/
-/*		}*/
-/*	}*/
-/*}*/

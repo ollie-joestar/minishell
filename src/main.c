@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 09:38:58 by oohnivch          #+#    #+#             */
-/*   Updated: 2024/11/19 15:37:23 by hanjkim          ###   ########.fr       */
+/*   Updated: 2024/11/19 16:11:43 by hanjkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,27 +14,6 @@
 
 
 volatile sig_atomic_t g_signal = 0;
-
-//DELETE THIS WHEN DONE
-//getcmd is a function that reads a line from the terminal
-//and stores it in the buffer
-//it returns the number of characters read
-/*void	parse_cmd(t_data *data)*/
-/*{*/
-/*	int i = 0;*/
-/**/
-/*	data->exec = ft_calloc(1, sizeof(t_exec));*/
-/*	while (data->token)*/
-/*	{*/
-/*		if (i == 0)*/
-/*			data->exec->cmd = ft_strdup(data->token->word);*/
-/*		data->exec->av = ft_calloc(10 + 1, sizeof(char *));*/
-/*		data->exec->av[i] = ft_strdup(data->token->word);*/
-/*		data->exec->type = CMD;*/
-/*		data->token = data->token->right;*/
-/*		i++;*/
-/*	}*/
-/*}*/
 
 int	skill_check(t_data *data)
 {
@@ -105,7 +84,7 @@ int main(int argc, char **argv, char **ev)
 	if (!data)
 		bruh(data, "Failed to allocate memory", 1);
 	parse_env(data, ev);
-	setup_signal_mode(data, 1); //Try Ctrl + \, Ctrl + C. If it doesn't work, just comment it out
+	setup_signal_mode(data, 1);
 	while (1)
 	{
 		/*ft_printf("Readline\n");*/
@@ -122,7 +101,6 @@ int main(int argc, char **argv, char **ev)
 			continue;
 		}
 		if (!data->line || !*data->line)
-			/*bruh(data, "Failed to read line", 1);*/
 			continue;
 		parse_line(data);
 		tokenization(data);
@@ -130,9 +108,8 @@ int main(int argc, char **argv, char **ev)
 		/*ft_printf("Initiating exec data\n");*/
 		init_exec_data(data);
 		/*ft_printf("after init_exec_data\n");*/
-		/*parse_cmd(data);*/
 		/*ft_printf("Executing\n");*/
-		runcmd(data); //need exec function
+		runcmd(data);
 	}
 	bruh(data, NULL, 0);
 }

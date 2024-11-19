@@ -6,7 +6,7 @@
 /*   By: hanjkim <@student.42vienna.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 15:28:15 by hanjkim           #+#    #+#             */
-/*   Updated: 2024/11/19 12:10:42 by oohnivch         ###   ########.fr       */
+/*   Updated: 2024/11/19 16:14:15 by hanjkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,12 +67,9 @@ void check_for_needed_expansion(t_data *data)
     t_token *next;
     t_token *expanded_tokens;
 
-    /*printf("assigning current\n");*/
     current = data->token;
-    /*printf("assigned current\n");*/
     while (current)
     {
-        /*printf("current->word: %s\n", current->word);*/
         next = current->right;
         if (requires_expansion(current->word))
         {
