@@ -102,6 +102,12 @@ typedef struct s_data
 	t_token				*token; // to store the list of tokenized commands
 }		t_data;
 
+/* Signal functions */
+void handle_sigint(int sig);
+void save_sigint(int signal);
+void setup_signal_handler(t_data *data, void (*handler)(int));
+void setup_signal_mode(t_data *data, int interactive);
+
 /* Lexer functions */
 t_token		*create_token(void);
 t_token		*init_tokens(t_data *data, char **av);
