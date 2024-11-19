@@ -83,9 +83,12 @@ int main(int argc, char **argv, char **ev)
 	(void)argv;
 	data = ft_calloc(1, sizeof(t_data));
 	parse_env(data, ev);
+	setup_signal_handlers(data, 1);
 	while (1)
 	{
 		data->line = readline(prompt);
+		if (g_signal == SIGINT)
+            		g_signal = 0, continue;
 		if (skill_check(data))
 			continue ;
 		if (!data->line)
