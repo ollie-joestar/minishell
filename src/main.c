@@ -83,7 +83,7 @@ int main(int argc, char **argv, char **ev)
 	(void)argv;
 	data = ft_calloc(1, sizeof(t_data));
 	parse_env(data, ev);
-	setup_signal_handlers(data, 1);
+	setup_signal_mode(data, 1); //Try Ctrl + \, Ctrl + C. If it doesn't work, just comment it out
 	while (1)
 	{
 		data->line = readline(prompt);
