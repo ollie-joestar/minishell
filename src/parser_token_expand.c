@@ -6,7 +6,7 @@
 /*   By: hanjkim <@student.42vienna.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 15:28:15 by hanjkim           #+#    #+#             */
-/*   Updated: 2024/11/19 23:30:53 by hanjkim          ###   ########.fr       */
+/*   Updated: 2024/11/19 23:41:27 by hanjkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 int requires_expansion(char *word)
 {
-    int has_dollar = 0;
-    int single_quote_count = 0;
-    int double_quote_count = 0;
-    int i = 0;
+    int has_dollar;
+    int single_quote_count;
+    int double_quote_count;
+    int i;
 
     has_dollar = 0;
     single_quote_count = 0;
@@ -119,7 +119,7 @@ void insert_new_token_into_list(t_token *expanded_tokens, t_token *old_token)
     update_token_links(expanded_tokens, last_new_token, old_token);
     free_old_token(old_token);
 }
-
+/*
 void check_for_needed_expansion(t_data *data)
 {
     t_token *current;
@@ -142,6 +142,30 @@ void check_for_needed_expansion(t_data *data)
             while (next && next->right)
                 next = next->right;
             next = next->right;
+        }
+        current = next;
+    }
+}*/
+
+void check_for_needed_expansion(t_data *data)
+{
+    t_token *current;
+    t_token *next;
+    t_token *expanded_tokens;
+
+    ft_printf("entered check_for_needed_expansion\n");
+    current = data->token;
+    while (current)
+    {
+        next = current->right;
+        ft_printf("current->word = %s\n", current->word);
+        if (requires_expansion(current->word))
+        {
+            expanded_tokens = expand_token(data, current->word);
+            if (!expanded_tokens)
+                bruh(data, "Failed to expand token", 1);
+            insert_token(get_first_token(expanded_tokens), get_last_token(expanded_tokens), current);
+            next = get_last_token(expanded_tokens)->right;
         }
         current = next;
     }
