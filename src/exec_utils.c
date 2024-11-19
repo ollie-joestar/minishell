@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 10:49:02 by oohnivch          #+#    #+#             */
-/*   Updated: 2024/11/12 16:18:22 by oohnivch         ###   ########.fr       */
+/*   Updated: 2024/11/19 14:27:06 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,4 +31,10 @@ int	fork1(t_data *data)
 	if (pid == -1)
 		bruh(data, "fork failed\n", 1);
 	return (pid);
+}
+
+void	pipe_exec(t_data *data, t_exec *exec)
+{
+	if (pipe(exec->pipe) == -1)
+		bruh(data, "pipe failed\n", 1);
 }

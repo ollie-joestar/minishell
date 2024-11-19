@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 11:02:42 by oohnivch          #+#    #+#             */
-/*   Updated: 2024/11/13 14:23:24 by oohnivch         ###   ########.fr       */
+/*   Updated: 2024/11/19 14:57:29 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ void	parse_env(t_data *data, char **ev)
 	i = -1;
 	if (!ev || !*ev)
 		return ;
+	if (data->env)
+		free_env_list(data);
 	while (ev[++i])
 	{
 		list = ft_calloc(1, sizeof(t_envlist));
@@ -53,6 +55,8 @@ void	parse_env_into_ev(t_data *data)
 	while (data->env->prev)
 		data->env = data->env->prev;
 	i = env_len(data->env);
+	if (data->ev)
+		free_arr(&data->ev);
 	data->ev = ft_calloc(i + 1, sizeof(char *));
 	if (!data->ev)
 		bruh(data, "Memory allocation failed", 1);
@@ -75,10 +79,12 @@ void	print_env(t_data *data)
 {
 	t_envlist	*list;
 
+	while (data->env->prev)
+		data->env = data->env->prev;
 	list = data->env;
 	while (list)
 	{
 		printf("%s=%s\n", list->name, list->value);
-		list = list->prev;
+		list = list->next;
 	}
 }

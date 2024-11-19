@@ -6,7 +6,7 @@
 /*   By: oohnivch <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 15:00:55 by oohnivch          #+#    #+#             */
-/*   Updated: 2024/11/11 11:23:02 by oohnivch         ###   ########.fr       */
+/*   Updated: 2024/11/19 10:53:52 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,14 @@ size_t	ft_linelen(char *buffer)
 
 void	ft_free(char **ptr)
 {
+	ft_printf("ft_free freeing %s\n", *ptr);
 	if (!ptr || !*ptr)
+	{
+		ft_printf("ft_freeNULL\n");
 		return ;
+	}
+	ft_printf("ft_free %s\n", *ptr);
 	free(*ptr);
 	*ptr = NULL;
+	ft_printf("ft_free %s\n", *ptr);
 }

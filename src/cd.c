@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 13:49:00 by oohnivch          #+#    #+#             */
-/*   Updated: 2024/11/18 10:37:03 by oohnivch         ###   ########.fr       */
+/*   Updated: 2024/11/19 13:58:37 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ char	*get_home(t_data *data)
 {
 	t_envlist	*env;
 
+	while (data->env && data->env->prev)
+		data->env = data->env->prev;
 	env = data->env;
 	while (env)
 	{

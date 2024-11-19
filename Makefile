@@ -6,7 +6,7 @@
 #    By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/14 10:24:00 by oohnivch          #+#    #+#              #
-#    Updated: 2024/11/18 20:12:22 by hanjkim          ###   ########.fr        #
+#    Updated: 2024/11/19 10:13:15 by oohnivch         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 #									Variables								   #
@@ -66,6 +66,7 @@ SRC = main.c \
 	  pwd.c \
 	  expander.c \
 	  signal.c \
+	  debug_utils.c
 
 # SRC_BONUS = main_bonus.c annihilate_bonus.c extract_bonus.c access_bonus.c \
 			# general_utils_bonus.c process_bonus.c reroute_bonus.c here_doc_bonus.c

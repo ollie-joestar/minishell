@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 13:28:47 by oohnivch          #+#    #+#             */
-/*   Updated: 2024/11/18 18:57:35 by hanjkim          ###   ########.fr       */
+/*   Updated: 2024/11/19 14:33:48 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,7 @@ void setup_signal_mode(t_data *data, int interactive);
 /* Lexer functions */
 t_token		*create_token(void);
 t_token		*init_tokens(t_data *data, char **av);
-void		check_token_type(t_token *token);
+void		set_token_type(t_token *token);
 void		process_token(t_data *data, t_token **token, int type);
 void		tokenization(t_data *data);
 void		skip_whitespace(char **input);
@@ -152,6 +152,7 @@ void	runcmd(t_data *data);
 void	run_builtin(t_data *data, t_exec *exec);
 void	clean_exec(t_data *data);
 int		fork1(t_data *data);
+void	pipe_exec(t_data *data, t_exec *exec);
 void	reroute(t_exec *exec);
 void	reset_stds(int	stdin_copy, int	stdout_copy);
 
@@ -165,6 +166,8 @@ void	update_path(t_data *data);
 void	parse_path(t_data *data);
 void	free_path(t_data *data);
 void	add_slash(char **path);
+void	set_path(t_data *data, t_exec *exec);
+void	set_cmd_path(t_data *data, t_exec *exec);
 
 // Builtins
 void		echo(t_data *data, t_exec *exec);
@@ -190,7 +193,14 @@ size_t	ft_arrlen(char **arr);
 void	free_tokens(t_data *data);
 void	free_old_token(t_token *token);
 void	free_env_list(t_data *data);
-void	free_arr(char **arr);
+void	free_arr(char ***arr);
 void	free_token_node(t_token **token);
+
+// Debug functions
+void	print_token(t_token *token);
+void	print_tokens(t_token *token);
+void	print_arr(char **arr);
+void	print_exec(t_exec *exec);
+void	print_env(t_data *data);
 
 #endif

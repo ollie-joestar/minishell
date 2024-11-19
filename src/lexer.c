@@ -6,22 +6,22 @@
 /*   By: hanjkim <@student.42vienna.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 18:49:14 by hanjkim           #+#    #+#             */
-/*   Updated: 2024/11/18 21:25:37 by hanjkim          ###   ########.fr       */
+/*   Updated: 2024/11/19 11:57:08 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "minishell.h"
 
-void	check_token_type(t_token *token)
+void	set_token_type(t_token *token)
 {
-	if (*token->word && ft_strncmp(token->word, "<", 2))
+	if (token->word && !ft_strncmp(token->word, "<", 2))
 		token->type = INPUT;
-	else if (*token->word && ft_strncmp(token->word, "<<", 3))
+	else if (token->word && !ft_strncmp(token->word, "<<", 3))
 		token->type = HEREDOC;
-	else if (*token->word && ft_strncmp(token->word, ">", 2))
+	else if (token->word && !ft_strncmp(token->word, ">", 2))
 		token->type = REPLACE;
-	else if (*token->word && ft_strncmp(token->word, ">>", 3))
+	else if (token->word && !ft_strncmp(token->word, ">>", 3))
 		token->type = APPEND;
-	else if (*token->word && ft_strncmp(token->word, "|", 2))
+	else if (token->word && !ft_strncmp(token->word, "|", 2))
 		token->type = PIPE;
 }
 
@@ -53,13 +53,15 @@ void	tokenization(t_data *data)
 		bruh(data, "No words to tokenize", 1);
 	while (data->token && data->token->left)
 		data->token = data->token->left;
+	print_tokens(data->token);
 	token = data->token;
-		if (token)
+	if (token)
 	{
-		check_token_type(token);
+		ft_printf("Tokenizing\n");
+		set_token_type(token);
+		/*print_token(token);*/
 		check_for_needed_expansion(data);
-		if (token->type == INPUT || token->type == REPLACE || \
-token->type == APPEND || token->type == PIPE || token->type == HEREDOC)
+		if (token->type != WORD)
 			process_token(data, &token, token->type);
 		else
 			token = token->right;

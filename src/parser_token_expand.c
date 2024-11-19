@@ -6,7 +6,7 @@
 /*   By: hanjkim <@student.42vienna.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 15:28:15 by hanjkim           #+#    #+#             */
-/*   Updated: 2024/11/18 20:51:55 by hanjkim          ###   ########.fr       */
+/*   Updated: 2024/11/19 12:10:42 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ t_token *expand_token(t_data *data, char *word)
     new_tokens = init_tokens(data, expanded_words);
     if (!new_tokens)
     {
-        free_arr(expanded_words);
+        free_arr(&expanded_words);
         bruh(data, "Failed to create expanded tokens", 1);
     }
     free(expanded_words);
@@ -67,19 +67,19 @@ void check_for_needed_expansion(t_data *data)
     t_token *next;
     t_token *expanded_tokens;
 
-    printf("assigning current\n");
+    /*printf("assigning current\n");*/
     current = data->token;
-    printf("assigned current\n");
+    /*printf("assigned current\n");*/
     while (current)
     {
-        printf("current->word: %s\n", current->word);
+        /*printf("current->word: %s\n", current->word);*/
         next = current->right;
         if (requires_expansion(current->word))
         {
             expanded_tokens = expand_token(data, current->word);
             if (!expanded_tokens)
                 bruh(data, "Failed to expand token", 1);
-            insert_token(expanded_tokens, current);
+            insert_token(get_first_token(expanded_tokens), get_last_token(expanded_tokens), current);
             next = expanded_tokens;
             while (next && next->right)
                 next = next->right;

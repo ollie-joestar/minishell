@@ -6,23 +6,31 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 11:25:45 by oohnivch          #+#    #+#             */
-/*   Updated: 2024/11/18 10:42:25 by oohnivch         ###   ########.fr       */
+/*   Updated: 2024/11/19 11:46:24 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	free_arr(char **arr)
+void	free_arr(char ***arr)
 {
 	int	i;
 
 	i = 0;
-	while (arr[i])
+	if (!arr || !*arr)
+		return ;
+	while ((*arr)[i])
 	{
-		ft_free(&arr[i]);
+		/*ft_printf("freeing string [%d] \"%s\"\n", i, (*arr)[i]);*/
+		free((*arr)[i]);
+		(*arr)[i] = NULL;
+		/*ft_printf("freed %s\n", (*arr)[i]);*/
 		i++;
 	}
-	free(arr);
+	/*ft_printf("freeing arr\n");*/
+	free(*arr);
+	*arr = NULL;
+	/*ft_printf("freed arr\n");*/
 }
 
 void	free_env_list(t_data *data)

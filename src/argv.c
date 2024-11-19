@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 16:29:57 by oohnivch          #+#    #+#             */
-/*   Updated: 2024/11/18 10:42:25 by oohnivch         ###   ########.fr       */
+/*   Updated: 2024/11/19 12:01:22 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,16 +31,17 @@ char	**create_argv(t_data *data, t_token *token)
 	size_t	size;
 	int		i;
 
+	ft_printf("Creating argv\n");
 	size = argv_size(token);
 	av = ft_calloc(size + 1, sizeof(char *));
 	if (!av)
 		return (NULL);
 	i = 0;
-	while (token->type == WORD)
+	while (token && token->type == WORD)
 	{
 		av[i] = ft_strdup(token->word);
 		if (!av[i])
-			return (free_arr(av), NULL);
+			return (free_arr(&av), NULL);
 		data->token = token;
 		token = token->right;
 		i++;

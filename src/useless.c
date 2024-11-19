@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 15:45:11 by oohnivch          #+#    #+#             */
-/*   Updated: 2024/11/18 17:36:00 by oohnivch         ###   ########.fr       */
+/*   Updated: 2024/11/19 10:30:50 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ void	expand_dquote(t_data *data, t_token *token, char *word)
 	av = ft_split(res, ' ');
 	ft_free(&res);
 	new = init_tokens(data, av);
-	free_arr(av);
+	free_arr(&av);
 	insert_token(get_first_token(new), get_last_token(new), token);
 	free_token_slice(token, last_token_added);
 }
@@ -110,7 +110,7 @@ void	expand_squote(t_data *data, t_token *token, char *word)
 	av = ft_split(res, ' ');
 	ft_free(&res);
 	new = init_tokens(data, av);
-	free_arr(av);
+	free_arr(&av);
 	insert_token(get_first_token(new), get_last_token(new), token);
 	free_token_slice(token, last_token_added);
 }

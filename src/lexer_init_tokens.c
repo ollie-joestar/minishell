@@ -6,7 +6,7 @@
 /*   By: hanjkim <@student.42vienna.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 16:41:49 by hanjkim           #+#    #+#             */
-/*   Updated: 2024/11/18 20:02:47 by hanjkim          ###   ########.fr       */
+/*   Updated: 2024/11/19 11:33:50 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,13 @@ t_token	*init_tokens(t_data *data, char **av)
 	t_token	*temp;
 
 	i = -1;
+	new_token = NULL;
 	while (av[++i])
 	{
 		temp = create_token();
 		if (!temp)
 			bruh(data, "Failed to create token", 1);
-		temp->word = av[i];
+		temp->word = ft_strdup(av[i]);
 		if (new_token)
 		{
 			new_token->right = temp;
@@ -55,6 +56,12 @@ void	parse_line(t_data *data)
 	if (!av)
 		bruh(data, "Failed to split line", 1);
 	data->token = init_tokens(data, av);
+	if (!data->token)
+		bruh(data, "Failed to create tokens", 1);
+	ft_printf("Tokens created\n");
+	/*print_tokens(data->token);*/
+	/*print_arr(av);*/
+	free_arr(&av);
 }
 
 /*void	init_tokens(t_data *data)*/

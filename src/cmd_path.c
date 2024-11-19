@@ -6,31 +6,36 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 12:32:11 by oohnivch          #+#    #+#             */
-/*   Updated: 2024/11/14 17:32:44 by hanjkim          ###   ########.fr       */
+/*   Updated: 2024/11/19 14:48:49 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	find_path(t_data *data, t_exec *exec)
+void	set_path(t_data *data, t_exec *exec)
 {
 	char	*tpm;
 	int		i;
 
 	if (!data->path || !*data->path)
+	{
+		ft_printf("Path not set\n");
 		return ;
+	}
 	i = -1;
 	while (data->path[++i])
 	{
 		tpm = ft_strjoin(data->path[i], exec->cmd);
 		if (access(tpm, X_OK) == 0)
 		{
+			ft_printf("Found executable %s\n", tpm);
 			ft_free(&exec->cmd);
 			exec->cmd = tpm;
 			return ;
 		}
 		if (access(tpm, F_OK) == 0)
 		{
+			ft_printf("Found file %s\n", tpm);
 			ft_free(&exec->cmd);
 			exec->cmd = ft_strdup(tpm);
 		}
@@ -38,13 +43,21 @@ void	find_path(t_data *data, t_exec *exec)
 		if (!data->path[i + 1])
 			break ;
 	}
+	ft_printf("Executable not found\n");
 }
 
-void	find_cmd_path(t_data *data, t_exec *exec)
+void	set_cmd_path(t_data *data, t_exec *exec)
 {
-	exec->cmd = ft_strdup(exec->av[0]);
+	if (!exec->cmd)
+		exec->cmd = ft_strdup(exec->av[0]);
 	if (ft_strchr(exec->cmd, '/'))
+	{
+		ft_printf("Absolute path\n");
 		return ;
+	}
 	else
-		find_path(data, exec);
+	{
+		ft_printf("Relative path\n");
+		set_path(data, exec);
+	}
 }
