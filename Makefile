@@ -65,6 +65,7 @@ SRC = main.c \
 	  free.c \
 	  pwd.c \
 	  expander.c \
+	  signal.c \
 
 # SRC_BONUS = main_bonus.c annihilate_bonus.c extract_bonus.c access_bonus.c \
 			# general_utils_bonus.c process_bonus.c reroute_bonus.c here_doc_bonus.c
