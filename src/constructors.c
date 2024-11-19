@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 14:38:56 by oohnivch          #+#    #+#             */
-/*   Updated: 2024/11/19 15:06:06 by oohnivch         ###   ########.fr       */
+/*   Updated: 2024/11/19 15:33:45 by hanjkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,7 @@ void	init_exec_data(t_data *data)
 		if (data->exec)
 			(data->exec->next = exec, exec->prev = data->exec);
 		data->exec = exec;
-		print_token(token);
+		/*print_token(token);*/
 		if (token->type == INPUT || token->type == HEREDOC)
 			add_input(exec, token);
 		else if (token->type == REPLACE || token->type == APPEND)

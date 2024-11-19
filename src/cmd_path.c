@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 12:32:11 by oohnivch          #+#    #+#             */
-/*   Updated: 2024/11/19 14:48:49 by oohnivch         ###   ########.fr       */
+/*   Updated: 2024/11/19 15:32:50 by hanjkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	set_path(t_data *data, t_exec *exec)
 		if (!data->path[i + 1])
 			break ;
 	}
-	ft_printf("Executable not found\n");
+	/*ft_printf("Executable not found\n");*/
 }
 
 void	set_cmd_path(t_data *data, t_exec *exec)
@@ -51,13 +51,7 @@ void	set_cmd_path(t_data *data, t_exec *exec)
 	if (!exec->cmd)
 		exec->cmd = ft_strdup(exec->av[0]);
 	if (ft_strchr(exec->cmd, '/'))
-	{
-		ft_printf("Absolute path\n");
 		return ;
-	}
 	else
-	{
-		ft_printf("Relative path\n");
 		set_path(data, exec);
-	}
 }

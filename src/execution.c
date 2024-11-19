@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 11:54:00 by oohnivch          #+#    #+#             */
-/*   Updated: 2024/11/19 15:21:19 by oohnivch         ###   ########.fr       */
+/*   Updated: 2024/11/19 15:33:41 by hanjkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,12 @@ void	run_builtin(t_data *data, t_exec *exec)
 	if (exec->av[0] == 0)
 		bruh(data, "cmd is null\n", 1);
 	if (!(ft_strncmp(exec->av[0], "exit", 5)))
-		bruh(data, "exit", ft_atoi(exec->av[1]));
+	{
+		if (exec->av[1])
+			bruh(data, "exit", ft_atoi(exec->av[1]));
+		else
+			bruh(data, "exit", 0);
+	}
 	else if (!(ft_strncmp(exec->av[0], "echo", 5)))
 		echo(data, data->exec);
 	else if (!(ft_strncmp(exec->av[0], "cd", 3)))
@@ -110,7 +115,7 @@ void	runcmd(t_data *data)
 	exec = data->exec;
 	while(exec)
 	{
-		print_exec(exec);
+		/*print_exec(exec);*/
 		if (exec->type == CMD)
 			do_stuff(data, exec);
 		else

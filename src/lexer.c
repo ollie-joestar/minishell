@@ -6,7 +6,7 @@
 /*   By: hanjkim <@student.42vienna.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 18:49:14 by hanjkim           #+#    #+#             */
-/*   Updated: 2024/11/19 11:57:08 by oohnivch         ###   ########.fr       */
+/*   Updated: 2024/11/19 15:28:57 by hanjkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "minishell.h"
@@ -53,11 +53,11 @@ void	tokenization(t_data *data)
 		bruh(data, "No words to tokenize", 1);
 	while (data->token && data->token->left)
 		data->token = data->token->left;
-	print_tokens(data->token);
+	/*print_tokens(data->token);*/
 	token = data->token;
 	if (token)
 	{
-		ft_printf("Tokenizing\n");
+		/*ft_printf("Tokenizing\n");*/
 		set_token_type(token);
 		/*print_token(token);*/
 		check_for_needed_expansion(data);

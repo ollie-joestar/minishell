@@ -6,7 +6,7 @@
 /*   By: hanjkim <@student.42vienna.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 16:41:49 by hanjkim           #+#    #+#             */
-/*   Updated: 2024/11/19 11:33:50 by oohnivch         ###   ########.fr       */
+/*   Updated: 2024/11/19 15:27:28 by hanjkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void	parse_line(t_data *data)
 	data->token = init_tokens(data, av);
 	if (!data->token)
 		bruh(data, "Failed to create tokens", 1);
-	ft_printf("Tokens created\n");
+	/*ft_printf("Tokens created\n");*/
 	/*print_tokens(data->token);*/
 	/*print_arr(av);*/
 	free_arr(&av);
