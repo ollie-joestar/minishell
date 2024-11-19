@@ -25,7 +25,7 @@ void setup_signal_handler(t_data *data, void (*handler)(int))
     sigaction(SIGINT, &data->sa, NULL);
 }
 
-void setup_signal_handlers(t_data *data, int interactive)
+void setup_signal_mode(t_data *data, int interactive)
 {
     signal(SIGQUIT, SIG_IGN);
     if (interactive)
