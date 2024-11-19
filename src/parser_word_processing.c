@@ -6,7 +6,7 @@
 /*   By: hanjkim <@student.42vienna.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 15:32:27 by hanjkim           #+#    #+#             */
-/*   Updated: 2024/11/19 16:21:25 by hanjkim          ###   ########.fr       */
+/*   Updated: 2024/11/19 23:03:59 by hanjkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,11 @@ char	*process_word_expansion(t_data *data, char *word)
 {
 	char	*expanded_word;
 	int		i;
+	char	temp[2];
+	char	*new_expanded_word;
 
+	ft_printf("entered process_word_expansion\n");
+	ft_printf("word: %s\n", word);
 	i = -1;
 	expanded_word = ft_calloc(1, sizeof(char));
 	if (!expanded_word)
@@ -72,7 +76,17 @@ char	*process_word_expansion(t_data *data, char *word)
 		else if (word[i] == DOLLAR)
 			process_env_variable(data, &expanded_word, &i);
 		else
-			expanded_word = ft_strjoin(expanded_word, "\0");
+		{
+			temp[0] = word[i];
+			temp[1] = '\0';
+			new_expanded_word = ft_strjoin(expanded_word, temp);
+			free(expanded_word);
+			expanded_word = new_expanded_word;
+		}
+		/*else*/
+		/*	expanded_word = ft_strjoin(expanded_word, "\0");*/
 	}
 	return (expanded_word);
 }
+
+

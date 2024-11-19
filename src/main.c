@@ -6,14 +6,11 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 09:38:58 by oohnivch          #+#    #+#             */
-/*   Updated: 2024/11/19 17:01:24 by hanjkim          ###   ########.fr       */
+/*   Updated: 2024/11/19 17:47:46 by hanjkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-
-volatile sig_atomic_t g_signal = 0;
 
 int	skill_check(t_data *data)
 {
@@ -43,37 +40,6 @@ int	skill_check(t_data *data)
 		}
 	}
 	return (0);
-}
-
-void handle_sigint(int sig)
-{
-    g_signal = sig;
-    ioctl(STDIN_FILENO, TIOCSTI, "\n");
-    rl_on_new_line();
-    rl_replace_line("", 0);
-    rl_redisplay();
-}
-
-void save_sigint(int signal)
-{
-    g_signal = signal;
-}
-
-void setup_signal_handler(t_data *data, void (*handler)(int))
-{
-    data->sa.sa_handler = handler;
-    data->sa.sa_flags = SA_RESTART;
-    sigemptyset(&data->sa.sa_mask);
-    sigaction(SIGINT, &data->sa, NULL);
-}
-
-void setup_signal_mode(t_data *data, int interactive)
-{
-    signal(SIGQUIT, SIG_IGN);
-    if (interactive)
-        setup_signal_handler(data, handle_sigint);
-    else
-        setup_signal_handler(data, save_sigint);
 }
 
 int main(int argc, char **argv, char **ev)

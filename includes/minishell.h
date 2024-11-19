@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 13:28:47 by oohnivch          #+#    #+#             */
-/*   Updated: 2024/11/19 14:33:48 by oohnivch         ###   ########.fr       */
+/*   Updated: 2024/11/19 17:46:12 by hanjkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,8 +103,9 @@ typedef struct s_data
 }		t_data;
 
 /* Signal functions */
+extern volatile sig_atomic_t g_signal;
 void handle_sigint(int sig);
-void save_sigint(int signal);
+void catch_sigint(int sigint);
 void setup_signal_handler(t_data *data, void (*handler)(int));
 void setup_signal_mode(t_data *data, int interactive);
 

@@ -6,7 +6,7 @@
 /*   By: hanjkim <@student.42vienna.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 18:49:14 by hanjkim           #+#    #+#             */
-/*   Updated: 2024/11/19 17:00:28 by hanjkim          ###   ########.fr       */
+/*   Updated: 2024/11/19 19:36:41 by hanjkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "minishell.h"
@@ -24,27 +24,6 @@ void set_token_type(t_token *token)
     else if (token->word && !ft_strncmp(token->word, "|", 2))
         token->type = PIPE;
 }
-
-/*void	process_token(t_data *data, t_token **token, int type)*/
-/*{*/
-/*	t_token *temp;*/
-/*	char *temp_word;*/
-/**/
-/*	temp = *token;*/
-/*	if ((*token)->left)*/
-/*		(*token)->left->right = (*token)->right;*/
-/*	if ((*token)->right)*/
-/*		(*token)->right->left = (*token)->left;*/
-/*	*token = (*token)->right;*/
-/*	(*token)->type = type;*/
-/*	if (type == HEREDOC)*/
-/*	{*/
-/*		temp_word = (*token)->word;*/
-/*		(*token)->word = here_doc(data, (*token)->word);*/
-/*		ft_free(&temp_word);*/
-/*	}*/
-/*	free_token_node(&temp);*/
-/*}*/
 
 void process_redirection(t_data *data, t_token **token)
 {
@@ -78,6 +57,7 @@ void tokenization(t_data *data)
         bruh(data, "No words to tokenize", 1);
     while (data->token && data->token->left)
         data->token = data->token->left;
+    check_for_needed_expansion(data);
     token = data->token;
     while (token)
     {

@@ -6,7 +6,7 @@
 /*   By: hanjkim <@student.42vienna.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 18:18:27 by hanjkim           #+#    #+#             */
-/*   Updated: 2024/11/19 16:15:38 by hanjkim          ###   ########.fr       */
+/*   Updated: 2024/11/19 22:50:04 by hanjkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	read_single_quotes(char **buffer, t_token *token, int *i)
 	int end_index;
 	char *str_to_join;
 	char *temp;
-
+	
 	start_index = find_start_index(*i);
 	end_index = find_end_index(token, start_index, SQ);
 	if (end_index == -1)
@@ -26,11 +26,24 @@ void	read_single_quotes(char **buffer, t_token *token, int *i)
 	str_to_join = ft_substr(token->word, start_index, end_index - start_index);
 	if (!str_to_join)
 		return;
-	temp = *buffer;
-	*buffer = ft_strjoin(*buffer, str_to_join);
-	free(temp);
-	free(str_to_join);
+    if (*buffer == NULL || !(*buffer)[0])
+        *buffer = str_to_join;
+    else
+    {
+        temp = *buffer;
+        *buffer = ft_strjoin(*buffer, str_to_join);
+        if (!*buffer)
+        {
+            free(temp);
+            free(str_to_join);
+            return;
+        }
+        free(temp);
+        free(str_to_join);
+    }
 	*i = end_index;
+	ft_printf("%s\n", *buffer);
+	ft_printf("exiting single quotes\n");
 }
 
 void	read_double_quotes(t_data *data, t_token *token, char **buffer, int *i)
