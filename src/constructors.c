@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 14:38:56 by oohnivch          #+#    #+#             */
-/*   Updated: 2024/11/19 15:33:45 by hanjkim          ###   ########.fr       */
+/*   Updated: 2024/11/19 17:12:23 by hanjkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,9 @@ void	init_exec_data(t_data *data)
 	t_exec		*exec;
 	t_token		*token;
 
+	ft_printf("init_exec_data\n");
 	token = data->token;
+	print_token(token);
 	while (token)
 	{
 		exec = new_exec();

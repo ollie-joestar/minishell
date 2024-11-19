@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 09:38:58 by oohnivch          #+#    #+#             */
-/*   Updated: 2024/11/19 16:11:43 by hanjkim          ###   ########.fr       */
+/*   Updated: 2024/11/19 17:01:24 by hanjkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ int	skill_check(t_data *data)
 
 	i = -1;
 	if (!data->line)
-		return (ft_putstr_fd("No line\n", 2), 1);
+		/*return (ft_putstr_fd("No line\n", 2), 1);*/
+		bruh(data, "No line", 1);
 	while (data->line[++i])
 	{
 		if (data->line[i] == DQ)
@@ -30,7 +31,7 @@ int	skill_check(t_data *data)
 			while (data->line[i] && data->line[i] != DQ)
 				i++;
 			if (data->line[i] != DQ)
-				return (ft_putstr_fd("Skill issue\n", 2), 1);
+				return (ft_putstr_fd("skill issue\n", 2), 1);
 		}
 		else if (data->line[i] == SQ)
 		{
@@ -38,7 +39,7 @@ int	skill_check(t_data *data)
 			while (data->line[i] && data->line[i] != SQ)
 				i++;
 			if (data->line[i] != SQ)
-				return (ft_putstr_fd("Skill issue\n", 2), 1);
+				return (ft_putstr_fd("skill issue\n", 2), 1);
 		}
 	}
 	return (0);
