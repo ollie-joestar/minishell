@@ -1,28 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   constructors.c                                     :+:      :+:    :+:   */
+/*   exec_init.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 14:38:56 by oohnivch          #+#    #+#             */
-/*   Updated: 2024/11/19 17:12:23 by hanjkim          ###   ########.fr       */
+/*   Updated: 2024/11/20 16:03:36 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-t_exec	*new_exec(void)
+void	add_exec(t_data *data)
 {
 	t_exec	*exec;
 
 	exec = ft_calloc(1, sizeof(t_exec));
 	if (!exec)
-		return (NULL);
-	return (exec);
+		bruh(data, "Failed to allocate memory for exec", 1);
+	if (data->exec)
+		(data->exec->next = exec, exec->prev = data->exec);
+	data->exec = exec;
 }
 
-void	add_output(t_exec *exec, t_token *token)
+void	add_output(t_data *data, t_exec *exec, t_token *token)
 {
 	t_output	*output;
 
@@ -30,32 +32,38 @@ void	add_output(t_exec *exec, t_token *token)
 	{
 		output = ft_calloc(1, sizeof(t_output));
 		if (!output)
+		{
+			bruh(data, "Failed to allocate memory for output", 1);
+			ft_printf("Failed to allocate memory for output\n");
 			return ;
+		}
+		exec->out = output;
 	}
-	else
-		output = exec->out;
+	output = exec->out;
 	output->type = token->type;
 	ft_free(&output->file);
 	output->file = ft_strdup(token->word);
 	if (!output->file)
 	{
 		free(output);
-		return ;
+		output = NULL;
+		bruh(data, "Failed to allocate memory for output file", 1);
 	}
 }
 
-void	add_input(t_exec *exec, t_token *token)
+void	add_input(t_data *data, t_exec *exec, t_token *token)
 {
 	t_input	*input;
 
 	input = ft_calloc(1, sizeof(t_input));
 	if (!input)
-		return ;
+		bruh(data, "Failed to allocate memory for input", 1);
 	input->type = token->type;
 	input->file = ft_strdup(token->word);
 	if (!input->file)
 	{
 		free(input);
+		input = NULL;
 		return ;
 	}
 	if (exec->in)
@@ -85,6 +93,7 @@ void	add_av(t_data *data, t_exec *exec, t_token *token)
 	exec->av = create_argv(data, token);
 	if (!exec->av)
 		bruh(data, "Failed to allocate memory", 1);
+	/*print_arr(exec->av);*/
 	if (exec->av[0] == 0)
 		bruh(data, "cmd is null\n", 1);
 	exec->cmd = ft_strdup(exec->av[0]);
@@ -102,24 +111,23 @@ void	init_exec_data(t_data *data)
 	t_exec		*exec;
 	t_token		*token;
 
-	ft_printf("init_exec_data\n");
+	add_exec(data);
+	exec = data->exec;
 	token = data->token;
-	print_token(token);
 	while (token)
 	{
-		exec = new_exec();
-		if (data->exec)
-			(data->exec->next = exec, exec->prev = data->exec);
-		data->exec = exec;
 		/*print_token(token);*/
 		if (token->type == INPUT || token->type == HEREDOC)
-			add_input(exec, token);
+			add_input(data, exec, token);
 		else if (token->type == REPLACE || token->type == APPEND)
-			add_output(exec, token);
+			add_output(data, exec, token);
 		else if (token->type == PIPE)
 			return ((data->token = token->right), (init_exec_data(data)));
 		else 
-			(add_av(data, exec, token), token = data->token);
+			add_av(data, exec, token);
+		while (token->right && token->right->type == WORD)
+			token = token->right;
 		token = token->right;
+		/*ft_printf("Next Token");*/
 	}
 }

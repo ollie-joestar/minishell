@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 13:28:47 by oohnivch          #+#    #+#             */
-/*   Updated: 2024/11/19 17:46:12 by hanjkim          ###   ########.fr       */
+/*   Updated: 2024/11/20 15:55:41 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@
 # define BUILTIN 69
 # define CMD 420
 
-# define INTERPRET 040
-# define NO_VAR 0200
-# define TO_SPLIT CHAR_MAX
+/*# define INTERPRET 040*/
+/*# define NO_VAR 0200*/
+/*# define TO_SPLIT CHAR_MAX*/
 // pipes
 # define RD 0
 # define WR 1
@@ -41,9 +41,9 @@
 # define WORD 0
 # define PIPE 1
 # define INPUT 2
-# define HEREDOC 04
-# define REPLACE 010
-# define APPEND 020
+# define HEREDOC 3
+# define REPLACE 4
+# define APPEND 5
 
 typedef struct s_lex_token
 {
@@ -77,6 +77,7 @@ typedef struct s_exec {
 	int				type; // BUILTIN | CMD
 	t_input			*in; // linked list of input files
 	t_output		*out; // linked list of output files
+	int				piped; // 1 if the command is piped
 	int				pipe[2]; // pipe file descriptors
 
 	char			*cmd; // full path to the command
@@ -148,14 +149,18 @@ void	expand_squote(t_data *data, t_token *token, char *word);
 
 // OLLIE
 // Executing functions
-void	runcmd(t_data *data);
+void	run(t_data *data);
 /*void	run_exec(t_data *data);*/
-void	run_builtin(t_data *data, t_exec *exec);
+void	builtin(t_data *data, t_exec *exec);
+void	command(t_data *data, t_exec *exec);
 void	clean_exec(t_data *data);
 int		fork1(t_data *data);
-void	pipe_exec(t_data *data, t_exec *exec);
+void	open_pipe_exec(t_data *data, t_exec *exec);
+void	close_pipe_exec(t_data *data, t_exec *exec);
 void	reroute(t_exec *exec);
 void	reset_stds(int	stdin_copy, int	stdout_copy);
+void	safe_close(int fd);
+void	check_exit_status(t_data *data, int exit_status);
 
 // Environment functions
 void	parse_env(t_data *data, char **ev);

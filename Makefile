@@ -6,7 +6,7 @@
 #    By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/14 10:24:00 by oohnivch          #+#    #+#              #
-#    Updated: 2024/11/19 10:13:15 by oohnivch         ###   ########.fr        #
+#    Updated: 2024/11/20 14:56:50 by oohnivch         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 #									Variables								   #
@@ -44,10 +44,10 @@ SRC = main.c \
 	  cd.c \
 	  clean.c \
 	  cmd_path.c \
-	  constructors.c \
 	  echo.c \
 	  env.c \
 	  env_utils.c \
+	  exec_init.c \
 	  exec_utils.c \
 	  execution.c \
 	  general_utils.c \

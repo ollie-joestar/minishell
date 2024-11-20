@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 13:31:08 by oohnivch          #+#    #+#             */
-/*   Updated: 2024/11/18 15:38:29 by oohnivch         ###   ########.fr       */
+/*   Updated: 2024/11/20 16:13:04 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	echo(t_data *data, t_exec *exec)
 	i += n;
 	while (exec->av[++i])
 	{
-		ft_putstr(exec->av[i]);
+		ft_putstr_fd(exec->av[i], 2);
 		if (exec->av[i + 1])
 			ft_putchar(' ');
 	}

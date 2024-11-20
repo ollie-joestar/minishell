@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 16:15:50 by oohnivch          #+#    #+#             */
-/*   Updated: 2024/11/19 10:28:49 by oohnivch         ###   ########.fr       */
+/*   Updated: 2024/11/20 15:27:25 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ void	clean_input(t_exec *exec)
 {
 	t_input	*tmp;
 
+	while (exec->in && exec->in->prev)
+		exec->in = exec->in->prev;
 	while (exec->in)
 	{
 		tmp = exec->in;
@@ -23,7 +25,7 @@ void	clean_input(t_exec *exec)
 		if (tmp->type == HEREDOC)
 			unlink(tmp->file);
 		if (tmp->file)
-			free(tmp->file);
+			ft_free(&tmp->file);
 		free(tmp);
 		tmp = NULL;
 	}
@@ -49,6 +51,7 @@ void	clean_exec(t_data *data)
 	{
 		tmp = data->exec;
 		data->exec = data->exec->next;
+		/*ft_printf("Cleaning exec\n");*/
 		ft_free(&tmp->cmd);
 		free_arr(&tmp->av);
 		clean_input(tmp);

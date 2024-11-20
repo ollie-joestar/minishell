@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 12:32:11 by oohnivch          #+#    #+#             */
-/*   Updated: 2024/11/19 15:32:50 by hanjkim          ###   ########.fr       */
+/*   Updated: 2024/11/20 15:05:31 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,8 @@ void	set_path(t_data *data, t_exec *exec)
 
 void	set_cmd_path(t_data *data, t_exec *exec)
 {
-	if (!exec->cmd)
-		exec->cmd = ft_strdup(exec->av[0]);
+	/*if (!exec->cmd)*/
+	/*	exec->cmd = ft_strdup(exec->av[0]);*/
 	if (ft_strchr(exec->cmd, '/'))
 		return ;
 	else
