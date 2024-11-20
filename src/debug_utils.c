@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 10:10:42 by oohnivch          #+#    #+#             */
-/*   Updated: 2024/11/19 12:53:49 by oohnivch         ###   ########.fr       */
+/*   Updated: 2024/11/20 15:58:30 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,33 +57,46 @@ void	print_arr(char **arr)
 		ft_printf("\t[%d] %s\n", i, arr[i]);
 		i++;
 	}
-	ft_printf("\n");
+	ft_printf("\t[%d] %s\n", i, NULL);
 }
 
 void	print_exec(t_exec *exec)
 {
-	ft_printf("Printing exec\n");
-	if (!exec)
+	int	i;
+	int	j;
+
+	i = -1;
+	while (exec && exec->prev)
+		exec = exec->prev;
+	while (exec)
 	{
-		ft_printf("No exec\n");
-		return ;
+		ft_printf("\nPrinting exec [%d]\n", ++i);
+		if (!exec)
+		{
+			ft_printf("No exec\n");
+			return ;
+		}
+		if (exec->type == CMD)
+		{
+			ft_printf("\tType: CMD\n");
+			ft_printf("\tCommand: %s\n", exec->cmd);
+		}
+		else
+		{
+			ft_printf("\tType: BUILTIN\n");
+			ft_printf("\tCommand: %s\n", exec->cmd);
+		}
+		ft_printf("\tInput: %s\n", exec->in ? exec->in->file : "NULL");
+		ft_printf("\tOutput: %s\n", exec->out ? exec->out->file : "NULL");
+		ft_printf("\tPipe: %d %d\n", exec->pipe[RD], exec->pipe[WR]);
+		ft_printf("\tPrev: %s\n", exec->prev ? exec->prev->cmd : "NULL");
+		ft_printf("\tNext: %s\n", exec->next ? exec->next->cmd : "NULL");
+		ft_printf("\tArguments: ");
+		j = -1;
+		while (*exec->av && exec->av[++j])
+			ft_printf("[%s]", exec->av[j]);
+		exec = exec->next;	
 	}
-	if (exec->type == CMD)
-	{
-		ft_printf("\tType: CMD\n");
-		ft_printf("\tCommand: %s\n", exec->cmd);
-	}
-	else
-	{
-		ft_printf("\tType: BUILTIN\n");
-		ft_printf("\tCommand: %s\n", exec->cmd);
-	}
-	ft_printf("\tInput: %s\n", exec->in ? exec->in->file : "NULL");
-	ft_printf("\tOutput: %s\n", exec->out ? exec->out->file : "NULL");
-	ft_printf("\tPipe: %d %d\n", exec->pipe[RD], exec->pipe[WR]);
-	ft_printf("\tPrev: %s\n", exec->prev ? exec->prev->cmd : "NULL");
-	ft_printf("\tNext: %s\n", exec->next ? exec->next->cmd : "NULL");
-	print_arr(exec->av);
 }
 
 void	print_stds(void)

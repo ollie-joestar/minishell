@@ -6,7 +6,7 @@
 /*   By: hanjkim <@student.42vienna.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 15:32:27 by hanjkim           #+#    #+#             */
-/*   Updated: 2024/11/19 23:03:59 by hanjkim          ###   ########.fr       */
+/*   Updated: 2024/11/20 12:45:04 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,8 @@ char	*process_word_expansion(t_data *data, char *word)
 	char	temp[2];
 	char	*new_expanded_word;
 
-	ft_printf("entered process_word_expansion\n");
-	ft_printf("word: %s\n", word);
+	/*ft_printf("entered process_word_expansion\n");*/
+	/*ft_printf("word: %s\n", word);*/
 	i = -1;
 	expanded_word = ft_calloc(1, sizeof(char));
 	if (!expanded_word)

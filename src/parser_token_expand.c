@@ -6,7 +6,7 @@
 /*   By: hanjkim <@student.42vienna.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 15:28:15 by hanjkim           #+#    #+#             */
-/*   Updated: 2024/11/19 23:41:27 by hanjkim          ###   ########.fr       */
+/*   Updated: 2024/11/20 12:46:12 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -153,12 +153,12 @@ void check_for_needed_expansion(t_data *data)
     t_token *next;
     t_token *expanded_tokens;
 
-    ft_printf("entered check_for_needed_expansion\n");
+    /*ft_printf("entered check_for_needed_expansion\n");*/
     current = data->token;
     while (current)
     {
         next = current->right;
-        ft_printf("current->word = %s\n", current->word);
+        /*ft_printf("current->word = %s\n", current->word);*/
         if (requires_expansion(current->word))
         {
             expanded_tokens = expand_token(data, current->word);
@@ -170,4 +170,3 @@ void check_for_needed_expansion(t_data *data)
         current = next;
     }
 }
-

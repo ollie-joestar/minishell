@@ -6,13 +6,13 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 11:54:00 by oohnivch          #+#    #+#             */
-/*   Updated: 2024/11/19 15:33:41 by hanjkim          ###   ########.fr       */
+/*   Updated: 2024/11/20 16:07:36 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	do_child_stuff(t_data *data, t_exec *exec)
+void	command(t_data *data, t_exec *exec)
 {
 	reroute(exec);
 	execve(exec->cmd, exec->av, data->ev);
@@ -38,52 +38,20 @@ void	do_child_stuff(t_data *data, t_exec *exec)
 	}
 }
 
-void	do_stuff(t_data *data, t_exec *exec)
+void	builtin(t_data *data, t_exec *exec)
 {
-	if (exec->next)
-	{
-		if (pipe(exec->pipe) == -1)
-			bruh(data, "Pipe failed", 1);
-	}
-	data->pid = fork1(data);
-	if (data->pid == -1)
-		bruh(data, "Fork failed", 1);
-	if (data->pid == 0)
-		do_child_stuff(data, exec);
-	if (exec->prev)
-		(close(exec->prev->pipe[RD]), close(exec->prev->pipe[WR]));
-}
-
-void	give_birth(t_data *data, t_exec *exec)
-{
-	if (exec->next)
-		pipe_exec(data, exec);
-	data->pid = fork1(data);
-	if (data->pid == -1)
-		bruh(data, "Fork failed", 1);
-	if (data->pid == 0)
-		run_builtin(data, exec);
-	if (exec->prev)
-		(close(exec->prev->pipe[RD]), close(exec->prev->pipe[WR]));
-}
-
-void	run_builtin(t_data *data, t_exec *exec)
-{
-	int	stdin_copy;
-	int	stdout_copy;
-
-	stdin_copy = dup(STDIN_FILENO);
-	stdout_copy = dup(STDOUT_FILENO);
-	if (exec->next || exec->prev)
-		return (give_birth(data, exec));
+	/*int32_t	stdin_copy;*/
+	/*int32_t	stdout_copy;*/
+	/**/
+	/*stdin_copy = dup(STDIN_FILENO);*/
+	/*stdout_copy = dup(STDOUT_FILENO);*/
 	if (exec->av[0] == 0)
 		bruh(data, "cmd is null\n", 1);
 	if (!(ft_strncmp(exec->av[0], "exit", 5)))
 	{
 		if (exec->av[1])
 			bruh(data, "exit", ft_atoi(exec->av[1]));
-		else
-			bruh(data, "exit", 0);
+		bruh(data, "exit", data->status);
 	}
 	else if (!(ft_strncmp(exec->av[0], "echo", 5)))
 		echo(data, data->exec);
@@ -95,18 +63,25 @@ void	run_builtin(t_data *data, t_exec *exec)
 		pwd(data, data->exec);
 	else
 		bruh(data, "command not found\n", 127);
-	reset_stds(stdin_copy, stdout_copy);
+	/*reset_stds(stdin_copy, stdout_copy);*/
 }
 
-void	check_exit_status(t_data *data, int exit_status)
+void	do_stuff(t_data *data, t_exec *exec)
 {
-	if (WIFEXITED(exit_status))
-		data->status = WEXITSTATUS(exit_status);
-	else if (WIFSIGNALED(exit_status))
-		data->status = WTERMSIG(exit_status) + 128;
+	if (exec->next)
+		open_pipe_exec(data, exec);
+	data->pid = fork1(data);
+	if (data->pid == 0)
+	{
+		if (exec->type == CMD)
+			command(data, exec);
+		else
+			builtin(data, exec);
+	}
+	close_pipe_exec(data, exec->prev);
 }
 
-void	runcmd(t_data *data)
+void	run(t_data *data)
 {
 	t_exec	*exec;
 	int		exit_status;
@@ -115,11 +90,10 @@ void	runcmd(t_data *data)
 	exec = data->exec;
 	while(exec)
 	{
-		/*print_exec(exec);*/
-		if (exec->type == CMD)
+		if (exec->next || exec->prev || exec->type == CMD)
 			do_stuff(data, exec);
 		else
-			run_builtin(data, exec);
+			builtin(data, exec);
 		exec = exec->next;
 	}
 	add_history(data->line);
@@ -129,6 +103,8 @@ void	runcmd(t_data *data)
 	check_exit_status(data, exit_status);
 	while (wait(NULL) > 0)
 		;
+	ft_printf("\nCleaning up...\n");
 	clean_exec(data);
 	ft_free(&data->line);
+	ft_printf("\nBack to main loop->\n");
 }
