@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 13:28:47 by oohnivch          #+#    #+#             */
-/*   Updated: 2024/11/21 11:37:53 by oohnivch         ###   ########.fr       */
+/*   Updated: 2024/11/21 23:01:49 by hanjkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,6 +121,8 @@ int			identify_pipe(char **start, char **end);
 char		*token_end(char *start);
 void		reset_end(char *start, char **end, char *ptr, char *tkn_end);
 void		parse_line(t_data *data);
+void		merge_quoted_tokens(t_data *data);
+void		handle_quoted_tokens(t_data *data);
 // Token utils
 void		free_token_slice(t_token *first, t_token *last);
 t_token		*get_first_token(t_token *token);
@@ -139,7 +141,8 @@ char	**expand_token_to_words(t_data *data, char *word);
 int		requires_expansion(char *word);
 void	insert_token(t_token *fntok, t_token *lntok, t_token *old_token);
 char	*process_word_expansion(t_data *data, char *word);
-char	*process_quotes(t_data *data, char *expanded_word, char *word);
+char	*process_quotes(t_data *data,char *expanded_word, char *word);
+void	process_quotes_2(t_data *data);
 void	process_env_variable(t_data *data, char **buffer, int *index);
 size_t	var_len(char *name);
 void	expand_vars_in_token(t_data *data, t_token *token, int i);
