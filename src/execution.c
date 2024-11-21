@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 11:54:00 by oohnivch          #+#    #+#             */
-/*   Updated: 2024/11/20 16:07:36 by oohnivch         ###   ########.fr       */
+/*   Updated: 2024/11/21 14:58:21 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 void	command(t_data *data, t_exec *exec)
 {
-	reroute(exec);
 	execve(exec->cmd, exec->av, data->ev);
 	if (ft_strchr(exec->av[0], '/'))
 	{
@@ -38,47 +37,65 @@ void	command(t_data *data, t_exec *exec)
 	}
 }
 
+static void	reset_stdout(int	stdout_copy)
+{
+	if (stdout_copy == -1 || stdout_copy == STDOUT_FILENO)
+		return ;
+	dup2(stdout_copy, STDOUT_FILENO);
+	safe_close(stdout_copy);
+}
+
 void	builtin(t_data *data, t_exec *exec)
 {
-	/*int32_t	stdin_copy;*/
-	/*int32_t	stdout_copy;*/
-	/**/
-	/*stdin_copy = dup(STDIN_FILENO);*/
-	/*stdout_copy = dup(STDOUT_FILENO);*/
-	if (exec->av[0] == 0)
-		bruh(data, "cmd is null\n", 1);
+	int32_t	stdout_copy;
+
+	stdout_copy = -1;
+	if (exec_len(exec) == 1)
+		(stdout_copy = dup(STDOUT_FILENO), reroute(exec));
 	if (!(ft_strncmp(exec->av[0], "exit", 5)))
 	{
-		if (exec->av[1])
-			bruh(data, "exit", ft_atoi(exec->av[1]));
-		bruh(data, "exit", data->status);
+		reset_stdout(stdout_copy);
+		ft_exit(data, exec);
 	}
 	else if (!(ft_strncmp(exec->av[0], "echo", 5)))
-		echo(data, data->exec);
+		echo(data, exec);
 	else if (!(ft_strncmp(exec->av[0], "cd", 3)))
-		cd(data, data->exec);
+		cd(data, exec);
 	else if (!(ft_strncmp(exec->av[0], "env", 4)))
 		print_env(data);
 	else if (!(ft_strncmp(exec->av[0], "pwd", 4)))
-		pwd(data, data->exec);
+		pwd(data, exec);
 	else
 		bruh(data, "command not found\n", 127);
-	/*reset_stds(stdin_copy, stdout_copy);*/
+	if (exec_len(exec) > 1)
+		bruh(data, NULL, 0);
+	else
+		reset_stdout(stdout_copy);
 }
 
 void	do_stuff(t_data *data, t_exec *exec)
 {
+	/*ft_printf("Doing stuff with %s\n", exec->av[0]);*/
+	/*ft_printf("\topening pipe\n");*/
 	if (exec->next)
 		open_pipe_exec(data, exec);
+	/*ft_printf("\tforking\n");*/
 	data->pid = fork1(data);
 	if (data->pid == 0)
 	{
+		reroute(exec);
 		if (exec->type == CMD)
 			command(data, exec);
 		else
 			builtin(data, exec);
 	}
+	/*ft_printf("\tclosing pipe\n");*/
 	close_pipe_exec(data, exec->prev);
+	if (!exec->next)
+	{
+		/*ft_printf("\tclosing last pipe\n");*/
+		close_pipe_exec(data, exec);
+	}
 }
 
 void	run(t_data *data)
@@ -87,10 +104,12 @@ void	run(t_data *data)
 	int		exit_status;
 	int		wait_status;
 
+	while (data->exec->prev)
+		data->exec = data->exec->prev;
 	exec = data->exec;
 	while(exec)
 	{
-		if (exec->next || exec->prev || exec->type == CMD)
+		if (exec_len(exec) > 1 || exec->type == CMD)
 			do_stuff(data, exec);
 		else
 			builtin(data, exec);
@@ -103,8 +122,8 @@ void	run(t_data *data)
 	check_exit_status(data, exit_status);
 	while (wait(NULL) > 0)
 		;
-	ft_printf("\nCleaning up...\n");
+	/*ft_printf("\nCleaning up...\n");*/
 	clean_exec(data);
 	ft_free(&data->line);
-	ft_printf("\nBack to main loop->\n");
+	/*ft_printf("\nBack to main loop->\n");*/
 }

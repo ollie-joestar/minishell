@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 13:28:47 by oohnivch          #+#    #+#             */
-/*   Updated: 2024/11/20 15:55:41 by oohnivch         ###   ########.fr       */
+/*   Updated: 2024/11/21 11:37:53 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -150,7 +150,6 @@ void	expand_squote(t_data *data, t_token *token, char *word);
 // OLLIE
 // Executing functions
 void	run(t_data *data);
-/*void	run_exec(t_data *data);*/
 void	builtin(t_data *data, t_exec *exec);
 void	command(t_data *data, t_exec *exec);
 void	clean_exec(t_data *data);
@@ -158,9 +157,9 @@ int		fork1(t_data *data);
 void	open_pipe_exec(t_data *data, t_exec *exec);
 void	close_pipe_exec(t_data *data, t_exec *exec);
 void	reroute(t_exec *exec);
-void	reset_stds(int	stdin_copy, int	stdout_copy);
 void	safe_close(int fd);
 void	check_exit_status(t_data *data, int exit_status);
+size_t	exec_len(t_exec *exec);
 
 // Environment functions
 void	parse_env(t_data *data, char **ev);
@@ -184,10 +183,12 @@ void		pwd(t_data *data, t_exec *exec);
 void		update_pwd(t_data *data);
 t_envlist	*get_pwd(t_data *data);
 t_envlist	*get_oldpwd(t_data *data);
+void		ft_exit(t_data *data, t_exec *exec);
 
 char		**create_argv(t_data *data, t_token *token);
 size_t		argv_size(t_token *token);
 void		init_exec_data(t_data *data);
+
 
 // HereDoc
 char	*random_name(void);

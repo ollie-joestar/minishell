@@ -70,17 +70,17 @@ int main(int argc, char **argv, char **ev)
 		}
 		if (!data->line || !*data->line)
 			continue;
-		ft_printf("\nParsing line->\n");
+		ft_printf("Parsing line->\n");
 		parse_line(data);
-		ft_printf("\nTokenization->\n");
+		ft_printf("Tokenization->\n");
 		tokenization(data);
-		print_tokens(data->token);
-		ft_printf("\nInitiating exec data->\n");
+		/*print_tokens(data->token);*/
+		ft_printf("Initiating exec data->\n");
 		init_exec_data(data);
 		/*ft_printf("after init_exec_data\n");*/
-		ft_printf("\nPrinting exec data->");
-		print_exec(data->exec);
-		ft_printf("\n\nExecuting->\n");
+		/*ft_printf("\nPrinting exec data->");*/
+		/*print_exec(data->exec);*/
+		ft_printf("Executing->\n");
 		run(data);
 	}
 	bruh(data, NULL, 0);

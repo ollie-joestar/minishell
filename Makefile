@@ -6,7 +6,7 @@
 #    By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/14 10:24:00 by oohnivch          #+#    #+#              #
-#    Updated: 2024/11/20 14:56:50 by oohnivch         ###   ########.fr        #
+#    Updated: 2024/11/21 11:55:37 by oohnivch         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 #									Variables								   #
@@ -66,6 +66,7 @@ SRC = main.c \
 	  pwd.c \
 	  expander.c \
 	  signal.c \
+	  exit.c \
 	  debug_utils.c
 
 # SRC_BONUS = main_bonus.c annihilate_bonus.c extract_bonus.c access_bonus.c \
@@ -144,4 +145,4 @@ logo:
 
 rebonus: fclean bonus
 
-.PHONY: all bonus clean fclean re rebonus bernhard logo
+.PHONY: all clean fclean re logo
