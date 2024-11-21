@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 10:49:02 by oohnivch          #+#    #+#             */
-/*   Updated: 2024/11/20 14:58:33 by oohnivch         ###   ########.fr       */
+/*   Updated: 2024/11/21 11:55:37 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,16 +31,6 @@ void	safe_close(int fd)
 			ft_putchar_fd('\n', 2);
 		}
 	}
-}
-
-void	reset_stds(int	stdin_copy, int	stdout_copy)
-{
-	safe_close(STDIN_FILENO);
-	safe_close(STDOUT_FILENO);
-	dup2(stdin_copy, STDIN_FILENO);
-	dup2(stdout_copy, STDOUT_FILENO);
-	safe_close(stdin_copy);
-	safe_close(stdout_copy);
 }
 
 void	check_exit_status(t_data *data, int exit_status)
@@ -77,4 +67,21 @@ void	close_pipe_exec(t_data *data, t_exec *exec)
 	safe_close(exec->pipe[RD]);
 	safe_close(exec->pipe[WR]);
 	exec->piped = 0;
+}
+
+size_t	exec_len(t_exec *exec)
+{
+	size_t	len;
+	t_exec	*tmp;
+
+	tmp = exec;
+	len = 0;
+	while (tmp && tmp->prev)
+		tmp = tmp->prev;
+	while (tmp)
+	{
+		len++;
+		tmp = tmp->next;
+	}
+	return (len);
 }
