@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 11:41:48 by oohnivch          #+#    #+#             */
-/*   Updated: 2024/11/21 11:55:37 by oohnivch         ###   ########.fr       */
+/*   Updated: 2024/11/21 14:50:49 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,15 +69,15 @@ static void	rerouteoutfile(t_exec *exec)
 
 static void	rerouteinpipe(t_exec *exec)
 {
+	close(exec->prev->pipe[WR]);
 	dup2(exec->prev->pipe[RD], STDIN_FILENO);
 	close(exec->prev->pipe[RD]);
-	close(exec->prev->pipe[WR]);
 }
 
 static void	rerouteoutpipe(t_exec *exec)
 {
-	dup2(exec->pipe[WR], STDOUT_FILENO);
 	close(exec->pipe[RD]);
+	dup2(exec->pipe[WR], STDOUT_FILENO);
 	close(exec->pipe[WR]);
 }
 

@@ -6,11 +6,11 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 14:18:21 by oohnivch          #+#    #+#             */
-/*   Updated: 2024/11/19 22:34:07 by hanjkim          ###   ########.fr       */
+/*   Updated: 2024/11/21 14:45:50 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#include "minishell.h"
 
 int	is_not_meta(char c)
 {
@@ -27,6 +27,8 @@ void	bruh(t_data *data, char *s, int status)
 	free_arr(&data->path);
 	ft_free(&data->line);
 	free_tokens(data);
+	clear_history();
+	/*free_history();*/
 	if (data)
 		free(data);
 	exit(status);

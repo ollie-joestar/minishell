@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 11:54:00 by oohnivch          #+#    #+#             */
-/*   Updated: 2024/11/21 11:53:51 by oohnivch         ###   ########.fr       */
+/*   Updated: 2024/11/21 14:58:21 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,8 @@ void	command(t_data *data, t_exec *exec)
 
 static void	reset_stdout(int	stdout_copy)
 {
-	safe_close(STDOUT_FILENO);
+	if (stdout_copy == -1 || stdout_copy == STDOUT_FILENO)
+		return ;
 	dup2(stdout_copy, STDOUT_FILENO);
 	safe_close(stdout_copy);
 }
@@ -48,11 +49,14 @@ void	builtin(t_data *data, t_exec *exec)
 {
 	int32_t	stdout_copy;
 
-	stdout_copy = 1;
+	stdout_copy = -1;
 	if (exec_len(exec) == 1)
 		(stdout_copy = dup(STDOUT_FILENO), reroute(exec));
 	if (!(ft_strncmp(exec->av[0], "exit", 5)))
+	{
+		reset_stdout(stdout_copy);
 		ft_exit(data, exec);
+	}
 	else if (!(ft_strncmp(exec->av[0], "echo", 5)))
 		echo(data, exec);
 	else if (!(ft_strncmp(exec->av[0], "cd", 3)))
@@ -65,7 +69,8 @@ void	builtin(t_data *data, t_exec *exec)
 		bruh(data, "command not found\n", 127);
 	if (exec_len(exec) > 1)
 		bruh(data, NULL, 0);
-	reset_stdout(stdout_copy);
+	else
+		reset_stdout(stdout_copy);
 }
 
 void	do_stuff(t_data *data, t_exec *exec)
