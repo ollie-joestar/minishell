@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 09:38:58 by oohnivch          #+#    #+#             */
-/*   Updated: 2024/11/20 16:05:31 by oohnivch         ###   ########.fr       */
+/*   Updated: 2024/11/21 10:52:44 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,13 +73,13 @@ int main(int argc, char **argv, char **ev)
 		parse_line(data);
 		ft_printf("\nTokenization->\n");
 		tokenization(data);
-		print_tokens(data->token);
+		/*print_tokens(data->token);*/
 		ft_printf("\nInitiating exec data->\n");
 		init_exec_data(data);
 		/*ft_printf("after init_exec_data\n");*/
-		ft_printf("\nPrinting exec data->");
-		print_exec(data->exec);
-		ft_printf("\n\nExecuting->\n");
+		/*ft_printf("\nPrinting exec data->");*/
+		/*print_exec(data->exec);*/
+		ft_printf("\nExecuting->\n");
 		run(data);
 	}
 	bruh(data, NULL, 0);
