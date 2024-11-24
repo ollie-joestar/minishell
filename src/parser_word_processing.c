@@ -6,7 +6,7 @@
 /*   By: hanjkim <@student.42vienna.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 15:32:27 by hanjkim           #+#    #+#             */
-/*   Updated: 2024/11/20 12:45:04 by oohnivch         ###   ########.fr       */
+/*   Updated: 2024/11/21 19:37:10 by hanjkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ char	*process_word_expansion(t_data *data, char *word)
 	char	temp[2];
 	char	*new_expanded_word;
 
-	/*ft_printf("entered process_word_expansion\n");*/
+	ft_printf("entered process_word_expansion\n");
 	/*ft_printf("word: %s\n", word);*/
 	i = -1;
 	expanded_word = ft_calloc(1, sizeof(char));
@@ -83,10 +83,6 @@ char	*process_word_expansion(t_data *data, char *word)
 			free(expanded_word);
 			expanded_word = new_expanded_word;
 		}
-		/*else*/
-		/*	expanded_word = ft_strjoin(expanded_word, "\0");*/
 	}
 	return (expanded_word);
 }
-
-

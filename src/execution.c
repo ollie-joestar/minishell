@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 11:54:00 by oohnivch          #+#    #+#             */
-/*   Updated: 2024/11/21 14:58:21 by oohnivch         ###   ########.fr       */
+/*   Updated: 2024/11/21 16:36:42 by hanjkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,7 @@ void	run(t_data *data)
 	int		exit_status;
 	int		wait_status;
 
+	exit_status = 0;
 	while (data->exec->prev)
 		data->exec = data->exec->prev;
 	exec = data->exec;

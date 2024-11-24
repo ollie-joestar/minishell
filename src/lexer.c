@@ -6,7 +6,7 @@
 /*   By: hanjkim <@student.42vienna.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 18:49:14 by hanjkim           #+#    #+#             */
-/*   Updated: 2024/11/19 19:36:41 by hanjkim          ###   ########.fr       */
+/*   Updated: 2024/11/24 23:46:23 by hanjkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "minishell.h"
@@ -49,6 +49,59 @@ void process_redirection(t_data *data, t_token **token)
 	free_token_node(&redirection_token);
 }
 
+void expand_tokens(t_data *data) {
+    t_token *token = data->token;
+
+    while (token) {
+        print_token(token);
+        expand_token(data, token);
+        set_token_type(token);
+        if (token->type != WORD && token->type != PIPE)
+            process_redirection(data, &token);
+        token = token->right;
+    }
+}
+
+//maybe i'll need this later
+/*void join_tokens(t_data *data)*/
+/*{*/
+/*    t_token *token;*/
+/*    size_t total_len = 0;*/
+/*    size_t token_count = 0;*/
+/*    char *result;*/
+/*    char *ptr;*/
+/*    size_t len;*/
+/**/
+/*    token = data->token;*/
+/*    while (token && token->left)*/
+/*        token = token->left;*/
+/*    data->token = token;*/
+/*    token = data->token;*/
+/*    while (token)*/
+/*    {*/
+/*        total_len += ft_strlen(token->word);*/
+/*        token_count++;*/
+/*        token = token->right;*/
+/*    }*/
+/*    if (token_count > 1)*/
+/*        total_len += (token_count - 1);*/
+/*    result = ft_calloc(total_len + 1, sizeof(char));*/
+/*    if (!result)*/
+/*        return (bruh(data, "Failed to allocate memory for joined tokens", 1));*/
+/*    token = data->token;*/
+/*    ptr = result;*/
+/*    while (token)*/
+/*    {*/
+/*        len = ft_strlen(token->word);*/
+/*        ft_memcpy(ptr, token->word, len);*/
+/*        ptr += len;*/
+/*        if (token->right)*/
+/*            *ptr = ' ', ptr++;*/
+/*        token = token->right;*/
+/*    }*/
+/*    data->joined_line = result;*/
+/*}*/
+
 void tokenization(t_data *data)
 {
     t_token *token;
@@ -57,13 +110,10 @@ void tokenization(t_data *data)
         bruh(data, "No words to tokenize", 1);
     while (data->token && data->token->left)
         data->token = data->token->left;
-    check_for_needed_expansion(data);
+    merge_quoted_tokens(data);
+    /*print_tokens(data->token);*/
+    split_quoted_token(data);
+    /*print_tokens(data->token);*/
     token = data->token;
-    while (token)
-    {
-        set_token_type(token);
-        if (token->type != WORD && token->type != PIPE)
-            process_redirection(data, &token);
-        token = token->right;
-    }
+    expand_tokens(data);
 }
