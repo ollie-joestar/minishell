@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 13:28:47 by oohnivch          #+#    #+#             */
-/*   Updated: 2024/11/21 23:01:49 by hanjkim          ###   ########.fr       */
+/*   Updated: 2024/11/24 23:47:28 by hanjkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,12 +47,33 @@
 
 typedef struct s_lex_token
 {
-	int					type; // WORD | PIPE | INPUT | HEREDOC | REPLACE | APPEND
-	char				*word;
-
-	struct s_lex_token	*left; //changed to left and right for better recognition of command order (like official doc says)
+	int			type;
+	char			*word;
+	struct s_lex_token	*left;
 	struct s_lex_token	*right;
 }		t_token;
+
+typedef struct s_merge_state {
+	t_token	*start_token;
+	t_token	*end_token;
+	char	*combined_word;
+	int	is_inside_quotes;
+	char	quote_char;
+} t_merge;
+
+typedef struct s_split_quotes {
+	t_token *prefix;
+	t_token *quoted;
+	t_token *suffix;
+	char	*start_quote;
+	char	*end_quote;
+	size_t	prefix_len;
+	size_t	quoted_len;
+	size_t	suffix_len;
+	char	*prefix_str;
+	char	*quoted_str;
+	char	*suffix_str;
+} t_split;
 
 typedef struct s_input {
 	int				type; // HERE_DOC | FILE
@@ -90,17 +111,17 @@ typedef struct s_exec {
 
 typedef struct s_data
 {
-	pid_t				pid; // to store last child process id
-	t_exec				*exec; // to store the current command data
-	char				**ev; // to store the environment variables
+	pid_t			pid; // to store last child process id
+	t_exec			*exec; // to store the current command data
+	char			**ev; // to store the environment variables
 	
-	t_envlist			*env; // to store the environment variables in a linked list
-	char				**path; // to store the path variable after splitting
-	int					status; // to store the exit status of the last command
+	t_envlist		*env; // to store the environment variables in a linked list
+	char			**path; // to store the path variable after splitting
+	int			status; // to store the exit status of the last command
 	struct sigaction	sa; // to store the signal action
-
-	char				*line; //lineread (add to history and free after execution)
-	t_token				*token; // to store the list of tokenized commands
+	char			*line; //lineread (add to history and free after execution)
+	/*char			*joined_line; // to store the joined line after tokenization*/
+	t_token			*token; // to store the list of tokenized commands
 }		t_data;
 
 /* Signal functions */
@@ -127,18 +148,18 @@ void		handle_quoted_tokens(t_data *data);
 void		free_token_slice(t_token *first, t_token *last);
 t_token		*get_first_token(t_token *token);
 t_token		*get_last_token(t_token *token);
+t_token		*get_first_split_token(t_split *tokens);
+t_token		*get_last_split_token(t_split *tokens);
 
 // Parser functions
-int		find_start_index(int current_index);
-int		find_end_index(t_token *token, int start_index, char quote);
-void	read_single_quotes(char **buffer, t_token *token, int *i);
-void	read_double_quotes(t_data *data, t_token *token, char **buffer, int *i);
-void	check_for_needed_expansion(t_data *data);
-t_token *expand_token(t_data *data, char *word);
+void	split_quoted_token(t_data *data);
+void	adjust_links(t_token *token, t_token *left, t_token *right);
+void	adjust_prefix_links(t_token *prefix, t_token *left, t_token *right, t_split *tokens);
+void	adjust_quoted_links(t_token *quoted, t_token *left, t_token *right, t_split *tokens);
+void	adjust_suffix_links(t_token *suffix, t_token *left, t_token *right, t_split *tokens);
+t_token *update_pointer(t_split *tokens);
+void	expand_token(t_data *data, t_token *token);
 void	insert_expanded_tokens(t_token *expanded_tokens, t_token *old_token);
-void	update_token_links(t_token *fntok, t_token *lntok, t_token *old_token);
-char	**expand_token_to_words(t_data *data, char *word);
-int		requires_expansion(char *word);
 void	insert_token(t_token *fntok, t_token *lntok, t_token *old_token);
 char	*process_word_expansion(t_data *data, char *word);
 char	*process_quotes(t_data *data,char *expanded_word, char *word);
@@ -149,6 +170,10 @@ void	expand_vars_in_token(t_data *data, t_token *token, int i);
 void	expand_vars_in_token_list(t_data *data, t_token *token);
 void	expand_dquote(t_data *data, t_token *token, char *word);
 void	expand_squote(t_data *data, t_token *token, char *word);
+
+//Parser utils
+char	*slice(char *word, size_t start, size_t length);
+void	update_data_token(t_data *data, t_token *left, t_token *first_new);
 
 // OLLIE
 // Executing functions
@@ -199,6 +224,7 @@ char	*here_doc(t_data *data, char *l);
 // General utils
 void	bruh(t_data *data, char *s, int status);
 size_t	ft_arrlen(char **arr);
+char	*ft_strjoin_and_free(char *s1, char *s2);
 // Free functions
 void	free_tokens(t_data *data);
 void	free_old_token(t_token *token);
