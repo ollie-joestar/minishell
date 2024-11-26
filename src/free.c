@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 11:25:45 by oohnivch          #+#    #+#             */
-/*   Updated: 2024/11/19 11:46:24 by oohnivch         ###   ########.fr       */
+/*   Updated: 2024/11/26 12:05:13 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,18 +33,18 @@ void	free_arr(char ***arr)
 	/*ft_printf("freed arr\n");*/
 }
 
-void	free_env_list(t_data *data)
+void	free_env_list(t_envlist *env)
 {
 	t_envlist	*tmp;
 
-	if (!data->env)
+	if (!env)
 		return ;
-	while (data->env->prev)
-		data->env = data->env->prev;
-	while (data->env)
+	while (env->prev)
+		env = env->prev;
+	while (env)
 	{
-		tmp = data->env;
-		data->env = data->env->next;
+		tmp = env;
+		env = env->next;
 		ft_free(&tmp->name);
 		ft_free(&tmp->value);
 		free(tmp);

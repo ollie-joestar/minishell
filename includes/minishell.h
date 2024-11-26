@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 13:28:47 by oohnivch          #+#    #+#             */
-/*   Updated: 2024/11/24 23:47:28 by hanjkim          ###   ########.fr       */
+/*   Updated: 2024/11/26 12:26:48 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -190,7 +190,7 @@ void	check_exit_status(t_data *data, int exit_status);
 size_t	exec_len(t_exec *exec);
 
 // Environment functions
-void	parse_env(t_data *data, char **ev);
+t_envlist	*parse_env(t_data *data, char **ev);
 size_t	env_len(t_envlist *env);
 char	*expand(t_data *data, char *s);
 
@@ -212,6 +212,7 @@ void		update_pwd(t_data *data);
 t_envlist	*get_pwd(t_data *data);
 t_envlist	*get_oldpwd(t_data *data);
 void		ft_exit(t_data *data, t_exec *exec);
+void		export(t_data *data, t_exec *exec);
 
 char		**create_argv(t_data *data, t_token *token);
 size_t		argv_size(t_token *token);
@@ -228,7 +229,7 @@ char	*ft_strjoin_and_free(char *s1, char *s2);
 // Free functions
 void	free_tokens(t_data *data);
 void	free_old_token(t_token *token);
-void	free_env_list(t_data *data);
+void	free_env_list(t_envlist *env);
 void	free_arr(char ***arr);
 void	free_token_node(t_token **token);
 

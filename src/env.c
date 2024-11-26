@@ -6,22 +6,22 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 11:02:42 by oohnivch          #+#    #+#             */
-/*   Updated: 2024/11/19 14:57:29 by oohnivch         ###   ########.fr       */
+/*   Updated: 2024/11/26 12:31:45 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	parse_env(t_data *data, char **ev)
+t_envlist	*parse_env(t_data *data, char **ev)
 {
 	int	i;
 	t_envlist	*list;
+	t_envlist	*tmp;
 
 	i = -1;
 	if (!ev || !*ev)
-		return ;
-	if (data->env)
-		free_env_list(data);
+		return (NULL);
+	tmp = NULL;
 	while (ev[++i])
 	{
 		list = ft_calloc(1, sizeof(t_envlist));
@@ -29,19 +29,20 @@ void	parse_env(t_data *data, char **ev)
 			bruh(data, "Memory allocation failed", 1);
 		list->name = ft_substr(ev[i], 0, ft_strchr(ev[i], '=') - ev[i]);
 		if (!list->name)
-			bruh(data, "Memory allocation failed", 1);
+			(free_env_list(list), bruh(data, "Memory allocation failed", 1));
 		list->value = ft_strdup(ft_strchr(ev[i], '=') + 1);
 		if (!list->value)
-			bruh(data, "Memory allocation failed", 1);
-		if (!data->env)
-			data->env = list;
-		else
+			(free_env_list(list), bruh(data, "Memory allocation failed", 1));
+		if (tmp)
 		{
-			list->prev = data->env;
-			data->env->next = list;
-			data->env = list;
+			tmp->next = list;
+			list->prev = tmp;
 		}
+		tmp = list;
 	}
+	while (tmp->prev)
+		tmp = tmp->prev;
+	return (tmp);
 }
 
 void	parse_env_into_ev(t_data *data)
@@ -84,7 +85,7 @@ void	print_env(t_data *data)
 	list = data->env;
 	while (list)
 	{
-		printf("%s=%s\n", list->name, list->value);
+		ft_printf("%s=%s\n", list->name, list->value);
 		list = list->next;
 	}
 }

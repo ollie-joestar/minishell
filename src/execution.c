@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 11:54:00 by oohnivch          #+#    #+#             */
-/*   Updated: 2024/11/26 11:35:54 by oohnivch         ###   ########.fr       */
+/*   Updated: 2024/11/26 12:30:30 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,8 @@ void	builtin(t_data *data, t_exec *exec)
 		print_env(data);
 	else if (!(ft_strncmp(exec->av[0], "pwd", 4)))
 		pwd(data, exec);
+	else if (!(ft_strncmp(exec->av[0], "export", 7)))
+		export(data, exec);
 	else
 		bruh(data, "command not found\n", 127);
 	if (exec_len(exec) > 1)
@@ -75,7 +77,7 @@ void	builtin(t_data *data, t_exec *exec)
 
 void	do_stuff(t_data *data, t_exec *exec)
 {
-	/*ft_printf("Doing stuff with %s\n", exec->av[0]);*/
+	ft_printf("Doing stuff with %s\n", exec->av[0]);
 	if (exec->next)
 		open_pipe_exec(data, exec);
 	data->pid = fork1(data);

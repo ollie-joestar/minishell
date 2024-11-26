@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 09:38:58 by oohnivch          #+#    #+#             */
-/*   Updated: 2024/11/20 16:48:05 by hanjkim          ###   ########.fr       */
+/*   Updated: 2024/11/26 12:43:09 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,9 @@ int main(int argc, char **argv, char **ev)
 	data = ft_calloc(1, sizeof(t_data));
 	if (!data)
 		bruh(data, "Failed to allocate memory", 1);
-	parse_env(data, ev);
+	data->env = parse_env(data, ev);
+	if (!data->env)
+		bruh(data, "Failed to parse env", 1);
 	setup_signal_mode(data, 1);
 	while (1)
 	{
@@ -74,13 +76,13 @@ int main(int argc, char **argv, char **ev)
 		parse_line(data);
 		ft_printf("Tokenization->\n");
 		tokenization(data);
-		/*print_tokens(data->token);*/
+		print_tokens(data->token);
 		ft_printf("Initiating exec data->\n");
 		init_exec_data(data);
 		/*ft_printf("after init_exec_data\n");*/
 		/*ft_printf("\nPrinting exec data->");*/
-		/*print_exec(data->exec);*/
-		ft_printf("Executing->\n");
+		print_exec(data->exec);
+		ft_printf("\nExecuting->\n");
 		run(data);
 	}
 	bruh(data, NULL, 0);
