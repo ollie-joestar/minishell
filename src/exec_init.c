@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 14:38:56 by oohnivch          #+#    #+#             */
-/*   Updated: 2024/11/26 12:36:36 by oohnivch         ###   ########.fr       */
+/*   Updated: 2024/11/26 13:58:21 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,8 +113,6 @@ void	init_exec_data(t_data *data)
 
 	add_exec(data);
 	exec = data->exec;
-	while (data->token->left)
-		data->token = data->token->left;
 	token = data->token;
 	while (token)
 	{

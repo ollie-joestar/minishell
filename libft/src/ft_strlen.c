@@ -6,7 +6,7 @@
 /*   By: oohnivch <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 12:50:19 by oohnivch          #+#    #+#             */
-/*   Updated: 2024/11/11 11:12:47 by oohnivch         ###   ########.fr       */
+/*   Updated: 2024/11/26 13:54:37 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ size_t	ft_strlen(char const *str)
 	size_t	i;
 
 	i = 0;
-	if (!str)
+	if (!str || !*str)
 		return (i);
 	while (str[i])
 		i++;

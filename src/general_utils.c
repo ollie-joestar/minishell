@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 14:18:21 by oohnivch          #+#    #+#             */
-/*   Updated: 2024/11/24 19:03:05 by hanjkim          ###   ########.fr       */
+/*   Updated: 2024/11/26 13:55:27 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	bruh(t_data *data, char *s, int status)
 	if (s)
 		(ft_putstr_fd(s, 2), ft_putstr_fd("\n", 2));
 	clean_exec(data);
-	free_env_list(data);
+	free_env_list(data->env);
 	free_arr(&data->ev);
 	free_arr(&data->path);
 	ft_free(&data->line);

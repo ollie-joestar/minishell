@@ -6,7 +6,7 @@
 /*   By: hanjkim <@student.42vienna.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 18:49:14 by hanjkim           #+#    #+#             */
-/*   Updated: 2024/11/24 23:46:23 by hanjkim          ###   ########.fr       */
+/*   Updated: 2024/11/26 13:18:05 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "minishell.h"
@@ -53,8 +53,8 @@ void expand_tokens(t_data *data) {
     t_token *token = data->token;
 
     while (token) {
-        print_token(token);
-        expand_token(data, token);
+        /*print_token(token);*/
+        /*expand_token(data, token);*/
         set_token_type(token);
         if (token->type != WORD && token->type != PIPE)
             process_redirection(data, &token);

@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 11:54:00 by oohnivch          #+#    #+#             */
-/*   Updated: 2024/11/26 12:30:30 by oohnivch         ###   ########.fr       */
+/*   Updated: 2024/11/26 13:27:26 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,6 @@ void	builtin(t_data *data, t_exec *exec)
 
 void	do_stuff(t_data *data, t_exec *exec)
 {
-	ft_printf("Doing stuff with %s\n", exec->av[0]);
 	if (exec->next)
 		open_pipe_exec(data, exec);
 	data->pid = fork1(data);

@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 13:28:47 by oohnivch          #+#    #+#             */
-/*   Updated: 2024/11/26 12:26:48 by oohnivch         ###   ########.fr       */
+/*   Updated: 2024/11/26 13:24:05 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -193,6 +193,9 @@ size_t	exec_len(t_exec *exec);
 t_envlist	*parse_env(t_data *data, char **ev);
 size_t	env_len(t_envlist *env);
 char	*expand(t_data *data, char *s);
+void	sort_env(t_envlist *list);
+t_envlist	*dup_env(t_envlist *list);
+
 
 // Path functions
 void	update_path(t_data *data);
