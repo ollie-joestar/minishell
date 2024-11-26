@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 11:54:00 by oohnivch          #+#    #+#             */
-/*   Updated: 2024/11/21 16:36:42 by hanjkim          ###   ########.fr       */
+/*   Updated: 2024/11/26 11:35:54 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,10 +76,8 @@ void	builtin(t_data *data, t_exec *exec)
 void	do_stuff(t_data *data, t_exec *exec)
 {
 	/*ft_printf("Doing stuff with %s\n", exec->av[0]);*/
-	/*ft_printf("\topening pipe\n");*/
 	if (exec->next)
 		open_pipe_exec(data, exec);
-	/*ft_printf("\tforking\n");*/
 	data->pid = fork1(data);
 	if (data->pid == 0)
 	{
@@ -89,13 +87,9 @@ void	do_stuff(t_data *data, t_exec *exec)
 		else
 			builtin(data, exec);
 	}
-	/*ft_printf("\tclosing pipe\n");*/
 	close_pipe_exec(data, exec->prev);
 	if (!exec->next)
-	{
-		/*ft_printf("\tclosing last pipe\n");*/
 		close_pipe_exec(data, exec);
-	}
 }
 
 void	run(t_data *data)
