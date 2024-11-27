@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 11:54:00 by oohnivch          #+#    #+#             */
-/*   Updated: 2024/11/26 13:27:26 by oohnivch         ###   ########.fr       */
+/*   Updated: 2024/11/27 14:21:25 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,8 @@ void	builtin(t_data *data, t_exec *exec)
 		pwd(data, exec);
 	else if (!(ft_strncmp(exec->av[0], "export", 7)))
 		export(data, exec);
+	else if (!(ft_strncmp(exec->av[0], "unset", 6)))
+		unset(data, exec);
 	else
 		bruh(data, "command not found\n", 127);
 	if (exec_len(exec) > 1)

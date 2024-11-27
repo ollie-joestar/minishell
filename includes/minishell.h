@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 13:28:47 by oohnivch          #+#    #+#             */
-/*   Updated: 2024/11/26 13:24:05 by oohnivch         ###   ########.fr       */
+/*   Updated: 2024/11/27 14:21:33 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -216,6 +216,7 @@ t_envlist	*get_pwd(t_data *data);
 t_envlist	*get_oldpwd(t_data *data);
 void		ft_exit(t_data *data, t_exec *exec);
 void		export(t_data *data, t_exec *exec);
+void		unset(t_data *data, t_exec *exec);
 
 char		**create_argv(t_data *data, t_token *token);
 size_t		argv_size(t_token *token);
@@ -233,6 +234,7 @@ char	*ft_strjoin_and_free(char *s1, char *s2);
 void	free_tokens(t_data *data);
 void	free_old_token(t_token *token);
 void	free_env_list(t_envlist *env);
+void	free_env_node(t_envlist *env);
 void	free_arr(char ***arr);
 void	free_token_node(t_token **token);
 

@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 11:25:45 by oohnivch          #+#    #+#             */
-/*   Updated: 2024/11/26 12:05:13 by oohnivch         ###   ########.fr       */
+/*   Updated: 2024/11/27 14:14:51 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,17 @@ void	free_tokens(t_data *data)
 	}
 }
 
+void	free_env_node(t_envlist *env)
+{
+	if (!env)
+		return ;
+	ft_free(&env->name);
+	ft_free(&env->value);
+	free(env);
+	env = NULL;
+}
+
+// yet ANOTHER function that frees tokens
 void	free_token_node(t_token **token)
 {
 	if ((*token)->word)
@@ -78,6 +89,7 @@ void	free_token_node(t_token **token)
 	*token = NULL;
 }
 
+// yet ANOTHER function that frees tokens
 void	free_old_token(t_token *token)
 {
 	if (!token)
