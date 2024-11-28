@@ -6,7 +6,7 @@
 /*   By: hanjkim <@student.42vienna.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 15:13:23 by hanjkim           #+#    #+#             */
-/*   Updated: 2024/11/19 17:46:25 by hanjkim          ###   ########.fr       */
+/*   Updated: 2024/11/26 16:14:38 by hanjkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ void handle_sigint(int sig)
     ioctl(STDIN_FILENO, TIOCSTI, "\n");
     rl_on_new_line();
     rl_replace_line("", 0);
-    rl_redisplay();
 }
 
 void catch_sigint(int sigint)

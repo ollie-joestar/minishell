@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 11:25:45 by oohnivch          #+#    #+#             */
-/*   Updated: 2024/11/26 12:05:13 by oohnivch         ###   ########.fr       */
+/*   Updated: 2024/11/28 16:22:00 by hanjkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,28 +54,23 @@ void	free_env_list(t_envlist *env)
 
 void	free_tokens(t_data *data)
 {
-	t_token	*tmp;
+	t_token *current;
+	t_token *next;
 
 	if (!data->token)
 		return ;
-	while (data->token->left)
-		data->token = data->token->left;
-	while (data->token)
+	while (data->token != NULL && data->token->prev != NULL)
+		data->token = data->token->prev;
+	current = data->token;
+	while (current != NULL)
 	{
-		tmp = data->token;
-		data->token = data->token->right;
-		ft_free(&tmp->word);
-		free(tmp);
-		tmp = NULL;
+		next = current->next;
+		if (current->word != NULL)
+			free(current->word);
+		free(current);
+		current = next;
 	}
-}
-
-void	free_token_node(t_token **token)
-{
-	if ((*token)->word)
-		ft_free(&(*token)->word);
-	free(*token);
-	*token = NULL;
+	data->token = NULL;
 }
 
 void	free_old_token(t_token *token)
@@ -83,5 +78,18 @@ void	free_old_token(t_token *token)
 	if (!token)
 		return;
 	ft_free(&token->word);
-	ft_free((char **)&token);
+	free(token);
+}
+void	free_token_node(t_token **token)
+{
+	if (token == NULL || *token == NULL)
+		return ;
+	if ((*token)->prev)
+		(*token)->prev->next = (*token)->next;
+	if ((*token)->next)
+		(*token)->next->prev = (*token)->prev;
+	if ((*token)->word)
+		ft_free(&(*token)->word);
+	free(*token);
+	*token = NULL;
 }

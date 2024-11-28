@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 13:28:47 by oohnivch          #+#    #+#             */
-/*   Updated: 2024/11/26 13:24:05 by oohnivch         ###   ########.fr       */
+/*   Updated: 2024/11/28 23:52:50 by hanjkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,6 @@
 # define BUILTIN 69
 # define CMD 420
 
-/*# define INTERPRET 040*/
-/*# define NO_VAR 0200*/
-/*# define TO_SPLIT CHAR_MAX*/
 // pipes
 # define RD 0
 # define WR 1
@@ -37,73 +34,62 @@
 # define DQ '\"'
 # define SLASH '\\'
 # define DOLLAR '$'
-// Token types
-# define WORD 0
-# define PIPE 1
-# define INPUT 2
-# define HEREDOC 3
-# define REPLACE 4
-# define APPEND 5
 
-typedef struct s_lex_token
-{
-	int			type;
-	char			*word;
-	struct s_lex_token	*left;
-	struct s_lex_token	*right;
-}		t_token;
+typedef enum e_token_type {
+    WORD = 0,
+    PIPE = 1,
+    INPUT = 2,
+    HEREDOC = 3,
+    REPLACE = 4,
+    APPEND = 5
+}   t_token_type;
 
-typedef struct s_merge_state {
-	t_token	*start_token;
-	t_token	*end_token;
-	char	*combined_word;
-	int	is_inside_quotes;
-	char	quote_char;
-} t_merge;
+typedef struct s_token {
+    char		*word;
+    bool		quote;
+    bool		single_or_double; // false = single, true = double
+    t_token_type	type;
+    struct s_token	*next;
+    struct s_token	*prev;
+}			t_token;
 
-typedef struct s_split_quotes {
-	t_token *prefix;
-	t_token *quoted;
-	t_token *suffix;
-	char	*start_quote;
-	char	*end_quote;
-	size_t	prefix_len;
-	size_t	quoted_len;
-	size_t	suffix_len;
-	char	*prefix_str;
-	char	*quoted_str;
-	char	*suffix_str;
-} t_split;
+typedef	struct	s_expansion {
+    size_t	index;
+    size_t	start;
+    size_t	end;
+    char	*result;
+    char	*temp;
+    char	*var_name;
+    char	*var_value;
+}		t_expansion;
 
 typedef struct s_input {
-	int				type; // HERE_DOC | FILE
-	char			*file;
+	int		type; // HERE_DOC | FILE
+	char		*file;
 	struct s_input	*next;
 	struct s_input	*prev;
 }			t_input;
 
 typedef struct s_output {
 	int		type; // REPLACE | APPEND
-	char	*file;
+	char		*file;
 }			t_output;
 
 typedef struct s_envlist {
-	char				*name;
-	char				*value;
+	char			*name;
+	char			*value;
 	struct s_envlist	*next;
 	struct s_envlist	*prev;
-}			t_envlist;
+}				t_envlist;
 
 typedef struct s_exec {
-	int				type; // BUILTIN | CMD
-	t_input			*in; // linked list of input files
-	t_output		*out; // linked list of output files
-	int				piped; // 1 if the command is piped
-	int				pipe[2]; // pipe file descriptors
-
-	char			*cmd; // full path to the command
-	char			**av;
-
+	int		type; // BUILTIN | CMD
+	t_input		*in; // linked list of input files
+	t_output	*out; // linked list of output files
+	int		piped; // 1 if the command is piped
+	int		pipe[2]; // pipe file descriptors
+	char		*cmd; // full path to the command
+	char		**av;
 	struct s_exec	*prev;
 	struct s_exec	*next;
 }			t_exec;
@@ -114,15 +100,15 @@ typedef struct s_data
 	pid_t			pid; // to store last child process id
 	t_exec			*exec; // to store the current command data
 	char			**ev; // to store the environment variables
-	
-	t_envlist		*env; // to store the environment variables in a linked list
+	t_envlist		*env; // to store the environment variables in linked list
 	char			**path; // to store the path variable after splitting
 	int			status; // to store the exit status of the last command
 	struct sigaction	sa; // to store the signal action
-	char			*line; //lineread (add to history and free after execution)
-	/*char			*joined_line; // to store the joined line after tokenization*/
+	char			*line; //lineread
 	t_token			*token; // to store the list of tokenized commands
-}		t_data;
+	t_expansion		*expansion; // to store the expansion data
+	int			exit_status; // to store the exit status of last command
+}				t_data;
 
 /* Signal functions */
 extern volatile sig_atomic_t g_signal;
@@ -132,48 +118,24 @@ void setup_signal_handler(t_data *data, void (*handler)(int));
 void setup_signal_mode(t_data *data, int interactive);
 
 /* Lexer functions */
-t_token		*create_token(void);
-t_token		*init_tokens(t_data *data, char **av);
-void		set_token_type(t_token *token);
-void		process_token(t_data *data, t_token **token, int type);
-void		tokenization(t_data *data);
-void		skip_whitespace(char **input);
-int			identify_pipe(char **start, char **end);
-char		*token_end(char *start);
-void		reset_end(char *start, char **end, char *ptr, char *tkn_end);
-void		parse_line(t_data *data);
-void		merge_quoted_tokens(t_data *data);
-void		handle_quoted_tokens(t_data *data);
-// Token utils
-void		free_token_slice(t_token *first, t_token *last);
-t_token		*get_first_token(t_token *token);
-t_token		*get_last_token(t_token *token);
-t_token		*get_first_split_token(t_split *tokens);
-t_token		*get_last_split_token(t_split *tokens);
+void	parse_line(t_data *data);
+void	parse_tokens(t_data *data);
+void	parse_token(t_data *data, char **start, char **end, bool *single_or_double);
+t_token	*create_token(char *str, bool quote, bool single_or_double);
+void	add_token_to_end(t_token **head, t_token *new_token);
+void	set_token_type(t_token *token);
+void	skip_spaces(char **line);
+char	*parse_regular_token(char **start, char **end);
+char	*parse_quoted_token(char **start, char **end, bool *single_or_double);
+void	join_adjacent_words(t_token **head);
 
 // Parser functions
-void	split_quoted_token(t_data *data);
-void	adjust_links(t_token *token, t_token *left, t_token *right);
-void	adjust_prefix_links(t_token *prefix, t_token *left, t_token *right, t_split *tokens);
-void	adjust_quoted_links(t_token *quoted, t_token *left, t_token *right, t_split *tokens);
-void	adjust_suffix_links(t_token *suffix, t_token *left, t_token *right, t_split *tokens);
-t_token *update_pointer(t_split *tokens);
-void	expand_token(t_data *data, t_token *token);
-void	insert_expanded_tokens(t_token *expanded_tokens, t_token *old_token);
-void	insert_token(t_token *fntok, t_token *lntok, t_token *old_token);
-char	*process_word_expansion(t_data *data, char *word);
-char	*process_quotes(t_data *data,char *expanded_word, char *word);
-void	process_quotes_2(t_data *data);
-void	process_env_variable(t_data *data, char **buffer, int *index);
-size_t	var_len(char *name);
-void	expand_vars_in_token(t_data *data, t_token *token, int i);
-void	expand_vars_in_token_list(t_data *data, t_token *token);
-void	expand_dquote(t_data *data, t_token *token, char *word);
-void	expand_squote(t_data *data, t_token *token, char *word);
-
-//Parser utils
-char	*slice(char *word, size_t start, size_t length);
-void	update_data_token(t_data *data, t_token *left, t_token *first_new);
+void	process_tokens(t_data *data);
+void	expand_tokens(t_data *data);	
+void	process_redirection(t_data *data, t_token **token);
+char	*expand(t_data *data, char *word);
+void	*ft_realloc(void *ptr, size_t old_size, size_t new_size);
+char	*get_env_value(t_data *data, char *name);
 
 // OLLIE
 // Executing functions
@@ -228,7 +190,6 @@ char	*here_doc(t_data *data, char *l);
 // General utils
 void	bruh(t_data *data, char *s, int status);
 size_t	ft_arrlen(char **arr);
-char	*ft_strjoin_and_free(char *s1, char *s2);
 // Free functions
 void	free_tokens(t_data *data);
 void	free_old_token(t_token *token);

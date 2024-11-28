@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 14:38:56 by oohnivch          #+#    #+#             */
-/*   Updated: 2024/11/26 13:58:21 by oohnivch         ###   ########.fr       */
+/*   Updated: 2024/11/26 23:20:52 by hanjkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,12 +122,12 @@ void	init_exec_data(t_data *data)
 		else if (token->type == REPLACE || token->type == APPEND)
 			add_output(data, exec, token);
 		else if (token->type == PIPE)
-			return ((data->token = token->right), (init_exec_data(data)));
+			return ((data->token = token->next), (init_exec_data(data)));
 		else 
 			add_av(data, exec, token);
-		while (token->right && token->right->type == WORD)
-			token = token->right;
-		token = token->right;
+		while (token->next && token->next->type == WORD)
+			token = token->next;
+		token = token->next;
 		/*ft_printf("Next Token");*/
 	}
 }

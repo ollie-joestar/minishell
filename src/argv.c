@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 16:29:57 by oohnivch          #+#    #+#             */
-/*   Updated: 2024/11/20 12:01:11 by oohnivch         ###   ########.fr       */
+/*   Updated: 2024/11/28 19:36:43 by hanjkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ size_t	argv_size(t_token *token)
 	while (token && token->type == WORD)
 	{
 		size++;
-		token = token->right;
+		token = token->next;
 	}
 	return (size);
 }
@@ -43,7 +43,7 @@ char	**create_argv(t_data *data, t_token *token)
 		if (!av[i])
 			return (free_arr(&av), NULL);
 		data->token = token;
-		token = token->right;
+		token = token->next;
 		i++;
 	}
 	return (av);
