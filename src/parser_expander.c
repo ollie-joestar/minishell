@@ -6,7 +6,7 @@
 /*   By: hanjkim <@student.42vienna.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 20:46:04 by hanjkim           #+#    #+#             */
-/*   Updated: 2024/11/28 23:05:06 by hanjkim          ###   ########.fr       */
+/*   Updated: 2024/11/29 22:47:14 by hanjkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,20 +19,17 @@ void *ft_realloc(void *ptr, size_t old_size, size_t new_size)
     if (new_size == 0)
     {
         free(ptr);
-        return (NULL);
+        return NULL;
     }
-    new_ptr = ft_calloc(new_size, sizeof(char));
+    new_ptr = malloc(new_size);
     if (!new_ptr)
-        return (NULL);
+        return NULL;
     if (ptr)
     {
-		if (old_size < new_size)
-			ft_memcpy(new_ptr, ptr, old_size);
-		else
-			ft_memcpy(new_ptr, ptr, new_size);
+        ft_memcpy(new_ptr, ptr, old_size < new_size ? old_size : new_size);
         free(ptr);
     }
-    return (new_ptr);
+    return new_ptr;
 }
 
 char *get_env_value(t_data *data, char *var_name)
@@ -40,7 +37,8 @@ char *get_env_value(t_data *data, char *var_name)
     t_envlist *current;
 
     if (!data || !var_name)
-        return (NULL);
+        return NULL;
+
     current = data->env;
     while (current)
     {
@@ -53,21 +51,17 @@ char *get_env_value(t_data *data, char *var_name)
 
 char *expand(t_data *data, char *word)
 {
-    char    *result;
-    size_t  result_size;
-    size_t  old_result_size;
-    size_t  i;
-    size_t  j;
-    size_t  word_len;
+    char    *result = NULL;
+    size_t  result_size = 0;
+    size_t  old_result_size = 0;
+    size_t  i = 0;
+    size_t  j = 0;
+    size_t  word_len = ft_strlen(word);
     char    var_name[256];
     char    *var_value;
     char    *exit_status_str;
     size_t  len;
 
-	i = 0;
-	j = 0;
-	word_len = ft_strlen(word);
-	old_result_size = 0;
     result_size = word_len + 1;
     result = ft_calloc(result_size, sizeof(char));
     if (!result)

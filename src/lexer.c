@@ -6,48 +6,48 @@
 /*   By: hanjkim <@student.42vienna.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 20:21:09 by hanjkim           #+#    #+#             */
-/*   Updated: 2024/11/28 23:51:57 by hanjkim          ###   ########.fr       */
+/*   Updated: 2024/11/30 00:14:03 by hanjkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	parse_token(t_data *data, char **start, char **end, bool *single_or_double)
+void	skip_spaces(char *input, int *i)
+{
+	while ((input[*i] == ' ' || input[*i] == '\t'))
+		(*i)++;
+}
+
+void	parse_and_create_token(t_data *data, char *input, int *start, int *end)
 {
 	char	*token_str;
 	t_token	*new_token;
 
-	if (**end == SQ || **end == DQ)
-	{
-		token_str = parse_quoted_token(start, end, single_or_double);
-		new_token = create_token(token_str, true, *single_or_double);
-	}
-	else
-	{
-		token_str = parse_regular_token(start, end);
-		new_token = create_token(token_str, false, false);
-	}
-	add_token_to_end(&(data->token), new_token);
-	ft_free(&token_str);
+	skip_spaces(input, start);
+	*end = *start;
+	if (input[*start] == '\0')
+		return ;
+	token_str = parse_word_token(input, start, end);
+	if (!token_str)
+		return ;
+	new_token = create_token(token_str, false, false);
+	if (new_token)
+		add_token_to_end(&(data->token), new_token);
+	free(token_str);
+	*start = *end;
 }
 
 void	parse_tokens(t_data *data)
 {
-	char	*start;
-	char	*end;
-	bool	single_or_double;
+	char	*input;
+	int		start;
+	int		end;
 
-	start = data->line;
-	end = start;
-	single_or_double = false;
-	while (*end != '\0')
-	{
-		skip_spaces(&end);
-		start = end;
-		if (*end == '\0')
-			break ;
-		parse_token(data, &start, &end, &single_or_double);
-	}
+	input = data->line;
+	start = 0;
+	end = 0;
+	while (input[start] != '\0')
+		parse_and_create_token(data, input, &start, &end);
 }
 
 void	set_tokens_type(t_token *token_list)
@@ -66,5 +66,7 @@ void	parse_line(t_data *data)
 {
 	data->token = NULL;
 	parse_tokens(data);
+	split_tokens(data);
+	replace_tokens(data);
 	set_tokens_type(data->token);
 }

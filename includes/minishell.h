@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 13:28:47 by oohnivch          #+#    #+#             */
-/*   Updated: 2024/11/28 23:52:50 by hanjkim          ###   ########.fr       */
+/*   Updated: 2024/11/30 00:12:25 by hanjkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,15 +53,32 @@ typedef struct s_token {
     struct s_token	*prev;
 }			t_token;
 
-typedef	struct	s_expansion {
-    size_t	index;
-    size_t	start;
-    size_t	end;
-    char	*result;
-    char	*temp;
-    char	*var_name;
-    char	*var_value;
-}		t_expansion;
+typedef struct s_split_vars
+{
+    char    **words;
+    t_token *new_head;
+    t_token *new_tail;
+    t_token *new_token;
+    int     i;
+}		t_split_vars;
+
+typedef struct s_replace
+{
+    t_token *original;
+    t_token *new_head;
+    struct s_replace *next;
+}		t_replace;
+
+typedef	struct	s_expand_vars {
+    char    *word;
+    char    *result;
+    size_t  result_len;
+    size_t  result_size;
+    size_t  i;
+    char    *var_name;
+    size_t  var_name_len;
+    size_t  var_name_size;
+}		t_expand_vars;
 
 typedef struct s_input {
 	int		type; // HERE_DOC | FILE
@@ -106,7 +123,8 @@ typedef struct s_data
 	struct sigaction	sa; // to store the signal action
 	char			*line; //lineread
 	t_token			*token; // to store the list of tokenized commands
-	t_expansion		*expansion; // to store the expansion data
+	t_replace		*replacements; // to store the list of token replacements
+	t_expand_vars		*vars; // to store the expansion data
 	int			exit_status; // to store the exit status of last command
 }				t_data;
 
@@ -120,14 +138,25 @@ void setup_signal_mode(t_data *data, int interactive);
 /* Lexer functions */
 void	parse_line(t_data *data);
 void	parse_tokens(t_data *data);
-void	parse_token(t_data *data, char **start, char **end, bool *single_or_double);
+void	parse_and_create_token(t_data *data, char *input, int *start, int *end);
 t_token	*create_token(char *str, bool quote, bool single_or_double);
 void	add_token_to_end(t_token **head, t_token *new_token);
 void	set_token_type(t_token *token);
-void	skip_spaces(char **line);
-char	*parse_regular_token(char **start, char **end);
-char	*parse_quoted_token(char **start, char **end, bool *single_or_double);
-void	join_adjacent_words(t_token **head);
+void	skip_spaces(char *input, int *i);
+char	*parse_word_token(char *input, int *start, int *end);
+int	process_current_c(char *input, int *i, char **buffer, size_t *current_size);
+int	process_quote_part(char *input, int *i, char **buffer, size_t *current_size);
+int	append_char(char **buffer, size_t *current_size, char c);
+
+/* Lexer utils */
+bool	should_split_token(t_token *token);
+void	add_replace(t_data *data, t_token *o_token, t_token *new_head);
+void	replace_token(t_data *data, t_token *original_token, t_token *new_tokens_head);
+void	replace_tokens(t_data *data);
+void	split_tokens(t_data *data);
+t_token	*split_token(t_token *original_token, t_data *data);
+char	**get_split_words(t_token *original_token, t_data *data);
+void	make_split_tokens(t_split_vars *vars, t_token *o_token, t_data *data);
 
 // Parser functions
 void	process_tokens(t_data *data);

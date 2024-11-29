@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 11:25:45 by oohnivch          #+#    #+#             */
-/*   Updated: 2024/11/28 16:22:00 by hanjkim          ###   ########.fr       */
+/*   Updated: 2024/11/30 00:17:31 by hanjkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,8 @@ void	free_old_token(t_token *token)
 {
 	if (!token)
 		return;
-	ft_free(&token->word);
+	if (token->word)
+		ft_free(&token->word);
 	free(token);
 }
 void	free_token_node(t_token **token)
