@@ -6,7 +6,7 @@
 /*   By: hanjkim <@student.42vienna.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 18:49:14 by hanjkim           #+#    #+#             */
-/*   Updated: 2024/11/30 00:14:33 by hanjkim          ###   ########.fr       */
+/*   Updated: 2024/12/01 17:08:39 by hanjkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ void	process_redirection(t_data *data, t_token **token)
 	filename = redirection_token->next;
 	if (!filename)
 		bruh(data, "Expected filename after redirection", 1);
-	/*filename->type = redirection_token->type;*/
 	if (redirection_token->prev)
 		redirection_token->prev->next = filename;
 	filename->prev = redirection_token->prev;

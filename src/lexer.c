@@ -6,7 +6,7 @@
 /*   By: hanjkim <@student.42vienna.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 20:21:09 by hanjkim           #+#    #+#             */
-/*   Updated: 2024/11/30 00:14:03 by hanjkim          ###   ########.fr       */
+/*   Updated: 2024/12/01 16:58:31 by hanjkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,11 @@ void	parse_and_create_token(t_data *data, char *input, int *start, int *end)
 	*end = *start;
 	if (input[*start] == '\0')
 		return ;
-	token_str = parse_word_token(input, start, end);
+	token_str = parse_word_token(input, start, end, data);
 	if (!token_str)
 		return ;
-	new_token = create_token(token_str, false, false);
+	new_token = create_token(token_str, data->is_currently_quoted,
+			data->is_currently_double_quoted);
 	if (new_token)
 		add_token_to_end(&(data->token), new_token);
 	free(token_str);

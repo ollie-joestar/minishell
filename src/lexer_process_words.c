@@ -6,7 +6,7 @@
 /*   By: hanjkim <@student.42vienna.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/29 15:50:16 by hanjkim           #+#    #+#             */
-/*   Updated: 2024/11/30 00:13:25 by hanjkim          ###   ########.fr       */
+/*   Updated: 2024/12/01 17:06:19 by hanjkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,78 +25,92 @@ int	append_char(char **buffer, size_t *current_size, char c)
 	return (0);
 }
 
-int	process_quote_part(char *input, int *i, char **buffer, size_t *current_size)
+int	process_quote_content(char *input, int *i, t_data *data, char quote)
 {
-	char	quote;
-
-	quote = input[*i];
-	(*i)++;
 	while (input[*i] != '\0' && input[*i] != quote)
 	{
-		if (input[*i] == '\\' && quote == DQ && input[*i + 1] != '\0')
+		if (input[*i] == SLASH && data->is_currently_double_quoted
+			&& input[*i + 1] != '\0')
 		{
 			(*i)++;
-			if (append_char(buffer, current_size, input[*i]) == -1)
+			if (append_char(&(data->buffer),
+					&(data->current_size), input[*i]) == -1)
 				return (-1);
 			(*i)++;
 		}
 		else
 		{
-			if (append_char(buffer, current_size, input[*i]) == -1)
+			if (append_char(&(data->buffer),
+					&(data->current_size), input[*i]) == -1)
 				return (-1);
 			(*i)++;
 		}
 	}
+	return (0);
+}
+
+int	process_quote_part(char *input, int *i, t_data *data)
+{
+	char	quote;
+
+	quote = input[*i];
+	data->is_currently_quoted = true;
+	data->is_currently_double_quoted = (quote == DQ);
+	(*i)++;
+	if (process_quote_content(input, i, data, quote) == -1)
+		return (-1);
 	if (input[*i] == quote)
 		return ((*i)++, 0);
 	else
 		return (-1);
 }
 
-int	process_current_c(char *input, int *i, char **buffer, size_t *current_size)
+int	process_current_c(char *input, int *i, t_data *data)
 {
 	if (input[*i] == SQ || input[*i] == DQ)
 	{
-		if (process_quote_part(input, i, buffer, current_size) == -1)
+		if (process_quote_part(input, i, data) == -1)
 			return (-1);
 	}
-	else if (input[*i] == '\\')
+	else if (input[*i] == SLASH)
 	{
 		(*i)++;
 		if (input[*i] != '\0')
 		{
-			if (append_char(buffer, current_size, input[*i]) == -1)
+			if (append_char(&(data->buffer),
+					&(data->current_size), input[*i]) == -1)
 				return (-1);
 			(*i)++;
 		}
 	}
 	else
 	{
-		if (append_char(buffer, current_size, input[*i]) == -1)
+		if (append_char(&(data->buffer),
+				&(data->current_size), input[*i]) == -1)
 			return (-1);
 		(*i)++;
 	}
 	return (0);
 }
 
-char	*parse_word_token(char *input, int *start, int *end)
+char	*parse_word_token(char *input, int *start, int *end, t_data *data)
 {
-	char	*buffer;
-	size_t	current_size;
-	int		i;
+	int	i;
 
-	buffer = ft_calloc(1, sizeof(char));
-	if (!buffer)
+	data->buffer = ft_calloc(1, sizeof(char));
+	if (!data->buffer)
 		return (NULL);
-	current_size = 0;
+	data->current_size = 0;
+	data->is_currently_quoted = false;
+	data->is_currently_double_quoted = false;
 	i = *start;
 	while (input[i] != '\0' && input[i] != ' ' && input[i] != '\t')
 	{
-		if (process_current_c(input, &i, &buffer, &current_size) == -1)
-			return (NULL);
+		if (process_current_c(input, &i, data) == -1)
+			return (free(data->buffer), NULL);
 	}
-	if (append_char(&buffer, &current_size, '\0') == -1)
-		return (NULL);
+	if (append_char(&(data->buffer), &(data->current_size), '\0') == -1)
+		return (free(data->buffer), NULL);
 	*end = i;
-	return (buffer);
+	return (data->buffer);
 }

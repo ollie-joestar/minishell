@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 13:28:47 by oohnivch          #+#    #+#             */
-/*   Updated: 2024/11/30 00:12:25 by hanjkim          ###   ########.fr       */
+/*   Updated: 2024/12/01 17:31:11 by hanjkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,6 +125,10 @@ typedef struct s_data
 	t_token			*token; // to store the list of tokenized commands
 	t_replace		*replacements; // to store the list of token replacements
 	t_expand_vars		*vars; // to store the expansion data
+	bool            is_currently_quoted;          // Indicates if parsing is within quotes
+    bool            is_currently_double_quoted;   // Distinguishes between single and double quotes
+    size_t          current_size;                 // Current size of the buffer
+    char            *buffer;                      // Buffer for token parsing
 	int			exit_status; // to store the exit status of last command
 }				t_data;
 
@@ -143,9 +147,12 @@ t_token	*create_token(char *str, bool quote, bool single_or_double);
 void	add_token_to_end(t_token **head, t_token *new_token);
 void	set_token_type(t_token *token);
 void	skip_spaces(char *input, int *i);
-char	*parse_word_token(char *input, int *start, int *end);
-int	process_current_c(char *input, int *i, char **buffer, size_t *current_size);
-int	process_quote_part(char *input, int *i, char **buffer, size_t *current_size);
+/*char	*parse_word_token(char *input, int *start, int *end);*/
+/*int	process_current_c(char *input, int *i, char **buffer, size_t *current_size);*/
+/*int	process_quote_part(char *input, int *i, char **buffer, size_t *current_size);*/
+char	*parse_word_token(char *input, int *start, int *end, t_data *data);
+int	process_current_c(char *input, int *i, t_data *data);
+int	process_quote_part(char *input, int *i, t_data *data);
 int	append_char(char **buffer, size_t *current_size, char c);
 
 /* Lexer utils */
