@@ -6,7 +6,7 @@
 #    By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/14 10:24:00 by oohnivch          #+#    #+#              #
-#    Updated: 2024/11/29 20:32:21 by hanjkim          ###   ########.fr        #
+#    Updated: 2024/12/01 23:08:52 by hanjkim          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 #									Variables								   #
@@ -55,10 +55,12 @@ SRC = main.c \
 	  lexer.c \
 	  lexer_create_tokens.c \
 	  lexer_process_words.c \
-	  lexer_split_tokens.c \
-	  lexer_replace_split_token.c \
 	  parser.c \
+	  parser_split_tokens.c \
+	  parser_replace_split_token.c \
 	  parser_expander.c \
+	  parser_expansion_cases.c \
+	  parser_utils.c \
 	  path.c \
 	  reroute.c \
 	  useless.c \

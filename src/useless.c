@@ -6,12 +6,12 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 15:45:11 by oohnivch          #+#    #+#             */
-/*   Updated: 2024/11/29 18:23:10 by hanjkim          ###   ########.fr       */
+/*   Updated: 2024/12/01 22:49:35 by hanjkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
+/*Posibly won't need this file anymore?*/
 size_t	var_len(char *name)
 {
 	size_t	len;

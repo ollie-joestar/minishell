@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 13:28:47 by oohnivch          #+#    #+#             */
-/*   Updated: 2024/12/01 17:31:11 by hanjkim          ###   ########.fr       */
+/*   Updated: 2024/12/01 23:03:41 by hanjkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,16 +69,13 @@ typedef struct s_replace
     struct s_replace *next;
 }		t_replace;
 
-typedef	struct	s_expand_vars {
-    char    *word;
+typedef struct s_expander {
     char    *result;
-    size_t  result_len;
     size_t  result_size;
-    size_t  i;
-    char    *var_name;
-    size_t  var_name_len;
-    size_t  var_name_size;
-}		t_expand_vars;
+    size_t  old_result_size;
+    size_t  index_word;	// index of the current character in the word
+    size_t  index_res;	// index of the current character in the result
+}		t_expander;
 
 typedef struct s_input {
 	int		type; // HERE_DOC | FILE
@@ -124,11 +121,11 @@ typedef struct s_data
 	char			*line; //lineread
 	t_token			*token; // to store the list of tokenized commands
 	t_replace		*replacements; // to store the list of token replacements
-	t_expand_vars		*vars; // to store the expansion data
-	bool            is_currently_quoted;          // Indicates if parsing is within quotes
-    bool            is_currently_double_quoted;   // Distinguishes between single and double quotes
-    size_t          current_size;                 // Current size of the buffer
-    char            *buffer;                      // Buffer for token parsing
+	t_expander		*expander; // to store the expansion data
+	bool			is_currently_quoted;
+	bool			is_currently_double_quoted;
+	size_t			current_size;
+	char			*buffer;
 	int			exit_status; // to store the exit status of last command
 }				t_data;
 
@@ -147,9 +144,6 @@ t_token	*create_token(char *str, bool quote, bool single_or_double);
 void	add_token_to_end(t_token **head, t_token *new_token);
 void	set_token_type(t_token *token);
 void	skip_spaces(char *input, int *i);
-/*char	*parse_word_token(char *input, int *start, int *end);*/
-/*int	process_current_c(char *input, int *i, char **buffer, size_t *current_size);*/
-/*int	process_quote_part(char *input, int *i, char **buffer, size_t *current_size);*/
 char	*parse_word_token(char *input, int *start, int *end, t_data *data);
 int	process_current_c(char *input, int *i, t_data *data);
 int	process_quote_part(char *input, int *i, t_data *data);
@@ -170,8 +164,16 @@ void	process_tokens(t_data *data);
 void	expand_tokens(t_data *data);	
 void	process_redirection(t_data *data, t_token **token);
 char	*expand(t_data *data, char *word);
-void	*ft_realloc(void *ptr, size_t old_size, size_t new_size);
+int	handle_dollar_exp(t_data *data, t_expander *expander);
+int	handle_variable_exp(t_data *data, char *word, t_expander *expander);
+int	handle_regular_char(char c, t_expander *expander);
+int	handle_special_dollar(t_data *data, char *word, t_expander *expander);
+
+// Parser utils
+void	*ft_realloc(void *str, size_t old_size, size_t new_size);
 char	*get_env_value(t_data *data, char *name);
+char	*initialize_expander(t_expander *expander, char *word);
+int	resize_result(t_expander *expander, size_t required_size);
 
 // OLLIE
 // Executing functions

@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 11:25:45 by oohnivch          #+#    #+#             */
-/*   Updated: 2024/11/30 00:17:31 by hanjkim          ###   ########.fr       */
+/*   Updated: 2024/12/01 22:51:16 by hanjkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,8 @@ void	free_env_list(t_envlist *env)
 
 void	free_tokens(t_data *data)
 {
-	t_token *current;
-	t_token *next;
+	t_token	*current;
+	t_token	*next;
 
 	if (!data->token)
 		return ;
@@ -76,11 +76,12 @@ void	free_tokens(t_data *data)
 void	free_old_token(t_token *token)
 {
 	if (!token)
-		return;
+		return ;
 	if (token->word)
 		ft_free(&token->word);
 	free(token);
 }
+
 void	free_token_node(t_token **token)
 {
 	if (token == NULL || *token == NULL)
