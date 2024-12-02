@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/14 11:25:45 by oohnivch          #+#    #+#             */
-/*   Updated: 2024/11/27 14:14:51 by oohnivch         ###   ########.fr       */
+/*   Created: 2024/12/02 11:08:52 by oohnivch          #+#    #+#             */
+/*   Updated: 2024/12/02 11:18:31 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,20 +54,23 @@ void	free_env_list(t_envlist *env)
 
 void	free_tokens(t_data *data)
 {
-	t_token	*tmp;
+	t_token	*current;
+	t_token	*next;
 
 	if (!data->token)
 		return ;
-	while (data->token->left)
-		data->token = data->token->left;
-	while (data->token)
+	while (data->token != NULL && data->token->prev != NULL)
+		data->token = data->token->prev;
+	current = data->token;
+	while (current != NULL)
 	{
-		tmp = data->token;
-		data->token = data->token->right;
-		ft_free(&tmp->word);
-		free(tmp);
-		tmp = NULL;
+		next = current->next;
+		if (current->word != NULL)
+			free(current->word);
+		free(current);
+		current = next;
 	}
+	data->token = NULL;
 }
 
 void	free_env_node(t_envlist *env)
@@ -81,19 +84,26 @@ void	free_env_node(t_envlist *env)
 }
 
 // yet ANOTHER function that frees tokens
+void	free_old_token(t_token *token)
+{
+	if (!token)
+		return ;
+	if (token->word)
+		ft_free(&token->word);
+	free(token);
+}
+
+// yet ANOTHER function that frees tokens
 void	free_token_node(t_token **token)
 {
+	if (token == NULL || *token == NULL)
+		return ;
+	if ((*token)->prev)
+		(*token)->prev->next = (*token)->next;
+	if ((*token)->next)
+		(*token)->next->prev = (*token)->prev;
 	if ((*token)->word)
 		ft_free(&(*token)->word);
 	free(*token);
 	*token = NULL;
-}
-
-// yet ANOTHER function that frees tokens
-void	free_old_token(t_token *token)
-{
-	if (!token)
-		return;
-	ft_free(&token->word);
-	ft_free((char **)&token);
 }

@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 10:10:42 by oohnivch          #+#    #+#             */
-/*   Updated: 2024/11/20 15:58:30 by oohnivch         ###   ########.fr       */
+/*   Updated: 2024/11/26 22:40:07 by hanjkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ void	print_token(t_token *token)
 		return ;
 	ft_printf("\tToken: %s\n", token->word);
 	ft_printf("\tType: %d\n", token->type);
-	ft_printf("\tLeft: %s\n", token->left ? token->left->word : "NULL");
-	ft_printf("\tRight: %s\n", token->right ? token->right->word : "NULL");
+	ft_printf("\tLeft: %s\n", token->prev ? token->prev->word : "NULL");
+	ft_printf("\tRight: %s\n", token->next ? token->next->word : "NULL");
 }
 
 void	print_tokens(t_token *token)
@@ -31,15 +31,15 @@ void	print_tokens(t_token *token)
 		ft_printf("No tokens\n");
 		return ;
 	}
-	while (token && token->left)
-		token = token->left;
+	while (token && token->prev)
+		token = token->prev;
 	/*ft_printf("reset tokens\n");*/
 	i = 0;
 	while (token)
 	{
 		ft_printf("Printing token [%d] \n", i);
 		print_token(token);
-		token = token->right;
+		token = token->next;
 		i++;
 	}
 }

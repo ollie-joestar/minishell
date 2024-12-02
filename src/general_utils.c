@@ -6,16 +6,11 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 14:18:21 by oohnivch          #+#    #+#             */
-/*   Updated: 2024/11/26 13:55:27 by oohnivch         ###   ########.fr       */
+/*   Updated: 2024/12/01 22:46:56 by hanjkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-int	is_not_meta(char c)
-{
-	return (c != '>' && c != '<' && c != '|' &&  c != ' ' && c != '$' && c != '\'' && c != '\"');
-}
 
 void	bruh(t_data *data, char *s, int status)
 {
@@ -44,24 +39,4 @@ size_t	ft_arrlen(char **arr)
 	while (arr[i])
 		i++;
 	return (i);
-}
-
-char *ft_strjoin_and_free(char *s1, char *s2)
-{
-	char *new_str;
-	size_t len1;
-	size_t len2;
-
-	if (!s1 || !s2)
-		return (NULL);
-	len1 = ft_strlen(s1);
-	len2 = ft_strlen(s2);
-	new_str = ft_calloc(len1 + len2 + 1, sizeof(char));
-	if (!new_str)
-		return (NULL);
-	ft_memcpy(new_str, s1, len1);
-	ft_memcpy(new_str + len1, s2, len2);
-	ft_free(&s1);
-	ft_free(&s2);
-	return (new_str);
 }

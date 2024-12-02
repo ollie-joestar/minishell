@@ -5,8 +5,8 @@
 #                                                     +:+ +:+         +:+      #
 #    By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/11/14 10:24:00 by oohnivch          #+#    #+#              #
-#    Updated: 2024/11/27 14:22:02 by oohnivch         ###   ########.fr        #
+#    Created: 2024/12/02 11:07:54 by oohnivch          #+#    #+#              #
+#    Updated: 2024/12/02 11:08:04 by oohnivch         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 #									Variables								   #
@@ -53,22 +53,19 @@ SRC = main.c \
 	  general_utils.c \
 	  here_doc.c \
 	  lexer.c \
-	  lexer_init_tokens.c \
-	  parser_check_quotes.c \
-	  parser_token_expand.c \
-	  parser_token_linking.c \
-	  parser_word_processing.c \
-	  parser_merge_quoted_tokens.c \
-	  parser_split_quoted_tokens.c \
-	  parser_split_linking.c \
-	  parser_split_utils.c \
+	  lexer_create_tokens.c \
+	  lexer_process_words.c \
+	  parser.c \
+	  parser_split_tokens.c \
+	  parser_replace_split_token.c \
+	  parser_expander.c \
+	  parser_expansion_cases.c \
+	  parser_utils.c \
 	  path.c \
 	  reroute.c \
 	  useless.c \
-	  token_utils.c \
 	  free.c \
 	  pwd.c \
-	  expander.c \
 	  signal.c \
 	  exit.c \
 	  export.c \

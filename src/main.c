@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 09:38:58 by oohnivch          #+#    #+#             */
-/*   Updated: 2024/11/26 12:43:09 by oohnivch         ###   ########.fr       */
+/*   Updated: 2024/12/01 22:47:41 by hanjkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ int main(int argc, char **argv, char **ev)
 	t_data *data;
 	(void)argc;
 	(void)argv;
+
 	data = ft_calloc(1, sizeof(t_data));
 	if (!data)
 		bruh(data, "Failed to allocate memory", 1);
@@ -57,14 +58,12 @@ int main(int argc, char **argv, char **ev)
 	setup_signal_mode(data, 1);
 	while (1)
 	{
-		/*ft_printf("Readline\n");*/
 		data->line = readline("minishell > ");
 		if (g_signal == SIGINT)
 		{
 			g_signal = 0;
 			continue;
 		}
-		/*ft_printf("Skill check\n");*/
 		if (skill_check(data))
 		{
 			ft_free(&data->line);
@@ -74,9 +73,10 @@ int main(int argc, char **argv, char **ev)
 			continue;
 		ft_printf("Parsing line->\n");
 		parse_line(data);
+		/*print_tokens(data->token);*/
 		ft_printf("Tokenization->\n");
-		tokenization(data);
-		print_tokens(data->token);
+		process_tokens(data);
+		/*print_tokens(data->token);*/
 		ft_printf("Initiating exec data->\n");
 		init_exec_data(data);
 		/*ft_printf("after init_exec_data\n");*/
