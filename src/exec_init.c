@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 14:38:56 by oohnivch          #+#    #+#             */
-/*   Updated: 2024/12/02 16:24:11 by oohnivch         ###   ########.fr       */
+/*   Updated: 2024/12/02 19:00:38 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	add_exec(t_data *data)
 
 	exec = ft_calloc(1, sizeof(t_exec));
 	if (!exec)
-		bruh(data, "Failed to allocate memory for exec", 1);
+		bruh(data, "Failed to allocate memory for exec", 69);
 	if (data->exec)
 		(data->exec->next = exec, exec->prev = data->exec);
 	data->exec = exec;
@@ -32,11 +32,7 @@ void	add_output(t_data *data, t_exec *exec, t_token *token)
 	{
 		output = ft_calloc(1, sizeof(t_output));
 		if (!output)
-		{
-			bruh(data, "Failed to allocate memory for output", 1);
-			ft_printf("Failed to allocate memory for output\n");
-			return ;
-		}
+			bruh(data, "Failed to allocate memory for output", 69);
 		exec->out = output;
 	}
 	output = exec->out;
@@ -47,7 +43,7 @@ void	add_output(t_data *data, t_exec *exec, t_token *token)
 	{
 		free(output);
 		output = NULL;
-		bruh(data, "Failed to allocate memory for output file", 1);
+		bruh(data, "Failed to allocate memory for output file", 69);
 	}
 }
 
@@ -57,7 +53,7 @@ void	add_input(t_data *data, t_exec *exec, t_token *token)
 
 	input = ft_calloc(1, sizeof(t_input));
 	if (!input)
-		bruh(data, "Failed to allocate memory for input", 1);
+		bruh(data, "Failed to allocate memory for input", 69);
 	input->type = token->type;
 	input->file = ft_strdup(token->word);
 	if (!input->file)
@@ -92,13 +88,13 @@ void	add_av(t_data *data, t_exec *exec, t_token *token)
 {
 	exec->av = create_argv(data, token);
 	if (!exec->av)
-		bruh(data, "Failed to allocate memory", 1);
+		bruh(data, "Failed to allocate memory", 69);
 	/*print_arr(exec->av);*/
 	if (exec->av[0] == 0)
 		bruh(data, "cmd is null\n", 1);
 	exec->cmd = ft_strdup(exec->av[0]);
 	if (!exec->cmd)
-		bruh(data, "Failed to allocate memory for cmd", 1);
+		bruh(data, "Failed to allocate memory for cmd", 69);
 	check_for_builtin(exec);
 	if (exec->type == CMD)
 	{

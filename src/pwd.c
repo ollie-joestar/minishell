@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 14:56:43 by oohnivch          #+#    #+#             */
-/*   Updated: 2024/11/14 15:13:03 by oohnivch         ###   ########.fr       */
+/*   Updated: 2024/12/02 19:13:50 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,11 @@ t_envlist	*get_oldpwd(t_data *data)
 	}
 	env = ft_calloc(1, sizeof(t_envlist));
 	if (!env)
-		bruh(data, "Malloc failed in get_oldpwd", 1);
+		bruh(data, "Malloc failed in get_oldpwd", 69);
 	env->name = ft_strdup("OLDPWD");
 	env->value = ft_strdup("");
 	if (!env->name || !env->value)
-		bruh(data, "Malloc failed in get_oldpwd", 1);
+		bruh(data, "Malloc failed in get_oldpwd", 69);
 	while (data->env->next)
 		data->env = data->env->next;
 	return (env->prev = data->env, data->env->next = env, env);
@@ -52,11 +52,11 @@ t_envlist	*get_pwd(t_data *data)
 	}
 	env = ft_calloc(1, sizeof(t_envlist));
 	if (!env)
-		bruh(data, "Malloc failed in get_pwd", 1);
+		bruh(data, "Malloc failed in get_pwd", 69);
 	env->name = ft_strdup("PWD");
 	env->value = ft_strdup("");
 	if (!env->name || !env->value)
-		bruh(data, "Malloc failed in get_pwd", 1);
+		bruh(data, "Malloc failed in get_pwd", 69);
 	while (data->env->next)
 		data->env = data->env->next;
 	return (env->prev = data->env, data->env->next = env, env);
@@ -95,7 +95,7 @@ void	pwd(t_data *data, t_exec *exec)
 	if (!pwd)
 	{
 		ft_putstr_fd("pwd: error retrieving current directory:", STDERR_FILENO);
-		data->status = 1;
+		data->status = 69;
 		return ;
 	}
 	ft_putendl_fd(pwd, STDOUT_FILENO);
