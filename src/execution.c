@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 11:54:00 by oohnivch          #+#    #+#             */
-/*   Updated: 2024/12/02 14:48:45 by oohnivch         ###   ########.fr       */
+/*   Updated: 2024/12/02 16:35:02 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,7 @@ void	do_stuff(t_data *data, t_exec *exec)
 			command(data, exec);
 		else
 			builtin(data, exec);
+		bruh(data, NULL, 0);
 	}
 	close_pipe_exec(data, exec->prev);
 	if (!exec->next)

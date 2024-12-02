@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 14:38:56 by oohnivch          #+#    #+#             */
-/*   Updated: 2024/12/02 14:47:14 by oohnivch         ###   ########.fr       */
+/*   Updated: 2024/12/02 16:24:11 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,8 @@ void	add_av(t_data *data, t_exec *exec, t_token *token)
 	if (exec->av[0] == 0)
 		bruh(data, "cmd is null\n", 1);
 	exec->cmd = ft_strdup(exec->av[0]);
+	if (!exec->cmd)
+		bruh(data, "Failed to allocate memory for cmd", 1);
 	check_for_builtin(exec);
 	if (exec->type == CMD)
 	{

@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 09:38:58 by oohnivch          #+#    #+#             */
-/*   Updated: 2024/12/02 16:12:10 by oohnivch         ###   ########.fr       */
+/*   Updated: 2024/12/02 16:22:43 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ int main(int argc, char **argv, char **ev)
 	setup_signal_mode(data, 1);
 	while (1)
 	{
-		data->line = readline("minishell > ");
+		data->line = readline("minishell > "); //funcheck failed
 		if (g_signal == SIGINT)
 		{
 			g_signal = 0;
