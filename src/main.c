@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 09:38:58 by oohnivch          #+#    #+#             */
-/*   Updated: 2024/12/01 22:47:41 by hanjkim          ###   ########.fr       */
+/*   Updated: 2024/12/02 11:26:58 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ int main(int argc, char **argv, char **ev)
 		/*print_tokens(data->token);*/
 		ft_printf("Tokenization->\n");
 		process_tokens(data);
-		/*print_tokens(data->token);*/
+		print_tokens(data->token);
 		ft_printf("Initiating exec data->\n");
 		init_exec_data(data);
 		/*ft_printf("after init_exec_data\n");*/

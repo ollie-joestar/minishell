@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 11:41:48 by oohnivch          #+#    #+#             */
-/*   Updated: 2024/11/21 14:50:49 by oohnivch         ###   ########.fr       */
+/*   Updated: 2024/12/02 12:13:55 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ static void	rerouteoutpipe(t_exec *exec)
 
 void	reroute(t_exec *exec)
 {
-	if (exec->in && exec_len(exec) > 1)
+	if (exec->in || exec->type != BUILTIN)
 		rerouteinfile(exec);
 	if (exec->out)
 		rerouteoutfile(exec);
