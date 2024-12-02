@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 13:39:47 by oohnivch          #+#    #+#             */
-/*   Updated: 2024/11/13 16:57:51 by oohnivch         ###   ########.fr       */
+/*   Updated: 2024/12/02 15:55:08 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,10 +59,13 @@ char	*here_doc(t_data *data, char *l)
 		/*expand(&line, data);*/
 		if (!ft_strncmp(line, lim, ft_strlen(lim) + 1))
 			break ;
+		expand_var_in_str(data, &line);
 		if (line)
 			write(fd, line, ft_strlen(line));
 	}
+	ft_free(&line);
 	ft_free(&lim);
 	ft_free(&buffer);
+	close(fd);
 	return (file);
 }

@@ -6,13 +6,13 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 10:41:38 by oohnivch          #+#    #+#             */
-/*   Updated: 2024/11/27 14:17:57 by oohnivch         ###   ########.fr       */
+/*   Updated: 2024/12/02 16:08:36 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-char	*expand(t_data *data, char *name)
+char	*expand_ollie(t_data *data, char *name)
 {
 	t_envlist	*env;
 
@@ -50,7 +50,7 @@ char	*find_var_name(char *str)
 		return (NULL);
 	name = ft_substr(str, start + 1, end - start - 1);
 	if (!name)
-		bruh(NULL, "Error: malloc failed in expander:52\n", 1);
+		bruh(NULL, "Error: malloc failed in expander:53\n", 1);
 	return (name);
 }
 
@@ -65,7 +65,7 @@ static void	replace_str(char **str, char *name, char *value)
 	old_i = ft_strlen(*str) - ft_strlen(name) + ft_strlen(value) + 1;
 	new_str = ft_calloc(sizeof(char), old_i);
 	if (!new_str)
-		bruh(NULL, "Error: malloc failed in expander:50\n", 1);
+		bruh(NULL, "Error: malloc failed in expander:68\n", 1);
 	while ((*str)[old_i] && (*str)[old_i] != '$')
 		new_str[new_i++] = (*str)[old_i++];
 	tmp = value;
@@ -74,7 +74,7 @@ static void	replace_str(char **str, char *name, char *value)
 	old_i += ft_strlen(name) + 1;
 	while ((*str)[old_i])
 		new_str[new_i++] = (*str)[old_i++];
-	new_str[new_i] = '\0';
+	new_str[new_i] = '\n';
 	free(*str);
 	*str = NULL;
 	*str = new_str;
@@ -86,30 +86,12 @@ void	expand_var_in_str(t_data *data, char **str)
 	char	*value;
 
 	name = find_var_name(*str);
-	value = expand(data, name);
+	if (!name)
+		return ;
+	value = expand_ollie(data, name);
 	if (!value || !name)
-		bruh(data, "Error: malloc failed in expander:66\n" , 1);
+		bruh(data, "Error: malloc failed in expander:91\n" , 1);
 	replace_str(str, name, value);
 	ft_free(&name);
 	ft_free(&value);
 }
-
-/*char	expand(t_data *data, t_token *token)*/
-/*{*/
-/*	t_envlist	*env;*/
-/*	t_token	*tmp_token;*/
-/*	char		*expanded;*/
-/**/
-/*	expanded = NULL;*/
-/*	tmp_token = token;*/
-/*	env = data->env;*/
-/*	while (env)*/
-/*	{*/
-/*		if (ft_strncmp(env->name, tmp_token->word + 1, ft_strlen(env->name) + 1) == 0)*/
-/*		{*/
-/*			tmp_token->word = ft_strdup(env->value);*/
-/*			return ;*/
-/*		}*/
-/*		env = env->next;*/
-/*	}*/
-/*}*/

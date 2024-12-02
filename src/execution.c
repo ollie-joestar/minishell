@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 11:54:00 by oohnivch          #+#    #+#             */
-/*   Updated: 2024/11/27 14:21:25 by oohnivch         ###   ########.fr       */
+/*   Updated: 2024/12/02 14:48:45 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	builtin(t_data *data, t_exec *exec)
 
 	stdout_copy = -1;
 	if (exec_len(exec) == 1)
-		(stdout_copy = dup(STDOUT_FILENO), reroute(exec));
+		(stdout_copy = dup(STDOUT_FILENO), reroute(data, exec));
 	if (!(ft_strncmp(exec->av[0], "exit", 5)))
 	{
 		reset_stdout(stdout_copy);
@@ -84,7 +84,7 @@ void	do_stuff(t_data *data, t_exec *exec)
 	data->pid = fork1(data);
 	if (data->pid == 0)
 	{
-		reroute(exec);
+		reroute(data, exec);
 		if (exec->type == CMD)
 			command(data, exec);
 		else

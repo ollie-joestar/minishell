@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 11:08:52 by oohnivch          #+#    #+#             */
-/*   Updated: 2024/12/02 11:18:31 by oohnivch         ###   ########.fr       */
+/*   Updated: 2024/12/02 14:52:20 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,16 +21,12 @@ void	free_arr(char ***arr)
 		return ;
 	while ((*arr)[i])
 	{
-		/*ft_printf("freeing string [%d] \"%s\"\n", i, (*arr)[i]);*/
 		free((*arr)[i]);
 		(*arr)[i] = NULL;
-		/*ft_printf("freed %s\n", (*arr)[i]);*/
 		i++;
 	}
-	/*ft_printf("freeing arr\n");*/
 	free(*arr);
 	*arr = NULL;
-	/*ft_printf("freed arr\n");*/
 }
 
 void	free_env_list(t_envlist *env)
@@ -91,6 +87,7 @@ void	free_old_token(t_token *token)
 	if (token->word)
 		ft_free(&token->word);
 	free(token);
+	token = NULL;
 }
 
 // yet ANOTHER function that frees tokens

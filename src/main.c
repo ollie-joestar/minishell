@@ -6,12 +6,11 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 09:38:58 by oohnivch          #+#    #+#             */
-/*   Updated: 2024/12/02 11:26:58 by oohnivch         ###   ########.fr       */
+/*   Updated: 2024/12/02 16:12:10 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
 
 int	skill_check(t_data *data)
 {
@@ -19,8 +18,7 @@ int	skill_check(t_data *data)
 
 	i = -1;
 	if (!data->line)
-		/*return (ft_putstr_fd("No line\n", 2), 1);*/
-		bruh(data, "No line", 1);
+		bruh(data, "exit", 0);
 	while (data->line[++i])
 	{
 		if (data->line[i] == DQ)
@@ -71,18 +69,18 @@ int main(int argc, char **argv, char **ev)
 		}
 		if (!data->line || !*data->line)
 			continue;
-		ft_printf("Parsing line->\n");
+		/*ft_printf("Parsing line->\n");*/
 		parse_line(data);
 		/*print_tokens(data->token);*/
-		ft_printf("Tokenization->\n");
+		/*ft_printf("Tokenization->\n");*/
 		process_tokens(data);
-		print_tokens(data->token);
-		ft_printf("Initiating exec data->\n");
+		/*print_tokens(data->token);*/
+		/*ft_printf("Initiating exec data->\n");*/
 		init_exec_data(data);
 		/*ft_printf("after init_exec_data\n");*/
 		/*ft_printf("\nPrinting exec data->");*/
-		print_exec(data->exec);
-		ft_printf("\nExecuting->\n");
+		/*print_exec(data->exec);*/
+		/*ft_printf("\nExecuting->\n");*/
 		run(data);
 	}
 	bruh(data, NULL, 0);

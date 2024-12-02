@@ -6,7 +6,7 @@
 #    By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/02 11:07:54 by oohnivch          #+#    #+#              #
-#    Updated: 2024/12/02 11:08:04 by oohnivch         ###   ########.fr        #
+#    Updated: 2024/12/02 16:13:59 by oohnivch         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 #									Variables								   #
@@ -63,13 +63,13 @@ SRC = main.c \
 	  parser_utils.c \
 	  path.c \
 	  reroute.c \
-	  useless.c \
 	  free.c \
 	  pwd.c \
 	  signal.c \
 	  exit.c \
 	  export.c \
 	  unset.c \
+	  expander.c \
 	  debug_utils.c \
 
 # SRC_BONUS = main_bonus.c annihilate_bonus.c extract_bonus.c access_bonus.c \

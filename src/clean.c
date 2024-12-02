@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 16:15:50 by oohnivch          #+#    #+#             */
-/*   Updated: 2024/11/20 15:27:25 by oohnivch         ###   ########.fr       */
+/*   Updated: 2024/12/02 15:29:39 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,6 @@ void	clean_input(t_exec *exec)
 	{
 		tmp = exec->in;
 		exec->in = exec->in->next;
-		if (tmp->type == HEREDOC)
-			unlink(tmp->file);
 		if (tmp->file)
 			ft_free(&tmp->file);
 		free(tmp);

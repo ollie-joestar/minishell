@@ -6,7 +6,7 @@
 /*   By: hanjkim <@student.42vienna.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 18:49:14 by hanjkim           #+#    #+#             */
-/*   Updated: 2024/12/01 22:27:46 by hanjkim          ###   ########.fr       */
+/*   Updated: 2024/12/02 14:35:21 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,30 +15,33 @@
 void	process_redirection(t_data *data, t_token **token)
 {
 	t_token	*redirection_token;
-	t_token	*filename;
+	t_token	*filename_token;
 	char	*temp_word;
 	bool	expand_variables;
 
-	redirection_token = NULL;
-	filename = NULL;
-	temp_word = NULL;
+	/*redirection_token = NULL;*/
+	/*filename = NULL;*/
+	/*temp_word = NULL;*/
 	redirection_token = *token;
-	filename = redirection_token->next;
-	if (!filename)
+	filename_token = redirection_token->next;
+	if (!filename_token)
 		bruh(data, "Expected filename after redirection", 1);
-	filename->type = redirection_token->type;
+	filename_token->type = redirection_token->type;
 	if (redirection_token->prev)
-		redirection_token->prev->next = filename;
-	filename->prev = redirection_token->prev;
-	*token = filename;
+		redirection_token->prev->next = filename_token;
+	filename_token->prev = redirection_token->prev;
+	/**token = filename_token;*/
 	if (redirection_token->type == HEREDOC)
 	{
-		expand_variables = !(filename->quote && filename->single_or_double);
-		temp_word = filename->word;
-		filename->word = here_doc(data, filename->word);
+		expand_variables = !(filename_token->quote && filename_token->single_or_double);
+		temp_word = filename_token->word;
+		filename_token->word = here_doc(data, filename_token->word);
 		ft_free(&temp_word);
 	}
 	free_token_node(&redirection_token);
+	data->token = filename_token;
+	*token = filename_token;
+	/*free_old_token(redirection_token);*/
 }
 
 void	expand_tokens(t_data *data)
@@ -75,4 +78,6 @@ void	process_tokens(t_data *data)
 	while (data->token != NULL && data->token->prev != NULL)
 		data->token = data->token->prev;
 	expand_tokens(data);
+	while (data->token->prev != NULL)
+		data->token = data->token->prev;
 }
