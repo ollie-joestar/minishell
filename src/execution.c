@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 11:54:00 by oohnivch          #+#    #+#             */
-/*   Updated: 2024/12/02 16:35:02 by oohnivch         ###   ########.fr       */
+/*   Updated: 2024/12/02 18:18:00 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,9 @@ void	command(t_data *data, t_exec *exec)
 	{
 		if (0 == access(exec->av[0], F_OK))
 		{
-			ft_putstr_fd("minishell: permission denied: ", 2);
-			bruh(data, exec->av[0], 126);
+			ft_putstr_fd("minishell: ", 2);
+			ft_putstr_fd(exec->cmd, 2);
+			bruh(data, ": Permission denied", 126);
 		}
 		ft_putstr_fd("minishell: no such file or directory: ", 2);
 		bruh(data, exec->av[0], 127);
@@ -29,8 +30,9 @@ void	command(t_data *data, t_exec *exec)
 	{
 		if (0 == access(exec->av[0], F_OK))
 		{
-			ft_putstr_fd("minishell: permission denied: ", 2);
-			bruh(data, exec->av[0], 126);
+			ft_putstr_fd("minishell: ", 2);
+			ft_putstr_fd(exec->cmd, 2);
+			bruh(data, ": Permission denied", 126);
 		}
 		ft_putstr_fd("minishell: command not found: ", 2);
 		bruh(data, exec->av[0], 127);

@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 13:49:00 by oohnivch          #+#    #+#             */
-/*   Updated: 2024/11/19 13:58:37 by oohnivch         ###   ########.fr       */
+/*   Updated: 2024/12/02 17:59:32 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ char	*cd_special_path_check(t_data *data, char *path)
 		return (tmp);
 	}
 	else if (!ft_strncmp(path, "-", 2))
-		return (get_oldpwd(data)->value);
+		return (ft_printf("%s\n", get_oldpwd(data)->value), get_oldpwd(data)->value);
 	else
 		return (path);
 }

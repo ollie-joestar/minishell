@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 14:07:19 by oohnivch          #+#    #+#             */
-/*   Updated: 2024/12/02 16:42:11 by oohnivch         ###   ########.fr       */
+/*   Updated: 2024/12/02 18:15:57 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ typedef struct s_envlist {
 typedef struct s_exec {
 	int			type; // BUILTIN | CMD
 	t_input		*in; // linked list of input files
-	t_output		*out; // linked list of output files
+	t_output	*out; // linked list of output files
 	int			piped; // 1 if the command is piped
 	int			pipe[2]; // pipe file descriptors
 	char		*cmd; // full path to the command
