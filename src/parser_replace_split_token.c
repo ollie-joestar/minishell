@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lexer_replace_split_token.c                        :+:      :+:    :+:   */
+/*   parser_replace_split_token.c                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hanjkim <@student.42vienna.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 20:20:47 by hanjkim           #+#    #+#             */
-/*   Updated: 2024/12/01 22:40:24 by hanjkim          ###   ########.fr       */
+/*   Updated: 2024/12/02 19:30:46 by hanjkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	add_replace(t_data *data, t_token *original, t_token *new_head)
 
 	new = (t_replace *)ft_calloc(1, sizeof(t_replace));
 	if (!new)
-		bruh(data, "Failed to allocate memory for token replacement", 1);
+		bruh(data, "Failed to allocate memory for token replacement", 2);
 	new->original = original;
 	new->new_head = new_head;
 	new->next = NULL;

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lexer_split_tokens.c                               :+:      :+:    :+:   */
+/*   parser_split_tokens.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hanjkim <@student.42vienna.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/29 20:03:14 by hanjkim           #+#    #+#             */
-/*   Updated: 2024/11/30 00:11:42 by hanjkim          ###   ########.fr       */
+/*   Updated: 2024/12/02 19:30:38 by hanjkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	make_split_tokens(t_split_vars *vars, t_token *original, t_data *data)
 		if (!vars->new_token)
 		{
 			free_arr(&vars->words);
-			bruh(data, "Split_tok fail", 1);
+			bruh(data, "Split_tok fail", 2);
 		}
 		vars->new_token->type = WORD;
 		if (!vars->new_head)
@@ -64,7 +64,7 @@ t_token	*split_token(t_token *original_token, t_data *data)
 	init_split_vars(&vars);
 	vars.words = ft_split(original_token->word, ' ');
 	if (!vars.words)
-		bruh(data, "Failed to split token words", 1);
+		bruh(data, "Failed to split token words", 2);
 	make_split_tokens(&vars, original_token, data);
 	free_arr(&vars.words);
 	return (vars.new_head);

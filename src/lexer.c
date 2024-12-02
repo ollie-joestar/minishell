@@ -6,7 +6,7 @@
 /*   By: hanjkim <@student.42vienna.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 20:21:09 by hanjkim           #+#    #+#             */
-/*   Updated: 2024/12/01 20:36:24 by hanjkim          ###   ########.fr       */
+/*   Updated: 2024/12/02 19:29:47 by hanjkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	parse_and_create_token(t_data *data, char *input, int *start, int *end)
 	new_token = create_token(token_str, data->is_currently_quoted,
 			data->is_currently_double_quoted);
 	if (!new_token)
-		bruh(data, "Failed to allocate memory for token", 1);
+		bruh(data, "Failed to allocate memory for token", 2);
 	if (new_token)
 		add_token_to_end(&(data->token), new_token);
 	free(token_str);

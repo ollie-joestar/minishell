@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 09:38:58 by oohnivch          #+#    #+#             */
-/*   Updated: 2024/12/02 18:04:00 by oohnivch         ###   ########.fr       */
+/*   Updated: 2024/12/02 20:29:49 by hanjkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,11 +57,8 @@ int main(int argc, char **argv, char **ev)
 	while (1)
 	{
 		data->line = readline("minishell > "); //funcheck failed
-		if (g_signal == SIGINT)
-		{
+		if (g_signal == SIGINT && data->pid != 0)
 			g_signal = 0;
-			continue;
-		}
 		if (skill_check(data))
 		{
 			ft_free(&data->line);

@@ -6,7 +6,7 @@
 /*   By: hanjkim <@student.42vienna.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 18:49:14 by hanjkim           #+#    #+#             */
-/*   Updated: 2024/12/02 14:35:21 by oohnivch         ###   ########.fr       */
+/*   Updated: 2024/12/02 19:30:07 by hanjkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	process_redirection(t_data *data, t_token **token)
 	redirection_token = *token;
 	filename_token = redirection_token->next;
 	if (!filename_token)
-		bruh(data, "Expected filename after redirection", 1);
+		bruh(data, "Expected filename after redirection", 2);
 	filename_token->type = redirection_token->type;
 	if (redirection_token->prev)
 		redirection_token->prev->next = filename_token;
@@ -74,7 +74,7 @@ void	process_tokens(t_data *data)
 
 	token = NULL;
 	if (!data->token)
-		bruh(data, "No tokens available for processing", 1);
+		bruh(data, "No tokens available for processing", 2);
 	while (data->token != NULL && data->token->prev != NULL)
 		data->token = data->token->prev;
 	expand_tokens(data);

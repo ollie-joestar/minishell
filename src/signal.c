@@ -6,7 +6,7 @@
 /*   By: hanjkim <@student.42vienna.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 15:13:23 by hanjkim           #+#    #+#             */
-/*   Updated: 2024/12/02 16:38:59 by oohnivch         ###   ########.fr       */
+/*   Updated: 2024/12/02 20:30:13 by hanjkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 volatile sig_atomic_t	g_signal = 0;
 
-void	handle_sigint(int sig)
+	static void	handle_sigint(int sig)
 {
 	g_signal = sig;
 	ioctl(STDIN_FILENO, TIOCSTI, "\n");
