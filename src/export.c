@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 11:32:53 by oohnivch          #+#    #+#             */
-/*   Updated: 2024/11/26 13:51:16 by oohnivch         ###   ########.fr       */
+/*   Updated: 2024/11/27 14:20:05 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,13 @@ static void print_export(t_data *data)
 void	export(t_data *data, t_exec *exec)
 {
 	if (ft_arrlen(exec->av) == 1)
+		return (print_export(data));
+	if (!ft_isalpha(exec->av[1][0]) && exec->av[1][0] != '_')
 	{
-		print_export(data);
+		ft_putstr_fd("export: `", 2);
+		ft_putstr_fd(exec->av[1], 2);
+		ft_putstr_fd("': not a valid identifier\n", 2);
+		data->status = 1;
+		return ;
 	}
 }

@@ -5,8 +5,8 @@
 #                                                     +:+ +:+         +:+      #
 #    By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/11/14 10:24:00 by oohnivch          #+#    #+#              #
-#    Updated: 2024/12/01 23:08:52 by hanjkim          ###   ########.fr        #
+#    Created: 2024/12/02 11:07:54 by oohnivch          #+#    #+#              #
+#    Updated: 2024/12/02 11:08:04 by oohnivch         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 #									Variables								   #
@@ -69,6 +69,7 @@ SRC = main.c \
 	  signal.c \
 	  exit.c \
 	  export.c \
+	  unset.c \
 	  debug_utils.c \
 
 # SRC_BONUS = main_bonus.c annihilate_bonus.c extract_bonus.c access_bonus.c \

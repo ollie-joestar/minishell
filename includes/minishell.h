@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/23 13:28:47 by oohnivch          #+#    #+#             */
-/*   Updated: 2024/12/01 23:03:41 by hanjkim          ###   ########.fr       */
+/*   Created: 2024/12/02 11:08:17 by oohnivch          #+#    #+#             */
+/*   Updated: 2024/12/02 11:08:18 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -216,6 +216,7 @@ t_envlist	*get_pwd(t_data *data);
 t_envlist	*get_oldpwd(t_data *data);
 void		ft_exit(t_data *data, t_exec *exec);
 void		export(t_data *data, t_exec *exec);
+void		unset(t_data *data, t_exec *exec);
 
 char		**create_argv(t_data *data, t_token *token);
 size_t		argv_size(t_token *token);
@@ -232,6 +233,7 @@ size_t	ft_arrlen(char **arr);
 void	free_tokens(t_data *data);
 void	free_old_token(t_token *token);
 void	free_env_list(t_envlist *env);
+void	free_env_node(t_envlist *env);
 void	free_arr(char ***arr);
 void	free_token_node(t_token **token);
 

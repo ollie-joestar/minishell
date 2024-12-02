@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/14 11:25:45 by oohnivch          #+#    #+#             */
-/*   Updated: 2024/12/01 22:51:16 by hanjkim          ###   ########.fr       */
+/*   Created: 2024/12/02 11:08:52 by oohnivch          #+#    #+#             */
+/*   Updated: 2024/12/02 11:18:31 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,17 @@ void	free_tokens(t_data *data)
 	data->token = NULL;
 }
 
+void	free_env_node(t_envlist *env)
+{
+	if (!env)
+		return ;
+	ft_free(&env->name);
+	ft_free(&env->value);
+	free(env);
+	env = NULL;
+}
+
+// yet ANOTHER function that frees tokens
 void	free_old_token(t_token *token)
 {
 	if (!token)
@@ -82,6 +93,7 @@ void	free_old_token(t_token *token)
 	free(token);
 }
 
+// yet ANOTHER function that frees tokens
 void	free_token_node(t_token **token)
 {
 	if (token == NULL || *token == NULL)
