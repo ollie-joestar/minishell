@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 14:07:19 by oohnivch          #+#    #+#             */
-/*   Updated: 2024/12/02 18:15:57 by oohnivch         ###   ########.fr       */
+/*   Updated: 2024/12/02 18:40:09 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,7 +126,6 @@ typedef struct s_data
 	bool		is_currently_double_quoted;
 	size_t		current_size;
 	char		*buffer;
-	int			exit_status; // to store the exit status of last command
 }   t_data;
 
 /* Signal functions */

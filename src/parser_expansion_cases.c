@@ -6,7 +6,7 @@
 /*   By: hanjkim <@student.42vienna.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/01 22:44:16 by hanjkim           #+#    #+#             */
-/*   Updated: 2024/12/01 23:09:49 by hanjkim          ###   ########.fr       */
+/*   Updated: 2024/12/02 18:39:12 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,13 @@ int	handle_dollar_exp(t_data *data, t_expander *expander)
 	char	*exit_status_str;
 	size_t	len;
 
-	exit_status_str = ft_itoa(data->exit_status);
+	ft_putstr_fd("handling dollar expansion\n", 2);
+	exit_status_str = ft_itoa(data->status);
 	if (!exit_status_str)
 		return (free(expander->result), -1);
+	ft_putstr_fd("exit_status_str: ", 2);
+	ft_putstr_fd(exit_status_str, 2);
+	ft_putstr_fd("\n", 2);
 	len = ft_strlen(exit_status_str);
 	if (resize_result(expander, expander->index_res + len) == -1)
 		return (free(exit_status_str), -1);
