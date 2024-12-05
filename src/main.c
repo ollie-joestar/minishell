@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 09:38:58 by oohnivch          #+#    #+#             */
-/*   Updated: 2024/12/02 20:29:49 by hanjkim          ###   ########.fr       */
+/*   Updated: 2024/12/05 18:21:03 by hanjkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	skill_check(t_data *data)
 
 	i = -1;
 	if (!data->line)
-		bruh(data, "exit", 0);
+		bruh(data, "exit", data->status);
 	while (data->line[++i])
 	{
 		if (data->line[i] == DQ)
@@ -27,7 +27,7 @@ int	skill_check(t_data *data)
 			while (data->line[i] && data->line[i] != DQ)
 				i++;
 			if (data->line[i] != DQ)
-				return (ft_putstr_fd("skill issue\n", 2), 1);
+				return (ft_putstr_fd("skill issue\n", data->status), 1);
 		}
 		else if (data->line[i] == SQ)
 		{
@@ -35,7 +35,7 @@ int	skill_check(t_data *data)
 			while (data->line[i] && data->line[i] != SQ)
 				i++;
 			if (data->line[i] != SQ)
-				return (ft_putstr_fd("skill issue\n", 2), 1);
+				return (ft_putstr_fd("skill issue\n", data->status), 1);
 		}
 	}
 	return (0);
@@ -70,6 +70,12 @@ int main(int argc, char **argv, char **ev)
 		parse_line(data);
 		/*print_tokens(data->token);*/
 		/*ft_printf("Tokenization->\n");*/
+		if (!valid_syntax(data, data->token))
+		{
+			free_tokens(data);
+			ft_free(&data->line);
+			continue;
+		}
 		process_tokens(data);
 		/*print_tokens(data->token);*/
 		/*ft_printf("Initiating exec data->\n");*/

@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 14:07:19 by oohnivch          #+#    #+#             */
-/*   Updated: 2024/12/02 20:20:32 by hanjkim          ###   ########.fr       */
+/*   Updated: 2024/12/05 18:05:04 by hanjkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -172,6 +172,14 @@ void	*ft_realloc(void *str, size_t old_size, size_t new_size);
 char	*get_env_value(t_data *data, char *name);
 char	*initialize_expander(t_expander *expander, char *word);
 int	resize_result(t_expander *expander, size_t required_size);
+
+// Syntax checker
+void	unexpected_token(t_data *data, char *str);
+bool	double_pipe(t_token *token);
+bool	missing_file(t_token *token);
+bool	pipe_in_front(t_token *token);
+bool	valid_syntax(t_data *data, t_token *token);
+bool	is_redirection(t_token *token);
 
 // OLLIE
 // Executing functions
