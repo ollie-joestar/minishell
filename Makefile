@@ -6,7 +6,7 @@
 #    By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/02 11:07:54 by oohnivch          #+#    #+#              #
-#    Updated: 2024/12/02 16:13:59 by oohnivch         ###   ########.fr        #
+#    Updated: 2024/12/05 17:54:53 by hanjkim          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 #									Variables								   #
@@ -61,6 +61,8 @@ SRC = main.c \
 	  parser_expander.c \
 	  parser_expansion_cases.c \
 	  parser_utils.c \
+	  syntax_checker.c \
+	  syntax_checker_utils.c \
 	  path.c \
 	  reroute.c \
 	  free.c \

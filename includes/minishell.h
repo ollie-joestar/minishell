@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 14:07:19 by oohnivch          #+#    #+#             */
-/*   Updated: 2024/12/02 20:20:32 by hanjkim          ###   ########.fr       */
+/*   Updated: 2024/12/08 18:20:40 by hanjkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,14 +44,20 @@ typedef enum e_token_type {
 	APPEND = 5
 }   t_token_type;
 
+typedef struct s_segment {
+    char              *text;
+    bool              single_quoted;
+    bool              double_quoted;
+    struct s_segment  *next;
+} t_segment;
+
 typedef struct s_token {
 	char		*word;
-	bool		quote;
-	bool		single_or_double; // false = single, true = double
-	t_token_type	type;
-	struct s_token	*next;
-	struct s_token	*prev;
-}			t_token;
+	t_segment       *segments;
+	t_token_type    type;
+	struct s_token  *next;
+	struct s_token  *prev;
+}		t_token;
 
 typedef struct s_split_vars
 {
@@ -111,21 +117,19 @@ typedef struct s_exec {
 
 typedef struct s_data
 {
-	pid_t		pid; // to store last child process id
-	t_exec		*exec; // to store the current command data
-	char		**ev; // to store the environment variables
-	t_envlist		*env; // to store the environment variables in linked list
-	char		**path; // to store the path variable after splitting
-	int			status; // to store the exit status of the last command
-	struct sigaction	sa; // to store the signal action
-	char		*line; //lineread
-	t_token		*token; // to store the list of tokenized commands
-	t_replace		*replacements; // to store the list of token replacements
-	t_expander		*expander; // to store the expansion data
-	bool		is_currently_quoted;
-	bool		is_currently_double_quoted;
-	size_t		current_size;
-	char		*buffer;
+    pid_t           pid;
+    t_exec          *exec;   
+    char            **ev;     
+    t_envlist       *env;    
+    char            **path;   
+    int             status;
+    struct sigaction sa;
+    char            *line;    
+    t_token         *token;
+    t_replace       *replacements;
+    t_expander      *expander;
+    size_t          current_size; 
+    char            *buffer;
 }   t_data;
 
 /* Signal functions */
@@ -142,10 +146,15 @@ t_token	*create_token(char *str, bool quote, bool single_or_double);
 void	add_token_to_end(t_token **head, t_token *new_token);
 void	set_token_type(t_token *token);
 void	skip_spaces(char *input, int *i);
-char	*parse_word_token(char *input, int *start, int *end, t_data *data);
 int	process_current_c(char *input, int *i, t_data *data);
 int	process_quote_part(char *input, int *i, t_data *data);
 int	append_char(char **buffer, size_t *current_size, char c);
+t_token	*create_token_from_string(char *str);
+t_token	*create_empty_token(void);
+t_segment	*create_segment(bool single_quoted, bool double_quoted);
+void	add_segment_to_token(t_token *token, t_segment *seg);
+void	finalize_tokens(t_token *token_list);
+t_token *parse_word_token(char *input, int *start, t_data *data);
 
 /* Lexer utils */
 bool	should_split_token(t_token *token);
@@ -156,6 +165,7 @@ void	split_tokens(t_data *data);
 t_token	*split_token(t_token *original_token, t_data *data);
 char	**get_split_words(t_token *original_token, t_data *data);
 void	make_split_tokens(t_split_vars *vars, t_token *o_token, t_data *data);
+char	*join_segments(t_token *token);
 
 // Parser functions
 void	process_tokens(t_data *data);
@@ -172,6 +182,14 @@ void	*ft_realloc(void *str, size_t old_size, size_t new_size);
 char	*get_env_value(t_data *data, char *name);
 char	*initialize_expander(t_expander *expander, char *word);
 int	resize_result(t_expander *expander, size_t required_size);
+
+// Syntax checker
+void	unexpected_token(t_data *data, char *str);
+bool	double_pipe(t_token *token);
+bool	missing_file(t_token *token);
+bool	pipe_in_front(t_token *token);
+bool	valid_syntax(t_data *data, t_token *token);
+bool	is_redirection(t_token *token);
 
 // OLLIE
 // Executing functions
