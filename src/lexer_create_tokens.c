@@ -6,16 +6,39 @@
 /*   By: hanjkim <@student.42vienna.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/29 18:29:01 by hanjkim           #+#    #+#             */
-/*   Updated: 2024/11/30 00:13:44 by hanjkim          ###   ########.fr       */
+/*   Updated: 2024/12/08 14:18:07 by hanjkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	set_token_type(t_token *token)
+/*void	set_token_type(t_token *token)*/
+/*{*/
+/*	if (token->word == NULL)*/
+/*		return ;*/
+/*	if (!(ft_strncmp(token->word, "<", 2)))*/
+/*		token->type = INPUT;*/
+/*	else if (!(ft_strncmp(token->word, "<<", 3)))*/
+/*		token->type = HEREDOC;*/
+/*	else if (!(ft_strncmp(token->word, ">", 2)))*/
+/*		token->type = REPLACE;*/
+/*	else if (!(ft_strncmp(token->word, ">>", 3)))*/
+/*		token->type = APPEND;*/
+/*	else if (!(ft_strncmp(token->word, "|", 2)))*/
+/*		token->type = PIPE;*/
+/*	else*/
+/*		token->type = WORD;*/
+/*}*/
+
+void set_token_type(t_token *token)
 {
 	if (token->word == NULL)
 		return ;
+	if (token->quote == true)
+	{
+		token->type = WORD;
+		return;
+	}
 	if (!(ft_strncmp(token->word, "<", 2)))
 		token->type = INPUT;
 	else if (!(ft_strncmp(token->word, "<<", 3)))

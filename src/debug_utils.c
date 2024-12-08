@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 10:10:42 by oohnivch          #+#    #+#             */
-/*   Updated: 2024/11/26 22:40:07 by hanjkim          ###   ########.fr       */
+/*   Updated: 2024/12/08 14:39:38 by hanjkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ void	print_token(t_token *token)
 		return ;
 	ft_printf("\tToken: %s\n", token->word);
 	ft_printf("\tType: %d\n", token->type);
-	ft_printf("\tLeft: %s\n", token->prev ? token->prev->word : "NULL");
-	ft_printf("\tRight: %s\n", token->next ? token->next->word : "NULL");
+	ft_printf("\tPrev: %s\n", token->prev ? token->prev->word : "NULL");
+	ft_printf("\tNext: %s\n", token->next ? token->next->word : "NULL");
 }
 
 void	print_tokens(t_token *token)
