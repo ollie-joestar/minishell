@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 14:07:19 by oohnivch          #+#    #+#             */
-/*   Updated: 2024/12/02 20:20:32 by hanjkim          ###   ########.fr       */
+/*   Updated: 2024/12/08 20:07:27 by hanjkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,10 +142,19 @@ t_token	*create_token(char *str, bool quote, bool single_or_double);
 void	add_token_to_end(t_token **head, t_token *new_token);
 void	set_token_type(t_token *token);
 void	skip_spaces(char *input, int *i);
+<<<<<<< Updated upstream
 char	*parse_word_token(char *input, int *start, int *end, t_data *data);
 int	process_current_c(char *input, int *i, t_data *data);
 int	process_quote_part(char *input, int *i, t_data *data);
 int	append_char(char **buffer, size_t *current_size, char c);
+=======
+t_token	*create_token_from_string(char *str);
+t_token	*create_empty_token(void);
+t_segment	*create_segment(bool single_quoted, bool double_quoted);
+void	add_segment_to_token(t_token *token, t_segment *seg);
+void	finalize_tokens(t_token *token_list);
+t_token *parse_word_token(char *input, int *start, t_data *data);
+>>>>>>> Stashed changes
 
 /* Lexer utils */
 bool	should_split_token(t_token *token);
