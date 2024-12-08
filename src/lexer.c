@@ -6,40 +6,11 @@
 /*   By: hanjkim <@student.42vienna.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 20:21:09 by hanjkim           #+#    #+#             */
-/*   Updated: 2024/12/08 20:19:07 by hanjkim          ###   ########.fr       */
+/*   Updated: 2024/12/08 20:21:00 by hanjkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-void	set_token_type(t_token *token_list)
-{
-	t_token	*current;
-	char	*joined;
-
-	current = token_list;
-	while (current != NULL)
-	{
-		joined = join_segments(current);
-		if (joined)
-		{
-			if (!ft_strncmp(joined, "<", 2))
-				current->type = INPUT;
-			else if (!ft_strncmp(joined, "<<", 3))
-				current->type = HEREDOC;
-			else if (!ft_strncmp(joined, ">", 2))
-				current->type = REPLACE;
-			else if (!ft_strncmp(joined, ">>", 3))
-				current->type = APPEND;
-			else if (!ft_strncmp(joined, "|", 2))
-				current->type = PIPE;
-			else
-				current->type = WORD;
-			free(joined);
-		}
-		current = current->next;
-	}
-}
 
 void	set_tokens_type(t_token *token_list)
 {
