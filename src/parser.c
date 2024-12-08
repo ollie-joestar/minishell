@@ -6,7 +6,7 @@
 /*   By: hanjkim <@student.42vienna.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 18:49:14 by hanjkim           #+#    #+#             */
-/*   Updated: 2024/12/08 18:34:07 by hanjkim          ###   ########.fr       */
+/*   Updated: 2024/12/08 20:42:20 by hanjkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	finalize_tokens(t_token *token_list)
 			while (seg)
 			{
 				next = seg->next;
-				free(seg->text);
+				ft_free(&seg->text);
 				free(seg);
 				seg = next;
 			}
@@ -102,7 +102,7 @@ void	expand_tokens(t_data *data)
 			expanded = expand_segment(data, seg);
 			if (expanded)
 			{
-				free(seg->text);
+				ft_free(&seg->text);
 				seg->text = expanded;
 			}
 			seg = seg->next;

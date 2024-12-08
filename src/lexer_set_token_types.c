@@ -6,7 +6,7 @@
 /*   By: hanjkim <@student.42vienna.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/08 19:48:26 by hanjkim           #+#    #+#             */
-/*   Updated: 2024/12/08 19:49:18 by hanjkim          ###   ########.fr       */
+/*   Updated: 2024/12/08 20:39:27 by hanjkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ void	set_token_type(t_token *token_list)
 				assign_token_type_from_joined(current, joined);
 			else
 				current->type = WORD;
-			free(joined);
+			ft_free(&joined);
 		}
 		current = current->next;
 	}

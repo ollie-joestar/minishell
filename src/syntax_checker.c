@@ -6,7 +6,7 @@
 /*   By: hanjkim <@student.42vienna.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 18:06:16 by hanjkim           #+#    #+#             */
-/*   Updated: 2024/12/08 18:39:28 by hanjkim          ###   ########.fr       */
+/*   Updated: 2024/12/08 20:35:37 by hanjkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,37 +66,22 @@ bool	valid_syntax(t_data *data, t_token *token)
 	char	*joined;
 
 	if (pipe_in_front(token))
-	{
-		joined = join_segments(token);
-		unexpected_token(data, joined);
-		free(joined);
-		return (false);
-	}
+		return (unexpected_token_with_join(data, token));
 	while (token != NULL)
 	{
 		if (double_pipe(token))
 		{
-			if (token->next == NULL)
-				unexpected_token(data, NULL);
+			if (token->next != NULL)
+				return (unexpected_token_with_join(data, token->next));
 			else
-			{
-				joined = join_segments(token->next);
-				unexpected_token(data, joined);
-				free(joined);
-			}
-			return (false);
+				return (unexpected_token_with_join(data, token));
 		}
 		if (missing_filename(token))
 		{
 			if (token->next != NULL)
-			{
-				joined = join_segments(token->next);
-				unexpected_token(data, joined);
-				free(joined);
-			}
+				return (unexpected_token_with_join(data, token->next));
 			else
-				unexpected_token(data, NULL);
-			return (false);
+				return (unexpected_token_with_join(data, token));
 		}
 		token = token->next;
 	}

@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 14:07:19 by oohnivch          #+#    #+#             */
-/*   Updated: 2024/12/08 20:18:51 by hanjkim          ###   ########.fr       */
+/*   Updated: 2024/12/08 20:33:17 by hanjkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -190,6 +190,7 @@ bool	missing_file(t_token *token);
 bool	pipe_in_front(t_token *token);
 bool	valid_syntax(t_data *data, t_token *token);
 bool	is_redirection(t_token *token);
+bool unexpected_token_with_join(t_data *data, t_token *token);
 
 // OLLIE
 // Executing functions

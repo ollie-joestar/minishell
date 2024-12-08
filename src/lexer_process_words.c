@@ -6,7 +6,7 @@
 /*   By: hanjkim <@student.42vienna.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/29 15:50:16 by hanjkim           #+#    #+#             */
-/*   Updated: 2024/12/08 18:37:44 by hanjkim          ###   ########.fr       */
+/*   Updated: 2024/12/08 20:31:30 by hanjkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,7 @@ t_token	*parse_word_token(char *input, int *start, t_data *data)
 {
 	t_token	*token;
 	int		i;
+	int		res;
 
 	token = create_empty_token();
 	i = *start;
@@ -109,18 +110,13 @@ t_token	*parse_word_token(char *input, int *start, t_data *data)
 	while (input[i] && input[i] != ' ' && input[i] != '\t')
 	{
 		if (input[i] == SQ)
-		{
-			if (process_quoted_segment(input, &i, token, true) == -1)
-				return (free_tokens(data), NULL);
-		}
+			res = process_quoted_segment(input, &i, token, true);
 		else if (input[i] == DQ)
-		{
-			if (process_quoted_segment(input, &i, token, false) == -1)
-				return (free_tokens(data), NULL);
-		}
+			res = process_quoted_segment(input, &i, token, false);
 		else
-			if (process_unquoted_chars(input, &i, token) == -1)
-				return (free_tokens(data), NULL);
+			res = process_unquoted_chars(input, &i, token);
+		if (res == -1)
+			return (free_tokens(data),NULL);
 	}
 	*start = i;
 	return (token);
