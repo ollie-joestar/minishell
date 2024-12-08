@@ -6,11 +6,17 @@
 /*   By: hanjkim <@student.42vienna.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/01 21:43:24 by hanjkim           #+#    #+#             */
-/*   Updated: 2024/12/01 23:13:48 by hanjkim          ###   ########.fr       */
+/*   Updated: 2024/12/08 18:27:43 by hanjkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+void	skip_spaces(char *input, int *i)
+{
+	while ((input[*i] == ' ' || input[*i] == '\t'))
+		(*i)++;
+}
 
 void	*ft_realloc(void *str, size_t old_size, size_t new_size)
 {

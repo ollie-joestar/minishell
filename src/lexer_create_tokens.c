@@ -6,51 +6,50 @@
 /*   By: hanjkim <@student.42vienna.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/29 18:29:01 by hanjkim           #+#    #+#             */
-/*   Updated: 2024/12/08 14:18:07 by hanjkim          ###   ########.fr       */
+/*   Updated: 2024/12/08 18:29:00 by hanjkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-/*void	set_token_type(t_token *token)*/
-/*{*/
-/*	if (token->word == NULL)*/
-/*		return ;*/
-/*	if (!(ft_strncmp(token->word, "<", 2)))*/
-/*		token->type = INPUT;*/
-/*	else if (!(ft_strncmp(token->word, "<<", 3)))*/
-/*		token->type = HEREDOC;*/
-/*	else if (!(ft_strncmp(token->word, ">", 2)))*/
-/*		token->type = REPLACE;*/
-/*	else if (!(ft_strncmp(token->word, ">>", 3)))*/
-/*		token->type = APPEND;*/
-/*	else if (!(ft_strncmp(token->word, "|", 2)))*/
-/*		token->type = PIPE;*/
-/*	else*/
-/*		token->type = WORD;*/
-/*}*/
-
-void set_token_type(t_token *token)
+char	*join_segments(t_token *token)
 {
-	if (token->word == NULL)
-		return ;
-	if (token->quote == true)
+	size_t		total_len;
+	char		*joined;
+	t_segment	*seg;
+
+	total_len = 0;
+	seg = token->segments;
+	while (seg)
 	{
-		token->type = WORD;
-		return;
+		total_len += ft_strlen(seg->text);
+		seg = seg->next;
 	}
-	if (!(ft_strncmp(token->word, "<", 2)))
-		token->type = INPUT;
-	else if (!(ft_strncmp(token->word, "<<", 3)))
-		token->type = HEREDOC;
-	else if (!(ft_strncmp(token->word, ">", 2)))
-		token->type = REPLACE;
-	else if (!(ft_strncmp(token->word, ">>", 3)))
-		token->type = APPEND;
-	else if (!(ft_strncmp(token->word, "|", 2)))
-		token->type = PIPE;
-	else
-		token->type = WORD;
+	joined = ft_calloc(total_len + 1, sizeof(char));
+	if (!joined)
+		return (NULL);
+	seg = token->segments;
+	while (seg)
+	{
+		ft_strlcat(joined, seg->text, total_len + 1);
+		seg = seg->next;
+	}
+	return (joined);
+}
+
+void	add_segment_to_token(t_token *token, t_segment *seg)
+{
+	t_segment	*curr;
+
+	curr = token->segments;
+	if (!curr)
+	{
+		token->segments = seg;
+		return ;
+	}
+	while (curr->next)
+		curr = curr->next;
+	curr->next = seg;
 }
 
 void	add_token_to_end(t_token **head, t_token *new_token)
@@ -71,20 +70,30 @@ void	add_token_to_end(t_token **head, t_token *new_token)
 	new_token->prev = current;
 }
 
-t_token	*create_token(char *str, bool quote, bool single_or_double)
+void	parse_and_create_token(t_data *data, char *input, int *start, int *end)
 {
 	t_token	*new_token;
-	char	*dup_str;
 
-	new_token = (t_token *)ft_calloc(1, (sizeof(t_token)));
+	skip_spaces(input, start);
+	*end = *start;
+	if (input[*start] == '\0')
+		return ;
+	new_token = parse_word_token(input, start, data);
+	if (!new_token)
+		bruh(data, "Failed to allocate memory for token", 2);
+	add_token_to_end(&(data->token), new_token);
+	*end = *start;
+}
+
+t_token	*create_empty_token(void)
+{
+	t_token	*new_token;
+
+	new_token = ft_calloc(1, sizeof(t_token));
 	if (!new_token)
 		return (NULL);
-	dup_str = ft_strdup(str);
-	if (!dup_str)
-		return (free(new_token), NULL);
-	new_token->word = dup_str;
-	new_token->quote = quote;
-	new_token->single_or_double = single_or_double;
+	new_token->word = NULL;
+	new_token->segments = NULL;
 	new_token->type = WORD;
 	new_token->next = NULL;
 	new_token->prev = NULL;

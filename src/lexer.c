@@ -6,38 +6,69 @@
 /*   By: hanjkim <@student.42vienna.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 20:21:09 by hanjkim           #+#    #+#             */
-/*   Updated: 2024/12/02 19:29:47 by hanjkim          ###   ########.fr       */
+/*   Updated: 2024/12/08 18:30:44 by hanjkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	skip_spaces(char *input, int *i)
+void	set_token_type(t_token *token_list)
 {
-	while ((input[*i] == ' ' || input[*i] == '\t'))
-		(*i)++;
+	t_token	*current;
+	char	*joined;
+
+	current = token_list;
+	while (current != NULL)
+	{
+		joined = join_segments(current);
+		if (joined)
+		{
+			if (!ft_strncmp(joined, "<", 2))
+				current->type = INPUT;
+			else if (!ft_strncmp(joined, "<<", 3))
+				current->type = HEREDOC;
+			else if (!ft_strncmp(joined, ">", 2))
+				current->type = REPLACE;
+			else if (!ft_strncmp(joined, ">>", 3))
+				current->type = APPEND;
+			else if (!ft_strncmp(joined, "|", 2))
+				current->type = PIPE;
+			else
+				current->type = WORD;
+			free(joined);
+		}
+		current = current->next;
+	}
 }
 
-void	parse_and_create_token(t_data *data, char *input, int *start, int *end)
+void	set_tokens_type(t_token *token_list)
 {
-	char	*token_str;
-	t_token	*new_token;
+	t_token	*current;
 
-	skip_spaces(input, start);
-	*end = *start;
-	if (input[*start] == '\0')
-		return ;
-	token_str = parse_word_token(input, start, end, data);
-	if (!token_str)
-		return ;
-	new_token = create_token(token_str, data->is_currently_quoted,
-			data->is_currently_double_quoted);
-	if (!new_token)
-		bruh(data, "Failed to allocate memory for token", 2);
-	if (new_token)
-		add_token_to_end(&(data->token), new_token);
-	free(token_str);
-	*start = *end;
+	current = token_list;
+	while (current != NULL)
+	{
+		set_token_type(current);
+		current = current->next;
+	}
+}
+
+void	split_tokens(t_data *data)
+{
+	t_token	*current_token;
+	t_token	*new_tokens_head;
+
+	current_token = data->token;
+	data->replacements = NULL;
+	while (current_token != NULL)
+	{
+		if (should_split_token(current_token))
+		{
+			new_tokens_head = split_token(current_token, data);
+			add_replace(data, current_token, new_tokens_head);
+		}
+		current_token = current_token->next;
+	}
 }
 
 void	parse_tokens(t_data *data)
@@ -51,18 +82,6 @@ void	parse_tokens(t_data *data)
 	end = 0;
 	while (input[start] != '\0')
 		parse_and_create_token(data, input, &start, &end);
-}
-
-void	set_tokens_type(t_token *token_list)
-{
-	t_token	*current;
-
-	current = token_list;
-	while (current != NULL)
-	{
-		set_token_type(current);
-		current = current->next;
-	}
 }
 
 void	parse_line(t_data *data)
