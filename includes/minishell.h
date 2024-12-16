@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 14:07:19 by oohnivch          #+#    #+#             */
-/*   Updated: 2024/12/08 20:33:17 by hanjkim          ###   ########.fr       */
+/*   Updated: 2024/12/16 14:01:16 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -198,13 +198,14 @@ void	run(t_data *data);
 void	builtin(t_data *data, t_exec *exec);
 void	command(t_data *data, t_exec *exec);
 void	clean_exec(t_data *data);
-int	fork1(t_data *data);
+int		fork1(t_data *data);
 void	open_pipe_exec(t_data *data, t_exec *exec);
 void	close_pipe_exec(t_data *data, t_exec *exec);
 void	reroute(t_data *data, t_exec *exec);
 void	safe_close(int fd);
 void	check_exit_status(t_data *data, int exit_status);
 size_t	exec_len(t_exec *exec);
+int		exec_has_cmd(t_exec *exec);
 
 // Environment functions
 t_envlist   *parse_env(t_data *data, char **ev);

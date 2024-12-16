@@ -6,7 +6,7 @@
 /*   By: hanjkim <@student.42vienna.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 15:13:23 by hanjkim           #+#    #+#             */
-/*   Updated: 2024/12/08 18:39:56 by hanjkim          ###   ########.fr       */
+/*   Updated: 2024/12/16 13:59:28 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,4 +42,12 @@ void	setup_signal_mode(t_data *data, int interactive)
 		setup_signal_handler(data, handle_sigint);
 	else
 		setup_signal_handler(data, catch_sigint);
+}
+
+void	check_exit_status(t_data *data, int exit_status)
+{
+	if (WIFEXITED(exit_status))
+		data->status = WEXITSTATUS(exit_status);
+	else if (WIFSIGNALED(exit_status))
+		data->status = WTERMSIG(exit_status) + 128;
 }

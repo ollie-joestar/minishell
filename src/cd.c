@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 13:49:00 by oohnivch          #+#    #+#             */
-/*   Updated: 2024/12/02 17:59:32 by oohnivch         ###   ########.fr       */
+/*   Updated: 2024/12/16 13:47:07 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,8 @@ void	cd(t_data *data, t_exec *exec)
 		{
 			ft_putstr_fd("minishell: cd: no such file of directory", 2);
 			ft_putstr_fd(path, 2);
-			data->status = EXIT_FAILURE;
+			ft_putchar_fd('\n', 2);
+			data->status = 1;
 			return ;
 		}
 	}

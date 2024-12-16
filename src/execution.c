@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 11:54:00 by oohnivch          #+#    #+#             */
-/*   Updated: 2024/12/08 14:50:54 by hanjkim          ###   ########.fr       */
+/*   Updated: 2024/12/16 14:01:40 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,12 +117,15 @@ void	run(t_data *data)
 		exec = exec->next;
 	}
 	add_history(data->line);
-	wait_status = 1;
-	while (wait_status > 0 && wait_status != data->pid)
-		wait_status = wait(&exit_status);
-	check_exit_status(data, exit_status);
-	while (wait(NULL) > 0)
-		;
+	if (exec_len(data->exec) > 1 || exec_has_cmd(data->exec))
+	{
+		wait_status = 1;
+		while (wait_status > 0 && wait_status != data->pid)
+			wait_status = wait(&exit_status);
+		check_exit_status(data, exit_status);
+		while (wait(NULL) > 0)
+			;
+	}
 	/*ft_printf("\nCleaning up...\n");*/
 	clean_exec(data);
 	ft_free(&data->line);

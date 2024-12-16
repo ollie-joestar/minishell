@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 11:41:48 by oohnivch          #+#    #+#             */
-/*   Updated: 2024/12/02 19:02:15 by oohnivch         ###   ########.fr       */
+/*   Updated: 2024/12/16 14:08:59 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static void	rerouteinfile(t_data *data, t_exec *exec)
 		ft_putstr_fd("minishell: ", STDERR_FILENO);
 		ft_putstr_fd(exec->in->file, STDERR_FILENO);
 		ft_putstr_fd(": No such file or directory\n", STDERR_FILENO);
-		bruh(data, NULL, 69);
+		bruh(data, NULL, 1);
 	}
 	dup2(fd, STDIN_FILENO);
 	close(fd);
@@ -63,7 +63,7 @@ static void	rerouteoutfile(t_data *data, t_exec *exec)
 		ft_putstr_fd("minishell: ", STDERR_FILENO);
 		ft_putstr_fd(exec->out->file, STDERR_FILENO);
 		ft_putstr_fd(": No such file or directory\n", STDERR_FILENO);
-		bruh(data, NULL, 69);
+		bruh(data, NULL, 1);
 	}
 	dup2(fd, STDOUT_FILENO);
 	close(fd);

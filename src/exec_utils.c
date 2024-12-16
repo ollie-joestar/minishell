@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 10:49:02 by oohnivch          #+#    #+#             */
-/*   Updated: 2024/12/02 20:12:18 by hanjkim          ###   ########.fr       */
+/*   Updated: 2024/12/16 14:00:56 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,14 +31,6 @@ void	safe_close(int fd)
 			ft_putchar_fd('\n', 2);
 		}
 	}
-}
-
-void	check_exit_status(t_data *data, int exit_status)
-{
-	if (WIFEXITED(exit_status))
-		data->status = WEXITSTATUS(exit_status);
-	else if (WIFSIGNALED(exit_status))
-		data->status = WTERMSIG(exit_status) + 128;
 }
 
 int	fork1(t_data *data)
@@ -84,4 +76,20 @@ size_t	exec_len(t_exec *exec)
 		tmp = tmp->next;
 	}
 	return (len);
+}
+
+int	exec_has_cmd(t_exec *exec)
+{
+	t_exec	*tmp;
+
+	tmp = exec;
+	while (tmp && tmp->prev)
+		tmp = tmp->prev;
+	while (tmp)
+	{
+		if (tmp->type == CMD)
+			return (1);
+		tmp = tmp->next;
+	}
+	return (0);
 }
