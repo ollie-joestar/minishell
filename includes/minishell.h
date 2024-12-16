@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 14:07:19 by oohnivch          #+#    #+#             */
-/*   Updated: 2024/12/16 15:07:52 by hanjkim          ###   ########.fr       */
+/*   Updated: 2024/12/16 17:50:33 by hanjkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -176,6 +176,8 @@ int	handle_dollar_exp(t_data *data, t_expander *expander);
 int	handle_variable_exp(t_data *data, char *word, t_expander *expander);
 int	handle_regular_char(char c, t_expander *expander);
 int	handle_special_dollar(t_data *data, char *word, t_expander *expander);
+t_token	*handle_heredoc(t_data *data, t_token *redirection_token,
+			t_token *filename_token);
 
 // Parser utils
 void	*ft_realloc(void *str, size_t old_size, size_t new_size);

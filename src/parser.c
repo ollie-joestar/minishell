@@ -6,7 +6,7 @@
 /*   By: hanjkim <@student.42vienna.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 18:49:14 by hanjkim           #+#    #+#             */
-/*   Updated: 2024/12/16 16:28:33 by oohnivch         ###   ########.fr       */
+/*   Updated: 2024/12/16 17:51:58 by hanjkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,6 @@ void	process_redirection(t_data *data, t_token **token)
 {
 	t_token	*redirection_token;
 	t_token	*filename_token;
-	char	*temp_word;
-	char	*here_result;
-	int		to_expand;
 
 	redirection_token = *token;
 	filename_token = redirection_token->next;
@@ -54,22 +51,8 @@ void	process_redirection(t_data *data, t_token **token)
 		bruh(data, "Expected filename after redirection", 2);
 	filename_token->type = redirection_token->type;
 	if (redirection_token->type == HEREDOC)
-	{
-		to_expand = (filename_token->segments->double_quoted ||
-					filename_token->segments->single_quoted);
-		temp_word = join_segments(filename_token);
-		if (!temp_word)
-			bruh(data, "Failed to join filename segments for HEREDOC", 2);
-		here_result = here_doc(data, temp_word, to_expand);
-		ft_free(&temp_word);
-		free_token_node(&filename_token);
-		filename_token = create_token_from_string(here_result);
-		ft_free(&here_result);
-		if (!filename_token)
-			bruh(data, "Failed to create token from here_doc result", 2);
-		filename_token->type = HEREDOC;
-		filename_token->next = redirection_token->next;
-	}
+		filename_token = handle_heredoc(data, redirection_token,
+				filename_token);
 	filename_token->prev = redirection_token->prev;
 	if (filename_token->next)
 		filename_token->next->prev = filename_token;

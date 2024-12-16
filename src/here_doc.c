@@ -6,11 +6,35 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 13:39:47 by oohnivch          #+#    #+#             */
-/*   Updated: 2024/12/16 16:29:24 by oohnivch         ###   ########.fr       */
+/*   Updated: 2024/12/16 17:49:59 by hanjkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
+
+t_token *handle_heredoc(t_data *data, t_token *redirection_token,
+						t_token *filename_token)
+{
+	int	to_expand;
+	char *temp_word;
+	char *here_result;
+
+	to_expand = (filename_token->segments->double_quoted
+			|| filename_token->segments->single_quoted);
+	temp_word = join_segments(filename_token);
+	if (!temp_word)
+		bruh(data, "Failed to join filename segments for HEREDOC", 2);
+	here_result = here_doc(data, temp_word, to_expand);
+	ft_free(&temp_word);
+	free_token_node(&filename_token);
+	filename_token = create_token_from_string(here_result);
+	ft_free(&here_result);
+	if (!filename_token)
+		bruh(data, "Failed to create token from here_doc result", 2);
+	filename_token->type = HEREDOC;
+	filename_token->next = redirection_token->next;
+	return (filename_token);
+}
 
 char	*random_name(void)
 {

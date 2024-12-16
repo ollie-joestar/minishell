@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 11:08:52 by oohnivch          #+#    #+#             */
-/*   Updated: 2024/12/16 16:48:09 by oohnivch         ###   ########.fr       */
+/*   Updated: 2024/12/16 17:42:50 by hanjkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,20 +79,16 @@ void	free_env_node(t_envlist *env)
 	env = NULL;
 }
 
-void	free_segment(t_segment **seg)
+void free_segment(t_segment **seg)
 {
-	t_segment	*tmp;
-
-	if (!seg || !*seg)
-		return ;
-	while (seg)
+    t_segment *next;
+	while (*seg)
 	{
+		next = (*seg)->next;
 		if ((*seg)->text)
-			ft_free(&(*seg)->text);
-		tmp = *seg;
-		*seg = (*seg)->next;
-		free(tmp);
-		tmp = NULL;
+			free((*seg)->text);
+		free(*seg);
+		*seg = next;
 	}
 }
 
@@ -101,10 +97,10 @@ void	free_old_token(t_token *token)
 {
 	if (!token)
 		return ;
+	if (token->segments)
+		free_segment(&token->segments);
 	if (token->word)
 		ft_free(&token->word);
-	/*if (token->segments)*/
-	/*	free_segment(&token->segments);*/
 	free(token);
 	token = NULL;
 }
@@ -120,8 +116,8 @@ void	free_token_node(t_token **token)
 		(*token)->next->prev = (*token)->prev;
 	if ((*token)->word)
 		ft_free(&(*token)->word);
-	/*if ((*token)->segments)*/
-	/*	free_segment(&(*token)->segments);*/
+	if ((*token)->segments)
+		free_segment(&(*token)->segments);
 	free(*token);
 	*token = NULL;
 }
