@@ -6,7 +6,7 @@
 /*   By: hanjkim <@student.42vienna.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 18:06:16 by hanjkim           #+#    #+#             */
-/*   Updated: 2024/12/08 20:35:37 by hanjkim          ###   ########.fr       */
+/*   Updated: 2024/12/16 13:18:42 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,6 @@ void	unexpected_token(t_data *data, char *str)
 
 bool	valid_syntax(t_data *data, t_token *token)
 {
-	char	*joined;
-
 	if (pipe_in_front(token))
 		return (unexpected_token_with_join(data, token));
 	while (token != NULL)
