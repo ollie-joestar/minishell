@@ -1,6 +1,0 @@
-cat: tmp_redir_out: No such file or directory
-cat: tmp_redir_out1: No such file or directory
-cat: tmp_redir_out2: No such file or directory
-rm: cannot remove 'tmp_redir_out': No such file or directory
-rm: cannot remove 'tmp_redir_out1': No such file or directory
-rm: cannot remove 'tmp_redir_out2': No such file or directory
