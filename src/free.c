@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 11:08:52 by oohnivch          #+#    #+#             */
-/*   Updated: 2024/12/16 17:42:50 by hanjkim          ###   ########.fr       */
+/*   Updated: 2024/12/16 18:52:54 by hanjkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,9 +79,10 @@ void	free_env_node(t_envlist *env)
 	env = NULL;
 }
 
-void free_segment(t_segment **seg)
+void	free_segment(t_segment **seg)
 {
-    t_segment *next;
+	t_segment	*next;
+
 	while (*seg)
 	{
 		next = (*seg)->next;

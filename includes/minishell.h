@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 14:07:19 by oohnivch          #+#    #+#             */
-/*   Updated: 2024/12/16 17:50:33 by hanjkim          ###   ########.fr       */
+/*   Updated: 2024/12/16 18:40:41 by hanjkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -166,6 +166,7 @@ t_token	*split_token(t_token *original_token, t_data *data);
 char	**get_split_words(t_token *original_token, t_data *data);
 void	make_split_tokens(t_split_vars *vars, t_token *o_token, t_data *data);
 char	*join_segments(t_token *token);
+int	append_char_to_segment(t_segment *seg, char c);
 
 // Parser functions
 void	process_tokens(t_data *data);
@@ -255,6 +256,7 @@ void	free_env_list(t_envlist *env);
 void	free_env_node(t_envlist *env);
 void	free_arr(char ***arr);
 void	free_token_node(t_token **token);
+void free_segment(t_segment **seg);
 
 // Debug functions
 void	print_token(t_token *token);

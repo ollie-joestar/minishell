@@ -6,51 +6,11 @@
 /*   By: hanjkim <@student.42vienna.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/29 18:29:01 by hanjkim           #+#    #+#             */
-/*   Updated: 2024/12/08 18:29:00 by hanjkim          ###   ########.fr       */
+/*   Updated: 2024/12/16 18:50:37 by hanjkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-char	*join_segments(t_token *token)
-{
-	size_t		total_len;
-	char		*joined;
-	t_segment	*seg;
-
-	total_len = 0;
-	seg = token->segments;
-	while (seg)
-	{
-		total_len += ft_strlen(seg->text);
-		seg = seg->next;
-	}
-	joined = ft_calloc(total_len + 1, sizeof(char));
-	if (!joined)
-		return (NULL);
-	seg = token->segments;
-	while (seg)
-	{
-		ft_strlcat(joined, seg->text, total_len + 1);
-		seg = seg->next;
-	}
-	return (joined);
-}
-
-void	add_segment_to_token(t_token *token, t_segment *seg)
-{
-	t_segment	*curr;
-
-	curr = token->segments;
-	if (!curr)
-	{
-		token->segments = seg;
-		return ;
-	}
-	while (curr->next)
-		curr = curr->next;
-	curr->next = seg;
-}
 
 void	add_token_to_end(t_token **head, t_token *new_token)
 {
