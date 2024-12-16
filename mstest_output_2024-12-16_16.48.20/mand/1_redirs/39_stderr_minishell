@@ -1,2 +1,0 @@
-cat: '>./test_files/invalid_permission': No such file or directory
-cat: '<missing': No such file or directory

@@ -1,6 +1,0 @@
-tmp_x_file1: Permission denied
-minishell: ./tmp_x_file1: Permission denied
-minishell: tmp_x_file1: Permission denied
-minishell: ./tmp_x_file1: Permission denied
-minishell: tmp_x_file1: Permission denied
-minishell: ./tmp_x_file1: Permission denied
