@@ -6,7 +6,7 @@
 /*   By: hanjkim <@student.42vienna.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 18:37:08 by hanjkim           #+#    #+#             */
-/*   Updated: 2024/12/16 18:45:16 by hanjkim          ###   ########.fr       */
+/*   Updated: 2024/12/16 20:48:44 by hanjkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,10 @@ char	*join_segments(t_token *token)
 	seg = token->segments;
 	while (seg)
 	{
-		total_len += ft_strlen(seg->text);
+		if (seg->text)
+			total_len += ft_strlen(seg->text);
+		else
+			total_len += 0;
 		seg = seg->next;
 	}
 	joined = ft_calloc(total_len + 1, sizeof(char));
@@ -31,7 +34,8 @@ char	*join_segments(t_token *token)
 	seg = token->segments;
 	while (seg)
 	{
-		ft_strlcat(joined, seg->text, total_len + 1);
+		if (seg->text)
+			ft_strlcat(joined, seg->text, total_len + 1);
 		seg = seg->next;
 	}
 	return (joined);

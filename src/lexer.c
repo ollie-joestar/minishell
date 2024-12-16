@@ -6,7 +6,7 @@
 /*   By: hanjkim <@student.42vienna.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 20:21:09 by hanjkim           #+#    #+#             */
-/*   Updated: 2024/12/08 20:21:00 by hanjkim          ###   ########.fr       */
+/*   Updated: 2024/12/16 20:42:54 by hanjkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void	parse_line(t_data *data)
 		free_tokens(data);
 	data->token = NULL;
 	parse_tokens(data);
+	set_tokens_type(data->token);
 	split_tokens(data);
 	replace_tokens(data);
-	set_tokens_type(data->token);
 }

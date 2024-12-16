@@ -6,7 +6,7 @@
 /*   By: hanjkim <@student.42vienna.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 18:49:14 by hanjkim           #+#    #+#             */
-/*   Updated: 2024/12/16 17:51:58 by hanjkim          ###   ########.fr       */
+/*   Updated: 2024/12/16 21:31:01 by hanjkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,25 +48,43 @@ void	process_redirection(t_data *data, t_token **token)
 	redirection_token = *token;
 	filename_token = redirection_token->next;
 	if (!filename_token)
-		bruh(data, "Expected filename after redirection", 2);
-	filename_token->type = redirection_token->type;
+	{
+		unexpected_token(data, NULL);
+		return ;
+	}
+	filename_token->type = WORD;
 	if (redirection_token->type == HEREDOC)
+	{
 		filename_token = handle_heredoc(data, redirection_token,
 				filename_token);
+		if (!filename_token)
+			return ;
+	}
 	filename_token->prev = redirection_token->prev;
 	if (filename_token->next)
 		filename_token->next->prev = filename_token;
 	if (filename_token->prev)
 		filename_token->prev->next = filename_token;
+	else
+		data->token = filename_token;
 	free_old_token(redirection_token);
 	*token = filename_token;
 }
 
 char	*expand_segment(t_data *data, t_segment *seg)
 {
+	char	*expanded;
+
 	if (seg->single_quoted)
 		return (ft_strdup(seg->text));
-	return (expand(data, seg->text));
+	expanded = expand(data, seg->text);
+	if (!expanded)
+	{
+		expanded = ft_strdup("");
+		if (!expanded)
+			return (NULL);
+	}
+	return (expanded);
 }
 
 void	expand_tokens(t_data *data)
@@ -82,7 +100,9 @@ void	expand_tokens(t_data *data)
 		while (seg)
 		{
 			expanded = expand_segment(data, seg);
-			if (expanded)
+			if (!expanded)
+				return ;
+			else
 			{
 				ft_free(&seg->text);
 				seg->text = expanded;
