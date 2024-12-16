@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 13:39:47 by oohnivch          #+#    #+#             */
-/*   Updated: 2024/12/16 15:03:18 by oohnivch         ###   ########.fr       */
+/*   Updated: 2024/12/16 15:08:03 by hanjkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ char	*random_name(void)
 	return (name);
 }
 
-char	*here_doc(t_data *data, char *l, int *to_expand)
+char	*here_doc(t_data *data, char *l, int to_expand)
 {
 	int		fd;
 	char	*line;

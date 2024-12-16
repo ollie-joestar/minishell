@@ -6,7 +6,7 @@
 /*   By: hanjkim <@student.42vienna.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 18:49:14 by hanjkim           #+#    #+#             */
-/*   Updated: 2024/12/08 20:42:20 by hanjkim          ###   ########.fr       */
+/*   Updated: 2024/12/16 15:10:40 by hanjkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ void	process_redirection(t_data *data, t_token **token)
 	t_token	*filename_token;
 	char	*temp_word;
 	char	*here_result;
+	int		to_expand;
 
 	redirection_token = *token;
 	filename_token = redirection_token->next;
@@ -57,10 +58,14 @@ void	process_redirection(t_data *data, t_token **token)
 	filename_token->prev = redirection_token->prev;
 	if (redirection_token->type == HEREDOC)
 	{
+		if (filename_token->word[0] == '\'')
+			to_expand = 0;
+		else
+			to_expand = 1;
 		temp_word = join_segments(filename_token);
 		if (!temp_word)
 			bruh(data, "Failed to join filename segments for HEREDOC", 2);
-		here_result = here_doc(data, temp_word);
+		here_result = here_doc(data, temp_word, to_expand);
 		free(temp_word);
 		free_tokens(data);
 		filename_token = create_token_from_string(here_result);
