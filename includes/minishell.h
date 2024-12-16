@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 14:07:19 by oohnivch          #+#    #+#             */
-/*   Updated: 2024/12/16 14:01:16 by oohnivch         ###   ########.fr       */
+/*   Updated: 2024/12/16 15:01:59 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -241,7 +241,7 @@ void		init_exec_data(t_data *data);
 
 // HereDoc
 char	*random_name(void);
-char	*here_doc(t_data *data, char *l);
+char	*here_doc(t_data *data, char *l, int *to_expand);
 void	expand_var_in_str(t_data *data, char **str);
 // General utils
 void	bruh(t_data *data, char *s, int status);
