@@ -1,0 +1,194 @@
+Parsing line->
+
+Printing exec data->
+Printing exec [0]
+	Type: BUILTIN
+	Command: echo
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: NULL
+	Next: /bin/cat
+	Arguments: [echo][test]
+Printing exec [1]
+	Type: CMD
+	Command: /bin/cat
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: echo
+	Next: /bin/cat
+	Arguments: [cat][-e]
+Printing exec [2]
+	Type: CMD
+	Command: /bin/cat
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/cat
+	Next: /bin/cat
+	Arguments: [cat][-e]
+Printing exec [3]
+	Type: CMD
+	Command: /bin/cat
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/cat
+	Next: /bin/cat
+	Arguments: [cat][-e]
+Printing exec [4]
+	Type: CMD
+	Command: /bin/cat
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/cat
+	Next: /bin/cat
+	Arguments: [cat][-e]
+Printing exec [5]
+	Type: CMD
+	Command: /bin/cat
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/cat
+	Next: /bin/cat
+	Arguments: [cat][-e]
+Printing exec [6]
+	Type: CMD
+	Command: /bin/cat
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/cat
+	Next: /bin/cat
+	Arguments: [cat][-e]
+Printing exec [7]
+	Type: CMD
+	Command: /bin/cat
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/cat
+	Next: /bin/cat
+	Arguments: [cat][-e]
+Printing exec [8]
+	Type: CMD
+	Command: /bin/cat
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/cat
+	Next: /bin/cat
+	Arguments: [cat][-e]
+Printing exec [9]
+	Type: CMD
+	Command: /bin/cat
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/cat
+	Next: /bin/cat
+	Arguments: [cat][-e]
+Printing exec [10]
+	Type: CMD
+	Command: /bin/cat
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/cat
+	Next: /bin/cat
+	Arguments: [cat][-e]
+Printing exec [11]
+	Type: CMD
+	Command: /bin/cat
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/cat
+	Next: /bin/cat
+	Arguments: [cat][-e]
+Printing exec [12]
+	Type: CMD
+	Command: /bin/cat
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/cat
+	Next: /bin/cat
+	Arguments: [cat][-e]
+Printing exec [13]
+	Type: CMD
+	Command: /bin/cat
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/cat
+	Next: /bin/cat
+	Arguments: [cat][-e]
+Printing exec [14]
+	Type: CMD
+	Command: /bin/cat
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/cat
+	Next: /bin/cat
+	Arguments: [cat][-e]
+Printing exec [15]
+	Type: CMD
+	Command: /bin/cat
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/cat
+	Next: /bin/cat
+	Arguments: [cat][-e]
+Printing exec [16]
+	Type: CMD
+	Command: /bin/cat
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/cat
+	Next: /bin/cat
+	Arguments: [cat][-e]
+Printing exec [17]
+	Type: CMD
+	Command: /bin/cat
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/cat
+	Next: /bin/cat
+	Arguments: [cat][-e]
+Printing exec [18]
+	Type: CMD
+	Command: /bin/cat
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/cat
+	Next: /bin/cat
+	Arguments: [cat][-e]
+Printing exec [19]
+	Type: CMD
+	Command: /bin/cat
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/cat
+	Next: /bin/cat
+	Arguments: [cat][-e]
+Printing exec [20]
+	Type: CMD
+	Command: /bin/cat
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/cat
+	Next: NULL
+	Arguments: [cat][-e]
+Executing->
+test$$$$$$$$$$$$$$$$$$$$

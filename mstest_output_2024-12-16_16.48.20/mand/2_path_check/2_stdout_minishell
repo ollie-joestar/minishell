@@ -1,0 +1,108 @@
+Parsing line->
+
+Printing exec data->
+Printing exec [0]
+	Type: BUILTIN
+	Command: unset
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: NULL
+	Next: NULL
+	Arguments: [unset][PATH]
+Executing->
+Parsing line->
+
+Printing exec data->
+Printing exec [0]
+	Type: BUILTIN
+	Command: echo
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: NULL
+	Next: NULL
+	Arguments: [echo][42]
+Executing->
+42
+Parsing line->
+
+Printing exec data->
+Printing exec [0]
+	Type: BUILTIN
+	Command: unset
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: NULL
+	Next: NULL
+	Arguments: [unset][PATH]
+Executing->
+Parsing line->
+
+Printing exec data->
+Printing exec [0]
+	Type: BUILTIN
+	Command: unset
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: NULL
+	Next: NULL
+	Arguments: [unset][PATH]
+Executing->
+Parsing line->
+
+Printing exec data->
+Printing exec [0]
+	Type: BUILTIN
+	Command: unset
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: NULL
+	Next: NULL
+	Arguments: [unset][PATH]
+Executing->
+Parsing line->
+
+Printing exec data->
+Printing exec [0]
+	Type: BUILTIN
+	Command: echo
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: NULL
+	Next: NULL
+	Arguments: [echo][]
+Executing->
+
+Parsing line->
+
+Printing exec data->
+Printing exec [0]
+	Type: BUILTIN
+	Command: echo
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: NULL
+	Next: NULL
+	Arguments: [echo][1]
+Executing->
+1
+Parsing line->
+
+Printing exec data->
+Printing exec [0]
+	Type: BUILTIN
+	Command: echo
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: NULL
+	Next: NULL
+	Arguments: [echo][42]
+Executing->
+42

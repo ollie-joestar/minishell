@@ -1,0 +1,22 @@
+Parsing line->
+
+Printing exec data->
+Printing exec [0]
+	Type: CMD
+	Command: /bin/cat
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: NULL
+	Next: /bin/grep
+	Arguments: [cat][./test_files/infile_big]
+Printing exec [1]
+	Type: CMD
+	Command: /bin/grep
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/cat
+	Next: NULL
+	Arguments: [grep][oi]
+Executing->

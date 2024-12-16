@@ -1,0 +1,80 @@
+Parsing line->
+
+Printing exec data->
+Printing exec [0]
+	Type: BUILTIN
+	Command: export
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: NULL
+	Next: NULL
+	Arguments: [export][test=arg1	arg2]
+Executing->
+Parsing line->
+
+Printing exec data->
+Printing exec [0]
+	Type: BUILTIN
+	Command: echo
+	Input: NULL
+	Output: tmp_test_sh
+	Pipe: 0 0
+	Prev: NULL
+	Next: NULL
+	Arguments: [echo][echo $1]
+Executing->
+Parsing line->
+
+Printing exec data->
+Printing exec [0]
+	Type: CMD
+	Command: /bin/bash
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: NULL
+	Next: NULL
+	Arguments: [bash][tmp_test_sh][arg1	arg2]
+Executing->
+arg1 arg2
+Parsing line->
+
+Printing exec data->
+Printing exec [0]
+	Type: BUILTIN
+	Command: echo
+	Input: NULL
+	Output: tmp_test_sh
+	Pipe: 0 0
+	Prev: NULL
+	Next: NULL
+	Arguments: [echo][echo $2]
+Executing->
+Parsing line->
+
+Printing exec data->
+Printing exec [0]
+	Type: CMD
+	Command: /bin/bash
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: NULL
+	Next: NULL
+	Arguments: [bash][tmp_test_sh][arg1	arg2]
+Executing->
+
+Parsing line->
+
+Printing exec data->
+Printing exec [0]
+	Type: CMD
+	Command: /bin/rm
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: NULL
+	Next: NULL
+	Arguments: [rm][-f][tmp_test_sh]
+Executing->

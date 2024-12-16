@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 10:10:42 by oohnivch          #+#    #+#             */
-/*   Updated: 2024/12/08 14:39:38 by hanjkim          ###   ########.fr       */
+/*   Updated: 2024/12/16 15:29:55 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,15 @@ void	print_token(t_token *token)
 	printf("Printing token\n");
 	if (!token)
 		return ;
-	ft_printf("\tToken: %s\n", token->word);
-	ft_printf("\tType: %d\n", token->type);
+	ft_printf("\tToken word: %s\n", token->word);
+	ft_printf("\tSegments: ");
+	t_segment	*seg = token->segments;
+	while (seg)
+	{
+		ft_printf("[%s]", seg->text);
+		seg = seg->next;
+	}
+	ft_printf("\n\tType: %d\n", token->type);
 	ft_printf("\tPrev: %s\n", token->prev ? token->prev->word : "NULL");
 	ft_printf("\tNext: %s\n", token->next ? token->next->word : "NULL");
 }

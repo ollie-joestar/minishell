@@ -1,0 +1,23 @@
+Parsing line->
+
+Printing exec data->
+Printing exec [0]
+	Type: CMD
+	Command: /bin/echo
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: NULL
+	Next: /bin/echo
+	Arguments: [/bin/echo][hi][>./outfiles/outfile01]
+Printing exec [1]
+	Type: CMD
+	Command: /bin/echo
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/echo
+	Next: NULL
+	Arguments: [/bin/echo][bye]
+Executing->
+bye

@@ -1,0 +1,104 @@
+Parsing line->
+
+Printing exec data->
+Printing exec [0]
+	Type: CMD
+	Command: <<lim
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: NULL
+	Next: NULL
+	Arguments: [<<lim][cat]
+Executing->
+Parsing line->
+
+Printing exec data->
+Printing exec [0]
+	Type: CMD
+	Command: lim
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: NULL
+	Next: NULL
+	Arguments: [lim]
+Executing->
+Parsing line->
+
+Printing exec data->
+Printing exec [0]
+	Type: CMD
+	Command: HELLO
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: NULL
+	Next: NULL
+	Arguments: [HELLO]
+Executing->
+Parsing line->
+
+Printing exec data->
+Printing exec [0]
+	Type: CMD
+	Command: 42
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: NULL
+	Next: NULL
+	Arguments: [42]
+Executing->
+Parsing line->
+
+Printing exec data->
+Printing exec [0]
+	Type: CMD
+	Command: lim
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: NULL
+	Next: NULL
+	Arguments: [lim]
+Executing->
+Parsing line->
+
+Printing exec data->
+Printing exec [0]
+	Type: CMD
+	Command: testing
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: NULL
+	Next: NULL
+	Arguments: [testing][your][minishell]
+Executing->
+Parsing line->
+
+Printing exec data->
+Printing exec [0]
+	Type: CMD
+	Command: limm
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: NULL
+	Next: NULL
+	Arguments: [limm]
+Executing->
+Parsing line->
+
+Printing exec data->
+Printing exec [0]
+	Type: CMD
+	Command: lim
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: NULL
+	Next: NULL
+	Arguments: [lim]
+Executing->

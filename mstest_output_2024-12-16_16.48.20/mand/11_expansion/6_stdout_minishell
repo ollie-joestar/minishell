@@ -1,0 +1,26 @@
+Parsing line->
+
+Printing exec data->
+Printing exec [0]
+	Type: BUILTIN
+	Command: export
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: NULL
+	Next: NULL
+	Arguments: [export][A="echo hi"]
+Executing->
+Parsing line->
+
+Printing exec data->
+Printing exec [0]
+	Type: CMD
+	Command: "echo hi"
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: NULL
+	Next: NULL
+	Arguments: ["echo hi"]
+Executing->

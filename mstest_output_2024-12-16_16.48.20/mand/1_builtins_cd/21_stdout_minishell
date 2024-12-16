@@ -1,0 +1,13 @@
+Parsing line->
+
+Printing exec data->
+Printing exec [0]
+	Type: BUILTIN
+	Command: cd
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: NULL
+	Next: NULL
+	Arguments: [cd][woof]
+Executing->

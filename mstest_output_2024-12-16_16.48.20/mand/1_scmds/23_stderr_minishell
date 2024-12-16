@@ -1,0 +1,2 @@
+cat: '<./whatever': No such file or directory
+cat: '>./whatever': No such file or directory

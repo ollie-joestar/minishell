@@ -1,0 +1,39 @@
+Parsing line->
+
+Printing exec data->
+Printing exec [0]
+	Type: CMD
+	Command: ls|cat
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: NULL
+	Next: NULL
+	Arguments: [ls|cat][Makefile|>][out]
+Executing->
+Parsing line->
+
+Printing exec data->
+Printing exec [0]
+	Type: CMD
+	Command: /bin/cat
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: NULL
+	Next: NULL
+	Arguments: [cat][out]
+Executing->
+Parsing line->
+
+Printing exec data->
+Printing exec [0]
+	Type: CMD
+	Command: /bin/rm
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: NULL
+	Next: NULL
+	Arguments: [/bin/rm][-f][out]
+Executing->

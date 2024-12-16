@@ -1,0 +1,17 @@
+Parsing line->
+
+Printing exec data->
+Printing exec [0]
+	Type: CMD
+	Command: /bin/cat
+	Input: /tmp/bfe1c878bd0c44104c5d568d093b30d
+	Output: NULL
+	Pipe: 0 0
+	Prev: NULL
+	Next: NULL
+	Arguments: [cat]
+Executing->
+because
+we
+love
+bash

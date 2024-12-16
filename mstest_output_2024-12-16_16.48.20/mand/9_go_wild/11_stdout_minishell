@@ -1,0 +1,37 @@
+Parsing line->
+
+Printing exec data->
+Printing exec [0]
+	Type: BUILTIN
+	Command: export
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: NULL
+	Next: echo
+	Arguments: [export][pipe_var=1]
+Printing exec [1]
+	Type: BUILTIN
+	Command: echo
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: export
+	Next: NULL
+	Arguments: [echo][]
+Executing->
+
+Parsing line->
+
+Printing exec data->
+Printing exec [0]
+	Type: BUILTIN
+	Command: echo
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: NULL
+	Next: NULL
+	Arguments: [echo][]
+Executing->
+

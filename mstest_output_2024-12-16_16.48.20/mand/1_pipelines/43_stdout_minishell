@@ -1,0 +1,22 @@
+Parsing line->
+
+Printing exec data->
+Printing exec [0]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: NULL
+	Next: /bin/awk
+	Arguments: [ls][-l]
+Printing exec [1]
+	Type: CMD
+	Command: /bin/awk
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: NULL
+	Arguments: [awk][$1 ~ /^d/ {print $9}]
+Executing->

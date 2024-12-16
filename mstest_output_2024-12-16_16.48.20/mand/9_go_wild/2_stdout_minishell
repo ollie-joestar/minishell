@@ -1,0 +1,32 @@
+Parsing line->
+
+Printing exec data->
+Printing exec [0]
+	Type: CMD
+	Command: /bin/yes
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: NULL
+	Next: /bin/head
+	Arguments: [yes][no]
+Printing exec [1]
+	Type: CMD
+	Command: /bin/head
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/yes
+	Next: NULL
+	Arguments: [head][-n][10]
+Executing->
+no
+no
+no
+no
+no
+no
+no
+no
+no
+no

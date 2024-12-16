@@ -1,0 +1,91 @@
+Parsing line->
+
+Printing exec data->
+Printing exec [0]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: NULL
+	Next: /bin/cat
+	Arguments: [ls]
+Printing exec [1]
+	Type: CMD
+	Command: /bin/cat
+	Input: /tmp/640aa201a21c7de88eee1b5d8810265
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [cat]
+Printing exec [2]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/cat
+	Next: /bin/cat
+	Arguments: [ls][-la]
+Printing exec [3]
+	Type: CMD
+	Command: /bin/cat
+	Input: /tmp/982701bc539248e129abece0e41b3fc
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [cat]
+Printing exec [4]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/cat
+	Next: /bin/cat
+	Arguments: [ls]
+Printing exec [5]
+	Type: CMD
+	Command: /bin/cat
+	Input: /tmp/a752d1b0dc0b64d007eac3951f4f213
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [cat]
+Printing exec [6]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: out
+	Pipe: 0 0
+	Prev: /bin/cat
+	Next: /bin/cat
+	Arguments: [ls][-la]
+Printing exec [7]
+	Type: CMD
+	Command: /bin/cat
+	Input: /tmp/c05944b31b882befb853041ef999f7a
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: NULL
+	Arguments: [cat]
+Executing->
+/home/oohnivch
+
+Parsing line->
+
+Printing exec data->
+Printing exec [0]
+	Type: CMD
+	Command: /bin/rm
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: NULL
+	Next: NULL
+	Arguments: [/bin/rm][-f][out]
+Executing->

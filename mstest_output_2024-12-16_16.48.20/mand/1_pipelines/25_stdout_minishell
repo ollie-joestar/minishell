@@ -1,0 +1,31 @@
+Parsing line->
+
+Printing exec data->
+Printing exec [0]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: NULL
+	Next: /bin/cat
+	Arguments: [ls]
+Printing exec [1]
+	Type: CMD
+	Command: /bin/cat
+	Input: /tmp/fc83d404a20a5907add6fb61a062be0
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/grep
+	Arguments: [cat]
+Printing exec [2]
+	Type: CMD
+	Command: /bin/grep
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/cat
+	Next: NULL
+	Arguments: [grep][asd]
+Executing->

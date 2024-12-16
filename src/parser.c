@@ -6,7 +6,7 @@
 /*   By: hanjkim <@student.42vienna.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 18:49:14 by hanjkim           #+#    #+#             */
-/*   Updated: 2024/12/16 15:10:40 by hanjkim          ###   ########.fr       */
+/*   Updated: 2024/12/16 16:28:33 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,35 +53,29 @@ void	process_redirection(t_data *data, t_token **token)
 	if (!filename_token)
 		bruh(data, "Expected filename after redirection", 2);
 	filename_token->type = redirection_token->type;
-	if (redirection_token->prev)
-		redirection_token->prev->next = filename_token;
-	filename_token->prev = redirection_token->prev;
 	if (redirection_token->type == HEREDOC)
 	{
-		if (filename_token->word[0] == '\'')
-			to_expand = 0;
-		else
-			to_expand = 1;
+		to_expand = (filename_token->segments->double_quoted ||
+					filename_token->segments->single_quoted);
 		temp_word = join_segments(filename_token);
 		if (!temp_word)
 			bruh(data, "Failed to join filename segments for HEREDOC", 2);
 		here_result = here_doc(data, temp_word, to_expand);
-		free(temp_word);
-		free_tokens(data);
+		ft_free(&temp_word);
+		free_token_node(&filename_token);
 		filename_token = create_token_from_string(here_result);
-		free(here_result);
-		if (redirection_token->prev)
-			redirection_token->prev->next = filename_token;
-		if (filename_token)
-			filename_token->prev = redirection_token->prev;
+		ft_free(&here_result);
+		if (!filename_token)
+			bruh(data, "Failed to create token from here_doc result", 2);
+		filename_token->type = HEREDOC;
+		filename_token->next = redirection_token->next;
 	}
-	if (redirection_token->next && redirection_token->next->next)
-		filename_token->next = redirection_token->next->next;
-	else
-		filename_token->next = NULL;
+	filename_token->prev = redirection_token->prev;
 	if (filename_token->next)
 		filename_token->next->prev = filename_token;
-	free_token_node(&redirection_token);
+	if (filename_token->prev)
+		filename_token->prev->next = filename_token;
+	free_old_token(redirection_token);
 	*token = filename_token;
 }
 

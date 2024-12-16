@@ -1,0 +1,6368 @@
+Parsing line->
+
+Printing exec data->
+Printing exec [0]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: NULL
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [1]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [2]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [3]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [4]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [5]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [6]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [7]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [8]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [9]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [10]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [11]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [12]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [13]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [14]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [15]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [16]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [17]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [18]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [19]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [20]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [21]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [22]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [23]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [24]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [25]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [26]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [27]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [28]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [29]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [30]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [31]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [32]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [33]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [34]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [35]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [36]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [37]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [38]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [39]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [40]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [41]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [42]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [43]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [44]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [45]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [46]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [47]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [48]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [49]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [50]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [51]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [52]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [53]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [54]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [55]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [56]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [57]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [58]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [59]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [60]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [61]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [62]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [63]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [64]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [65]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [66]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [67]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [68]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [69]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [70]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [71]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [72]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [73]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [74]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [75]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [76]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [77]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [78]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [79]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [80]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [81]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [82]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [83]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [84]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [85]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [86]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [87]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [88]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [89]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [90]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [91]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [92]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [93]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [94]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [95]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [96]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [97]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [98]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [99]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [100]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [101]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [102]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [103]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [104]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [105]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [106]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [107]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [108]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [109]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [110]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [111]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [112]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [113]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [114]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [115]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [116]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [117]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [118]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [119]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [120]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [121]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [122]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [123]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [124]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [125]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [126]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [127]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [128]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [129]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [130]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [131]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [132]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [133]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [134]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [135]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [136]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [137]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [138]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [139]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [140]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [141]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [142]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [143]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [144]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [145]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [146]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [147]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [148]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [149]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [150]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [151]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [152]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [153]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [154]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [155]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [156]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [157]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [158]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [159]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [160]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [161]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [162]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [163]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [164]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [165]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [166]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [167]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [168]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [169]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [170]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [171]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [172]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [173]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [174]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [175]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [176]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [177]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [178]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [179]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [180]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [181]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [182]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [183]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [184]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [185]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [186]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [187]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [188]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [189]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [190]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [191]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [192]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [193]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [194]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [195]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [196]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [197]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [198]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [199]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [200]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [201]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [202]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [203]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [204]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [205]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [206]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [207]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [208]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [209]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [210]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [211]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [212]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [213]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [214]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [215]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [216]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [217]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [218]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [219]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [220]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [221]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [222]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [223]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [224]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [225]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [226]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [227]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [228]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [229]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [230]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [231]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [232]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [233]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [234]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [235]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [236]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [237]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [238]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [239]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [240]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [241]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [242]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [243]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [244]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [245]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [246]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [247]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [248]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [249]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [250]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [251]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [252]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [253]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [254]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [255]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [256]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [257]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [258]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [259]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [260]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [261]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [262]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [263]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [264]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [265]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [266]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [267]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [268]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [269]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [270]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [271]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [272]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [273]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [274]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [275]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [276]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [277]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [278]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [279]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [280]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [281]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [282]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [283]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [284]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [285]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [286]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [287]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [288]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [289]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [290]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [291]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [292]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [293]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [294]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [295]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [296]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [297]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [298]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [299]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [300]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [301]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [302]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [303]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [304]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [305]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [306]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [307]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [308]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [309]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [310]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [311]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [312]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [313]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [314]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [315]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [316]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [317]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [318]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [319]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [320]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [321]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [322]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [323]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [324]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [325]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [326]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [327]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [328]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [329]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [330]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [331]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [332]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [333]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [334]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [335]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [336]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [337]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [338]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [339]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [340]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [341]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [342]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [343]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [344]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [345]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [346]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [347]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [348]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [349]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [350]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [351]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [352]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [353]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [354]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [355]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [356]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [357]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [358]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [359]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [360]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [361]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [362]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [363]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [364]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [365]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [366]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [367]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [368]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [369]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [370]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [371]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [372]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [373]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [374]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [375]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [376]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [377]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [378]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [379]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [380]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [381]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [382]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [383]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [384]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [385]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [386]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [387]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [388]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [389]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [390]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [391]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [392]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [393]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [394]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [395]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [396]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [397]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [398]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [399]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [400]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [401]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [402]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [403]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [404]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [405]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [406]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [407]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [408]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [409]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [410]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [411]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [412]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [413]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [414]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [415]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [416]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [417]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [418]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [419]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [420]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [421]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [422]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [423]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [424]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [425]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [426]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [427]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [428]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [429]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [430]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [431]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [432]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [433]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [434]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [435]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [436]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [437]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [438]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [439]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [440]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [441]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [442]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [443]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [444]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [445]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [446]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [447]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [448]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [449]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [450]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [451]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [452]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [453]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [454]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [455]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [456]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [457]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [458]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [459]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [460]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [461]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [462]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [463]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [464]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [465]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [466]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [467]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [468]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [469]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [470]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [471]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [472]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [473]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [474]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [475]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [476]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [477]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [478]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [479]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [480]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [481]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [482]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [483]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [484]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [485]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [486]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [487]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [488]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [489]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [490]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [491]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [492]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [493]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [494]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [495]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [496]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [497]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [498]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [499]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [500]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [501]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [502]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [503]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [504]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [505]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [506]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [507]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [508]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [509]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [510]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [511]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [512]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [513]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [514]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [515]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [516]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [517]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [518]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [519]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [520]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [521]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [522]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [523]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [524]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [525]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [526]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [527]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [528]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [529]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [530]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [531]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [532]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [533]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [534]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [535]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [536]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [537]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [538]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [539]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [540]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [541]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [542]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [543]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [544]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [545]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [546]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [547]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [548]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [549]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [550]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [551]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [552]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [553]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [554]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [555]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [556]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [557]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [558]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [559]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [560]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [561]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [562]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [563]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [564]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [565]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [566]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [567]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [568]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [569]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [570]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [571]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [572]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [573]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [574]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [575]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [576]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [577]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [578]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [579]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [580]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [581]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [582]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [583]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [584]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [585]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [586]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [587]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [588]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [589]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [590]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [591]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [592]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [593]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [594]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [595]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [596]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [597]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [598]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [599]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [600]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [601]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [602]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [603]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [604]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [605]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [606]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [607]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [608]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [609]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [610]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [611]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [612]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [613]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [614]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [615]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [616]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [617]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [618]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [619]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [620]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [621]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [622]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [623]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [624]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [625]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [626]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [627]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [628]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [629]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [630]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [631]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [632]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [633]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [634]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [635]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [636]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [637]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [638]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [639]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [640]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [641]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [642]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [643]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [644]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [645]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [646]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [647]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [648]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [649]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [650]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [651]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [652]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [653]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [654]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [655]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [656]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [657]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [658]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [659]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [660]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [661]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [662]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [663]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [664]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [665]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [666]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [667]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [668]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [669]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [670]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [671]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [672]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [673]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [674]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [675]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [676]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [677]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [678]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [679]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [680]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [681]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [682]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [683]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [684]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [685]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [686]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [687]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [688]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [689]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [690]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [691]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [692]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [693]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [694]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [695]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [696]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [697]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [698]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [699]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [700]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [701]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [702]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [703]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [704]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [705]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [ls]
+Printing exec [706]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: NULL
+	Arguments: [ls]
+Executing->
+echo

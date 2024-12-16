@@ -1,0 +1,24 @@
+Parsing line->
+
+Printing exec data->
+Printing exec [0]
+	Type: CMD
+	Command: |ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: NULL
+	Next: /bin/ls
+	Arguments: [|ls]
+Printing exec [1]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: |ls
+	Next: NULL
+	Arguments: [ls]
+Executing->
+echo
+out0|

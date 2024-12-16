@@ -1,0 +1,79 @@
+Parsing line->
+
+Printing exec data->
+Printing exec [0]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: NULL
+	Next: /bin/cat
+	Arguments: [ls]
+Printing exec [1]
+	Type: CMD
+	Command: /bin/cat
+	Input: /tmp/d426bd1246ac16f3318a4134c7b938a
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [cat]
+Printing exec [2]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/cat
+	Next: /bin/cat
+	Arguments: [ls][-la]
+Printing exec [3]
+	Type: CMD
+	Command: /bin/cat
+	Input: /tmp/7d5ecc0f1ff983188f5b248b4588532
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [cat]
+Printing exec [4]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/cat
+	Next: /bin/cat
+	Arguments: [ls]
+Printing exec [5]
+	Type: CMD
+	Command: /bin/cat
+	Input: /tmp/53dc88f90287333771201b52ae2ded2
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/ls
+	Arguments: [cat]
+Printing exec [6]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/cat
+	Next: /bin/cat
+	Arguments: [ls][-la]
+Printing exec [7]
+	Type: CMD
+	Command: /bin/cat
+	Input: /tmp/f5f0de2550fa5cb0c51e10ad7dff485
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: NULL
+	Arguments: [cat]
+Executing->
+dsq
+wd
+wf$PWDdqwdwqd

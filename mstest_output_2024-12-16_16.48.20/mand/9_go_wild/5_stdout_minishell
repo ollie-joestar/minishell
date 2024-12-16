@@ -1,0 +1,112 @@
+Parsing line->
+
+Printing exec data->
+Printing exec [0]
+	Type: CMD
+	Command: /bin/sleep
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: NULL
+	Next: /bin/cat
+	Arguments: [sleep][0]
+Printing exec [1]
+	Type: CMD
+	Command: /bin/cat
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/sleep
+	Next: /bin/cat
+	Arguments: [cat]
+Printing exec [2]
+	Type: CMD
+	Command: /bin/cat
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/cat
+	Next: /bin/cat
+	Arguments: [cat]
+Printing exec [3]
+	Type: CMD
+	Command: /bin/cat
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/cat
+	Next: /bin/cat
+	Arguments: [cat]
+Printing exec [4]
+	Type: CMD
+	Command: /bin/cat
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/cat
+	Next: /bin/cat
+	Arguments: [cat]
+Printing exec [5]
+	Type: CMD
+	Command: /bin/cat
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/cat
+	Next: /bin/cat
+	Arguments: [cat]
+Printing exec [6]
+	Type: CMD
+	Command: /bin/cat
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/cat
+	Next: /bin/cat
+	Arguments: [cat]
+Printing exec [7]
+	Type: CMD
+	Command: /bin/cat
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/cat
+	Next: /bin/cat
+	Arguments: [cat]
+Printing exec [8]
+	Type: CMD
+	Command: /bin/cat
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/cat
+	Next: /bin/cat
+	Arguments: [cat]
+Printing exec [9]
+	Type: CMD
+	Command: /bin/cat
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/cat
+	Next: /bin/cat
+	Arguments: [cat]
+Printing exec [10]
+	Type: CMD
+	Command: /bin/cat
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/cat
+	Next: /bin/cat
+	Arguments: [cat]
+Printing exec [11]
+	Type: CMD
+	Command: /bin/cat
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/cat
+	Next: NULL
+	Arguments: [cat]
+Executing->

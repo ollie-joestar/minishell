@@ -1,0 +1,22 @@
+Parsing line->
+
+Printing exec data->
+Printing exec [0]
+	Type: BUILTIN
+	Command: echo
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: NULL
+	Next: /bin/cat
+	Arguments: [echo][<./test_files/infile_big]
+Printing exec [1]
+	Type: CMD
+	Command: /bin/cat
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: echo
+	Next: NULL
+	Arguments: [cat][./test_files/infile]
+Executing->

@@ -1,0 +1,86 @@
+Parsing line->
+
+Printing exec data->
+Printing exec [0]
+	Type: CMD
+	Command: /bin/echo
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: NULL
+	Next: NULL
+	Arguments: [/bin/echo][]
+Executing->
+
+Parsing line->
+
+Printing exec data->
+Printing exec [0]
+	Type: BUILTIN
+	Command: env
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: NULL
+	Next: /bin/grep
+	Arguments: [env]
+Printing exec [1]
+	Type: CMD
+	Command: /bin/grep
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: env
+	Next: NULL
+	Arguments: [grep][HALLO42]
+Executing->
+Parsing line->
+
+Printing exec data->
+Printing exec [0]
+	Type: BUILTIN
+	Command: export
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: NULL
+	Next: NULL
+	Arguments: [export][HALLO42=42]
+Executing->
+Parsing line->
+
+Printing exec data->
+Printing exec [0]
+	Type: CMD
+	Command: /bin/echo
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: NULL
+	Next: NULL
+	Arguments: [/bin/echo][42]
+Executing->
+42
+Parsing line->
+
+Printing exec data->
+Printing exec [0]
+	Type: BUILTIN
+	Command: env
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: NULL
+	Next: /bin/grep
+	Arguments: [env]
+Printing exec [1]
+	Type: CMD
+	Command: /bin/grep
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: env
+	Next: NULL
+	Arguments: [grep][HALLO42]
+Executing->
+HALLO42=42

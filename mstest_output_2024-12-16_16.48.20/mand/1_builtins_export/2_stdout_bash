@@ -1,0 +1,10 @@
+/home/oohnivch
+HOME=/home/oohnivch
+CARGO_HOME=/sgoinfre/oohnivch/.cargo
+HOME_MAX_SIZE=5
+RUSTUP_HOME=/sgoinfre/oohnivch/.rustup
+42
+HOME=42
+CARGO_HOME=/sgoinfre/oohnivch/.cargo
+HOME_MAX_SIZE=5
+RUSTUP_HOME=/sgoinfre/oohnivch/.rustup

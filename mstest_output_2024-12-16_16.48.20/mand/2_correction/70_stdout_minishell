@@ -1,0 +1,44 @@
+Parsing line->
+
+Printing exec data->
+Printing exec [0]
+	Type: BUILTIN
+	Command: env
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: NULL
+	Next: /bin/grep
+	Arguments: [env]
+Printing exec [1]
+	Type: CMD
+	Command: /bin/grep
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: env
+	Next: NULL
+	Arguments: [grep][oohnivch]
+Executing->
+LD_PRELOAD=/home/oohnivch/42_minishell_tester/utils/libintercept/libintercept.so
+NVM_INC=/home/oohnivch/.nvm/versions/node/v23.1.0/include/node
+TMUX_PLUGIN_MANAGER_PATH=/home/oohnivch/.tmux/plugins/
+LOGNAME=oohnivch
+MANPATH=/home/oohnivch/.nvm/versions/node/v23.1.0/share/man:/home/oohnivch/.local/kitty.app/share/man:
+XAUTHORITY=/home/oohnivch/.Xauthority
+XDG_GREETER_DATA_DIR=/var/lib/lightdm-data/oohnivch
+HOME=/home/oohnivch
+CARGO_HOME=/sgoinfre/oohnivch/.cargo
+SGOINFRE=/sgoinfre/oohnivch
+NVM_DIR=/home/oohnivch/.nvm
+TERMINFO=/home/oohnivch/.local/kitty.app/lib/kitty/terminfo
+RUSTUP_HOME=/sgoinfre/oohnivch/.rustup
+ZDOTDIR=/home/oohnivch/.config/zsh
+USER=oohnivch
+XDG_DATA_DIRS=/usr/share/ubuntu:/usr/share/gnome:/home/oohnivch/.local/share/flatpak/exports/share:/var/lib/flatpak/exports/share:/usr/local/share:/usr/share:/var/lib/snapd/desktop
+PATH=/bin:/usr/bin:/usr/sbin:/home/oohnivch/.nvm/versions/node/v23.1.0/bin:/home/oohnivch/.local/kitty.app/bin:/sgoinfre/oohnivch/.cargo/bin:/home/oohnivch/.brew/bin:/home/oohnivch/.local/funcheck/host:/home/oohnivch/bin:/home/oohnivch/.local/kitty.app/bin::/home/oohnivch/.brew/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/usr/share/rust/cargo/bin
+NVM_BIN=/home/oohnivch/.nvm/versions/node/v23.1.0/bin
+KITTY_INSTALLATION_DIR=/home/oohnivch/.local/kitty.app/lib/kitty
+GIO_LAUNCHED_DESKTOP_FILE=/home/oohnivch/.local/share/applications/kitty.desktop
+OLDPWD=/home/oohnivch/common_core/minishell
+_=/home/oohnivch/common_core/minishell/minishell

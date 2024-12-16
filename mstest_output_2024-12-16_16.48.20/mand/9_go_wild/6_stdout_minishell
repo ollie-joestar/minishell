@@ -1,0 +1,49 @@
+Parsing line->
+
+Printing exec data->
+Printing exec [0]
+	Type: CMD
+	Command: >tmp_out
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: NULL
+	Next: echo
+	Arguments: [>tmp_out]
+Printing exec [1]
+	Type: BUILTIN
+	Command: echo
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: >tmp_out
+	Next: NULL
+	Arguments: [echo][1]
+Executing->
+1
+Parsing line->
+
+Printing exec data->
+Printing exec [0]
+	Type: CMD
+	Command: /bin/cat
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: NULL
+	Next: NULL
+	Arguments: [cat][tmp_out]
+Executing->
+Parsing line->
+
+Printing exec data->
+Printing exec [0]
+	Type: CMD
+	Command: /bin/rm
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: NULL
+	Next: NULL
+	Arguments: [rm][-f][tmp_out]
+Executing->

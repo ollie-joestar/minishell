@@ -1,0 +1,27 @@
+Parsing line->
+
+Printing exec data->
+Printing exec [0]
+	Type: BUILTIN
+	Command: export
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: NULL
+	Next: NULL
+	Arguments: [export][L=amazing][L=ok][L=cool]
+Executing->
+Parsing line->
+
+Printing exec data->
+Printing exec [0]
+	Type: BUILTIN
+	Command: echo
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: NULL
+	Next: NULL
+	Arguments: [echo][/home/oohnivch/42_minishell_tester/utils/libintercept/libintercept.so]
+Executing->
+/home/oohnivch/42_minishell_tester/utils/libintercept/libintercept.so

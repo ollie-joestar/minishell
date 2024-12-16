@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 13:39:47 by oohnivch          #+#    #+#             */
-/*   Updated: 2024/12/16 15:08:03 by hanjkim          ###   ########.fr       */
+/*   Updated: 2024/12/16 16:29:24 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,25 +45,24 @@ char	*here_doc(t_data *data, char *l, int to_expand)
 	int		fd;
 	char	*line;
 	char	*file;
-	char	*lim;
 
 	file = random_name();
-	lim = ft_strjoin(l, "\n");
 	fd = open(file, O_CREAT | O_RDWR, 0664);
 	if (fd < 0)
 		bruh(data, "minishell: failed here_doc creation", 2);
 	while (1)
 	{
-		ft_free(&line);
 		line = readline("> ");
+		if (!line || !ft_strncmp(line, l, ft_strlen(l) + 1))
+			break ;
 		if (to_expand)
 			expand_var_in_str(data, &line);
-		if (!ft_strncmp(line, lim, ft_strlen(lim) + 1))
-			break ;
 		if (line)
 			write(fd, line, ft_strlen(line));
+		write(fd, "\n", 1);
+		ft_free(&line);
 	}
-	(ft_free(&line), ft_free(&lim));
+	ft_free(&line);
 	close(fd);
 	return (file);
 }

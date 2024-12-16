@@ -1,0 +1,32 @@
+Parsing line->
+
+Printing exec data->
+Printing exec [0]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: NULL
+	Next: /bin/wc
+	Arguments: [ls]
+Printing exec [1]
+	Type: CMD
+	Command: /bin/wc
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/ls
+	Next: /bin/xargs
+	Arguments: [wc][-l]
+Printing exec [2]
+	Type: CMD
+	Command: /bin/xargs
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/wc
+	Next: NULL
+	Arguments: [xargs][echo]
+Executing->
+2

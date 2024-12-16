@@ -1,0 +1,59 @@
+Parsing line->
+
+Printing exec data->
+Printing exec [0]
+	Type: CMD
+	Command: /bin/grep
+	Input: filedoesnotexist
+	Output: NULL
+	Pipe: 0 0
+	Prev: NULL
+	Next: echo
+	Arguments: [grep][1]
+Printing exec [1]
+	Type: BUILTIN
+	Command: echo
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/grep
+	Next: /bin/grep
+	Arguments: [echo][1]
+Printing exec [2]
+	Type: CMD
+	Command: /bin/grep
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: echo
+	Next: /bin/head
+	Arguments: [grep][1]
+Printing exec [3]
+	Type: CMD
+	Command: /bin/head
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/grep
+	Next: /bin/cat
+	Arguments: [head][-1]
+Printing exec [4]
+	Type: CMD
+	Command: /bin/cat
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/head
+	Next: /bin/ls
+	Arguments: [cat]
+Printing exec [5]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: /bin/cat
+	Next: NULL
+	Arguments: [ls]
+Executing->
+out0|

@@ -1,0 +1,23 @@
+Parsing line->
+
+Printing exec data->
+Printing exec [0]
+	Type: BUILTIN
+	Command: env
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: NULL
+	Next: /bin/wc
+	Arguments: [env]
+Printing exec [1]
+	Type: CMD
+	Command: /bin/wc
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: env
+	Next: NULL
+	Arguments: [wc][-l]
+Executing->
+82

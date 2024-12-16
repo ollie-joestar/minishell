@@ -1,0 +1,3 @@
+cat Makefile | ls > out
+cat out
+/bin/rm -f out

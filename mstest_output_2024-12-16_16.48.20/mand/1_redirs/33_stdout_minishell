@@ -1,0 +1,23 @@
+Parsing line->
+
+Printing exec data->
+Printing exec [0]
+	Type: BUILTIN
+	Command: echo
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: NULL
+	Next: echo
+	Arguments: [echo][hi][>./test_files/invalid_permission][>./outfiles/outfile01]
+Printing exec [1]
+	Type: BUILTIN
+	Command: echo
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: echo
+	Next: NULL
+	Arguments: [echo][bye]
+Executing->
+bye

@@ -1,0 +1,26 @@
+Parsing line->
+
+Printing exec data->
+Printing exec [0]
+	Type: BUILTIN
+	Command: env
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: NULL
+	Next: /bin/grep
+	Arguments: [env]
+Printing exec [1]
+	Type: CMD
+	Command: /bin/grep
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: env
+	Next: NULL
+	Arguments: [grep][HOME]
+Executing->
+HOME=/home/oohnivch
+CARGO_HOME=/sgoinfre/oohnivch/.cargo
+HOME_MAX_SIZE=5
+RUSTUP_HOME=/sgoinfre/oohnivch/.rustup

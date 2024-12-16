@@ -1,0 +1,16 @@
+Parsing line->
+
+Printing exec data->
+Printing exec [0]
+	Type: CMD
+	Command: /bin/cat
+	Input: /tmp/ca58974465ab258b531f69646d5779c
+	Output: NULL
+	Pipe: 0 0
+	Prev: NULL
+	Next: NULL
+	Arguments: [cat]
+Executing->
+$USER
+$NOVAR
+$HOME

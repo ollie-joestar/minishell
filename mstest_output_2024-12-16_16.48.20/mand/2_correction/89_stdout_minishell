@@ -1,0 +1,54 @@
+Parsing line->
+
+Printing exec data->
+Printing exec [0]
+	Type: BUILTIN
+	Command: cd
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: NULL
+	Next: NULL
+	Arguments: [cd][/////]
+Executing->
+Parsing line->
+
+Printing exec data->
+Printing exec [0]
+	Type: CMD
+	Command: /bin/ls
+	Input: NULL
+	Output: NULL
+	Pipe: 0 0
+	Prev: NULL
+	Next: NULL
+	Arguments: [/bin/ls]
+Executing->
+bin
+boot
+dev
+etc
+goinfre
+home
+lib
+lib32
+lib64
+libx32
+lost+found
+media
+mnt
+nfs
+opt
+osquery.flags
+proc
+root
+run
+sbin
+sgoinfre
+snap
+srv
+swap.img
+sys
+tmp
+usr
+var

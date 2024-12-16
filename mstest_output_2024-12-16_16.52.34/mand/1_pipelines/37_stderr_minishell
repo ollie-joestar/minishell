@@ -1,0 +1,2 @@
+minishell: command not found: ls|cat
+cat: out: No such file or directory
