@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 09:38:58 by oohnivch          #+#    #+#             */
-/*   Updated: 2024/12/16 16:52:05 by oohnivch         ###   ########.fr       */
+/*   Updated: 2024/12/18 21:09:03 by hanjkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ int main(int argc, char **argv, char **ev)
 	setup_signal_mode(data, 1);
 	while (1)
 	{
+		g_signal = 0;
 		data->line = readline("minishell > "); //funcheck failed
 		if (g_signal == SIGINT && data->pid != 0)
 			g_signal = 0;
@@ -77,6 +78,12 @@ int main(int argc, char **argv, char **ev)
 			continue;
 		}
 		process_tokens(data);
+		if (g_signal == SIGINT)
+		{
+			free_tokens(data);
+			ft_free(&data->line);
+			continue;
+		}
 		/*print_tokens(data->token);*/
 		/*ft_printf("Initiating exec data->\n");*/
 		init_exec_data(data);

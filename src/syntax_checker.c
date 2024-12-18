@@ -6,7 +6,7 @@
 /*   By: hanjkim <@student.42vienna.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 18:06:16 by hanjkim           #+#    #+#             */
-/*   Updated: 2024/12/16 22:24:48 by hanjkim          ###   ########.fr       */
+/*   Updated: 2024/12/16 22:34:49 by hanjkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,11 +50,11 @@ bool	missing_filename(t_token *token)
 void	unexpected_token(t_data *data, char *str)
 {
 	if (str == NULL || str[0] == '\0')
-		ft_putstr_fd("syntax error near unexpected token `newline'\n",
+		ft_putstr_fd("syntax error near unexpected token newline'\n",
 			STDERR_FILENO);
 	else
 	{
-		ft_putstr_fd("syntax error near unexpected token `", STDERR_FILENO);
+		ft_putstr_fd("syntax error near unexpected token ", STDERR_FILENO);
 		ft_putstr_fd(str, STDERR_FILENO);
 		ft_putstr_fd("'\n", STDERR_FILENO);
 	}

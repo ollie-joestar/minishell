@@ -6,18 +6,18 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 13:39:47 by oohnivch          #+#    #+#             */
-/*   Updated: 2024/12/16 17:49:59 by hanjkim          ###   ########.fr       */
+/*   Updated: 2024/12/18 18:13:28 by hanjkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-t_token *handle_heredoc(t_data *data, t_token *redirection_token,
+t_token	*handle_heredoc(t_data *data, t_token *redirection_token,
 						t_token *filename_token)
 {
-	int	to_expand;
-	char *temp_word;
-	char *here_result;
+	int		to_expand;
+	char	*temp_word;
+	char	*here_result;
 
 	to_expand = (filename_token->segments->double_quoted
 			|| filename_token->segments->single_quoted);
@@ -30,10 +30,23 @@ t_token *handle_heredoc(t_data *data, t_token *redirection_token,
 	filename_token = create_token_from_string(here_result);
 	ft_free(&here_result);
 	if (!filename_token)
-		bruh(data, "Failed to create token from here_doc result", 2);
+		return (NULL);
 	filename_token->type = HEREDOC;
 	filename_token->next = redirection_token->next;
 	return (filename_token);
+}
+
+int	handle_heredoc_signal(t_data *data, char **line, char **file)
+{
+	if (g_signal == SIGINT)
+	{
+		ft_free(line);
+		unlink(*file);
+		ft_free(file);
+		data->status = 130;
+		return (1);
+	}
+	return (0);
 }
 
 char	*random_name(void)
@@ -70,6 +83,7 @@ char	*here_doc(t_data *data, char *l, int to_expand)
 	char	*line;
 	char	*file;
 
+	g_signal = 0;
 	file = random_name();
 	fd = open(file, O_CREAT | O_RDWR, 0664);
 	if (fd < 0)
@@ -77,6 +91,8 @@ char	*here_doc(t_data *data, char *l, int to_expand)
 	while (1)
 	{
 		line = readline("> ");
+		if (handle_heredoc_signal(data, &line, &file))
+			return (close(fd), NULL);
 		if (!line || !ft_strncmp(line, l, ft_strlen(l) + 1))
 			break ;
 		if (to_expand)
@@ -87,6 +103,5 @@ char	*here_doc(t_data *data, char *l, int to_expand)
 		ft_free(&line);
 	}
 	ft_free(&line);
-	close(fd);
-	return (file);
+	return (close(fd), file);
 }

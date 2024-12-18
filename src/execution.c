@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 11:54:00 by oohnivch          #+#    #+#             */
-/*   Updated: 2024/12/16 14:01:40 by oohnivch         ###   ########.fr       */
+/*   Updated: 2024/12/18 21:19:56 by hanjkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,6 +125,10 @@ void	run(t_data *data)
 		check_exit_status(data, exit_status);
 		while (wait(NULL) > 0)
 			;
+	}
+	while ((wait_status = wait(&exit_status)) > 0)
+	{
+		check_exit_status(data, exit_status);
 	}
 	/*ft_printf("\nCleaning up...\n");*/
 	clean_exec(data);
