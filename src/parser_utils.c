@@ -6,7 +6,7 @@
 /*   By: hanjkim <@student.42vienna.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/01 21:43:24 by hanjkim           #+#    #+#             */
-/*   Updated: 2024/12/08 18:27:43 by hanjkim          ###   ########.fr       */
+/*   Updated: 2024/12/18 22:12:25 by hanjkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,10 @@ char	*get_env_value(t_data *data, char *var_name)
 	current = data->env;
 	while (current)
 	{
-		if (ft_strncmp(current->name, var_name, ft_strlen(var_name)) == 0)
+		/*if (ft_strncmp(current->name, var_name, ft_strlen(var_name)) == 0)*/
+		/*	return (current->value);*/
+		if (ft_strlen(current->name) == ft_strlen(var_name)
+			&& ft_strncmp(current->name, var_name, ft_strlen(var_name)) == 0)
 			return (current->value);
 		current = current->next;
 	}

@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 14:07:19 by oohnivch          #+#    #+#             */
-/*   Updated: 2024/12/18 21:08:25 by hanjkim          ###   ########.fr       */
+/*   Updated: 2024/12/18 21:29:54 by hanjkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@
 # define DQ '\"'
 # define SLASH '\\'
 # define DOLLAR '$'
+
+# define CMD_NAME "./minishell"
 
 typedef enum e_token_type {
 	WORD = 0,
