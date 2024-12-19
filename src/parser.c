@@ -6,7 +6,7 @@
 /*   By: hanjkim <@student.42vienna.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 18:49:14 by hanjkim           #+#    #+#             */
-/*   Updated: 2024/12/16 21:31:01 by hanjkim          ###   ########.fr       */
+/*   Updated: 2024/12/19 17:08:33 by hanjkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,18 +71,61 @@ void	process_redirection(t_data *data, t_token **token)
 	*token = filename_token;
 }
 
+char	*join_fields_with_single_space(char **fields)
+{
+	size_t	total_len;
+	int		i;
+	char	*joined;
+	int		j;
+
+	total_len = 0;
+	i = -1;
+	while (fields[++i])
+		total_len += ft_strlen(fields[i]);
+	if (i > 1)
+		total_len += (i - 1);
+	joined = ft_calloc(total_len + 1, 1);
+	if (!joined)
+		return (NULL);
+	j = -1;
+	while (++j < i)
+	{
+		if (j > 0)
+		{
+			if (ft_strlcat(joined, " ", total_len + 1) >= total_len + 1)
+				return (ft_free(&joined), NULL);
+		}
+		if (ft_strlcat(joined, fields[j], total_len + 1) >= total_len + 1)
+			return (ft_free(&joined), NULL);
+	}
+	return (joined);
+}
+
 char	*expand_segment(t_data *data, t_segment *seg)
 {
 	char	*expanded;
+	char	**fields;
+	char	*joined;
 
+	expanded = NULL;
+	fields = NULL;
+	joined = NULL;
 	if (seg->single_quoted)
 		return (ft_strdup(seg->text));
 	expanded = expand(data, seg->text);
 	if (!expanded)
+		return (ft_strdup(""));
+	if (!seg->double_quoted && !seg->single_quoted)
 	{
-		expanded = ft_strdup("");
-		if (!expanded)
-			return (NULL);
+		fields = ft_split(expanded, ' ');
+		ft_free(&expanded);
+		if (!fields)
+			return (ft_strdup(""));
+		joined = join_fields_with_single_space(fields);
+		free_arr(&fields);
+		if (!joined)
+			return (ft_strdup(""));
+		return (joined);
 	}
 	return (expanded);
 }

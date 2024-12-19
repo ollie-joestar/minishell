@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 14:18:21 by oohnivch          #+#    #+#             */
-/*   Updated: 2024/12/01 22:46:56 by hanjkim          ###   ########.fr       */
+/*   Updated: 2024/12/19 16:27:25 by hanjkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,4 +39,10 @@ size_t	ft_arrlen(char **arr)
 	while (arr[i])
 		i++;
 	return (i);
+}
+
+void	skip_spaces(char *input, int *i)
+{
+	while ((input[*i] == ' ' || input[*i] == '\t'))
+		(*i)++;
 }
