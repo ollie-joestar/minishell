@@ -6,7 +6,7 @@
 /*   By: hanjkim <@student.42vienna.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/29 20:03:14 by hanjkim           #+#    #+#             */
-/*   Updated: 2024/12/19 17:07:23 by hanjkim          ###   ########.fr       */
+/*   Updated: 2024/12/20 13:44:40 by hanjkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,6 @@ void	make_split_tokens(t_split_vars *vars, t_token *original, t_data *data)
 	t_token	*new_token;
 
 	(void)original;
-	new_token = create_token_from_string(vars->words[vars->i]);
 	while (vars->words[++vars->i] != NULL)
 	{
 		new_token = create_token_from_string(vars->words[vars->i]);
