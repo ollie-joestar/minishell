@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 13:49:00 by oohnivch          #+#    #+#             */
-/*   Updated: 2025/01/14 16:13:28 by oohnivch         ###   ########.fr       */
+/*   Updated: 2025/01/14 17:27:20 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,9 +82,7 @@ void	cd(t_data *data, t_exec *exec)
 		path = cd_special_path_check(data, exec->av[1]);
 		if (chdir(path) == -1)
 		{
-			ft_putstr_fd("minishell: cd: ", 2);
-			ft_putstr_fd(path, 2);
-			ft_putstr_fd(": No such file or directory\n", 2);
+			perror("minishell: cd");
 			data->status = 1;
 			return ;
 		}

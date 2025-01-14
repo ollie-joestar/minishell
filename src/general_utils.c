@@ -6,11 +6,40 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 16:36:14 by oohnivch          #+#    #+#             */
-/*   Updated: 2025/01/14 16:36:15 by oohnivch         ###   ########.fr       */
+/*   Updated: 2025/01/14 17:37:36 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+int	checkfile(char *file)
+{
+	char *path_to_file;
+	int	i;
+	int	name_len;
+
+	i = 1;
+	name_len = ft_strlen(file) - 1;
+	if (name_len <= 0)
+		return (-1);
+	while (file[name_len - i] != '/' && i <= name_len)
+		i++;
+	if (i == name_len)
+		return (0);
+	path_to_file = ft_substr(file, 0, name_len - i);
+	if (access(path_to_file, F_OK) == 0)
+	{
+		if (access(path_to_file, W_OK) == -1)
+		{
+			ft_free(&path_to_file);
+			return (-1);
+		}
+		ft_free(&path_to_file);
+	}
+	else
+		return (-1);
+	return (0);
+}
 
 void	bruh(t_data *data, char *s, int status)
 {
