@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/30 14:18:21 by oohnivch          #+#    #+#             */
-/*   Updated: 2025/01/14 12:55:42 by oohnivch         ###   ########.fr       */
+/*   Created: 2025/01/14 16:36:14 by oohnivch          #+#    #+#             */
+/*   Updated: 2025/01/14 16:36:15 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,4 +38,10 @@ size_t	ft_arrlen(char **arr)
 	while (arr[i])
 		i++;
 	return (i);
+}
+
+void	skip_spaces(char *input, int *i)
+{
+	while ((input[*i] == ' ' || input[*i] == '\t'))
+		(*i)++;
 }

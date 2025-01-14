@@ -6,7 +6,7 @@
 /*   By: hanjkim <@student.42vienna.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 18:49:14 by hanjkim           #+#    #+#             */
-/*   Updated: 2024/12/16 16:28:33 by oohnivch         ###   ########.fr       */
+/*   Updated: 2024/12/19 17:08:33 by hanjkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,46 +44,90 @@ void	process_redirection(t_data *data, t_token **token)
 {
 	t_token	*redirection_token;
 	t_token	*filename_token;
-	char	*temp_word;
-	char	*here_result;
-	int		to_expand;
 
 	redirection_token = *token;
 	filename_token = redirection_token->next;
 	if (!filename_token)
-		bruh(data, "Expected filename after redirection", 2);
-	filename_token->type = redirection_token->type;
+	{
+		unexpected_token(data, NULL);
+		return ;
+	}
+	filename_token->type = WORD;
 	if (redirection_token->type == HEREDOC)
 	{
-		to_expand = (filename_token->segments->double_quoted ||
-					filename_token->segments->single_quoted);
-		temp_word = join_segments(filename_token);
-		if (!temp_word)
-			bruh(data, "Failed to join filename segments for HEREDOC", 2);
-		here_result = here_doc(data, temp_word, to_expand);
-		ft_free(&temp_word);
-		free_token_node(&filename_token);
-		filename_token = create_token_from_string(here_result);
-		ft_free(&here_result);
+		filename_token = handle_heredoc(data, redirection_token,
+				filename_token);
 		if (!filename_token)
-			bruh(data, "Failed to create token from here_doc result", 2);
-		filename_token->type = HEREDOC;
-		filename_token->next = redirection_token->next;
+			return ;
 	}
 	filename_token->prev = redirection_token->prev;
 	if (filename_token->next)
 		filename_token->next->prev = filename_token;
 	if (filename_token->prev)
 		filename_token->prev->next = filename_token;
+	else
+		data->token = filename_token;
 	free_old_token(redirection_token);
 	*token = filename_token;
 }
 
+char	*join_fields_with_single_space(char **fields)
+{
+	size_t	total_len;
+	int		i;
+	char	*joined;
+	int		j;
+
+	total_len = 0;
+	i = -1;
+	while (fields[++i])
+		total_len += ft_strlen(fields[i]);
+	if (i > 1)
+		total_len += (i - 1);
+	joined = ft_calloc(total_len + 1, 1);
+	if (!joined)
+		return (NULL);
+	j = -1;
+	while (++j < i)
+	{
+		if (j > 0)
+		{
+			if (ft_strlcat(joined, " ", total_len + 1) >= total_len + 1)
+				return (ft_free(&joined), NULL);
+		}
+		if (ft_strlcat(joined, fields[j], total_len + 1) >= total_len + 1)
+			return (ft_free(&joined), NULL);
+	}
+	return (joined);
+}
+
 char	*expand_segment(t_data *data, t_segment *seg)
 {
+	char	*expanded;
+	char	**fields;
+	char	*joined;
+
+	expanded = NULL;
+	fields = NULL;
+	joined = NULL;
 	if (seg->single_quoted)
 		return (ft_strdup(seg->text));
-	return (expand(data, seg->text));
+	expanded = expand(data, seg->text);
+	if (!expanded)
+		return (ft_strdup(""));
+	if (!seg->double_quoted && !seg->single_quoted)
+	{
+		fields = ft_split(expanded, ' ');
+		ft_free(&expanded);
+		if (!fields)
+			return (ft_strdup(""));
+		joined = join_fields_with_single_space(fields);
+		free_arr(&fields);
+		if (!joined)
+			return (ft_strdup(""));
+		return (joined);
+	}
+	return (expanded);
 }
 
 void	expand_tokens(t_data *data)
@@ -99,7 +143,9 @@ void	expand_tokens(t_data *data)
 		while (seg)
 		{
 			expanded = expand_segment(data, seg);
-			if (expanded)
+			if (!expanded)
+				return ;
+			else
 			{
 				ft_free(&seg->text);
 				seg->text = expanded;

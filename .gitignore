@@ -6,3 +6,4 @@ libft/*.a
 libft/*.o
 libft/error.txt
 error.txt
+mstest*

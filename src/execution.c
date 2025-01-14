@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/07 11:54:00 by oohnivch          #+#    #+#             */
-/*   Updated: 2025/01/14 12:27:30 by oohnivch         ###   ########.fr       */
+/*   Created: 2025/01/14 16:35:58 by oohnivch          #+#    #+#             */
+/*   Updated: 2025/01/14 16:35:59 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,6 +126,10 @@ void	run(t_data *data)
 		check_exit_status(data, exit_status);
 		while (wait(NULL) > 0)
 			;
+	}
+	while ((wait_status = wait(&exit_status)) > 0)
+	{
+		check_exit_status(data, exit_status);
 	}
 	/*ft_printf("\nCleaning up...\n");*/
 	clean_exec(data);

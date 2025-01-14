@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   minishell.h                                        :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/02 14:07:19 by oohnivch          #+#    #+#             */
-/*   Updated: 2025/01/14 12:27:26 by oohnivch         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #ifndef MINISHELL_H
 # define MINISHELL_H
 # include "../libft/includes/libft.h"
@@ -34,6 +22,8 @@
 # define DQ '\"'
 # define SLASH '\\'
 # define DOLLAR '$'
+
+# define CMD_NAME "./minishell"
 
 typedef enum e_token_type {
 	WORD = 0,
@@ -166,6 +156,7 @@ t_token	*split_token(t_token *original_token, t_data *data);
 char	**get_split_words(t_token *original_token, t_data *data);
 void	make_split_tokens(t_split_vars *vars, t_token *o_token, t_data *data);
 char	*join_segments(t_token *token);
+int	append_char_to_segment(t_segment *seg, char c);
 
 // Parser functions
 void	process_tokens(t_data *data);
@@ -176,6 +167,8 @@ int	handle_dollar_exp(t_data *data, t_expander *expander);
 int	handle_variable_exp(t_data *data, char *word, t_expander *expander);
 int	handle_regular_char(char c, t_expander *expander);
 int	handle_special_dollar(t_data *data, char *word, t_expander *expander);
+t_token	*handle_heredoc(t_data *data, t_token *redirection_token,
+			t_token *filename_token);
 
 // Parser utils
 void	*ft_realloc(void *str, size_t old_size, size_t new_size);
@@ -255,6 +248,7 @@ void	free_env_list(t_envlist *env);
 void	free_env_node(t_envlist *env);
 void	free_arr(char ***arr);
 void	free_token_node(t_token **token);
+void free_segment(t_segment **seg);
 
 // Debug functions
 void	print_token(t_token *token);
