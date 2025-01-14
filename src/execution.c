@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 11:54:00 by oohnivch          #+#    #+#             */
-/*   Updated: 2024/12/16 14:01:40 by oohnivch         ###   ########.fr       */
+/*   Updated: 2025/01/14 12:27:30 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 void	command(t_data *data, t_exec *exec)
 {
+	parse_env_into_ev(data);
 	execve(exec->cmd, exec->av, data->ev);
 	if (ft_strchr(exec->av[0], '/'))
 	{
@@ -75,7 +76,7 @@ void	builtin(t_data *data, t_exec *exec)
 		bruh(data, "command not found\n", 127);
 	if (exec_len(exec) > 1)
 		bruh(data, NULL, 0);
-	else
+	else if (ft_strncmp(exec->av[0], "exit", 5))
 		reset_stdout(stdout_copy);
 }
 

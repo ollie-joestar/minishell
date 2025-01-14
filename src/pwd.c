@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 14:56:43 by oohnivch          #+#    #+#             */
-/*   Updated: 2024/12/02 19:13:50 by oohnivch         ###   ########.fr       */
+/*   Updated: 2025/01/14 14:09:34 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,4 +100,5 @@ void	pwd(t_data *data, t_exec *exec)
 	}
 	ft_putendl_fd(pwd, STDOUT_FILENO);
 	ft_free(&pwd);
+	data->status = 0;
 }

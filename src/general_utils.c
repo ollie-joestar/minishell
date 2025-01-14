@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 14:18:21 by oohnivch          #+#    #+#             */
-/*   Updated: 2024/12/01 22:46:56 by hanjkim          ###   ########.fr       */
+/*   Updated: 2025/01/14 12:55:42 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ void	bruh(t_data *data, char *s, int status)
 	ft_free(&data->line);
 	free_tokens(data);
 	clear_history();
-	/*free_history();*/
 	if (data)
 		free(data);
 	exit(status);
