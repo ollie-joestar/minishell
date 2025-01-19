@@ -6,7 +6,7 @@
 /*   By: hanjkim <@student.42vienna.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 18:49:14 by hanjkim           #+#    #+#             */
-/*   Updated: 2024/12/19 17:08:33 by hanjkim          ###   ########.fr       */
+/*   Updated: 2025/01/19 15:02:41 by hanjkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,12 @@ void	process_redirection(t_data *data, t_token **token)
 		if (!filename_token)
 			return ;
 	}
+	else if (redirection_token->type == INPUT
+		|| redirection_token->type == REPLACE
+		|| redirection_token->type == APPEND)
+	{
+		filename_token->type = redirection_token->type;
+	}
 	filename_token->prev = redirection_token->prev;
 	if (filename_token->next)
 		filename_token->next->prev = filename_token;
@@ -70,6 +76,28 @@ void	process_redirection(t_data *data, t_token **token)
 	free_old_token(redirection_token);
 	*token = filename_token;
 }
+
+/*void	process_redirection(t_data *data, t_token **token)*/
+/*{*/
+/*	t_token	*redirection_token;*/
+/*	t_token	*filename_token;*/
+/**/
+/*	redirection_token = *token;*/
+/*	filename_token = redirection_token->next;*/
+/*	if (!filename_token)*/
+/*	{*/
+/*		unexpected_token(data, NULL);*/
+/*		return;*/
+/*	}*/
+/*	if (redirection_token->type == HEREDOC)*/
+/*	{*/
+/*		filename_token = handle_heredoc(data, redirection_token, filename_token);*/
+/*		if (!filename_token)*/
+/*			return;*/
+/*	}*/
+/*	filename_token->type = WORD;*/
+/*	(*token) = filename_token->next;*/
+/*}*/
 
 char	*join_fields_with_single_space(char **fields)
 {

@@ -124,6 +124,7 @@ typedef struct s_data
 
 /* Signal functions */
 extern volatile sig_atomic_t g_signal;
+void	handle_sigint(int sig);
 void	catch_sigint(int sigint);
 void	setup_signal_handler(t_data *data, void (*handler)(int));
 void	setup_signal_mode(t_data *data, int interactive);
@@ -145,6 +146,7 @@ t_segment	*create_segment(bool single_quoted, bool double_quoted);
 void	add_segment_to_token(t_token *token, t_segment *seg);
 void	finalize_tokens(t_token *token_list);
 t_token *parse_word_token(char *input, int *start, t_data *data);
+t_token *process_operator(char *input, int *i, int *start, t_data *data);
 
 /* Lexer utils */
 bool	should_split_token(t_token *token);

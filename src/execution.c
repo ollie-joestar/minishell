@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 16:35:58 by oohnivch          #+#    #+#             */
-/*   Updated: 2025/01/14 17:40:41 by oohnivch         ###   ########.fr       */
+/*   Updated: 2025/01/19 17:12:59 by hanjkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,19 +84,25 @@ void	do_stuff(t_data *data, t_exec *exec)
 {
 	if (exec->next)
 		open_pipe_exec(data, exec);
+	/*signal(SIGINT, SIG_IGN);*/
 	data->pid = fork1(data);
 	if (data->pid == 0)
 	{
+		/*signal(SIGINT, SIG_DFL);*/
 		reroute(data, exec);
 		if (exec->type == CMD)
 			command(data, exec);
 		else
 			builtin(data, exec);
-		bruh(data, NULL, 0);
+		bruh(data, NULL, data->status);
 	}
 	close_pipe_exec(data, exec->prev);
 	if (!exec->next)
 		close_pipe_exec(data, exec);
+	/*waitpid(data->pid, &data->status, 0);*/
+	/*signal(SIGINT, handle_sigint);*/
+	/*if (WIFSIGNALED(data->status) && WTERMSIG(data->status) == SIGINT)*/
+	/*	write(STDOUT_FILENO, "\n", 1);*/
 }
 
 void	run(t_data *data)
