@@ -6,7 +6,7 @@
 /*   By: oohnivch <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 11:17:15 by oohnivch          #+#    #+#             */
-/*   Updated: 2024/11/11 11:03:37 by oohnivch         ###   ########.fr       */
+/*   Updated: 2025/01/21 12:40:53 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,24 +39,6 @@ static int	ft_format(va_list args, const char format)
 		return (-1);
 }
 
-// Outputs a formatted string to the standard output.
-// Returns the number of characters printed.
-// Returns -1 if the format is invalid.
-// The format is a string that can contain plain text and format specifiers.
-// A format specifier is a % character followed by a conversion specifier.
-// The conversion specifier is a character that specifies the type of conversion to be applied.
-// The conversion specifiers are:
-// c - character
-// s - string
-// p - pointer
-// d - integer
-// i - integer
-// u - unsigned integer
-// x - hexadecimal integer
-// X - hexadecimal integer
-// % - percentage
-// The function can take any number of arguments.
-// The arguments must match the conversion specifiers in the format string.
 int	ft_printf(const char *str, ...)
 {
 	va_list	args;

@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 14:56:43 by oohnivch          #+#    #+#             */
-/*   Updated: 2025/01/14 14:09:34 by oohnivch         ###   ########.fr       */
+/*   Updated: 2025/01/21 12:57:31 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,9 @@ void	update_pwd(t_data *data)
 	t_envlist	*pwd;
 	char		*cwd;
 
+	//	Maybe this will be useful later
+	if (data->status != 0)
+		return ;
 	while (data->env->prev)
 		data->env = data->env->prev;
 	env = data->env;
@@ -77,7 +80,7 @@ void	update_pwd(t_data *data)
 	cwd = getcwd(NULL, 0);
 	if (!cwd)
 	{
-		ft_putstr_fd("pwd: error retrieving current directory:", STDERR_FILENO);
+		ft_printerr("minishell: pwd: error retrieving current directory\n");
 		data->status = 1;
 		return ;
 	}
@@ -94,7 +97,7 @@ void	pwd(t_data *data, t_exec *exec)
 	pwd = getcwd(NULL, 0);
 	if (!pwd)
 	{
-		ft_putstr_fd("pwd: error retrieving current directory:", STDERR_FILENO);
+		ft_printerr("minishell: pwd: error retrieving current directory\n");
 		data->status = 69;
 		return ;
 	}

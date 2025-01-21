@@ -6,7 +6,7 @@
 /*   By: oohnivch <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 14:10:40 by oohnivch          #+#    #+#             */
-/*   Updated: 2024/11/13 11:12:34 by oohnivch         ###   ########.fr       */
+/*   Updated: 2025/01/21 12:38:52 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,6 @@ static size_t	s_check(char const *s, unsigned int start, size_t len)
 	return (0);
 }
 
-// Allocates (with malloc(3)) and returns a substring from the string ’s’.
-// The substring begins at index ’start’ and is of maximum size ’len’.
-// Returns the substring, or NULL if the allocation fails.
-// If ’start’ is out of range, the behavior is undefined.
-// If ’len’ is greater than the length of the substring, the behavior is undefined.
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
 	size_t	i;

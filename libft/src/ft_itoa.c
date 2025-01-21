@@ -6,7 +6,7 @@
 /*   By: oohnivch <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/11 18:11:54 by oohnivch          #+#    #+#             */
-/*   Updated: 2024/11/11 10:56:15 by oohnivch         ###   ########.fr       */
+/*   Updated: 2025/01/21 12:42:04 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,8 +67,6 @@ static void	reverse(char *str)
 	}
 }
 
-// Allocates memory and returns a string representing the integer received as an argument.
-// The function returns NULL if the allocation fails.
 char	*ft_itoa(int n)
 {
 	int		size;

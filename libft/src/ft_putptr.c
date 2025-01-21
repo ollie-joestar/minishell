@@ -6,15 +6,12 @@
 /*   By: oohnivch <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 16:46:04 by oohnivch          #+#    #+#             */
-/*   Updated: 2024/11/11 11:06:37 by oohnivch         ###   ########.fr       */
+/*   Updated: 2025/01/21 12:40:28 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/libft.h"
 
-// Outputs the hexadecimal representation of the unsigned long integer nb to the standard output.
-// Returns the number of characters printed.
-// The function prints the string "0x" followed by the hexadecimal representation of the number.
 int	ft_putptr(unsigned long nb)
 {
 	int		len;

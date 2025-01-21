@@ -6,14 +6,12 @@
 /*   By: oohnivch <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 13:30:38 by oohnivch          #+#    #+#             */
-/*   Updated: 2024/11/26 11:55:26 by oohnivch         ###   ########.fr       */
+/*   Updated: 2025/01/21 12:39:37 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/libft.h"
 
-// The strncmp() function compares not more than n characters.
-// Returns 0 if the two strings are identical, otherwise returns the difference between the first differing bytes. 
 int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
 	size_t	i;

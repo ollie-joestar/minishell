@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 13:49:00 by oohnivch          #+#    #+#             */
-/*   Updated: 2025/01/14 17:27:20 by oohnivch         ###   ########.fr       */
+/*   Updated: 2025/01/21 13:40:26 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,13 +36,13 @@ void	cd_home(t_data *data, t_exec *exec)
 	path = get_home(data);
 	if (!path)
 	{
-		ft_putstr_fd("minishell: cd: HOME not set", 2);
+		ft_printerr("minishell: cd: HOME not set\n");
 		data->status = EXIT_FAILURE;
 		return ;
 	}
 	if (chdir(path) == -1)
 	{
-		ft_putstr_fd("cd: ", STDERR_FILENO);
+		ft_printerr("cd: ");
 		perror(path);
 		data->status = EXIT_FAILURE;
 	}
@@ -75,22 +75,22 @@ void	cd(t_data *data, t_exec *exec)
 	{
 		ft_putstr_fd("minishell: cd: too many arguments\n", 2);
 		data->status = 1;
-		return ;
 	}
 	else if (ft_arrlen(exec->av) == 2)
 	{
 		path = cd_special_path_check(data, exec->av[1]);
 		if (chdir(path) == -1)
 		{
-			perror("minishell: cd");
+			if (access(path, F_OK) == -1)
+				ft_printerr("minishell: cd: %s: No such file or directory\n", path);
+			else
+				ft_printerr("minishell: cd: %s: Not a directory\n", path);
 			data->status = 1;
-			return ;
 		}
 	}
 	else
 		cd_home(data, exec);
-	if (data->status == EXIT_SUCCESS)
-		update_pwd(data);
+	update_pwd(data);
 }
 
 /*int	valid_dotdot_path(char *path)*/

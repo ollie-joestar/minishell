@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 11:19:32 by oohnivch          #+#    #+#             */
-/*   Updated: 2025/01/14 15:23:35 by oohnivch         ###   ########.fr       */
+/*   Updated: 2025/01/21 13:36:28 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,8 @@ static void	numeric_check(t_data *data, char *str)
 		if (!ft_isdigit(str[i]))
 		{
 			if (exec_len(data->exec) == 1)
-				ft_putstr_fd("exit\n", STDERR_FILENO);
-			ft_putstr_fd("minishell: exit: ", STDERR_FILENO);
-			ft_putstr_fd(str, STDERR_FILENO);
-			ft_putstr_fd(": numeric argument required\n", STDERR_FILENO);
+				ft_printerr("exit\n");
+			ft_printerr("minishell: exit: %s: numeric argument required\n", str);
 			bruh(data, NULL, 2);
 		}
 		i++;
@@ -46,8 +44,7 @@ void	ft_exit(t_data *data, t_exec *exec)
 			data->status = 1;
 			if (exec_len(exec) < 2)
 			{
-				ft_putstr_fd("exit\n", STDERR_FILENO);
-				ft_putstr_fd("minishell: exit: too many arguments\n", STDERR_FILENO);
+				ft_printerr("exit\nminishell: exit: too many arguments\n");
 				return ;
 			}
 			else

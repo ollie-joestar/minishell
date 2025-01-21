@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 11:41:48 by oohnivch          #+#    #+#             */
-/*   Updated: 2025/01/19 15:12:10 by hanjkim          ###   ########.fr       */
+/*   Updated: 2025/01/21 13:35:05 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,12 +58,12 @@ static void	rerouteoutfile(t_data *data, t_exec *exec)
 	/*fd = checkfile(exec->out->file);*/
 	if (exec->out->type == REPLACE && fd == 0)
 	{
-		ft_putstr_fd("creating + tuncating", STDERR_FILENO);
+		/*ft_putstr_fd("creating + tuncating", STDERR_FILENO);*/
 		fd = open(exec->out->file, O_CREAT | O_TRUNC | O_RDWR, 0664);
 	}
 	else if (fd == 0)
 	{
-		ft_putstr_fd("creating + tuncating", STDERR_FILENO);
+		/*ft_putstr_fd("creating + tuncating", STDERR_FILENO);*/
 		fd = open(exec->out->file, O_CREAT | O_APPEND | O_RDWR, 0664);
 	}
 	if (fd == -1)

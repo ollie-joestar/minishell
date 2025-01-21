@@ -6,7 +6,7 @@
 /*   By: oohnivch <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 13:21:39 by oohnivch          #+#    #+#             */
-/*   Updated: 2024/10/23 13:52:25 by oohnivch         ###   ########.fr       */
+/*   Updated: 2025/01/21 12:44:10 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 int		ft_lstsize(t_list *lst);
 //	Printf
 int		ft_printf(const char *str, ...);
+int		ft_printerr(const char *str, ...);
 int		ft_putchar(int c);
 int		ft_putstr(char *s);
 int		ft_putnbr(int nb);

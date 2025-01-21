@@ -6,7 +6,7 @@
 #    By: oohnivch <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/08 13:40:55 by oohnivch          #+#    #+#              #
-#    Updated: 2024/11/06 14:19:40 by oohnivch         ###   ########.fr        #
+#    Updated: 2025/01/21 12:34:59 by oohnivch         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 #									Variables								   #
@@ -49,7 +49,7 @@ BSRC = ft_lstnew_bonus.c ft_lstadd_front_bonus.c ft_lstsize_bonus.c \
 	   ft_lstclear_bonus.c ft_lstiter_bonus.c ft_lstmap_bonus.c
 
 PSRC = ft_printf.c ft_putchar.c ft_putnbr.c ft_putstr.c \
-	   ft_puthex.c ft_putptr.c ft_putuint.c
+	   ft_puthex.c ft_putptr.c ft_putuint.c ft_printerr.c
 
 GSRC = get_next_line.c get_next_line_2.c get_next_line_utils.c
 

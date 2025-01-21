@@ -6,16 +6,12 @@
 /*   By: oohnivch <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 15:59:26 by oohnivch          #+#    #+#             */
-/*   Updated: 2024/11/11 11:05:34 by oohnivch         ###   ########.fr       */
+/*   Updated: 2025/01/21 12:41:27 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/libft.h"
 
-// Outputs the hexadecimal representation of the unsigned long integer n to the standard output.
-// The format is a character that specifies the case of the hexadecimal digits.
-// The format can be 'x' or 'X'.
-// The function returns the number of characters printed.
 int	ft_puthex(unsigned long n, const char format)
 {
 	int		len;
