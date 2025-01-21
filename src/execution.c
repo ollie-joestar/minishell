@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 16:35:58 by oohnivch          #+#    #+#             */
-/*   Updated: 2025/01/19 17:12:59 by hanjkim          ###   ########.fr       */
+/*   Updated: 2025/01/21 15:22:55 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,23 +20,21 @@ void	command(t_data *data, t_exec *exec)
 	{
 		if (0 == access(exec->av[0], F_OK))
 		{
-			ft_putstr_fd("minishell: ", 2);
-			ft_putstr_fd(exec->cmd, 2);
-			bruh(data, ": Permission denied", 126);
+			ft_printerr("minishell: %s: Permission denied\n", exec->cmd);
+			bruh(data, NULL, 126);
 		}
-		ft_putstr_fd("minishell: no such file or directory: ", 2);
-		bruh(data, exec->av[0], 127);
+		ft_printerr("minishell: %s: No such file or directory\n", exec->cmd);
+		bruh(data, NULL, 127);
 	}
 	else
 	{
-		if (0 == access(exec->av[0], F_OK))
+		if (0 == access(exec->cmd, F_OK))
 		{
-			ft_putstr_fd("minishell: ", 2);
-			ft_putstr_fd(exec->cmd, 2);
-			bruh(data, ": Permission denied", 126);
+			ft_printerr("minishell: %s: Permission denied\n", exec->cmd);
+			bruh(data, NULL, 126);
 		}
-		ft_putstr_fd("minishell: command not found: ", 2);
-		bruh(data, exec->av[0], 127);
+		ft_printerr("%s: command not found\n", exec->cmd);
+		bruh(data, NULL, 127);
 	}
 }
 
@@ -92,7 +90,7 @@ void	do_stuff(t_data *data, t_exec *exec)
 		reroute(data, exec);
 		if (exec->type == CMD)
 			command(data, exec);
-		else
+		else if (exec->av)
 			builtin(data, exec);
 		bruh(data, NULL, data->status);
 	}
@@ -119,7 +117,7 @@ void	run(t_data *data)
 	{
 		if (exec_len(exec) > 1 || exec->type == CMD)
 			do_stuff(data, exec);
-		else
+		else if (exec->av)
 			builtin(data, exec);
 		exec = exec->next;
 	}
@@ -134,9 +132,7 @@ void	run(t_data *data)
 			;
 	}
 	while ((wait_status = wait(&exit_status)) > 0)
-	{
 		check_exit_status(data, exit_status);
-	}
 	/*ft_printf("\nCleaning up...\n");*/
 	clean_exec(data);
 	ft_free(&data->line);
