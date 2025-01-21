@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 09:38:58 by oohnivch          #+#    #+#             */
-/*   Updated: 2025/01/21 18:34:24 by oohnivch         ###   ########.fr       */
+/*   Updated: 2025/01/21 19:39:15 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,8 +81,6 @@ int main(int argc, char **argv, char **ev)
 		/*ft_printf("Initiating exec data->\n");*/
 		init_exec_data(data);
 		/*ft_printf("after init_exec_data\n");*/
-		/*ft_printf("\nPrinting exec data->");*/
-		/*print_exec(data->exec);*/
 		/*ft_printf("\nExecuting->\n");*/
 		run(data);
 	}

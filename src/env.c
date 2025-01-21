@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 11:02:42 by oohnivch          #+#    #+#             */
-/*   Updated: 2025/01/14 13:12:53 by oohnivch         ###   ########.fr       */
+/*   Updated: 2025/01/21 19:51:57 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ void	parse_env_into_ev(t_data *data)
 {
 	int	i;
 	t_envlist	*curr_env_node;
+	char	*tmp;
 
 	i = 0;
 	if (!data->env)
@@ -68,12 +69,16 @@ void	parse_env_into_ev(t_data *data)
 	curr_env_node = data->env;
 	while (curr_env_node)
 	{
+		tmp = data->ev[i];
 		data->ev[i] = ft_strjoin(curr_env_node->name, "=");
 		if (!data->ev[i])
 			bruh(data, "Memory allocation failed", 69);
+		ft_free(&tmp);
+		tmp = data->ev[i];
 		data->ev[i] = ft_strjoin(data->ev[i], curr_env_node->value);
 		if (!data->ev[i])
 			bruh(data, "Memory allocation failed", 69);
+		ft_free(&tmp);
 		curr_env_node = curr_env_node->next;
 		i++;
 	}

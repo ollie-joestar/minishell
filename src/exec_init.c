@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_init.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
+/*   By: oohnivch <oohnivch@student.42vienna.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/06 14:38:56 by oohnivch          #+#    #+#             */
-/*   Updated: 2025/01/21 17:08:31 by oohnivch         ###   ########.fr       */
+/*   Created: 2025/01/21 19:35:55 by oohnivch          #+#    #+#             */
+/*   Updated: 2025/01/21 19:36:13 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ void	add_exec(t_data *data)
 	exec = ft_calloc(1, sizeof(t_exec));
 	if (!exec)
 		bruh(data, "Failed to allocate memory for exec", 69);
+	exec->type = CMD;
 	if (data->exec)
 		(data->exec->next = exec, exec->prev = data->exec);
 	data->exec = exec;

@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 10:10:42 by oohnivch          #+#    #+#             */
-/*   Updated: 2024/12/16 15:29:55 by oohnivch         ###   ########.fr       */
+/*   Updated: 2025/01/21 19:37:39 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,7 @@ void	print_exec(t_exec *exec)
 		ft_printf("\tNext: %s\n", exec->next ? exec->next->cmd : "NULL");
 		ft_printf("\tArguments: ");
 		j = -1;
-		while (*exec->av && exec->av[++j])
+		while (exec->av && *exec->av && exec->av[++j])
 			ft_printf("[%s]", exec->av[j]);
 		exec = exec->next;	
 	}
