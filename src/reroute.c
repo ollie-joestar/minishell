@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 11:41:48 by oohnivch          #+#    #+#             */
-/*   Updated: 2025/01/21 13:35:05 by oohnivch         ###   ########.fr       */
+/*   Updated: 2025/01/21 16:24:31 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,14 +34,15 @@ static void	rerouteinfile(t_data *data, t_exec *exec)
 {
 	int	fd;
 
-	while (exec->in && exec->in->next)
-		exec->in = exec->in->next;
+	/*while (exec->in && exec->in->next)*/
+	/*	exec->in = exec->in->next;*/
 	fd = open(exec->in->file, O_RDONLY);
 	if (fd == -1)
 	{
-		ft_putstr_fd("minishell: ", STDERR_FILENO);
-		ft_putstr_fd(exec->in->file, STDERR_FILENO);
-		ft_putstr_fd(": No such file or directory INPUT\n", STDERR_FILENO);
+		/*ft_putstr_fd("minishell: ", STDERR_FILENO);*/
+		/*ft_putstr_fd(exec->in->file, STDERR_FILENO);*/
+		/*ft_putstr_fd(": No such file or directory\n", STDERR_FILENO);*/
+		ft_printerr("minishell: %s: No such file or directory\n", exec->in->file);
 		bruh(data, NULL, 1);
 	}
 	dup2(fd, STDIN_FILENO);
@@ -57,21 +58,12 @@ static void	rerouteoutfile(t_data *data, t_exec *exec)
 	fd = 0;
 	/*fd = checkfile(exec->out->file);*/
 	if (exec->out->type == REPLACE && fd == 0)
-	{
-		/*ft_putstr_fd("creating + tuncating", STDERR_FILENO);*/
 		fd = open(exec->out->file, O_CREAT | O_TRUNC | O_RDWR, 0664);
-	}
 	else if (fd == 0)
-	{
-		/*ft_putstr_fd("creating + tuncating", STDERR_FILENO);*/
 		fd = open(exec->out->file, O_CREAT | O_APPEND | O_RDWR, 0664);
-	}
 	if (fd == -1)
 	{
-		ft_putstr_fd("REROUTE FAILED OUT: ", STDERR_FILENO);
-		ft_putstr_fd("minishell: ", STDERR_FILENO);
-		ft_putstr_fd(exec->out->file, STDERR_FILENO);
-		ft_putstr_fd(": No such file or directory OUTPUT\n", STDERR_FILENO);
+		ft_printerr("minishell: %s: No such file or directory\n", exec->out->file);
 		data->status = 1;
 		bruh(data, NULL, 1);
 	}
@@ -95,10 +87,20 @@ static void	rerouteoutpipe(t_exec *exec)
 
 void	reroute(t_data *data, t_exec *exec)
 {
+	while (exec->in && exec->in->prev)
+		exec->in = exec->in->prev;
+	while (exec->out && exec->out->prev)
+		exec->out = exec->out->prev;
 	if (exec->in && (exec_len(exec) > 1 || exec->type == CMD))
-		rerouteinfile(data, exec);
+	{
+		while (exec->in)
+			(rerouteinfile(data, exec), exec->in = exec->in->next);
+	}
 	if (exec->out)
-		rerouteoutfile(data, exec);
+	{
+		while (exec->out)
+			(rerouteoutfile(data, exec), exec->out = exec->out->next);
+	}
 	if (!exec->in && exec->prev)
 		rerouteinpipe(exec);
 	if (!exec->out && exec->next)

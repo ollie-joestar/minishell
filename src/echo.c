@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 13:31:08 by oohnivch          #+#    #+#             */
-/*   Updated: 2025/01/14 11:00:12 by oohnivch         ###   ########.fr       */
+/*   Updated: 2025/01/21 18:40:52 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static int	check_n_flag(char *str)
 		return (0);
 	while (str[i] == 'n')
 		i++;
-	if (str[i] == '\0')
+	if (str[i] == '\0' && i > 1)
 		return (1);
 	return (0);
 }
@@ -34,15 +34,24 @@ void	echo(t_data *data, t_exec *exec)
 {
 	int	i;
 	int	n;
+	int	check;
 
-	i = 0;
-	n = check_n_flag(exec->av[1]);
-	i += n;
-	while (exec->av[++i])
+	i = 1;
+	n = 0;
+	while (1)
+	{
+		check = check_n_flag(exec->av[i]);
+		if (check)
+			n = i++;
+		else
+			break ;
+	}
+	while (exec->av[i])
 	{
 		ft_putstr(exec->av[i]);
 		if (exec->av[i + 1])
 			ft_putchar(' ');
+		i++;
 	}
 	if (!n)
 		ft_putchar('\n');

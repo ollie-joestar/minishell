@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 11:19:32 by oohnivch          #+#    #+#             */
-/*   Updated: 2025/01/21 13:36:28 by oohnivch         ###   ########.fr       */
+/*   Updated: 2025/01/21 19:03:31 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,22 @@ static void	numeric_check(t_data *data, char *str)
 	int	i;
 
 	i = 0;
-	if (!str || !*str)
+	if (!str)
 		return ;
+	else if (!*str)
+	{
+		if (isatty(STDIN_FILENO) && isatty(STDOUT_FILENO))
+			ft_printerr("exit\n");
+		ft_printerr("minishell: exit: %s: numeric argument required\n", str);
+		bruh(data, NULL, 2);
+	}
 	if (str[i] == '-' || str[i] == '+')
 		i++;
 	while (str[i])
 	{
 		if (!ft_isdigit(str[i]))
 		{
-			if (exec_len(data->exec) == 1)
+			if (isatty(STDIN_FILENO) && isatty(STDOUT_FILENO))
 				ft_printerr("exit\n");
 			ft_printerr("minishell: exit: %s: numeric argument required\n", str);
 			bruh(data, NULL, 2);
@@ -42,19 +49,19 @@ void	ft_exit(t_data *data, t_exec *exec)
 		if (exec->av[2])
 		{
 			data->status = 1;
-			if (exec_len(exec) < 2)
+			if (isatty(STDIN_FILENO) && isatty(STDOUT_FILENO))
 			{
 				ft_printerr("exit\nminishell: exit: too many arguments\n");
 				return ;
 			}
 			else
-				bruh(data, "minishell: exit: too many arguments", STDERR_FILENO);
+				bruh(data, "minishell: exit: too many arguments", 1);
 		}
 		data->status = ft_atoi(exec->av[1]) % 256;
 		/*if (data->status < 0 || data->status > 255)*/
 		/*	data->status = 69;*/
 	}
-	if (exec_len(exec) == 1)
+	if (isatty(STDIN_FILENO) && isatty(STDOUT_FILENO))
 		bruh(data, "exit", data->status);
 	bruh(data, NULL, data->status);
 }

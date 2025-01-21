@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 13:39:47 by oohnivch          #+#    #+#             */
-/*   Updated: 2024/12/18 18:13:28 by hanjkim          ###   ########.fr       */
+/*   Updated: 2025/01/21 18:31:00 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +15,16 @@
 t_token	*handle_heredoc(t_data *data, t_token *redirection_token,
 						t_token *filename_token)
 {
-	int		to_expand;
+	int		dont_expand;
 	char	*temp_word;
 	char	*here_result;
 
-	to_expand = (filename_token->segments->double_quoted
+	dont_expand = (filename_token->segments->double_quoted
 			|| filename_token->segments->single_quoted);
 	temp_word = join_segments(filename_token);
 	if (!temp_word)
 		bruh(data, "Failed to join filename segments for HEREDOC", 2);
-	here_result = here_doc(data, temp_word, to_expand);
+	here_result = here_doc(data, temp_word, dont_expand);
 	ft_free(&temp_word);
 	free_token_node(&filename_token);
 	filename_token = create_token_from_string(here_result);
@@ -77,7 +77,7 @@ char	*random_name(void)
 	return (name);
 }
 
-char	*here_doc(t_data *data, char *l, int to_expand)
+char	*here_doc(t_data *data, char *l, int dont_expand)
 {
 	int		fd;
 	char	*line;
@@ -95,8 +95,8 @@ char	*here_doc(t_data *data, char *l, int to_expand)
 			return (close(fd), NULL);
 		if (!line || !ft_strncmp(line, l, ft_strlen(l) + 1))
 			break ;
-		if (to_expand)
-			expand_var_in_str(data, &line);
+		if (!dont_expand)
+			line = expand(data, line);
 		if (line)
 			write(fd, line, ft_strlen(line));
 		write(fd, "\n", 1);

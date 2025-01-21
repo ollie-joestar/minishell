@@ -6,7 +6,7 @@
 /*   By: hanjkim <@student.42vienna.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 18:49:14 by hanjkim           #+#    #+#             */
-/*   Updated: 2025/01/19 15:02:41 by hanjkim          ###   ########.fr       */
+/*   Updated: 2025/01/21 18:36:57 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ void	process_redirection(t_data *data, t_token **token)
 
 	redirection_token = *token;
 	filename_token = redirection_token->next;
+	/*ft_printf("filename_token->word: %s\n", filename_token->word);*/
 	if (!filename_token)
 	{
 		unexpected_token(data, NULL);
@@ -75,6 +76,7 @@ void	process_redirection(t_data *data, t_token **token)
 		data->token = filename_token;
 	free_old_token(redirection_token);
 	*token = filename_token;
+	/*ft_printf("filename_token->word: %s\n", filename_token->word);*/
 }
 
 /*void	process_redirection(t_data *data, t_token **token)*/
@@ -129,15 +131,32 @@ char	*join_fields_with_single_space(char **fields)
 	return (joined);
 }
 
-char	*expand_segment(t_data *data, t_segment *seg)
+// EXPAND REDIRECTION SEGMENT IS SAMESAME BUT DIFFERENT
+/*char	*expand_redirection_segment(t_data *data, t_segment *seg, t_token *token)*/
+//
+//
+//
+//
+//
+// NEEDED FUNCTION
+//
+//
+//
+//
+//
+//
+//
+// EXPAND REDIRECTION SEGMENT IS SAMESAME BUT DIFFERENT
+
+char	*expand_segment(t_data *data, t_segment *seg, t_token *token)
 {
 	char	*expanded;
 	char	**fields;
 	char	*joined;
 
-	expanded = NULL;
-	fields = NULL;
-	joined = NULL;
+	/*if (token->type != WORD || token->type != PIPE)*/
+	/*	return (expand_redirection_segment(data, seg));*/
+	(void)token;
 	if (seg->single_quoted)
 		return (ft_strdup(seg->text));
 	expanded = expand(data, seg->text);
@@ -170,7 +189,7 @@ void	expand_tokens(t_data *data)
 		seg = current->segments;
 		while (seg)
 		{
-			expanded = expand_segment(data, seg);
+			expanded = expand_segment(data, seg, current);
 			if (!expanded)
 				return ;
 			else

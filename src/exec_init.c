@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 14:38:56 by oohnivch          #+#    #+#             */
-/*   Updated: 2024/12/02 19:00:38 by oohnivch         ###   ########.fr       */
+/*   Updated: 2025/01/21 17:08:31 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,23 +28,23 @@ void	add_output(t_data *data, t_exec *exec, t_token *token)
 {
 	t_output	*output;
 
-	if (!exec->out)
-	{
-		output = ft_calloc(1, sizeof(t_output));
-		if (!output)
-			bruh(data, "Failed to allocate memory for output", 69);
-		exec->out = output;
-	}
-	output = exec->out;
+	output = ft_calloc(1, sizeof(t_output));
+	if (!output)
+		bruh(data, "Failed to allocate memory for output", 69);
 	output->type = token->type;
-	ft_free(&output->file);
 	output->file = ft_strdup(token->word);
 	if (!output->file)
 	{
 		free(output);
 		output = NULL;
-		bruh(data, "Failed to allocate memory for output file", 69);
+		return ;
 	}
+	if (exec->out)
+	{
+		exec->out->next = output;
+		output->prev = exec->out;
+	}
+	exec->out = output;
 }
 
 void	add_input(t_data *data, t_exec *exec, t_token *token)
@@ -90,7 +90,7 @@ void	add_av(t_data *data, t_exec *exec, t_token *token)
 	if (!exec->av)
 		bruh(data, "Failed to allocate memory", 69);
 	/*print_arr(exec->av);*/
-	if (exec->av[0] == 0)
+	if (!exec->av[0])
 		bruh(data, "cmd is null\n", 1);
 	exec->cmd = ft_strdup(exec->av[0]);
 	if (!exec->cmd)

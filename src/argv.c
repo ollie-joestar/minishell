@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 16:29:57 by oohnivch          #+#    #+#             */
-/*   Updated: 2024/12/02 16:54:01 by oohnivch         ###   ########.fr       */
+/*   Updated: 2025/01/21 17:12:01 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ char	**create_argv(t_data *data, t_token *token)
 	i = 0;
 	while (token && token->type == WORD)
 	{
+		/*if (!token->word)*/
+		/*	return (av);*/
 		av[i] = ft_strdup(token->word);
 		if (!av[i])
 			return (free_arr(&av), NULL);

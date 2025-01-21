@@ -75,7 +75,7 @@ typedef struct s_expander {
 
 typedef struct s_input {
 	int		type; // HERE_DOC | FILE
-	char		*file;
+	char	*file;
 	struct s_input	*next;
 	struct s_input	*prev;
 }			t_input;
@@ -83,6 +83,8 @@ typedef struct s_input {
 typedef struct s_output {
 	int		type; // REPLACE | APPEND
 	char	*file;
+	struct s_output	*next;
+	struct s_output	*prev;
 }			t_output;
 
 typedef struct s_envlist {

@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 16:15:50 by oohnivch          #+#    #+#             */
-/*   Updated: 2024/12/02 15:29:39 by oohnivch         ###   ########.fr       */
+/*   Updated: 2025/01/21 16:35:34 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,18 @@ void	clean_input(t_exec *exec)
 
 void	clean_output(t_exec *exec)
 {
-	if (exec->out)
+	t_output	*tmp;
+
+	while (exec->out && exec->out->prev)
+		exec->out = exec->out->prev;
+	while (exec->out)
 	{
-		ft_free(&exec->out->file);
-		free(exec->out);
-		exec->out = NULL;
+		tmp = exec->out;
+		exec->out = exec->out->next;
+		if (tmp->file)
+			ft_free(&tmp->file);
+		free(tmp);
+		tmp = NULL;
 	}
 }
 

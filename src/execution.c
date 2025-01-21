@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 16:35:58 by oohnivch          #+#    #+#             */
-/*   Updated: 2025/01/21 15:22:55 by oohnivch         ###   ########.fr       */
+/*   Updated: 2025/01/21 17:11:48 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,8 @@ void	command(t_data *data, t_exec *exec)
 			ft_printerr("minishell: %s: Permission denied\n", exec->cmd);
 			bruh(data, NULL, 126);
 		}
-		ft_printerr("%s: command not found\n", exec->cmd);
+		if (exec->cmd != NULL && exec->cmd[0] != '\0')
+			ft_printerr("%s: command not found\n", exec->cmd);
 		bruh(data, NULL, 127);
 	}
 }

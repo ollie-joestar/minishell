@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 10:37:58 by oohnivch          #+#    #+#             */
-/*   Updated: 2024/12/02 19:16:11 by oohnivch         ###   ########.fr       */
+/*   Updated: 2025/01/21 16:38:42 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,12 +59,8 @@ void	unset(t_data *data, t_exec *exec)
 	int	i;
 
 	i = 0;
-	if (exec->av[1] == NULL)
-	{
-		ft_putstr_fd("unset: not enough arguments\n", 2);
-		data->status = 1;
+	if (!exec->av[1])
 		return ;
-	}
 	while (exec->av[++i])
 	{
 		if (ft_strchr(exec->av[i], '='))
