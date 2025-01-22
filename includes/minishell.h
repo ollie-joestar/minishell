@@ -10,6 +10,8 @@
 # include <stdbool.h>
 # include <signal.h>
 
+# define L_MAX_ABS "9223372036854775807"
+# define L_MIN_ABS "9223372036854775808"
 // exec types
 # define BUILTIN 69
 # define CMD 420
@@ -246,6 +248,7 @@ void		update_pwd(t_data *data);
 t_envlist   *get_pwd(t_data *data);
 t_envlist   *get_oldpwd(t_data *data);
 void		ft_exit(t_data *data, t_exec *exec);
+/*void		numeric_long_check(t_data *data, char *str);*/
 void		export(t_data *data, t_exec *exec);
 void		unset(t_data *data, t_exec *exec);
 

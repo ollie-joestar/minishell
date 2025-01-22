@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 16:35:58 by oohnivch          #+#    #+#             */
-/*   Updated: 2025/01/22 14:00:30 by oohnivch         ###   ########.fr       */
+/*   Updated: 2025/01/22 16:34:31 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	command(t_data *data, t_exec *exec)
 {
 	parse_env_into_ev(data);
 	execve(exec->cmd, exec->av, data->ev);
-	if (ft_strchr(exec->av[0], '/'))
+	if (exec->av && ft_strchr(exec->av[0], '/'))
 	{
 		if (0 == access(exec->av[0], F_OK))
 		{
@@ -26,7 +26,7 @@ void	command(t_data *data, t_exec *exec)
 		requiem(3, "minishell: ", exec->cmd, ": No such file or directory\n");
 		bruh(data, NULL, 127);
 	}
-	else
+	else if (exec->av)
 	{
 		if (0 == access(exec->cmd, F_OK))
 		{
