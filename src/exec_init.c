@@ -6,7 +6,7 @@
 /*   By: oohnivch <oohnivch@student.42vienna.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 19:35:55 by oohnivch          #+#    #+#             */
-/*   Updated: 2025/01/22 12:33:59 by oohnivch         ###   ########.fr       */
+/*   Updated: 2025/01/22 12:46:04 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -183,7 +183,10 @@ void	init_argv(t_data *data, t_exec *exec)
 			ft_printerr("Failed to allocate memory for av[%d]\n", i);
 			bruh(data, NULL, 69);
 		}
-		exec->av_list = exec->av_list->next;
+		if (exec->av_list->next)
+			exec->av_list = exec->av_list->next;
+		else
+			break ;
 		i++;
 	}
 }

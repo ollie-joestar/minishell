@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 11:32:53 by oohnivch          #+#    #+#             */
-/*   Updated: 2025/01/22 11:01:32 by oohnivch         ###   ########.fr       */
+/*   Updated: 2025/01/22 14:21:14 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,16 +108,26 @@ static void	process_export(t_data *data, t_exec *exec)
 
 void	export(t_data *data, t_exec *exec)
 {
+	int	i;
+
+	i = 0;
 	if (ft_arrlen(exec->av) == 1)
 		return (print_export(data));
-	if (ft_arrlen(exec->av) > 1)
+	while (exec->av[1][i] && exec->av[1][i] != '=')
 	{
-		if (!ft_isalpha(exec->av[1][0]) && exec->av[1][0] != '_')
+		if (!ft_isalpha(exec->av[1][i]) && exec->av[1][i] != '_')
 		{
 			ft_printerr("minishell: export: `%s': not a valid identifier\n", exec->av[1]);
 			data->status = 1;
 			return ;
 		}
-		process_export(data, exec);
+		i++;
 	}
+	if (i == 0)
+	{
+		ft_printerr("minishell: export: `%s': not a valid identifier\n", exec->av[1]);
+		data->status = 1;
+		return ;
+	}
+	process_export(data, exec);
 }

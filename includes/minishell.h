@@ -258,6 +258,7 @@ void		expand_var_in_str(t_data *data, char **str);
 void		bruh(t_data *data, char *s, int status);
 size_t		ft_arrlen(char **arr);
 int			checkfile(char *file);
+int			requiem(int	n, ...);
 // Free functions
 void		free_tokens(t_data *data);
 void		free_old_token(t_token *token);
