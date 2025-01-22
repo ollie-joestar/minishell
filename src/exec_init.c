@@ -6,7 +6,7 @@
 /*   By: oohnivch <oohnivch@student.42vienna.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 19:35:55 by oohnivch          #+#    #+#             */
-/*   Updated: 2025/01/21 19:36:13 by oohnivch         ###   ########.fr       */
+/*   Updated: 2025/01/22 12:33:59 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,23 @@ void	add_av(t_data *data, t_exec *exec, t_token *token)
 	}
 }
 
+size_t	av_list_len(t_avlist *av_list)
+{
+	size_t	len;
+
+	if (!av_list)
+		return (0);
+	len = 0;
+	while (av_list->prev)
+		av_list = av_list->prev;
+	while (av_list)
+	{
+		len++;
+		av_list = av_list->next;
+	}
+	return (len);
+}
+
 // data->token needs to be setup to the current token
 void	init_exec_data(t_data *data)
 {
@@ -123,12 +140,68 @@ void	init_exec_data(t_data *data)
 		else if (token->type == PIPE)
 			return ((data->token = token->next), (init_exec_data(data)));
 		else 
-		{
-			add_av(data, exec, token);
-			while (token->next && token->next->type == WORD)
-				token = token->next;
-		}
+			add_to_avlist(data, exec, token);
+			/*while (token->next && token->next->type == WORD)*/
+			/*	token = token->next;*/
 		token = token->next;
 		/*ft_printf("Next Token");*/
+	}
+}
+
+void	init_cmd(t_data *data, t_exec *exec)
+{
+	if (!exec->av || !exec->av[0])
+		bruh(data, "No argv in exec for cmd\n", 1);
+	exec->cmd = ft_strdup(exec->av[0]);
+	if (!exec->cmd)
+		bruh(data, "Failed to allocate memory for cmd", 69);
+	check_for_builtin(exec);
+	if (exec->type == CMD)
+	{
+		parse_path(data);
+		set_cmd_path(data, exec);
+	}
+}
+
+void	init_argv(t_data *data, t_exec *exec)
+{
+	size_t	i;
+
+	if (!exec || !exec->av_list)
+		return ;
+	i = 0;
+	exec->av = ft_calloc(av_list_len(exec->av_list) + 1, sizeof(char *));
+	if (!exec->av)
+		bruh(NULL, "Failed to allocate memory for av", 69);
+	while (exec->av_list->prev)
+		exec->av_list = exec->av_list->prev;
+	while (exec->av_list)
+	{
+		exec->av[i] = ft_strdup(exec->av_list->arg);
+		if (!exec->av[i])
+		{
+			ft_printerr("Failed to allocate memory for av[%d]\n", i);
+			bruh(data, NULL, 69);
+		}
+		exec->av_list = exec->av_list->next;
+		i++;
+	}
+}
+
+void	init_exec(t_data *data)
+{
+	t_exec	*exec;
+
+	init_exec_data(data);
+	/*print_exec(data->exec);*/
+	/*ft_printf("if i see this, then i need to go for a smoke\n\n\n");*/
+	while (data->exec && data->exec->prev)
+		data->exec = data->exec->prev;
+	exec = data->exec;
+	while (exec)
+	{
+		if (exec->av_list)
+			(init_argv(data, exec), free_av_list(exec), init_cmd(data, exec));
+		exec = exec->next;
 	}
 }

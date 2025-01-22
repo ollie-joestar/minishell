@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 11:32:53 by oohnivch          #+#    #+#             */
-/*   Updated: 2024/12/02 19:16:17 by oohnivch         ###   ########.fr       */
+/*   Updated: 2025/01/22 11:01:32 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,9 +114,7 @@ void	export(t_data *data, t_exec *exec)
 	{
 		if (!ft_isalpha(exec->av[1][0]) && exec->av[1][0] != '_')
 		{
-			ft_putstr_fd("export: '", 2);
-			ft_putstr_fd(exec->av[1], 2);
-			ft_putstr_fd("': not a valid identifier\n", 2);
+			ft_printerr("minishell: export: `%s': not a valid identifier\n", exec->av[1]);
 			data->status = 1;
 			return ;
 		}

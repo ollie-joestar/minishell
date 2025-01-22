@@ -6,11 +6,29 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 11:08:52 by oohnivch          #+#    #+#             */
-/*   Updated: 2024/12/16 18:52:54 by hanjkim          ###   ########.fr       */
+/*   Updated: 2025/01/22 11:54:09 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+void	free_av_list(t_exec *exec)
+{
+	t_avlist	*tmp;
+
+	if (!exec->av_list)
+		return ;
+	while (exec->av_list->prev)
+		exec->av_list = exec->av_list->prev;
+	while (exec->av_list)
+	{
+		tmp = exec->av_list;
+		exec->av_list = exec->av_list->next;
+		ft_free(&tmp->arg);
+		free(tmp);
+		tmp = NULL;
+	}
+}
 
 void	free_arr(char ***arr)
 {

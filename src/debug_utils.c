@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 10:10:42 by oohnivch          #+#    #+#             */
-/*   Updated: 2025/01/21 19:37:39 by oohnivch         ###   ########.fr       */
+/*   Updated: 2025/01/22 12:25:41 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,10 +67,49 @@ void	print_arr(char **arr)
 	ft_printf("\t[%d] %s\n", i, NULL);
 }
 
+void	print_av_list(t_exec	*exec)
+{
+	t_avlist	*av_list;
+
+	ft_printf("\tArgv_list:\n");
+	if (!exec->av_list)
+	{
+		ft_printf("\t\tNULL\n");
+		return ;
+	}
+	while (exec->av_list->prev)
+		exec->av_list = exec->av_list->prev;
+	av_list = exec->av_list;
+	while (av_list)
+	{
+		ft_printf("\t\t[%s]\n", av_list->arg);
+		av_list = av_list->next;
+	}
+	ft_printf("\n");
+}
+
+void	print_av(t_exec	*exec)
+{
+	int	i;
+
+	i = 0;
+	ft_printf("\tArgv:\n");
+	if (!exec->av || !*exec->av)
+	{
+		ft_printf("\t\tNULL\n");
+		return ;
+	}
+	while (exec->av[i])
+	{
+		ft_printf("\t\t[%d] %s\n", i, exec->av[i]);
+		i++;
+	}
+	ft_printf("\t\t[%d] %s\n", i, NULL);
+}
+
 void	print_exec(t_exec *exec)
 {
 	int	i;
-	int	j;
 
 	i = -1;
 	while (exec && exec->prev)
@@ -98,10 +137,8 @@ void	print_exec(t_exec *exec)
 		ft_printf("\tPipe: %d %d\n", exec->pipe[RD], exec->pipe[WR]);
 		ft_printf("\tPrev: %s\n", exec->prev ? exec->prev->cmd : "NULL");
 		ft_printf("\tNext: %s\n", exec->next ? exec->next->cmd : "NULL");
-		ft_printf("\tArguments: ");
-		j = -1;
-		while (exec->av && *exec->av && exec->av[++j])
-			ft_printf("[%s]", exec->av[j]);
+		print_av_list(exec);
+		print_av(exec);
 		exec = exec->next;	
 	}
 }

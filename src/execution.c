@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 16:35:58 by oohnivch          #+#    #+#             */
-/*   Updated: 2025/01/21 20:03:55 by oohnivch         ###   ########.fr       */
+/*   Updated: 2025/01/22 12:34:38 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,6 +115,7 @@ void	run(t_data *data)
 	while (data->exec->prev)
 		data->exec = data->exec->prev;
 	exec = data->exec;
+	/*ft_printf("Found execs, lets do stuff\n");*/
 	while(exec)
 	{
 		if (exec_len(exec) > 1 || exec->type == CMD)

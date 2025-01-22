@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 09:38:58 by oohnivch          #+#    #+#             */
-/*   Updated: 2025/01/21 19:39:15 by oohnivch         ###   ########.fr       */
+/*   Updated: 2025/01/22 12:34:08 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,8 +79,10 @@ int main(int argc, char **argv, char **ev)
 		process_tokens(data);
 		/*print_tokens(data->token);*/
 		/*ft_printf("Initiating exec data->\n");*/
-		init_exec_data(data);
+		/*init_exec_data(data);*/
+		init_exec(data);
 		/*ft_printf("after init_exec_data\n");*/
+		/*print_exec(data->exec);*/
 		/*ft_printf("\nExecuting->\n");*/
 		run(data);
 	}
