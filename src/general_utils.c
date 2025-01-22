@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 16:36:14 by oohnivch          #+#    #+#             */
-/*   Updated: 2025/01/22 14:02:09 by oohnivch         ###   ########.fr       */
+/*   Updated: 2025/01/22 14:56:24 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ void	skip_spaces(char *input, int *i)
 		(*i)++;
 }
 
-static char	*experience(char const *s1, char const *s2)
+char	*experience(char const *s1, char const *s2)
 {
 	size_t	i;
 	size_t	j;

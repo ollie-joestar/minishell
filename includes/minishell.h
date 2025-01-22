@@ -259,6 +259,7 @@ void		bruh(t_data *data, char *s, int status);
 size_t		ft_arrlen(char **arr);
 int			checkfile(char *file);
 int			requiem(int	n, ...);
+char		*experience(char const *s1, char const *s2);
 // Free functions
 void		free_tokens(t_data *data);
 void		free_old_token(t_token *token);

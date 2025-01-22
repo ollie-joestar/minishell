@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 11:32:53 by oohnivch          #+#    #+#             */
-/*   Updated: 2025/01/22 14:21:14 by oohnivch         ###   ########.fr       */
+/*   Updated: 2025/01/22 15:11:01 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ static void print_export(t_data *data)
 {
 	t_envlist	*list;
 
+	if (!data->env)
+		ft_printerr("No env for export\n");
 	list = dup_env(data->env);
 	if (!list)
 		bruh(data, "Memory allocation failed", 69);
@@ -26,6 +28,7 @@ static void print_export(t_data *data)
 	{
 		if (ft_strncmp(list->name, "_", 2))
 			ft_printf("declare -x %s=\"%s\"\n", list->name, list->value);
+			/*ft_printf("export %s=\"%s\"\n", list->name, list->value);*/
 		list = list->next;	
 	}
 	free_env_list(list);
@@ -110,24 +113,24 @@ void	export(t_data *data, t_exec *exec)
 {
 	int	i;
 
-	i = 0;
 	if (ft_arrlen(exec->av) == 1)
 		return (print_export(data));
+	if (exec->av[1][0] && (exec->av[1][0] != '_' && !ft_isalpha(exec->av[1][0])))
+	{
+		ft_printerr("minishell: export: `%s': not a valid identifier\n", exec->av[1]);
+		data->status = 1;
+		return ;
+	}
+	i = 1;
 	while (exec->av[1][i] && exec->av[1][i] != '=')
 	{
-		if (!ft_isalpha(exec->av[1][i]) && exec->av[1][i] != '_')
+		if (!ft_isalnum(exec->av[1][i]) && exec->av[1][i] != '_')
 		{
 			ft_printerr("minishell: export: `%s': not a valid identifier\n", exec->av[1]);
 			data->status = 1;
 			return ;
 		}
 		i++;
-	}
-	if (i == 0)
-	{
-		ft_printerr("minishell: export: `%s': not a valid identifier\n", exec->av[1]);
-		data->status = 1;
-		return ;
 	}
 	process_export(data, exec);
 }
