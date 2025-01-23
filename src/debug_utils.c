@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 10:10:42 by oohnivch          #+#    #+#             */
-/*   Updated: 2025/01/22 12:25:41 by oohnivch         ###   ########.fr       */
+/*   Updated: 2025/01/23 16:21:10 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,6 +107,31 @@ void	print_av(t_exec	*exec)
 	ft_printf("\t\t[%d] %s\n", i, NULL);
 }
 
+void	print_redirs(t_exec *exec)
+{
+	int	i;
+
+	i = 0;
+	/*ft_printf("\tRedirs:\n");*/
+	ft_printf("\tInput:\n");
+	while (exec->in)
+	{
+		ft_printf("\t\t[%d] %s\n", i, exec->in->file);
+		i++;
+		exec->in = exec->in->next;
+	}
+	ft_printf("\t\tNULL\n");
+	i = 0;
+	ft_printf("\tOutput:\n");
+	while (exec->out)
+	{
+		ft_printf("\t\t[%d] %s\n", i, exec->out->file);
+		i++;
+		exec->out = exec->out->next;
+	}
+	ft_printf("\t\tNULL\n");
+}
+
 void	print_exec(t_exec *exec)
 {
 	int	i;
@@ -132,8 +157,7 @@ void	print_exec(t_exec *exec)
 			ft_printf("\tType: BUILTIN\n");
 			ft_printf("\tCommand: %s\n", exec->cmd);
 		}
-		ft_printf("\tInput: %s\n", exec->in ? exec->in->file : "NULL");
-		ft_printf("\tOutput: %s\n", exec->out ? exec->out->file : "NULL");
+		print_redirs(exec);
 		ft_printf("\tPipe: %d %d\n", exec->pipe[RD], exec->pipe[WR]);
 		ft_printf("\tPrev: %s\n", exec->prev ? exec->prev->cmd : "NULL");
 		ft_printf("\tNext: %s\n", exec->next ? exec->next->cmd : "NULL");

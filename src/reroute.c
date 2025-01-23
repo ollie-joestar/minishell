@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 11:41:48 by oohnivch          #+#    #+#             */
-/*   Updated: 2025/01/23 15:12:59 by oohnivch         ###   ########.fr       */
+/*   Updated: 2025/01/23 16:23:38 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,10 +78,12 @@ void	reroute(t_data *data, t_exec *exec)
 
 	in = exec->in;
 	out = exec->out;
-	while (in && (exec_len(exec) > 1 || exec->type == CMD))
-		(rerouteinfile(data, exec), in = in->next);
-	while (out)
-		(rerouteoutfile(data, exec), out = out->next);
+	while (exec->in && (exec_len(exec) > 1 || exec->type == CMD))
+		(rerouteinfile(data, exec), exec->in = exec->in->next);
+	exec->in = in;
+	while (exec->out)
+		(rerouteoutfile(data, exec), exec->out = exec->out->next);
+	exec->out = out;
 	if (!exec->in && exec->prev)
 		rerouteinpipe(exec);
 	if (!exec->out && exec->next)
