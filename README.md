@@ -5,6 +5,10 @@
                                                
 Our `minishell` with **Hanju-kun** *UwU*
 
+***TODO***
+    - Redirection queue
+    - Signal handling
+    - Expander errors
 
 ***PLAN***
 
@@ -57,7 +61,3 @@ another="anything here"
 <!--[echo] [-n] [$wordNfirstsomething] [else] [$another] [|] [cat] // split by space-->
 <!--[echo] [-n] [$wordNfirstsomething] [else] [anything here] [|] [cat] // expand variable-->
 <!--[echo] [-n] [$wordNfirstsomething] [else] [anything] [here] [|] [cat] // split by space-->
-
-open double quote -> expand variable -> split by space
-expand variable -> split by space
-open single quote -> split by space
