@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 16:15:50 by oohnivch          #+#    #+#             */
-/*   Updated: 2025/01/21 16:35:34 by oohnivch         ###   ########.fr       */
+/*   Updated: 2025/01/23 14:01:57 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,4 +64,22 @@ void	clean_exec(t_data *data)
 		free(tmp);
 		tmp = NULL;
 	}
+}
+
+void	bruh(t_data *data, char *s, int status)
+{
+	if (s)
+		(ft_putstr_fd(s, 2), ft_putstr_fd("\n", 2));
+	if (data)
+	{
+		clean_exec(data);
+		free_env_list(data->env);
+		free_arr(&data->ev);
+		free_arr(&data->path);
+		ft_free(&data->line);
+		free_tokens(data);
+		free(data);
+	}
+	rl_clear_history();
+	exit(status);
 }

@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 16:35:58 by oohnivch          #+#    #+#             */
-/*   Updated: 2025/01/22 16:34:31 by oohnivch         ###   ########.fr       */
+/*   Updated: 2025/01/23 15:32:25 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,10 @@
 
 void	command(t_data *data, t_exec *exec)
 {
-	parse_env_into_ev(data);
-	execve(exec->cmd, exec->av, data->ev);
-	if (exec->av && ft_strchr(exec->av[0], '/'))
+	(parse_env_into_ev(data), execve(exec->cmd, exec->av, data->ev));
+	if (exec->av && ft_strchr(*exec->av, '/'))
 	{
-		if (0 == access(exec->av[0], F_OK))
+		if (0 == access(*exec->av, F_OK))
 		{
 			requiem(3, "minishell: ", exec->cmd, ": Permission denied\n");
 			bruh(data, NULL, 126);
@@ -28,16 +27,13 @@ void	command(t_data *data, t_exec *exec)
 	}
 	else if (exec->av)
 	{
-		if (0 == access(exec->cmd, F_OK))
+		if (0 == access(exec->cmd, F_OK) && ft_strncmp(exec->cmd, ".", 2))
 		{
-			ft_printerr("minishell: %s: ", exec->cmd);
-			perror("");
-			bruh(data, NULL, 126);
+			requiem(3, "minishell: ", exec->cmd, ": ");
+			(perror(""), bruh(data, NULL, 126));
 		}
-		if (exec->cmd != NULL && exec->cmd[0] != '\0')
+		if (exec->cmd != NULL && *exec->cmd)
 			requiem(2, exec->cmd, ": command not found\n");
-			/*ft_printerr("%s: command not found\n", exec->cmd);*/
-			/*perror(exec->cmd);*/
 		bruh(data, NULL, 127);
 	}
 }
@@ -58,10 +54,7 @@ void	builtin(t_data *data, t_exec *exec)
 	if (exec_len(exec) == 1)
 		(stdout_copy = dup(STDOUT_FILENO), reroute(data, exec));
 	if (!(ft_strncmp(exec->av[0], "exit", 5)))
-	{
-		reset_stdout(stdout_copy);
-		ft_exit(data, exec);
-	}
+		(reset_stdout(stdout_copy), ft_exit(data, exec));
 	else if (!(ft_strncmp(exec->av[0], "echo", 5)))
 		echo(data, exec);
 	else if (!(ft_strncmp(exec->av[0], "cd", 3)))
@@ -75,7 +68,7 @@ void	builtin(t_data *data, t_exec *exec)
 	else if (!(ft_strncmp(exec->av[0], "unset", 6)))
 		unset(data, exec);
 	else
-		bruh(data, "command not found\n", 127);
+		bruh(data, "it's not a builtin, my bad (^_^)\n", 127);
 	if (exec_len(exec) > 1)
 		bruh(data, NULL, 0);
 	else if (ft_strncmp(exec->av[0], "exit", 5))
@@ -87,7 +80,7 @@ void	do_stuff(t_data *data, t_exec *exec)
 	if (exec->next)
 		open_pipe_exec(data, exec);
 	/*signal(SIGINT, SIG_IGN);*/
-	data->pid = fork1(data);
+	(fork1(data), underscore(data, exec));
 	if (data->pid == 0)
 	{
 		/*signal(SIGINT, SIG_DFL);*/
@@ -107,25 +100,27 @@ void	do_stuff(t_data *data, t_exec *exec)
 	/*	write(STDOUT_FILENO, "\n", 1);*/
 }
 
+static void	loop_exec(t_data *data, t_exec *exec)
+{
+	while (exec)
+	{
+		if (exec_len(exec) > 1 || exec->type == CMD)
+			do_stuff(data, exec);
+		else if (exec->av)
+			(underscore(data, exec), builtin(data, exec));
+		exec = exec->next;
+	}
+}
+
 void	run(t_data *data)
 {
 	t_exec	*exec;
 	int		exit_status;
 	int		wait_status;
 
-	exit_status = 0;
-	while (data->exec->prev)
-		data->exec = data->exec->prev;
+	/*exit_status = 0;*/
 	exec = data->exec;
-	/*ft_printf("Found execs, lets do stuff\n");*/
-	while(exec)
-	{
-		if (exec_len(exec) > 1 || exec->type == CMD)
-			do_stuff(data, exec);
-		else if (exec->av)
-			builtin(data, exec);
-		exec = exec->next;
-	}
+	loop_exec(data, exec);
 	add_history(data->line);
 	if (exec_len(data->exec) > 1 || exec_has_cmd(data->exec))
 	{
@@ -136,10 +131,7 @@ void	run(t_data *data)
 		while (wait(NULL) > 0)
 			;
 	}
-	while ((wait_status = wait(&exit_status)) > 0)
-		check_exit_status(data, exit_status);
-	/*ft_printf("\nCleaning up...\n");*/
-	clean_exec(data);
-	ft_free(&data->line);
-	/*ft_printf("\nBack to main loop->\n");*/
+	/*while ((wait_status = wait(&exit_status)) > 0)*/
+	/*	check_exit_status(data, exit_status);*/
+	(clean_exec(data), ft_free(&data->line));
 }

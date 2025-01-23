@@ -6,7 +6,7 @@
 /*   By: oohnivch <oohnivch@student.42vienna.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 19:35:55 by oohnivch          #+#    #+#             */
-/*   Updated: 2025/01/22 12:46:04 by oohnivch         ###   ########.fr       */
+/*   Updated: 2025/01/23 15:12:32 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -205,6 +205,8 @@ void	init_exec(t_data *data)
 	{
 		if (exec->av_list)
 			(init_argv(data, exec), free_av_list(exec), init_cmd(data, exec));
+		exec->in = get_first_input(exec->in);
+		exec->out = get_first_output(exec->out);
 		exec = exec->next;
 	}
 }

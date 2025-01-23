@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 10:49:02 by oohnivch          #+#    #+#             */
-/*   Updated: 2024/12/16 14:00:56 by oohnivch         ###   ########.fr       */
+/*   Updated: 2025/01/23 13:57:49 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,16 +31,6 @@ void	safe_close(int fd)
 			ft_putchar_fd('\n', 2);
 		}
 	}
-}
-
-int	fork1(t_data *data)
-{
-	int	pid;
-
-	pid = fork();
-	if (pid == -1)
-		bruh(data, "spoons!!!!!\n", 1);
-	return (pid);
 }
 
 void	open_pipe_exec(t_data *data, t_exec *exec)

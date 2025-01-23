@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 11:32:53 by oohnivch          #+#    #+#             */
-/*   Updated: 2025/01/22 15:11:01 by oohnivch         ###   ########.fr       */
+/*   Updated: 2025/01/23 14:26:33 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ t_envlist	*find_env(t_envlist *env, char *name)
 	return (NULL);
 }
 
-static t_envlist	*create_env(char *name, char *value)
+t_envlist	*create_env(char *name, char *value)
 {
 	t_envlist	*list;
 

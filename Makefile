@@ -6,7 +6,7 @@
 #    By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/14 16:34:42 by oohnivch          #+#    #+#              #
-#    Updated: 2025/01/19 14:07:23 by hanjkim          ###   ########.fr        #
+#    Updated: 2025/01/23 15:06:57 by oohnivch         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 #									Variables								   #
@@ -51,6 +51,7 @@ SRC = main.c \
 	  exec_init.c \
 	  exec_utils.c \
 	  execution.c \
+	  error.c \
 	  general_utils.c \
 	  here_doc.c \
 	  lexer.c \
@@ -69,6 +70,7 @@ SRC = main.c \
 	  syntax_checker_utils.c \
 	  path.c \
 	  reroute.c \
+	  reroute_utils.c \
 	  free.c \
 	  pwd.c \
 	  signal.c \

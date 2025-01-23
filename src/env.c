@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 11:02:42 by oohnivch          #+#    #+#             */
-/*   Updated: 2025/01/22 14:56:08 by oohnivch         ###   ########.fr       */
+/*   Updated: 2025/01/23 14:47:31 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,5 +98,32 @@ void	print_env(t_data *data)
 	{
 		ft_printf("%s=%s\n", list->name, list->value);
 		list = list->next;
+	}
+}
+
+void	underscore(t_data *data, t_exec *exec)
+{
+	t_envlist	*list;
+	char		*value;
+	int			i;
+
+	if (exec_len(data->exec) > 1)
+		if (data->pid != 0)
+			return ;
+	i = ft_arrlen(exec->av) - 1;
+	if (i < 0)
+		value = ft_strdup("");
+	else
+		value = ft_strdup(exec->av[i]);
+	list = find_env(data->env, "_");
+	if (list)
+		(ft_free(&list->value), list->value = value);
+	else
+	{
+		list = create_env("_", value);
+		if (!list)
+			bruh(data, "Malloc fail env.c:125", 69);
+		add_env(data->env, list);
+		ft_free(&value);
 	}
 }

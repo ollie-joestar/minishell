@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 12:32:11 by oohnivch          #+#    #+#             */
-/*   Updated: 2024/11/21 11:16:18 by oohnivch         ###   ########.fr       */
+/*   Updated: 2025/01/23 15:28:43 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,11 @@ void	set_path(t_data *data, t_exec *exec)
 
 void	set_cmd_path(t_data *data, t_exec *exec)
 {
-	if (ft_strchr(exec->cmd, '/'))
+	if (ft_strchr(exec->cmd, '/') || !ft_strncmp(exec->cmd, ".", 2))
 		return ;
 	if (!data->path || !*data->path)
 	{
-		ft_printf("Path not set\n");
+		/*requiem(1, "minishell: Path not set\n");*/
 		return ;
 	}
 	set_path(data, exec);

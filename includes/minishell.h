@@ -216,6 +216,8 @@ int			fork1(t_data *data);
 void		open_pipe_exec(t_data *data, t_exec *exec);
 void		close_pipe_exec(t_data *data, t_exec *exec);
 void		reroute(t_data *data, t_exec *exec);
+t_input		*get_first_input(t_input *input);
+t_output	*get_first_output(t_output *output);
 void		safe_close(int fd);
 void		check_exit_status(t_data *data, int exit_status);
 size_t		exec_len(t_exec *exec);
@@ -228,8 +230,11 @@ char		*expand(t_data *data, char *s);
 void		sort_env(t_envlist *list);
 t_envlist   *dup_env(t_envlist *list);
 t_envlist	*create_new_env(t_data *data);
+t_envlist	*find_env(t_envlist *env, char *name);
 void		parse_env_into_ev(t_data *data);
-
+t_envlist	*create_env(char *name, char *value);
+void		add_env(t_envlist *env, t_envlist *new);
+void		underscore(t_data *data, t_exec *exec);
 
 // Path functions
 void		update_path(t_data *data);

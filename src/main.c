@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 09:38:58 by oohnivch          #+#    #+#             */
-/*   Updated: 2025/01/22 12:34:08 by oohnivch         ###   ########.fr       */
+/*   Updated: 2025/01/23 14:26:36 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,10 +62,10 @@ int main(int argc, char **argv, char **ev)
 		if (skill_check(data))
 		{
 			ft_free(&data->line);
-			continue;
+			continue ;
 		}
 		if (!data->line || !*data->line)
-			continue;
+			continue ;
 		/*ft_printf("Parsing line->\n");*/
 		parse_line(data);
 		/*print_tokens(data->token);*/
@@ -74,7 +74,7 @@ int main(int argc, char **argv, char **ev)
 		{
 			free_tokens(data);
 			ft_free(&data->line);
-			continue;
+			continue ;
 		}
 		process_tokens(data);
 		/*print_tokens(data->token);*/

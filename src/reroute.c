@@ -6,29 +6,11 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 11:41:48 by oohnivch          #+#    #+#             */
-/*   Updated: 2025/01/21 16:24:31 by oohnivch         ###   ########.fr       */
+/*   Updated: 2025/01/23 15:12:59 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-// Redirection types:
-//	 - in file & out file
-//	 - in file & out pipe
-//	 - in pipe & out file
-//	 - in pipe & out pipe
-//	 - in file
-//	 - out file
-//	 - in pipe
-//	 - out pipe
-// in redirection:
-//	 - read from file
-//	 - read from pipe
-//	 - read from STDIN_FILENO
-// out redirection:
-//   - write to file
-//   - write to pipe
-//   - write to STDOUT_FILENO
 
 static void	rerouteinfile(t_data *data, t_exec *exec)
 {
@@ -36,6 +18,7 @@ static void	rerouteinfile(t_data *data, t_exec *exec)
 
 	/*while (exec->in && exec->in->next)*/
 	/*	exec->in = exec->in->next;*/
+	/*ft_printerr("rerouteinfile\n");*/
 	fd = open(exec->in->file, O_RDONLY);
 	if (fd == -1)
 	{
@@ -57,6 +40,7 @@ static void	rerouteoutfile(t_data *data, t_exec *exec)
 
 	fd = 0;
 	/*fd = checkfile(exec->out->file);*/
+	/*ft_printerr("rerouteoutfile\n");*/
 	if (exec->out->type == REPLACE && fd == 0)
 		fd = open(exec->out->file, O_CREAT | O_TRUNC | O_RDWR, 0664);
 	else if (fd == 0)
@@ -73,6 +57,7 @@ static void	rerouteoutfile(t_data *data, t_exec *exec)
 
 static void	rerouteinpipe(t_exec *exec)
 {
+	/*ft_printerr("rerouteinpipe\n");*/
 	close(exec->prev->pipe[WR]);
 	dup2(exec->prev->pipe[RD], STDIN_FILENO);
 	close(exec->prev->pipe[RD]);
@@ -80,6 +65,7 @@ static void	rerouteinpipe(t_exec *exec)
 
 static void	rerouteoutpipe(t_exec *exec)
 {
+	/*ft_printerr("rerouteoutpipe\n");*/
 	close(exec->pipe[RD]);
 	dup2(exec->pipe[WR], STDOUT_FILENO);
 	close(exec->pipe[WR]);
@@ -87,20 +73,15 @@ static void	rerouteoutpipe(t_exec *exec)
 
 void	reroute(t_data *data, t_exec *exec)
 {
-	while (exec->in && exec->in->prev)
-		exec->in = exec->in->prev;
-	while (exec->out && exec->out->prev)
-		exec->out = exec->out->prev;
-	if (exec->in && (exec_len(exec) > 1 || exec->type == CMD))
-	{
-		while (exec->in)
-			(rerouteinfile(data, exec), exec->in = exec->in->next);
-	}
-	if (exec->out)
-	{
-		while (exec->out)
-			(rerouteoutfile(data, exec), exec->out = exec->out->next);
-	}
+	t_input		*in;
+	t_output	*out;
+
+	in = exec->in;
+	out = exec->out;
+	while (in && (exec_len(exec) > 1 || exec->type == CMD))
+		(rerouteinfile(data, exec), in = in->next);
+	while (out)
+		(rerouteoutfile(data, exec), out = out->next);
 	if (!exec->in && exec->prev)
 		rerouteinpipe(exec);
 	if (!exec->out && exec->next)
