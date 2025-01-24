@@ -6,9 +6,9 @@
 Our `minishell` with **Hanju-kun** *UwU*
 
 ***TODO***
-    - Redirection queue
-    - Signal handling
-    - Expander errors
+    - Redirection queue.
+    - Signal handling.
+    - Expander errors.
 
 ***PLAN***
 
