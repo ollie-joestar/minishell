@@ -6,7 +6,7 @@
 /*   By: hanjkim <@student.42vienna.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 18:49:14 by hanjkim           #+#    #+#             */
-/*   Updated: 2025/01/21 18:36:57 by oohnivch         ###   ########.fr       */
+/*   Updated: 2025/01/26 21:18:19 by hanjkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,6 @@ void	process_redirection(t_data *data, t_token **token)
 
 	redirection_token = *token;
 	filename_token = redirection_token->next;
-	/*ft_printf("filename_token->word: %s\n", filename_token->word);*/
 	if (!filename_token)
 	{
 		unexpected_token(data, NULL);
@@ -64,9 +63,7 @@ void	process_redirection(t_data *data, t_token **token)
 	else if (redirection_token->type == INPUT
 		|| redirection_token->type == REPLACE
 		|| redirection_token->type == APPEND)
-	{
 		filename_token->type = redirection_token->type;
-	}
 	filename_token->prev = redirection_token->prev;
 	if (filename_token->next)
 		filename_token->next->prev = filename_token;
@@ -78,28 +75,6 @@ void	process_redirection(t_data *data, t_token **token)
 	*token = filename_token;
 	/*ft_printf("filename_token->word: %s\n", filename_token->word);*/
 }
-
-/*void	process_redirection(t_data *data, t_token **token)*/
-/*{*/
-/*	t_token	*redirection_token;*/
-/*	t_token	*filename_token;*/
-/**/
-/*	redirection_token = *token;*/
-/*	filename_token = redirection_token->next;*/
-/*	if (!filename_token)*/
-/*	{*/
-/*		unexpected_token(data, NULL);*/
-/*		return;*/
-/*	}*/
-/*	if (redirection_token->type == HEREDOC)*/
-/*	{*/
-/*		filename_token = handle_heredoc(data, redirection_token, filename_token);*/
-/*		if (!filename_token)*/
-/*			return;*/
-/*	}*/
-/*	filename_token->type = WORD;*/
-/*	(*token) = filename_token->next;*/
-/*}*/
 
 char	*join_fields_with_single_space(char **fields)
 {
@@ -131,22 +106,30 @@ char	*join_fields_with_single_space(char **fields)
 	return (joined);
 }
 
-// EXPAND REDIRECTION SEGMENT IS SAMESAME BUT DIFFERENT
 /*char	*expand_redirection_segment(t_data *data, t_segment *seg, t_token *token)*/
-//
-//
-//
-//
-//
-// NEEDED FUNCTION
-//
-//
-//
-//
-//
-//
-//
-// EXPAND REDIRECTION SEGMENT IS SAMESAME BUT DIFFERENT
+/*{*/
+/*	char	*expanded;*/
+/**/
+/*	(void)token;*/
+/*	if (seg->single_quoted)*/
+/*		return (ft_strdup(seg->text));*/
+/*	expanded = expand(data, seg->text);*/
+/*	if (!expanded)*/
+/*	{*/
+/*		ft_putstr_fd("minishell: ambiguous redirect\n", STDERR_FILENO);*/
+/*		data->status = 1;*/
+/*		return (NULL);*/
+/*	}*/
+/*	if (expanded[0] == '\0')*/
+/*	{*/
+/*		ft_putstr_fd("minishell: ambiguous redirect\n", STDERR_FILENO);*/
+/*		free(expanded);*/
+/*		data->status = 1;*/
+/*		return (NULL);*/
+/*	}*/
+/**/
+/*	return (expanded);*/
+/*}*/
 
 char	*expand_segment(t_data *data, t_segment *seg, t_token *token)
 {
@@ -154,8 +137,8 @@ char	*expand_segment(t_data *data, t_segment *seg, t_token *token)
 	char	**fields;
 	char	*joined;
 
-	/*if (token->type != WORD || token->type != PIPE)*/
-	/*	return (expand_redirection_segment(data, seg));*/
+	/*if (token->type != WORD && token->type != PIPE)*/
+	/*	return (expand_redirection_segment(data, seg, token));*/
 	(void)token;
 	if (seg->single_quoted)
 		return (ft_strdup(seg->text));
@@ -198,12 +181,51 @@ void	expand_tokens(t_data *data)
 				seg->text = expanded;
 			}
 			seg = seg->next;
+			if (current->type != WORD && current->type != PIPE)
+				process_redirection(data, &current);
 		}
-		if (current->type != WORD && current->type != PIPE)
-			process_redirection(data, &current);
 		current = current->next;
 	}
 }
+
+/*void	expand_tokens(t_data *data)*/
+/*{*/
+/*	t_token *current;*/
+/*	char *expanded;*/
+/*	t_segment *seg;*/
+/**/
+/*	current = data->token;*/
+/*	while (current != NULL)*/
+/*	{*/
+/*		seg = current->segments;*/
+/*		while (seg)*/
+/*		{*/
+/*			if (current->type != WORD && current->type != PIPE)*/
+/*				expanded = expand_redirection_segment(data, seg, current);*/
+/*			else*/
+/*				expanded = expand_segment(data, seg, current);*/
+/*			if (!expanded)*/
+/*				return ;*/
+/*			ft_free(&seg->text);*/
+/*			seg->text = expanded;*/
+/*			seg = seg->next;*/
+/*		}*/
+/*		current = current->next;*/
+/*	}*/
+/*}*/
+/**/
+/*void process_all_redirections(t_data *data)*/
+/*{*/
+/*	t_token *current;*/
+/**/
+/*	current = data->token;*/
+/*	while (current)*/
+/*	{*/
+/*		if (current->type != WORD && current->type != PIPE)*/
+/*			process_redirection(data, &current);*/
+/*		current = current->next;*/
+/*	}*/
+/*}*/
 
 void	process_tokens(t_data *data)
 {
@@ -214,5 +236,8 @@ void	process_tokens(t_data *data)
 	expand_tokens(data);
 	while (data->token && data->token->prev != NULL)
 		data->token = data->token->prev;
+	/*process_all_redirections(data);*/
+	/*while (data->token && data->token->prev != NULL)*/
+	/*	data->token = data->token->prev;*/
 	finalize_tokens(data->token);
 }
