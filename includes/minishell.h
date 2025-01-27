@@ -33,7 +33,8 @@ typedef enum e_token_type {
 	INPUT = 2,
 	HEREDOC = 3,
 	REPLACE = 4,
-	APPEND = 5
+	APPEND = 5,
+	SHIT = 6
 }   t_token_type;
 
 typedef struct s_segment {
@@ -83,11 +84,18 @@ typedef struct s_input {
 }			t_input;
 
 typedef struct s_output {
-	int					type; // REPLACE | APPEND
+	t_token_type		type; // REPLACE | APPEND
 	char				*file;
 	struct s_output		*next;
 	struct s_output		*prev;
 }			t_output;
+
+typedef struct s_redir {
+	int					type; // INPUT | HEREDOC | REPLACE | APPEND
+	char				*file;
+	struct s_redir		*next;
+	struct s_redir		*prev;
+}			t_redir;
 
 typedef struct s_envlist {
 	char				*name;
@@ -104,6 +112,7 @@ typedef	struct s_avlist {
 
 typedef struct s_exec {
 	int					type; // BUILTIN | CMD
+	t_redir				*redir; // linked list of redirections
 	t_input				*in; // linked list of input files
 	t_output			*out; // linked list of output files
 	int					piped; // 1 if the command is piped
@@ -203,9 +212,11 @@ bool 		unexpected_token_with_join(t_data *data, t_token *token);
 // Exec initialization
 void		init_exec(t_data *data);
 /*void		init_exec_data(t_data *data);*/
-void		add_to_avlist(t_data *data, t_exec *exec, t_token *token);
+void		add_to_av_list(t_data *data, t_exec *exec, t_token *token);
 char		**create_argv(t_data *data, t_token *token);
 size_t		argv_size(t_token *token);
+t_avlist	*next_valid_av_list(t_avlist *av_list);
+t_avlist	*first_av_list(t_avlist *av_list);
 
 // Executing functions
 void		run(t_data *data);
@@ -216,12 +227,17 @@ int			fork1(t_data *data);
 void		open_pipe_exec(t_data *data, t_exec *exec);
 void		close_pipe_exec(t_data *data, t_exec *exec);
 void		reroute(t_data *data, t_exec *exec);
-t_input		*get_first_input(t_input *input);
-t_output	*get_first_output(t_output *output);
+/*t_input	*get_first_input(t_input *input);*/
+/*t_output	*get_first_output(t_output *output);*/
+t_redir		*get_first_redir(t_redir *redir);
 void		safe_close(int fd);
 void		check_exit_status(t_data *data, int exit_status);
 size_t		exec_len(t_exec *exec);
 int			exec_has_cmd(t_exec *exec);
+
+// Redirections
+int			has_input(t_exec *exec);
+int			has_output(t_exec *exec);
 
 // Environment functions
 t_envlist   *parse_env(t_data *data, char **ev);
@@ -268,6 +284,9 @@ size_t		ft_arrlen(char **arr);
 int			checkfile(char *file);
 int			requiem(int	n, ...);
 char		*experience(char const *s1, char const *s2);
+void		msperror(char *str);
+void		msperror2(char *str1, char *str2);
+
 // Free functions
 void		free_tokens(t_data *data);
 void		free_old_token(t_token *token);

@@ -1,16 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   errors.c                                           :+:      :+:    :+:   */
+/*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oohnivch <oohnivch@student.42vienna.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 13:59:00 by oohnivch          #+#    #+#             */
-/*   Updated: 2025/01/23 13:59:33 by oohnivch         ###   ########.fr       */
+/*   Updated: 2025/01/27 14:59:21 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+void	msperror(char *str)
+{
+	char	*error;
+
+	error = ft_strjoin("minishell: ", str);
+	perror(error);
+	ft_free(&error);
+}
+
+void	msperror2(char *str1, char *str2)
+{
+	char	*error;
+	char	*tmp;
+
+	tmp = ft_strjoin("minishell: ", str1);
+	error = ft_strjoin(tmp, ": ");
+	ft_free(&tmp);
+	tmp = error;
+	error = ft_strjoin(tmp, str2);
+	ft_free(&tmp);
+	perror(error);
+	ft_free(&error);
+}
 
 char	*experience(char const *s1, char const *s2)
 {

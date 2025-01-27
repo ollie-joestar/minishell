@@ -3,42 +3,61 @@
 /*                                                        :::      ::::::::   */
 /*   clean.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
+/*   By: oohnivch <oohnivch@student.42vienna.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/11 16:15:50 by oohnivch          #+#    #+#             */
-/*   Updated: 2025/01/23 14:01:57 by oohnivch         ###   ########.fr       */
+/*   Created: 2025/01/27 12:29:43 by oohnivch          #+#    #+#             */
+/*   Updated: 2025/01/27 12:30:24 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	clean_input(t_exec *exec)
+/*void	clean_input(t_exec *exec)*/
+/*{*/
+/*	t_input	*tmp;*/
+/**/
+/*	while (exec->in && exec->in->prev)*/
+/*		exec->in = exec->in->prev;*/
+/*	while (exec->in)*/
+/*	{*/
+/*		tmp = exec->in;*/
+/*		exec->in = exec->in->next;*/
+/*		if (tmp->file)*/
+/*			ft_free(&tmp->file);*/
+/*		free(tmp);*/
+/*		tmp = NULL;*/
+/*	}*/
+/*}*/
+/**/
+/*void	clean_output(t_exec *exec)*/
+/*{*/
+/*	t_output	*tmp;*/
+/**/
+/*	while (exec->out && exec->out->prev)*/
+/*		exec->out = exec->out->prev;*/
+/*	while (exec->out)*/
+/*	{*/
+/*		tmp = exec->out;*/
+/*		exec->out = exec->out->next;*/
+/*		if (tmp->file)*/
+/*			ft_free(&tmp->file);*/
+/*		free(tmp);*/
+/*		tmp = NULL;*/
+/*	}*/
+/*}*/
+/**/
+void	clean_redir(t_exec *exec)
 {
-	t_input	*tmp;
+	t_redir	*tmp;
 
-	while (exec->in && exec->in->prev)
-		exec->in = exec->in->prev;
-	while (exec->in)
+	if (!exec->redir)
+		return ;
+	while (exec->redir && exec->redir->prev)
+		exec->redir = exec->redir->prev;
+	while (exec->redir)
 	{
-		tmp = exec->in;
-		exec->in = exec->in->next;
-		if (tmp->file)
-			ft_free(&tmp->file);
-		free(tmp);
-		tmp = NULL;
-	}
-}
-
-void	clean_output(t_exec *exec)
-{
-	t_output	*tmp;
-
-	while (exec->out && exec->out->prev)
-		exec->out = exec->out->prev;
-	while (exec->out)
-	{
-		tmp = exec->out;
-		exec->out = exec->out->next;
+		tmp = exec->redir;
+		exec->redir = exec->redir->next;
 		if (tmp->file)
 			ft_free(&tmp->file);
 		free(tmp);
@@ -59,8 +78,9 @@ void	clean_exec(t_data *data)
 		/*ft_printf("Cleaning exec\n");*/
 		ft_free(&tmp->cmd);
 		free_arr(&tmp->av);
-		clean_input(tmp);
-		clean_output(tmp);
+		clean_redir(tmp);
+		/*clean_input(tmp);*/
+		/*clean_output(tmp);*/
 		free(tmp);
 		tmp = NULL;
 	}
@@ -79,6 +99,7 @@ void	bruh(t_data *data, char *s, int status)
 		ft_free(&data->line);
 		free_tokens(data);
 		free(data);
+		data = NULL;
 	}
 	rl_clear_history();
 	exit(status);

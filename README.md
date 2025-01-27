@@ -5,10 +5,10 @@
                                                
 Our `minishell` with **Hanju-kun** *UwU*
 
-***TODO***
-    - Redirection queue.
+***TODO***:
     - Signal handling.
     - Expander errors.
+    - Redirection expansion.
 
 ***PLAN***
 

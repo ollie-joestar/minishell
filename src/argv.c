@@ -6,22 +6,46 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 16:29:57 by oohnivch          #+#    #+#             */
-/*   Updated: 2025/01/23 14:02:36 by oohnivch         ###   ########.fr       */
+/*   Updated: 2025/01/27 16:54:04 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	add_to_avlist(t_data *data, t_exec *exec, t_token *token)
+t_avlist	*first_av_list(t_avlist *av_list)
+{
+	while (av_list && av_list->prev)
+		av_list = av_list->prev;
+	while (!*av_list->arg)
+	{
+		if (!av_list->next)
+			break ;
+		av_list = av_list->next;
+	}
+	return (av_list);
+}
+
+t_avlist	*next_valid_av_list(t_avlist *av_list)
+{
+	while (av_list)
+	{
+		if (*av_list->arg)
+			return (av_list);
+		av_list = av_list->next;
+	}
+	return (NULL);
+}
+
+void	add_to_av_list(t_data *data, t_exec *exec, t_token *token)
 {
 	t_avlist	*av_list;
 
 	av_list = ft_calloc(1, sizeof(t_avlist));
 	if (!av_list)
-		bruh(data, "Failed to allocate memory for av_list", 69);
+		bruh(data, "Malloc failed argv.c:21", 69);
 	av_list->arg = ft_strdup(token->word);
 	if (!av_list->arg)
-		bruh(data, "Failed to allocate memory for av_list->arg", 69);
+		bruh(data, "Malloc failed argv.c:24", 69);
 	if (exec->av_list)
 	{
 		exec->av_list->next = av_list;
@@ -43,27 +67,27 @@ size_t	argv_size(t_token *token)
 	return (size);
 }
 
-char	**create_argv(t_data *data, t_token *token)
-{
-	char	**av;
-	size_t	size;
-	int		i;
-
-	size = argv_size(token);
-	av = ft_calloc(size + 1, sizeof(char *));
-	if (!av)
-		return (NULL);
-	i = 0;
-	while (token && token->type == WORD)
-	{
+/*char	**create_argv(t_data *data, t_token *token)*/
+/*{*/
+/*	char	**av;*/
+/*	size_t	size;*/
+/*	int		i;*/
+/**/
+/*	size = argv_size(token);*/
+/*	av = ft_calloc(size + 1, sizeof(char *));*/
+/*	if (!av)*/
+/*		return (NULL);*/
+/*	i = 0;*/
+/*	while (token && token->type == WORD)*/
+/*	{*/
 		/*if (!token->word)*/
 		/*	return (av);*/
-		av[i] = ft_strdup(token->word);
-		if (!av[i])
-			return (free_arr(&av), NULL);
-		data->token = token;
-		token = token->next;
-		i++;
-	}
-	return (av);
-}
+/*		av[i] = ft_strdup(token->word);*/
+/*		if (!av[i])*/
+/*			return (free_arr(&av), NULL);*/
+/*		data->token = token;*/
+/*		token = token->next;*/
+/*		i++;*/
+/*	}*/
+/*	return (av);*/
+/*}*/

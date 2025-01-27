@@ -6,7 +6,7 @@
 /*   By: oohnivch <oohnivch@student.42vienna.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 19:35:55 by oohnivch          #+#    #+#             */
-/*   Updated: 2025/01/23 15:12:32 by oohnivch         ###   ########.fr       */
+/*   Updated: 2025/01/27 17:37:02 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,50 +25,27 @@ void	add_exec(t_data *data)
 	data->exec = exec;
 }
 
-void	add_output(t_data *data, t_exec *exec, t_token *token)
+void	add_redir(t_data *data, t_exec *exec, t_token *token)
 {
-	t_output	*output;
+	t_redir	*redir;
 
-	output = ft_calloc(1, sizeof(t_output));
-	if (!output)
-		bruh(data, "Failed to allocate memory for output", 69);
-	output->type = token->type;
-	output->file = ft_strdup(token->word);
-	if (!output->file)
+	redir = ft_calloc(1, sizeof(t_redir));
+	if (!redir)
+		bruh(data, "Malloc failed exec_init.c:80", 69);
+	redir->type = token->type;
+	redir->file = ft_strdup(token->word);
+	if (!redir->file)
 	{
-		free(output);
-		output = NULL;
-		return ;
+		free(redir);
+		redir = NULL;
+		bruh (data, "Malloc failed exec_init.c:87", 69);
 	}
-	if (exec->out)
+	if (exec->redir)
 	{
-		exec->out->next = output;
-		output->prev = exec->out;
+		exec->redir->next = redir;
+		redir->prev = exec->redir;
 	}
-	exec->out = output;
-}
-
-void	add_input(t_data *data, t_exec *exec, t_token *token)
-{
-	t_input	*input;
-
-	input = ft_calloc(1, sizeof(t_input));
-	if (!input)
-		bruh(data, "Failed to allocate memory for input", 69);
-	input->type = token->type;
-	input->file = ft_strdup(token->word);
-	if (!input->file)
-	{
-		free(input);
-		input = NULL;
-		return ;
-	}
-	if (exec->in)
-	{
-		exec->in->next = input;
-		input->prev = exec->in;
-	}
-	exec->in = input;
+	exec->redir = redir;
 }
 
 void	check_for_builtin(t_exec *exec)
@@ -85,25 +62,6 @@ void	check_for_builtin(t_exec *exec)
 		exec->type = CMD;
 }
 
-void	add_av(t_data *data, t_exec *exec, t_token *token)
-{
-	exec->av = create_argv(data, token);
-	if (!exec->av)
-		bruh(data, "Failed to allocate memory", 69);
-	/*print_arr(exec->av);*/
-	if (!exec->av[0])
-		bruh(data, "cmd is null\n", 1);
-	exec->cmd = ft_strdup(exec->av[0]);
-	if (!exec->cmd)
-		bruh(data, "Failed to allocate memory for cmd", 69);
-	check_for_builtin(exec);
-	if (exec->type == CMD)
-	{
-		parse_path(data);
-		set_cmd_path(data, exec);
-	}
-}
-
 size_t	av_list_len(t_avlist *av_list)
 {
 	size_t	len;
@@ -113,10 +71,16 @@ size_t	av_list_len(t_avlist *av_list)
 	len = 0;
 	while (av_list->prev)
 		av_list = av_list->prev;
+	while (av_list->arg && !(*av_list->arg))
+	{
+		if (!av_list->next)
+			return (0);
+		av_list = av_list->next;
+	}
 	while (av_list)
 	{
-		len++;
 		av_list = av_list->next;
+		len++;
 	}
 	return (len);
 }
@@ -133,26 +97,31 @@ void	init_exec_data(t_data *data)
 	while (token)
 	{
 		/*print_token(token);*/
-		if (token->type == INPUT || token->type == HEREDOC)
-			add_input(data, exec, token);
-		else if (token->type == REPLACE || token->type == APPEND)
-			add_output(data, exec, token);
+		if (token->type != WORD && token->type != PIPE)
+			add_redir(data, exec, token);
 		else if (token->type == PIPE)
 			return ((data->token = token->next), (init_exec_data(data)));
 		else 
-			add_to_avlist(data, exec, token);
-			/*while (token->next && token->next->type == WORD)*/
-			/*	token = token->next;*/
+			add_to_av_list(data, exec, token);
 		token = token->next;
-		/*ft_printf("Next Token");*/
 	}
 }
 
 void	init_cmd(t_data *data, t_exec *exec)
 {
+	int	i;
+	int	limit;
+
+	i = 0;
+	limit = ft_arrlen(exec->av);
 	if (!exec->av || !exec->av[0])
 		bruh(data, "No argv in exec for cmd\n", 1);
-	exec->cmd = ft_strdup(exec->av[0]);
+	while (i < limit && !*exec->av[i])
+		i++;
+	if (i == limit)
+		exec->cmd = ft_strdup("");
+	else
+		exec->cmd = ft_strdup(exec->av[i]);
 	if (!exec->cmd)
 		bruh(data, "Failed to allocate memory for cmd", 69);
 	check_for_builtin(exec);
@@ -165,29 +134,30 @@ void	init_cmd(t_data *data, t_exec *exec)
 
 void	init_argv(t_data *data, t_exec *exec)
 {
-	size_t	i;
+	size_t		i;
+	size_t		len;
+	size_t		flag;
 
-	if (!exec || !exec->av_list)
-		return ;
-	i = 0;
-	exec->av = ft_calloc(av_list_len(exec->av_list) + 1, sizeof(char *));
+	i = -1;
+	len = av_list_len(exec->av_list);
+	flag = len;
+	exec->av = ft_calloc(len + 1 + (flag == 0), sizeof(char *));
 	if (!exec->av)
-		bruh(NULL, "Failed to allocate memory for av", 69);
-	while (exec->av_list->prev)
-		exec->av_list = exec->av_list->prev;
-	while (exec->av_list)
+		bruh(NULL, "Malloc failed exec_init.c:171", 69);
+	if (!flag)
+	{
+		exec->av[0] = ft_strdup("");
+		return ;
+	}
+	exec->av_list = first_av_list(exec->av_list);
+	while (exec->av_list && ++i < len)
 	{
 		exec->av[i] = ft_strdup(exec->av_list->arg);
 		if (!exec->av[i])
-		{
-			ft_printerr("Failed to allocate memory for av[%d]\n", i);
-			bruh(data, NULL, 69);
-		}
-		if (exec->av_list->next)
-			exec->av_list = exec->av_list->next;
-		else
+			bruh(data, "Malloc failed exec_init.c:171", 69);
+		if (!exec->av_list->next)
 			break ;
-		i++;
+		exec->av_list = exec->av_list->next;
 	}
 }
 
@@ -204,9 +174,13 @@ void	init_exec(t_data *data)
 	while (exec)
 	{
 		if (exec->av_list)
-			(init_argv(data, exec), free_av_list(exec), init_cmd(data, exec));
-		exec->in = get_first_input(exec->in);
-		exec->out = get_first_output(exec->out);
+		{
+			init_argv(data, exec);
+			(free_av_list(exec), init_cmd(data, exec));
+		}
+		/*else*/
+		/*	ft_printf("No av_list\n");*/
+		exec->redir = get_first_redir(exec->redir);
 		exec = exec->next;
 	}
 }

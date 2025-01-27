@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 10:10:42 by oohnivch          #+#    #+#             */
-/*   Updated: 2025/01/23 16:21:10 by oohnivch         ###   ########.fr       */
+/*   Updated: 2025/01/27 14:14:22 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,24 +110,24 @@ void	print_av(t_exec	*exec)
 void	print_redirs(t_exec *exec)
 {
 	int	i;
+	t_redir	*redir;
 
 	i = 0;
-	/*ft_printf("\tRedirs:\n");*/
-	ft_printf("\tInput:\n");
-	while (exec->in)
+	ft_printf("\tRedirs:\n");
+	redir = exec->redir;
+	while (redir)
 	{
-		ft_printf("\t\t[%d] %s\n", i, exec->in->file);
+		ft_printf("\t\t[%d] %s Type: ", i, redir->file);
+		if (redir->type == INPUT)
+			ft_printf("INPUT\n");
+		else if (redir->type == HEREDOC)
+			ft_printf("HEREDOC\n");
+		else if (redir->type == REPLACE)
+			ft_printf("REPLACE\n");
+		else if (redir->type == APPEND)
+			ft_printf("APPEND\n");
 		i++;
-		exec->in = exec->in->next;
-	}
-	ft_printf("\t\tNULL\n");
-	i = 0;
-	ft_printf("\tOutput:\n");
-	while (exec->out)
-	{
-		ft_printf("\t\t[%d] %s\n", i, exec->out->file);
-		i++;
-		exec->out = exec->out->next;
+		redir = redir->next;
 	}
 	ft_printf("\t\tNULL\n");
 }
@@ -163,7 +163,10 @@ void	print_exec(t_exec *exec)
 		ft_printf("\tNext: %s\n", exec->next ? exec->next->cmd : "NULL");
 		print_av_list(exec);
 		print_av(exec);
-		exec = exec->next;	
+		if (exec->next)
+			exec = exec->next;
+		else
+			break ;
 	}
 }
 

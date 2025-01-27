@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 11:39:11 by oohnivch          #+#    #+#             */
-/*   Updated: 2024/12/02 16:53:58 by oohnivch         ###   ########.fr       */
+/*   Updated: 2025/01/27 14:17:44 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	parse_path(t_data *data)
 		{
 			data->path = ft_split(curr_env_node->value, ':');
 			if (!data->path)
-				bruh(data, "Failed to split path", 1);
+				bruh(data, "Failed to split cmd_path.c:52", 1);
 			break ;
 		}
 		curr_env_node = curr_env_node->next;

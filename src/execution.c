@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 16:35:58 by oohnivch          #+#    #+#             */
-/*   Updated: 2025/01/23 15:32:25 by oohnivch         ###   ########.fr       */
+/*   Updated: 2025/01/27 16:00:36 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 void	command(t_data *data, t_exec *exec)
 {
+	if (!exec->cmd || !*exec->cmd)
+		bruh(data, NULL, 0);
 	(parse_env_into_ev(data), execve(exec->cmd, exec->av, data->ev));
 	if (exec->av && ft_strchr(*exec->av, '/'))
 	{
@@ -38,7 +40,7 @@ void	command(t_data *data, t_exec *exec)
 	}
 }
 
-static void	reset_stdout(int	stdout_copy)
+static void	reset_stdout(int stdout_copy)
 {
 	if (stdout_copy == -1 || stdout_copy == STDOUT_FILENO)
 		return ;
@@ -53,25 +55,25 @@ void	builtin(t_data *data, t_exec *exec)
 	stdout_copy = -1;
 	if (exec_len(exec) == 1)
 		(stdout_copy = dup(STDOUT_FILENO), reroute(data, exec));
-	if (!(ft_strncmp(exec->av[0], "exit", 5)))
+	if (!(ft_strncmp(exec->cmd, "exit", 5)))
 		(reset_stdout(stdout_copy), ft_exit(data, exec));
-	else if (!(ft_strncmp(exec->av[0], "echo", 5)))
+	else if (!(ft_strncmp(exec->cmd, "echo", 5)))
 		echo(data, exec);
-	else if (!(ft_strncmp(exec->av[0], "cd", 3)))
+	else if (!(ft_strncmp(exec->cmd, "cd", 3)))
 		cd(data, exec);
-	else if (!(ft_strncmp(exec->av[0], "env", 4)))
+	else if (!(ft_strncmp(exec->cmd, "env", 4)))
 		print_env(data);
-	else if (!(ft_strncmp(exec->av[0], "pwd", 4)))
+	else if (!(ft_strncmp(exec->cmd, "pwd", 4)))
 		pwd(data, exec);
-	else if (!(ft_strncmp(exec->av[0], "export", 7)))
+	else if (!(ft_strncmp(exec->cmd, "export", 7)))
 		export(data, exec);
-	else if (!(ft_strncmp(exec->av[0], "unset", 6)))
+	else if (!(ft_strncmp(exec->cmd, "unset", 6)))
 		unset(data, exec);
 	else
 		bruh(data, "it's not a builtin, my bad (^_^)\n", 127);
 	if (exec_len(exec) > 1)
 		bruh(data, NULL, 0);
-	else if (ft_strncmp(exec->av[0], "exit", 5))
+	else if (ft_strncmp(exec->cmd, "exit", 5))
 		reset_stdout(stdout_copy);
 }
 
@@ -120,6 +122,7 @@ void	run(t_data *data)
 
 	/*exit_status = 0;*/
 	exec = data->exec;
+	/*print_exec(exec);*/
 	loop_exec(data, exec);
 	add_history(data->line);
 	if (exec_len(data->exec) > 1 || exec_has_cmd(data->exec))

@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 11:41:48 by oohnivch          #+#    #+#             */
-/*   Updated: 2025/01/23 16:23:38 by oohnivch         ###   ########.fr       */
+/*   Updated: 2025/01/27 17:36:21 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,22 +16,33 @@ static void	rerouteinfile(t_data *data, t_exec *exec)
 {
 	int	fd;
 
+	/*if (exec_len(exec) == 1 && exec->type != CMD)*/
+	/*{*/
+	/*	if (exec->redir->type == HEREDOC)*/
+	/*		unlink(exec->redir->file);*/
+	/*	return ;*/
+	/*}*/
 	/*while (exec->in && exec->in->next)*/
 	/*	exec->in = exec->in->next;*/
 	/*ft_printerr("rerouteinfile\n");*/
-	fd = open(exec->in->file, O_RDONLY);
+	/*ft_printerr("name: %s\n", exec->redir->file);*/
+	fd = open(exec->redir->file, O_RDONLY);
 	if (fd == -1)
 	{
-		/*ft_putstr_fd("minishell: ", STDERR_FILENO);*/
 		/*ft_putstr_fd(exec->in->file, STDERR_FILENO);*/
+		/*ft_putstr_fd("minishell: ", STDERR_FILENO);*/
 		/*ft_putstr_fd(": No such file or directory\n", STDERR_FILENO);*/
-		ft_printerr("minishell: %s: No such file or directory\n", exec->in->file);
+		msperror(exec->redir->file);
+		/*msperror2(exec->redir->file, "No such file or directory");*/
+		/*ft_printerr("minishell: %s: No such file or directory\n", exec->redir->file);*/
 		bruh(data, NULL, 1);
 	}
-	dup2(fd, STDIN_FILENO);
+	if (exec_len(exec) > 1 || exec->type == CMD)
+		dup2(fd, STDIN_FILENO);
+	/*dup2(fd, STDIN_FILENO);*/
 	close(fd);
-	if (exec->in->type == HEREDOC)
-		unlink(exec->in->file);
+	if (exec->redir->type == HEREDOC)
+		unlink(exec->redir->file);
 }
 
 static void	rerouteoutfile(t_data *data, t_exec *exec)
@@ -41,13 +52,17 @@ static void	rerouteoutfile(t_data *data, t_exec *exec)
 	fd = 0;
 	/*fd = checkfile(exec->out->file);*/
 	/*ft_printerr("rerouteoutfile\n");*/
-	if (exec->out->type == REPLACE && fd == 0)
-		fd = open(exec->out->file, O_CREAT | O_TRUNC | O_RDWR, 0664);
+	/*ft_printerr("name: %s\n", exec->redir->file);*/
+	if (exec->redir->type == REPLACE && fd == 0)
+		fd = open(exec->redir->file, O_CREAT | O_TRUNC | O_RDWR, 0664);
 	else if (fd == 0)
-		fd = open(exec->out->file, O_CREAT | O_APPEND | O_RDWR, 0664);
+		fd = open(exec->redir->file, O_CREAT | O_APPEND | O_RDWR, 0664);
 	if (fd == -1)
 	{
-		ft_printerr("minishell: %s: No such file or directory\n", exec->out->file);
+		msperror(exec->redir->file);
+		/*ft_putstr_fd("minishell: ", STDERR_FILENO);*/
+		/*perror(exec->redir->file);*/
+		/*ft_printerr("minishell: %s: No such file or directory\n", exec->redir->file);*/
 		data->status = 1;
 		bruh(data, NULL, 1);
 	}
@@ -73,19 +88,36 @@ static void	rerouteoutpipe(t_exec *exec)
 
 void	reroute(t_data *data, t_exec *exec)
 {
-	t_input		*in;
-	t_output	*out;
+	/*t_input		*in;*/
+	/*t_output	*out;*/
+	t_redir		*redir;
 
-	in = exec->in;
-	out = exec->out;
-	while (exec->in && (exec_len(exec) > 1 || exec->type == CMD))
-		(rerouteinfile(data, exec), exec->in = exec->in->next);
-	exec->in = in;
-	while (exec->out)
-		(rerouteoutfile(data, exec), exec->out = exec->out->next);
-	exec->out = out;
-	if (!exec->in && exec->prev)
+	/*while (redir && redir->prev)*/
+	/*	redir = redir->prev;*/
+	while (exec->redir && exec->redir->prev)
+		exec->redir = exec->redir->prev;
+	redir = exec->redir;
+	while (exec->redir)
+	{
+		/*ft_printerr("reroute %s\n", exec->redir->file);*/
+		/*ft_printerr("type: %d\n", exec->redir->type);*/
+		if (exec->redir->type == INPUT || exec->redir->type == HEREDOC)
+			rerouteinfile(data, exec);
+		else if (exec->redir->type == REPLACE || exec->redir->type == APPEND)
+			rerouteoutfile(data, exec);
+		exec->redir = exec->redir->next;
+	}
+	exec->redir = redir;
+	/*in = exec->in;*/
+	/*out = exec->out;*/
+	/*while (exec->in && (exec_len(exec) > 1 || exec->type == CMD))*/
+	/*	(rerouteinfile(data, exec), exec->in = exec->in->next);*/
+	/*exec->in = in;*/
+	/*while (exec->out)*/
+	/*	(rerouteoutfile(data, exec), exec->out = exec->out->next);*/
+	/*exec->out = out;*/
+	if (!has_input(exec) && exec->prev)
 		rerouteinpipe(exec);
-	if (!exec->out && exec->next)
+	if (!has_output(exec) && exec->next)
 		rerouteoutpipe(exec);
 }
