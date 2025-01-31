@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 13:49:00 by oohnivch          #+#    #+#             */
-/*   Updated: 2025/01/27 16:03:00 by oohnivch         ###   ########.fr       */
+/*   Updated: 2025/01/31 17:03:51 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,22 +36,23 @@ void	cd_home(t_data *data, t_exec *exec)
 	path = get_home(data);
 	if (!path)
 	{
-		ft_printerr("minishell: cd: HOME not set\n");
+		mspec("cd: HOME not set\n");
 		data->status = EXIT_FAILURE;
 		return ;
 	}
 	if (chdir(path) == -1)
 	{
-		ft_printerr("cd: ");
-		perror(path);
+		mspe2("cd :", path);
 		data->status = EXIT_FAILURE;
 	}
+	data->status = EXIT_SUCCESS;
 }
 
 char	*cd_special_path_check(t_data *data, char *path)
 {
-	char	*home;
-	char	*tmp;
+	char		*home;
+	char		*tmp;
+	t_envlist	*env;
 
 	if (!ft_strncmp(path, "~", 2))
 		return (get_home(data));
@@ -62,7 +63,16 @@ char	*cd_special_path_check(t_data *data, char *path)
 		return (tmp);
 	}
 	else if (!ft_strncmp(path, "-", 2))
-		return (ft_printf("%s\n", get_oldpwd(data)->value), get_oldpwd(data)->value);
+	{
+		env = find_env(data->env, "OLDPWD");
+		if (!env)
+		{
+			mspec("cd: OLDPWD not set\n");
+			data->status = EXIT_FAILURE;
+			return (NULL);
+		}
+		return (env->value);
+	}
 	else
 		return (path);
 }
@@ -72,13 +82,12 @@ void	cd(t_data *data, t_exec *exec)
 	char	*path;
 
 	if (ft_arrlen(exec->av) > 2)
-	{
-		ft_putstr_fd("minishell: cd: too many arguments\n", 2);
-		data->status = 1;
-	}
+		(mspec("cd: too many arguments\n"), data->status = 1);
 	else if (ft_arrlen(exec->av) == 2)
 	{
 		path = cd_special_path_check(data, exec->av[1]);
+		if (!path)
+			return ;
 		if (chdir(path) == -1)
 		{
 			if (access(path, F_OK) == -1)
@@ -87,6 +96,10 @@ void	cd(t_data *data, t_exec *exec)
 				ft_printerr("minishell: cd: %s: Not a directory\n", path);
 			data->status = 1;
 		}
+		else if (!ft_strncmp(exec->av[1], "-", 2))
+			(ft_printf("%s\n", get_oldpwd(data)->value), data->status = 0);
+		else
+			data->status = 0;
 	}
 	else
 		cd_home(data, exec);

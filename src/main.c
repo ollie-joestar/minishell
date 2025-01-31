@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 09:38:58 by oohnivch          #+#    #+#             */
-/*   Updated: 2025/01/27 17:10:42 by oohnivch         ###   ########.fr       */
+/*   Updated: 2025/01/31 16:38:51 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	skill_check(t_data *data)
 			while (data->line[i] && data->line[i] != DQ)
 				i++;
 			if (data->line[i] != DQ)
-				return (ft_putstr_fd("skill issue\n", data->status), 1);
+				return (ft_putstr_fd("skill issue\n", 2), 1);
 		}
 		else if (data->line[i] == SQ)
 		{
@@ -35,7 +35,7 @@ int	skill_check(t_data *data)
 			while (data->line[i] && data->line[i] != SQ)
 				i++;
 			if (data->line[i] != SQ)
-				return (ft_putstr_fd("skill issue\n", data->status), 1);
+				return (ft_putstr_fd("skill issue\n", 2), 1);
 		}
 	}
 	return (0);
@@ -57,7 +57,7 @@ int main(int argc, char **argv, char **ev)
 	while (1)
 	{
 		data->line = readline("minishell > "); //funcheck failed
-		if (g_signal == SIGINT && data->pid != 0)
+		if (g_signal == SIGINT && !lpid(data))
 			g_signal = 0;
 		if (skill_check(data))
 		{
@@ -72,8 +72,7 @@ int main(int argc, char **argv, char **ev)
 		/*ft_printf("Tokenization->\n");*/
 		if (!valid_syntax(data, data->token))
 		{
-			free_tokens(data);
-			ft_free(&data->line);
+			(free_tokens(data), ft_free(&data->line));
 			continue ;
 		}
 		process_tokens(data);

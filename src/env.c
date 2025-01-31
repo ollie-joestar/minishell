@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 11:02:42 by oohnivch          #+#    #+#             */
-/*   Updated: 2025/01/27 13:57:50 by oohnivch         ###   ########.fr       */
+/*   Updated: 2025/01/31 15:35:52 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ void	parse_env_into_ev(t_data *data)
 		ft_free(&tmp);
 		tmp = data->ev[i];
 		/*data->ev[i] = ft_strjoin(data->ev[i], curr_env_node->value);*/
-		data->ev[i] = experience(tmp, curr_env_node->value);
+		data->ev[i] = join2(tmp, curr_env_node->value);
 		if (!data->ev[i] && curr_env_node->value)
 			bruh(data, "Malloc error parse_env_into_ev:80", 69);
 		ft_free(&tmp);
@@ -108,7 +108,7 @@ void	underscore(t_data *data, t_exec *exec)
 	int			i;
 
 	if (exec_len(data->exec) > 1)
-		if (data->pid != 0)
+		if (lpid(data))
 			return ;
 	i = ft_arrlen(exec->av) - 1;
 	if (i < 0)

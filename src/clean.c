@@ -6,7 +6,7 @@
 /*   By: oohnivch <oohnivch@student.42vienna.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 12:29:43 by oohnivch          #+#    #+#             */
-/*   Updated: 2025/01/27 12:30:24 by oohnivch         ###   ########.fr       */
+/*   Updated: 2025/01/31 14:20:18 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,24 @@
 /*	}*/
 /*}*/
 /**/
+
+void	clean_pids(t_data *data)
+{
+	t_pidlist	*tmp;
+
+	if (!data->pid_list)
+		return ;
+	while (data->pid_list && data->pid_list->prev)
+		data->pid_list = data->pid_list->prev;
+	while (data->pid_list)
+	{
+		tmp = data->pid_list;
+		data->pid_list = data->pid_list->next;
+		free(tmp);
+		tmp = NULL;
+	}
+}
+
 void	clean_redir(t_exec *exec)
 {
 	t_redir	*tmp;
@@ -93,6 +111,7 @@ void	bruh(t_data *data, char *s, int status)
 	if (data)
 	{
 		clean_exec(data);
+		clean_pids(data);
 		free_env_list(data->env);
 		free_arr(&data->ev);
 		free_arr(&data->path);

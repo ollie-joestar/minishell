@@ -4,6 +4,7 @@
 # include <fcntl.h>
 # include <sys/wait.h>
 # include <sys/ioctl.h>
+# include <sys/stat.h>
 # include <readline/readline.h>
 # include <readline/history.h>
 # include <limits.h>
@@ -34,7 +35,7 @@ typedef enum e_token_type {
 	HEREDOC = 3,
 	REPLACE = 4,
 	APPEND = 5,
-	SHIT = 6
+	VAR = 6
 }   t_token_type;
 
 typedef struct s_segment {
@@ -52,8 +53,7 @@ typedef struct s_token {
 	struct s_token		*prev;
 }		t_token;
 
-typedef struct s_split_vars
-{
+typedef struct s_split_vars {
 	char				**words;
 	t_token				*new_head;
 	t_token				*new_tail;
@@ -61,8 +61,7 @@ typedef struct s_split_vars
 	int					i;
 }		t_split_vars;
 
-typedef struct s_replace
-{
+typedef struct s_replace {
 	t_token 			*original;
 	t_token 			*new_head;
 	struct s_replace	*next;
@@ -124,10 +123,17 @@ typedef struct s_exec {
 	struct s_exec   	*next;
 }			t_exec;
 
+typedef struct s_pidlist {
+	pid_t				pid;
+	struct s_pidlist	*prev;
+	struct s_pidlist	*next;
+}				t_pidlist;
+
 
 typedef struct s_data
 {
-	pid_t				pid;
+	t_pidlist			*pid_list;
+	pid_t				pid_last;
 	t_exec				*exec;   
 	char				**ev;	 
 	t_envlist			*env;	
@@ -224,6 +230,9 @@ void		builtin(t_data *data, t_exec *exec);
 void		command(t_data *data, t_exec *exec);
 void		clean_exec(t_data *data);
 int			fork1(t_data *data);
+pid_t		pid(t_data *data);
+pid_t		lpid(t_data *data);
+void		add_pid(t_data *data, pid_t pid);
 void		open_pipe_exec(t_data *data, t_exec *exec);
 void		close_pipe_exec(t_data *data, t_exec *exec);
 void		reroute(t_data *data, t_exec *exec);
@@ -275,23 +284,21 @@ void		unset(t_data *data, t_exec *exec);
 
 
 // HereDoc
-char		*random_name(void);
 char		*here_doc(t_data *data, char *l, int to_expand);
-void		expand_var_in_str(t_data *data, char **str);
 // General utils
 void		bruh(t_data *data, char *s, int status);
 size_t		ft_arrlen(char **arr);
 int			checkfile(char *file);
-int			requiem(int	n, ...);
-char		*experience(char const *s1, char const *s2);
-void		msperror(char *str);
-void		msperror2(char *str1, char *str2);
+char		*join2(char const *s1, char const *s2);
+void		mspe(char *str);
+void		mspe2(char *str1, char *str2);
+void		mspec(char *str);
+void		mspec2(char *str1, char *str2);
 
 // Free functions
 void		free_tokens(t_data *data);
 void		free_old_token(t_token *token);
 void		free_env_list(t_envlist *env);
-void		free_env_node(t_envlist *env);
 void		free_arr(char ***arr);
 void		free_token_node(t_token **token);
 void		free_segment(t_segment **seg);

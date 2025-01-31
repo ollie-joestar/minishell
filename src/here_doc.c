@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 13:39:47 by oohnivch          #+#    #+#             */
-/*   Updated: 2025/01/21 18:31:00 by oohnivch         ###   ########.fr       */
+/*   Updated: 2025/01/31 15:32:48 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,20 +36,24 @@ t_token	*handle_heredoc(t_data *data, t_token *redirection_token,
 	return (filename_token);
 }
 
-int	handle_heredoc_signal(t_data *data, char **line, char **file)
+static int	handle_heredoc_signal(t_data *data, char **line, char **file, int fd)
 {
 	if (g_signal == SIGINT)
 	{
 		ft_free(line);
+		safe_close(fd);
 		unlink(*file);
-		ft_free(file);
+		fd = open(*file, O_CREAT | O_RDWR, 0664);
+		if (fd < 0)
+			bruh(data, "minishell: failed here_doc.c:49", 2);
+		safe_close(fd);
 		data->status = 130;
 		return (1);
 	}
 	return (0);
 }
 
-char	*random_name(void)
+static char	*random_name(void)
 {
 	int		i;
 	int		fd;
@@ -62,10 +66,10 @@ char	*random_name(void)
 		return (NULL);
 	name = ft_calloc(37, sizeof(char));
 	if (!name)
-		return (close(fd), NULL);
+		return (safe_close(fd), NULL);
 	if (read(fd, name, 31) != 31)
-		return (close(fd), ft_free(&name), NULL);
-	close(fd);
+		return (safe_close(fd), ft_free(&name), NULL);
+	safe_close(fd);
 	i = 31;
 	while (--i >= 0)
 		name[i + 5] = base[(unsigned char)name[i] % 16];
@@ -75,6 +79,26 @@ char	*random_name(void)
 	name[3] = 'p';
 	name[4] = '/';
 	return (name);
+}
+
+static int	warning_heredoc(char *line, char *lim)
+{
+	char	*tmp;
+	char	*warning;
+
+	warning = "warning: here-document delimited by end-of-file (wanted `";
+	if (!line)
+	{
+		tmp = ft_strjoin(warning, lim);
+		line = ft_strjoin(tmp, "')\n");
+		ft_free(&tmp);
+		mspec(line);
+		ft_free(&line);
+		return (1);
+	}
+	if (!ft_strncmp(line, lim, ft_strlen(lim) + 1))
+		return (1);
+	return (0);
 }
 
 char	*here_doc(t_data *data, char *l, int dont_expand)
@@ -91,17 +115,15 @@ char	*here_doc(t_data *data, char *l, int dont_expand)
 	while (1)
 	{
 		line = readline("> ");
-		if (handle_heredoc_signal(data, &line, &file))
-			return (close(fd), NULL);
-		if (!line || !ft_strncmp(line, l, ft_strlen(l) + 1))
+		if (handle_heredoc_signal(data, &line, &file, fd))
+			return (file);
+		if (warning_heredoc(line, l))
 			break ;
 		if (!dont_expand)
 			line = expand(data, line);
 		if (line)
 			write(fd, line, ft_strlen(line));
-		write(fd, "\n", 1);
-		ft_free(&line);
+		(write(fd, "\n", 1), ft_free(&line));
 	}
-	ft_free(&line);
-	return (close(fd), file);
+	return (safe_close(fd), ft_free(&line), file);
 }

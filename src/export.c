@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 11:32:53 by oohnivch          #+#    #+#             */
-/*   Updated: 2025/01/27 15:25:22 by oohnivch         ###   ########.fr       */
+/*   Updated: 2025/01/31 13:58:06 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,13 +65,9 @@ t_envlist	*create_env(char *name, char *value)
 	list->name = ft_strdup(name);
 	list->value = ft_strdup(value);
 	if (!list->name)
-	{
 		ft_putstr_fd("NO NAME\n", 2);
-	}
 	if (!list->value)
-	{
 		ft_putstr_fd("NO VALUE\n", 2);
-	}
 	if (!list->name || !list->value)
 	{
 		free_env_list(list);
@@ -97,13 +93,13 @@ static void	process_export(t_data *data, t_exec *exec, int j)
 		value = ft_strdup("");
 	}
 	list = find_env(data->env, name);
-	if (list)
+	if (list && ft_strchr(exec->av[j], '='))
 		(ft_free(&list->value), list->value = ft_strdup(value));
-	else
+	else if (ft_strchr(exec->av[j], '='))
 	{
 		list = create_env(name, value);
 		if (!list)
-			bruh(data, "Memory allocation failed:export.c:95", 69);
+			bruh(data, "Memory allocation failed:export.c:102", 69);
 		add_env(data->env, list);
 	}
 	(ft_free(&name), ft_free(&value));
@@ -116,7 +112,6 @@ void	export(t_data *data, t_exec *exec)
 
 	if (ft_arrlen(exec->av) == 1)
 		return (print_export(data));
-
 	j = 0;
 	while (exec->av[++j])
 	{

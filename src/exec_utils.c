@@ -6,32 +6,11 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 10:49:02 by oohnivch          #+#    #+#             */
-/*   Updated: 2025/01/23 13:57:49 by oohnivch         ###   ########.fr       */
+/*   Updated: 2025/01/31 17:28:19 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-void	safe_close(int fd)
-{
-	if (fd == -1)
-		ft_putstr_fd("Tried to close invalid fd\n", 2);
-	if (fd == 0)
-		ft_putstr_fd("Tried to close stdin\n", 2);
-	if (fd == 1)
-		ft_putstr_fd("Tried to close stdout\n", 2);
-	if (fd == 2)
-		ft_putstr_fd("Tried to close stderr\n", 2);
-	if (fd > 2)
-	{
-		if (-1 == close(fd))
-		{
-			ft_putstr_fd("Failed to close fd ", 2);
-			ft_putnbr_fd(fd, 2);
-			ft_putchar_fd('\n', 2);
-		}
-	}
-}
 
 void	open_pipe_exec(t_data *data, t_exec *exec)
 {

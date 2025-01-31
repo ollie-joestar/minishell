@@ -6,36 +6,45 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 16:35:58 by oohnivch          #+#    #+#             */
-/*   Updated: 2025/01/27 16:00:36 by oohnivch         ###   ########.fr       */
+/*   Updated: 2025/01/31 18:49:51 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+void	failed_cmd_full(t_data *data, t_exec *exec)
+{
+	struct stat file_stat;
+
+	if (0 == access(*exec->av, F_OK))
+	{
+		if (stat(*exec->av, &file_stat) == 0)
+		{
+			if (S_ISDIR(file_stat.st_mode))
+				mspec2(exec->cmd, "Is a directory\n");
+			else
+				mspec2(exec->cmd, "Permission denied\n");
+		}
+		bruh(data, NULL, 126);
+	}
+	else
+		mspec2(exec->cmd, "No such file or directory\n");
+	bruh(data, NULL, 127);
+}
+
 void	command(t_data *data, t_exec *exec)
 {
-	if (!exec->cmd || !*exec->cmd)
+	if (!exec->cmd)
 		bruh(data, NULL, 0);
 	(parse_env_into_ev(data), execve(exec->cmd, exec->av, data->ev));
 	if (exec->av && ft_strchr(*exec->av, '/'))
-	{
-		if (0 == access(*exec->av, F_OK))
-		{
-			requiem(3, "minishell: ", exec->cmd, ": Permission denied\n");
-			bruh(data, NULL, 126);
-		}
-		requiem(3, "minishell: ", exec->cmd, ": No such file or directory\n");
-		bruh(data, NULL, 127);
-	}
+		failed_cmd_full(data, exec);
 	else if (exec->av)
 	{
 		if (0 == access(exec->cmd, F_OK) && ft_strncmp(exec->cmd, ".", 2))
-		{
-			requiem(3, "minishell: ", exec->cmd, ": ");
-			(perror(""), bruh(data, NULL, 126));
-		}
+			(mspe(exec->cmd), bruh(data, NULL, 126));
 		if (exec->cmd != NULL && *exec->cmd)
-			requiem(2, exec->cmd, ": command not found\n");
+			mspec2(exec->cmd, "command not found\n");
 		bruh(data, NULL, 127);
 	}
 }
@@ -82,8 +91,9 @@ void	do_stuff(t_data *data, t_exec *exec)
 	if (exec->next)
 		open_pipe_exec(data, exec);
 	/*signal(SIGINT, SIG_IGN);*/
-	(fork1(data), underscore(data, exec));
-	if (data->pid == 0)
+	fork1(data);
+	underscore(data, exec);
+	if (!lpid(data))
 	{
 		/*signal(SIGINT, SIG_DFL);*/
 		reroute(data, exec);
@@ -128,7 +138,7 @@ void	run(t_data *data)
 	if (exec_len(data->exec) > 1 || exec_has_cmd(data->exec))
 	{
 		wait_status = 1;
-		while (wait_status > 0 && wait_status != data->pid)
+		while (wait_status > 0 && wait_status != lpid(data))
 			wait_status = wait(&exit_status);
 		check_exit_status(data, exit_status);
 		while (wait(NULL) > 0)

@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 14:56:43 by oohnivch          #+#    #+#             */
-/*   Updated: 2025/01/21 12:57:31 by oohnivch         ###   ########.fr       */
+/*   Updated: 2025/01/31 16:19:43 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,50 +16,26 @@ t_envlist	*get_oldpwd(t_data *data)
 {
 	t_envlist	*env;
 
-	while (data->env->prev)
-		data->env = data->env->prev;
-	env = data->env;
-	while (env)
-	{
-		if (!ft_strncmp(env->name, "OLDPWD", 7))
-			return (env);
-		env = env->next;
-	}
-	env = ft_calloc(1, sizeof(t_envlist));
+	env = find_env(data->env, "OLDPWD");
 	if (!env)
-		bruh(data, "Malloc failed in get_oldpwd", 69);
-	env->name = ft_strdup("OLDPWD");
-	env->value = ft_strdup("");
-	if (!env->name || !env->value)
-		bruh(data, "Malloc failed in get_oldpwd", 69);
-	while (data->env->next)
-		data->env = data->env->next;
-	return (env->prev = data->env, data->env->next = env, env);
+	{
+		env = create_env("OLDPWD", "");
+		add_env(data->env, env);
+	}
+	return (env);
 }
 
 t_envlist	*get_pwd(t_data *data)
 {
 	t_envlist	*env;
 
-	while (data->env->prev)
-		data->env = data->env->prev;
-	env = data->env;
-	while (env)
-	{
-		if (!ft_strncmp(env->name, "PWD", 4))
-			return (env);
-		env = env->next;
-	}
-	env = ft_calloc(1, sizeof(t_envlist));
+	env = find_env(data->env, "PWD");
 	if (!env)
-		bruh(data, "Malloc failed in get_pwd", 69);
-	env->name = ft_strdup("PWD");
-	env->value = ft_strdup("");
-	if (!env->name || !env->value)
-		bruh(data, "Malloc failed in get_pwd", 69);
-	while (data->env->next)
-		data->env = data->env->next;
-	return (env->prev = data->env, data->env->next = env, env);
+	{
+		env = create_env("PWD", "");
+		add_env(data->env, env);
+	}
+	return (env);
 }
 
 void	update_pwd(t_data *data)
@@ -70,8 +46,8 @@ void	update_pwd(t_data *data)
 	char		*cwd;
 
 	//	Maybe this will be useful later
-	if (data->status != 0)
-		return ;
+	/*if (data->status != 0)*/
+	/*	return ;*/
 	while (data->env->prev)
 		data->env = data->env->prev;
 	env = data->env;
@@ -80,7 +56,7 @@ void	update_pwd(t_data *data)
 	cwd = getcwd(NULL, 0);
 	if (!cwd)
 	{
-		ft_printerr("minishell: pwd: error retrieving current directory\n");
+		mspec("pwd: error retrieving current directory\n");
 		data->status = 1;
 		return ;
 	}

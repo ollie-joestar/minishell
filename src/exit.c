@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 11:19:32 by oohnivch          #+#    #+#             */
-/*   Updated: 2025/01/22 16:27:04 by oohnivch         ###   ########.fr       */
+/*   Updated: 2025/01/31 16:59:36 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,8 @@ static void	numeric_long_check(t_data *data, char *str)
 		ft_free(&trimmed);
 		if (isatty(STDIN_FILENO) && isatty(STDOUT_FILENO))
 			ft_printerr("exit\n");
-		requiem(3, "minishell: exit: ", str, ": numeric argument required\n");
+		trimmed = join2("exit: ", str);
+		(mspec2(trimmed, "numeric argument required\n"), ft_free(&trimmed));
 		bruh(data, NULL, 2);
 	}
 	ft_free(&trimmed);
@@ -62,7 +63,9 @@ static void	numeric_check(t_data *data, char *str)
 	{
 		if (isatty(STDIN_FILENO) && isatty(STDOUT_FILENO))
 			ft_printerr("exit\n");
-		ft_printerr("minishell: exit: %s: numeric argument required\n", str);
+		trimmed = join2("exit: ", str);
+		mspec2(trimmed, "numeric argument required\n");
+		ft_free(&trimmed);
 		bruh(data, NULL, 2);
 	}
 	trimmed = ft_strtrim(str, " \t\n\v\f\r");
@@ -75,10 +78,12 @@ static void	numeric_check(t_data *data, char *str)
 		{
 			if (isatty(STDIN_FILENO) && isatty(STDOUT_FILENO))
 				ft_printerr("exit\n");
-			ft_printerr("minishell: exit: %s: numeric argument required\n", str);
+			ft_free(&trimmed);
+			trimmed = join2("exit: ", str);
+			(mspec2(trimmed, "numeric argument required\n"), ft_free(&trimmed));
 			/*ft_printerr("index of problem: %d\n in string \"%s\"\n", i, trimmed);*/
 			/*ft_printf("nondigit char is [%c]\n", trimmed[i]);*/
-			(ft_free(&trimmed), bruh(data, NULL, 2));
+			bruh(data, NULL, 2);
 		}
 	}
 	if (ft_strlen(trimmed) >= 19)
@@ -88,6 +93,8 @@ static void	numeric_check(t_data *data, char *str)
 
 void	ft_exit(t_data *data, t_exec *exec)
 {
+	char	*tmp;
+
 	if (exec->av && exec->av[1])
 	{
 		numeric_check(data, exec->av[1]);
@@ -96,7 +103,8 @@ void	ft_exit(t_data *data, t_exec *exec)
 			data->status = 1;
 			if (isatty(STDIN_FILENO) && isatty(STDOUT_FILENO))
 			{
-				ft_printerr("exit\nminishell: exit: too many arguments\n");
+				tmp = join2("exit\n", "minishell: exit: too many arguments\n");
+				(ft_putstr_fd(tmp, 2), ft_free(&tmp));
 				return ;
 			}
 			else

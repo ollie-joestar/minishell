@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 11:41:48 by oohnivch          #+#    #+#             */
-/*   Updated: 2025/01/27 17:36:21 by oohnivch         ###   ########.fr       */
+/*   Updated: 2025/01/31 14:32:59 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static void	rerouteinfile(t_data *data, t_exec *exec)
 		/*ft_putstr_fd(exec->in->file, STDERR_FILENO);*/
 		/*ft_putstr_fd("minishell: ", STDERR_FILENO);*/
 		/*ft_putstr_fd(": No such file or directory\n", STDERR_FILENO);*/
-		msperror(exec->redir->file);
+		mspe(exec->redir->file);
 		/*msperror2(exec->redir->file, "No such file or directory");*/
 		/*ft_printerr("minishell: %s: No such file or directory\n", exec->redir->file);*/
 		bruh(data, NULL, 1);
@@ -59,7 +59,7 @@ static void	rerouteoutfile(t_data *data, t_exec *exec)
 		fd = open(exec->redir->file, O_CREAT | O_APPEND | O_RDWR, 0664);
 	if (fd == -1)
 	{
-		msperror(exec->redir->file);
+		mspe(exec->redir->file);
 		/*ft_putstr_fd("minishell: ", STDERR_FILENO);*/
 		/*perror(exec->redir->file);*/
 		/*ft_printerr("minishell: %s: No such file or directory\n", exec->redir->file);*/
