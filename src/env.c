@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 11:02:42 by oohnivch          #+#    #+#             */
-/*   Updated: 2025/01/31 15:35:52 by oohnivch         ###   ########.fr       */
+/*   Updated: 2025/01/31 19:21:38 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,10 @@
 
 t_envlist	*parse_env(t_data *data, char **ev)
 {
-	int	i;
-	t_envlist	*list;
+	int			i;
 	t_envlist	*tmp;
+	char		*name;
+	char		*value;
 
 	if (!ev || !*ev)
 		return (create_new_env(data));
@@ -24,24 +25,20 @@ t_envlist	*parse_env(t_data *data, char **ev)
 	i = -1;
 	while (ev[++i])
 	{
-		list = ft_calloc(1, sizeof(t_envlist));
-		if (!list)
+		name = ft_substr(ev[i], 0, ft_strchr(ev[i], '=') - ev[i]);
+		if (!name)
 			bruh(data, "Memory allocation failed", 69);
-		list->name = ft_substr(ev[i], 0, ft_strchr(ev[i], '=') - ev[i]);
-		if (!list->name)
-			(free_env_list(list), bruh(data, "Memory allocation failed", 69));
-		list->value = ft_strdup(ft_strchr(ev[i], '=') + 1);
-		if (!list->value)
-			(free_env_list(list), bruh(data, "Memory allocation failed", 69));
-		if (tmp)
-		{
-			tmp->next = list;
-			list->prev = tmp;
-		}
-		tmp = list;
+		value = ft_strdup(ft_strchr(ev[i], '=') + 1);
+		if (!value)
+			(ft_free(&name), bruh(data, "Memory allocation failed", 69));
+		if (!tmp)
+			tmp = create_env(name, value);
+		else
+			add_env(tmp, create_env(name, value));
 	}
 	while (tmp->prev)
 		tmp = tmp->prev;
+	shlvl(data, tmp);
 	return (tmp);
 }
 

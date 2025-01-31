@@ -248,6 +248,8 @@ int			exec_has_cmd(t_exec *exec);
 int			has_input(t_exec *exec);
 int			has_output(t_exec *exec);
 
+// BEST FUNCTION EVER
+void		shlvl(t_data *data, t_envlist *env);
 // Environment functions
 t_envlist   *parse_env(t_data *data, char **ev);
 size_t		env_len(t_envlist *env);

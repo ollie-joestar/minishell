@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 12:02:31 by oohnivch          #+#    #+#             */
-/*   Updated: 2025/01/14 14:07:10 by oohnivch         ###   ########.fr       */
+/*   Updated: 2025/01/31 19:19:07 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,40 +55,26 @@ void	create_new_pwd(t_data *data, t_envlist *list)
 		bruh(data, "Memory allocation failed", 69);
 }
 
-void	create_shlvl(t_data *data, t_envlist *list)
+void	shlvl(t_data *data, t_envlist *list)
 {
-	if (!list)
-		return ;
-	list->name = ft_strdup("SHLVL");
-	list->value = ft_strdup("1");
-	if (!list->value || !list->name)
-		bruh(data, "Memory allocation failed", 69);
-}
+	t_envlist	*shlvl;
+	char		*value;
+	int			i_value;
 
-void	update_shlvl(t_data *data, t_envlist *list)
-{
-	int		shlvl;
-
-	while (list && list->prev)
-		list = list->prev;
-	while (list && list->next)
+	shlvl = find_env(list, "SHLVL");
+	if (shlvl)
 	{
-		if (!ft_strncmp(list->name, "SHLVL", 6))
-		{
-			shlvl = ft_atoi(list->value) + 1;
-			free(list->value);
-			list->value = ft_itoa(shlvl);
-			if (!list->value)
-				bruh(data, "Memory allocation failed", 69);
-			return ;
-		}
-		list = list->next;
+		value = shlvl->value;
+		i_value = ft_atoi(value);
+		i_value++;
+		ft_free(&shlvl->value);
+		value = ft_itoa(i_value);
+		shlvl->value = value;
+		if (!shlvl->value)
+			bruh(data, "Memory allocation failed", 69);
 	}
-	list->next = ft_calloc(1, sizeof(t_envlist));
-	if (!list->next)
-		bruh(data, "Memory allocation failed", 69);
-	list->next->prev = list;
-	create_shlvl(data, list->next);
+	else
+		add_env(list, create_env("SHLVL", "1"));
 }
 
 t_envlist	*create_new_env(t_data *data)
@@ -98,8 +84,8 @@ t_envlist	*create_new_env(t_data *data)
 	list = ft_calloc(1, sizeof(t_envlist));
 	if (!list)
 		bruh(data, "Memory allocation failed", 69);
+	shlvl(data, list);
 	create_new_pwd(data, list);
-	update_shlvl(data, list);
 	create_underscore(data, list);
 	return (list);
 }
