@@ -6,7 +6,7 @@
 /*   By: hanjkim <@student.42vienna.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/01 22:44:16 by hanjkim           #+#    #+#             */
-/*   Updated: 2025/01/31 17:39:33 by oohnivch         ###   ########.fr       */
+/*   Updated: 2025/02/02 15:54:22 by hanjkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,7 @@ int	handle_variable_exp(t_data *data, char *word, t_expander *expander)
 	var_value = get_env_value(data, var_name);
 	if (!var_value)
 		var_value = "";
+		/*return (ft_free(&var_name), -1);*/
 	len = ft_strlen(var_value);
 	if (resize_result(expander, expander->index_res + len) == -1)
 	{
