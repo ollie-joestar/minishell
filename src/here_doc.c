@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 13:39:47 by oohnivch          #+#    #+#             */
-/*   Updated: 2025/01/31 15:32:48 by oohnivch         ###   ########.fr       */
+/*   Updated: 2025/02/02 14:55:53 by hanjkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,24 @@
 t_token	*handle_heredoc(t_data *data, t_token *redirection_token,
 						t_token *filename_token)
 {
-	int		dont_expand;
-	char	*temp_word;
-	char	*here_result;
+	int			dont_expand;
+	char		*temp_word;
+	char		*here_result;
+	t_segment	*seg;
 
-	dont_expand = (filename_token->segments->double_quoted
-			|| filename_token->segments->single_quoted);
+	dont_expand = 0;
+	seg = filename_token->segments;
+	while (seg)
+	{
+		if (seg->single_quoted || seg->double_quoted)
+		{
+			dont_expand = 1;
+			break ;
+		}
+		seg = seg->next;
+	}
+	/*dont_expand = (filename_token->segments->double_quoted*/
+	/*		|| filename_token->segments->single_quoted);*/
 	temp_word = join_segments(filename_token);
 	if (!temp_word)
 		bruh(data, "Failed to join filename segments for HEREDOC", 2);

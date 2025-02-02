@@ -6,7 +6,7 @@
 /*   By: hanjkim <@student.42vienna.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/29 20:03:14 by hanjkim           #+#    #+#             */
-/*   Updated: 2024/12/20 13:44:40 by hanjkim          ###   ########.fr       */
+/*   Updated: 2025/02/02 15:07:30 by hanjkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,33 +21,55 @@ void	init_split_vars(t_split_vars *vars)
 	vars->i = -1;
 }
 
+/*bool	should_split_token(t_token *token)*/
+/*{*/
+/*	char		*joined;*/
+/*	bool		result;*/
+/*	t_segment	*seg;*/
+/**/
+/*	if (token->type == WORD)*/
+/*	{*/
+/*		joined = join_segments(token);*/
+/*		if (!joined)*/
+/*			return (false);*/
+/*		result = false;*/
+/*		seg = token->segments;*/
+/*		while (seg)*/
+/*		{*/
+/*			if (!seg->single_quoted && !seg->double_quoted*/
+/*				&& ft_strchr(seg->text, ' ') != NULL)*/
+/*			{*/
+/*				result = true;*/
+/*				break ;*/
+/*			}*/
+/*			seg = seg->next;*/
+/*		}*/
+/*		free(joined);*/
+/*		return (result);*/
+/*	}*/
+/*	return (false);*/
+/*}*/
+
 bool	should_split_token(t_token *token)
 {
-	char		*joined;
-	bool		result;
 	t_segment	*seg;
+	bool		all_unquoted;
+	bool		contains_space;
 
-	if (token->type == WORD)
+	all_unquoted = true;
+	contains_space = false;
+	if (token->type != WORD)
+		return (false);
+	seg = token->segments;
+	while (seg)
 	{
-		joined = join_segments(token);
-		if (!joined)
-			return (false);
-		result = false;
-		seg = token->segments;
-		while (seg)
-		{
-			if (!seg->single_quoted && !seg->double_quoted
-				&& ft_strchr(seg->text, ' ') != NULL)
-			{
-				result = true;
-				break ;
-			}
-			seg = seg->next;
-		}
-		free(joined);
-		return (result);
+		if (seg->single_quoted || seg->double_quoted)
+			all_unquoted = false;
+		else if (ft_strchr(seg->text, ' ') != NULL)
+			contains_space = true;
+		seg = seg->next;
 	}
-	return (false);
+	return (all_unquoted && contains_space);
 }
 
 t_token	*create_token_from_string(char *str)

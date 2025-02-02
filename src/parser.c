@@ -6,7 +6,7 @@
 /*   By: hanjkim <@student.42vienna.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 18:49:14 by hanjkim           #+#    #+#             */
-/*   Updated: 2025/01/26 21:18:19 by hanjkim          ###   ########.fr       */
+/*   Updated: 2025/02/02 15:39:14 by hanjkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,36 +76,6 @@ void	process_redirection(t_data *data, t_token **token)
 	/*ft_printf("filename_token->word: %s\n", filename_token->word);*/
 }
 
-char	*join_fields_with_single_space(char **fields)
-{
-	size_t	total_len;
-	int		i;
-	char	*joined;
-	int		j;
-
-	total_len = 0;
-	i = -1;
-	while (fields[++i])
-		total_len += ft_strlen(fields[i]);
-	if (i > 1)
-		total_len += (i - 1);
-	joined = ft_calloc(total_len + 1, 1);
-	if (!joined)
-		return (NULL);
-	j = -1;
-	while (++j < i)
-	{
-		if (j > 0)
-		{
-			if (ft_strlcat(joined, " ", total_len + 1) >= total_len + 1)
-				return (ft_free(&joined), NULL);
-		}
-		if (ft_strlcat(joined, fields[j], total_len + 1) >= total_len + 1)
-			return (ft_free(&joined), NULL);
-	}
-	return (joined);
-}
-
 /*char	*expand_redirection_segment(t_data *data, t_segment *seg, t_token *token)*/
 /*{*/
 /*	char	*expanded;*/
@@ -134,8 +104,6 @@ char	*join_fields_with_single_space(char **fields)
 char	*expand_segment(t_data *data, t_segment *seg, t_token *token)
 {
 	char	*expanded;
-	char	**fields;
-	char	*joined;
 
 	/*if (token->type != WORD && token->type != PIPE)*/
 	/*	return (expand_redirection_segment(data, seg, token));*/
@@ -145,18 +113,6 @@ char	*expand_segment(t_data *data, t_segment *seg, t_token *token)
 	expanded = expand(data, seg->text);
 	if (!expanded)
 		return (ft_strdup(""));
-	if (!seg->double_quoted && !seg->single_quoted)
-	{
-		fields = ft_split(expanded, ' ');
-		ft_free(&expanded);
-		if (!fields)
-			return (ft_strdup(""));
-		joined = join_fields_with_single_space(fields);
-		free_arr(&fields);
-		if (!joined)
-			return (ft_strdup(""));
-		return (joined);
-	}
 	return (expanded);
 }
 
@@ -234,6 +190,8 @@ void	process_tokens(t_data *data)
 	while (data->token && data->token->prev != NULL)
 		data->token = data->token->prev;
 	expand_tokens(data);
+	split_tokens(data);
+	replace_tokens(data);
 	while (data->token && data->token->prev != NULL)
 		data->token = data->token->prev;
 	/*process_all_redirections(data);*/
