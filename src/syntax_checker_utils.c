@@ -6,7 +6,7 @@
 /*   By: hanjkim <@student.42vienna.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 15:07:37 by hanjkim           #+#    #+#             */
-/*   Updated: 2024/12/16 18:51:12 by hanjkim          ###   ########.fr       */
+/*   Updated: 2025/02/10 17:23:07 by hanjkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,14 +23,25 @@ bool	is_redirection(t_token *token)
 bool	unexpected_token_with_join(t_data *data, t_token *token)
 {
 	char	*joined;
+	char	*err_token;
 
 	joined = join_segments(token);
-	if ((is_redirection(token) || token->type == PIPE) && token->next == NULL)
-		unexpected_token(data, NULL);
-	else if (!joined || joined[0] == '\0')
-		unexpected_token(data, NULL);
+	err_token = NULL;
+	if (token->next == NULL)
+	{
+		if (token->type == PIPE)
+			err_token = "newline";
+		else if (is_redirection(token))
+		{
+			if (token->prev != NULL && is_redirection(token->prev))
+				if (joined && joined[0] != '\0')
+					err_token = joined;
+		}
+	}
 	else
-		unexpected_token(data, joined);
+		if (joined && joined[0] != '\0')
+			err_token = joined;
+	unexpected_token(data, err_token);
 	ft_free(&joined);
 	return (false);
 }
