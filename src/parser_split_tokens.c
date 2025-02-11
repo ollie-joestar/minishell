@@ -6,7 +6,7 @@
 /*   By: hanjkim <@student.42vienna.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/29 20:03:14 by hanjkim           #+#    #+#             */
-/*   Updated: 2025/02/02 15:07:30 by hanjkim          ###   ########.fr       */
+/*   Updated: 2025/02/11 17:17:08 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,11 @@ bool	should_split_token(t_token *token)
 	{
 		if (seg->single_quoted || seg->double_quoted)
 			all_unquoted = false;
-		else if (ft_strchr(seg->text, ' ') != NULL)
+		else if (ft_strchr(seg->text, ' ') || ft_strchr(seg->text, '\t'))
+			contains_space = true;
+		else if (ft_strchr(seg->text, '\r') || ft_strchr(seg->text, '\v'))
+			contains_space = true;
+		else if (ft_strchr(seg->text, '\f') != NULL)
 			contains_space = true;
 		seg = seg->next;
 	}
@@ -132,8 +136,8 @@ t_token	*split_token(t_token *original_token, t_data *data)
 	joined = join_segments(original_token);
 	if (!joined)
 		bruh(data, "Failed to join token segments", 2);
-	vars.words = ft_split(joined, ' ');
-	free(joined);
+	vars.words = ft_split_set(joined, " \t\n\r\v\f");
+	ft_free(&joined);
 	if (!vars.words)
 		bruh(data, "Failed to split token words", 2);
 	make_split_tokens(&vars, original_token, data);

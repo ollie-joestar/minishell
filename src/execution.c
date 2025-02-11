@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 16:35:58 by oohnivch          #+#    #+#             */
-/*   Updated: 2025/01/31 18:49:51 by oohnivch         ###   ########.fr       */
+/*   Updated: 2025/02/11 18:41:04 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,8 @@ void	command(t_data *data, t_exec *exec)
 		failed_cmd_full(data, exec);
 	else if (exec->av)
 	{
-		if (0 == access(exec->cmd, F_OK) && ft_strncmp(exec->cmd, ".", 2))
+		if (0 == access(exec->cmd, F_OK) && ft_strncmp(exec->cmd, ".", 2) &&
+		ft_strncmp(exec->cmd, "..", 3))
 			(mspe(exec->cmd), bruh(data, NULL, 126));
 		if (exec->cmd != NULL && *exec->cmd)
 			mspec2(exec->cmd, "command not found\n");
@@ -53,6 +54,7 @@ static void	reset_stdout(int stdout_copy)
 {
 	if (stdout_copy == -1 || stdout_copy == STDOUT_FILENO)
 		return ;
+	/*safe_close(STDOUT_FILENO);*/
 	dup2(stdout_copy, STDOUT_FILENO);
 	safe_close(stdout_copy);
 }
@@ -81,13 +83,14 @@ void	builtin(t_data *data, t_exec *exec)
 	else
 		bruh(data, "it's not a builtin, my bad (^_^)\n", 127);
 	if (exec_len(exec) > 1)
-		bruh(data, NULL, 0);
+		(close_pipe_exec(data, exec), bruh(data, NULL, 0));
 	else if (ft_strncmp(exec->cmd, "exit", 5))
 		reset_stdout(stdout_copy);
 }
 
 void	do_stuff(t_data *data, t_exec *exec)
 {
+	/*ft_printf("DOING STUFF\n");*/
 	if (exec->next)
 		open_pipe_exec(data, exec);
 	/*signal(SIGINT, SIG_IGN);*/

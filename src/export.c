@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 11:32:53 by oohnivch          #+#    #+#             */
-/*   Updated: 2025/01/31 13:58:06 by oohnivch         ###   ########.fr       */
+/*   Updated: 2025/02/11 17:49:30 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ t_envlist	*create_env(char *name, char *value)
 		return (NULL);
 	list->name = ft_strdup(name);
 	list->value = ft_strdup(value);
+	(ft_free(&name), ft_free(&value));
 	if (!list->name)
 		ft_putstr_fd("NO NAME\n", 2);
 	if (!list->value)

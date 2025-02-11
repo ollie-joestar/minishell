@@ -6,7 +6,7 @@
 /*   By: oohnivch <oohnivch@student.42vienna.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 12:29:43 by oohnivch          #+#    #+#             */
-/*   Updated: 2025/01/31 14:20:18 by oohnivch         ###   ########.fr       */
+/*   Updated: 2025/02/11 18:34:43 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,8 @@ void	clean_exec(t_data *data)
 		data->exec = data->exec->prev;
 	while (data->exec)
 	{
+		if (data->exec->piped)
+			close_pipe_exec(data, data->exec);
 		tmp = data->exec;
 		data->exec = data->exec->next;
 		/*ft_printf("Cleaning exec\n");*/

@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 16:36:14 by oohnivch          #+#    #+#             */
-/*   Updated: 2025/01/31 17:17:32 by oohnivch         ###   ########.fr       */
+/*   Updated: 2025/02/11 18:42:12 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,20 +96,18 @@ size_t	ft_arrlen(char **arr)
 void	safe_close(int fd)
 {
 	if (fd == -1)
-		ft_putstr_fd("Tried to close invalid fd\n", 2);
+		mspe("Tried to close invalid fd\n");
 	if (fd == 0)
-		ft_putstr_fd("Tried to close stdin\n", 2);
+		mspe("Tried to close invalid fd\n");
 	if (fd == 1)
-		ft_putstr_fd("Tried to close stdout\n", 2);
+		mspe("Tried to close invalid fd\n");
 	if (fd == 2)
-		ft_putstr_fd("Tried to close stderr\n", 2);
+		mspe("Tried to close invalid fd\n");
 	if (fd > 2)
 	{
 		if (-1 == close(fd))
 		{
-			ft_putstr_fd("Failed to close fd ", 2);
-			ft_putnbr_fd(fd, 2);
-			ft_putchar_fd('\n', 2);
+			mspe("Tried to close invalid fd\n");
 		}
 	}
 }

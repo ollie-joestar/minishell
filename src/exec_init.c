@@ -6,7 +6,7 @@
 /*   By: oohnivch <oohnivch@student.42vienna.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 19:35:55 by oohnivch          #+#    #+#             */
-/*   Updated: 2025/01/27 17:37:02 by oohnivch         ###   ########.fr       */
+/*   Updated: 2025/02/11 17:43:00 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -165,6 +165,8 @@ void	init_exec(t_data *data)
 {
 	t_exec	*exec;
 
+	if (!data->token)
+		return ;
 	init_exec_data(data);
 	/*print_exec(data->exec);*/
 	/*ft_printf("if i see this, then i need to go for a smoke\n\n\n");*/

@@ -50,7 +50,15 @@ Our `minishell` with **Hanju-kun** *UwU*
 //< infile > outfile NOT NEEDED !!!!!!!!!!
 //< infile cat > outfile should work
 //< infile cat | > outfile should NOT WORK
-//
+
+ps ax | grep "minishell"
+ls -l /proc/XXXXXXX/fd
+
+gdb ./minishell
+set follow-fork-mode child
+b whatever
+r
+then you know
 
 test="first"
 another="anything here"

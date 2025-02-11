@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 09:38:58 by oohnivch          #+#    #+#             */
-/*   Updated: 2025/01/31 16:38:51 by oohnivch         ###   ########.fr       */
+/*   Updated: 2025/02/11 17:50:31 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,9 @@ int main(int argc, char **argv, char **ev)
 	if (!data)
 		bruh(data, "Failed to allocate memory", 1);
 	data->env = parse_env(data, ev);
+	/*char	**split_test = ft_split_set("trololo\ttrololo trololo", " \t");*/
+	/*print_arr(split_test);*/
+	/*return (0);*/
 	/*if (!data->env)*/
 	/*	bruh(data, "Failed to parse env", 1);*/
 	setup_signal_mode(data, 1);

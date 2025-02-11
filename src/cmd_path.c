@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 12:32:11 by oohnivch          #+#    #+#             */
-/*   Updated: 2025/01/31 14:21:00 by oohnivch         ###   ########.fr       */
+/*   Updated: 2025/02/11 17:20:38 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,8 @@ void	set_cmd_path(t_data *data, t_exec *exec)
 		mspec("No command to set path cmd_path.c:45\n");
 		return ;
 	}
-	if (ft_strchr(exec->cmd, '/') || !ft_strncmp(exec->cmd, ".", 2))
+	if (ft_strchr(exec->cmd, '/') || !ft_strncmp(exec->cmd, ".", 2)
+		|| !ft_strncmp(exec->cmd, "..", 3))
 		return ;
 	if (!data->path || !*data->path)
 		return ;

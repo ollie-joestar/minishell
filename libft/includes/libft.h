@@ -6,7 +6,7 @@
 /*   By: oohnivch <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 13:21:39 by oohnivch          #+#    #+#             */
-/*   Updated: 2025/01/21 12:44:10 by oohnivch         ###   ########.fr       */
+/*   Updated: 2025/02/11 16:57:48 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ int		ft_isspace(int c);
 int		ft_atoi(const char *str);
 char	*ft_itoa(int n);
 char	**ft_split(const char *s, char c);
+char	**ft_split_set(const char *s, char *c);
 char	*ft_strchr(const char *s, int c);
 char	*ft_strdup(const char *src);
 void	ft_striteri(char *s, void (*f)(unsigned int, char *));

@@ -6,7 +6,7 @@
 /*   By: hanjkim <@student.42vienna.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 15:07:37 by hanjkim           #+#    #+#             */
-/*   Updated: 2025/02/10 17:23:07 by hanjkim          ###   ########.fr       */
+/*   Updated: 2025/02/11 16:13:58 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ bool	unexpected_token_with_join(t_data *data, t_token *token)
 	if (token->next == NULL)
 	{
 		if (token->type == PIPE)
-			err_token = "newline";
+			err_token = "|";
 		else if (is_redirection(token))
 		{
 			if (token->prev != NULL && is_redirection(token->prev))
