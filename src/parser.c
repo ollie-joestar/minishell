@@ -109,6 +109,7 @@ void	process_redirection(t_data *data, t_token **token)
 	t_token	*redirection_token;
 	t_token	*filename_token;
 	char	*final_filename;
+	char	*original_filename;
 
 	redirection_token = *token;
 	filename_token = redirection_token->next;
@@ -117,8 +118,6 @@ void	process_redirection(t_data *data, t_token **token)
 		unexpected_token(data, NULL);
 		return ;
 	}
-	/*if (check_ambiguous_redirect(data, filename_token))*/
-	/*	return ;*/
 	filename_token->type = WORD;
 	if (redirection_token->type == HEREDOC)
 	{
@@ -132,8 +131,16 @@ void	process_redirection(t_data *data, t_token **token)
 		|| redirection_token->type == APPEND)
 		filename_token->type = redirection_token->type;
 	final_filename = finalize_redirection_token(data, filename_token);
-	if (!final_filename)
-		return ;
+	if (!final_filename || final_filename[0] == '\0')
+	{
+		original_filename = join_segments(filename_token);
+		mspec2(original_filename, "ambiguous redirect\n");
+		ft_free(&original_filename);
+		data->status = 1;
+		data->ambig_redir = 1;
+		ft_free(&final_filename);
+		return;
+	}
 	free_token_segments(filename_token);
 	filename_token->word = final_filename;
 	filename_token->prev = redirection_token->prev;
@@ -181,7 +188,14 @@ void	expand_tokens(t_data *data)
 			seg->text = expanded;
 			seg = seg->next;
 			if (current->type != WORD && current->type != PIPE)
+			{
 				process_redirection(data, &current);
+				if (data->ambig_redir)
+				{
+					free_tokens(data);
+					return ;
+				}
+			}
 		}
 		current = current->next;
 	}
