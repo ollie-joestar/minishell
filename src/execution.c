@@ -144,6 +144,8 @@ void	run(t_data *data)
 		while (wait_status > 0 && wait_status != lpid(data))
 			wait_status = wait(&exit_status);
 		check_exit_status(data, exit_status);
+		if (WIFSIGNALED(exit_status) && WTERMSIG(exit_status) == SIGINT)
+			write(STDOUT_FILENO, "\n", 1);
 		while (wait(NULL) > 0)
 			;
 	}
