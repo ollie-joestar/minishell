@@ -175,6 +175,7 @@ void	expand_tokens(t_data *data)
 	char		*expanded;
 	t_segment	*seg;
 
+	data->ambig_redir = 0;
 	current = data->token;
 	while (current != NULL)
 	{
