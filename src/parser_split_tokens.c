@@ -21,59 +21,30 @@ void	init_split_vars(t_split_vars *vars)
 	vars->i = -1;
 }
 
-/*bool	should_split_token(t_token *token)*/
-/*{*/
-/*	char		*joined;*/
-/*	bool		result;*/
-/*	t_segment	*seg;*/
-/**/
-/*	if (token->type == WORD)*/
-/*	{*/
-/*		joined = join_segments(token);*/
-/*		if (!joined)*/
-/*			return (false);*/
-/*		result = false;*/
-/*		seg = token->segments;*/
-/*		while (seg)*/
-/*		{*/
-/*			if (!seg->single_quoted && !seg->double_quoted*/
-/*				&& ft_strchr(seg->text, ' ') != NULL)*/
-/*			{*/
-/*				result = true;*/
-/*				break ;*/
-/*			}*/
-/*			seg = seg->next;*/
-/*		}*/
-/*		free(joined);*/
-/*		return (result);*/
-/*	}*/
-/*	return (false);*/
-/*}*/
-
 bool	should_split_token(t_token *token)
 {
 	t_segment	*seg;
-	bool		all_unquoted;
+	bool		any_unquoted;
 	bool		contains_space;
 
-	all_unquoted = true;
+	any_unquoted = false;
 	contains_space = false;
 	if (token->type != WORD)
 		return (false);
 	seg = token->segments;
 	while (seg)
 	{
-		if (seg->single_quoted || seg->double_quoted)
-			all_unquoted = false;
-		else if (ft_strchr(seg->text, ' ') || ft_strchr(seg->text, '\t'))
-			contains_space = true;
-		else if (ft_strchr(seg->text, '\r') || ft_strchr(seg->text, '\v'))
-			contains_space = true;
-		else if (ft_strchr(seg->text, '\f') != NULL)
-			contains_space = true;
+		if (!seg->single_quoted && !seg->double_quoted)
+		{
+			any_unquoted = true;
+			if (ft_strchr(seg->text, ' ') || ft_strchr(seg->text, '\t') ||
+				ft_strchr(seg->text, '\r') || ft_strchr(seg->text, '\v') ||
+				ft_strchr(seg->text, '\f'))
+				contains_space = true;
+		}
 		seg = seg->next;
 	}
-	return (all_unquoted && contains_space);
+	return (any_unquoted && contains_space);
 }
 
 t_token	*create_token_from_string(char *str)
