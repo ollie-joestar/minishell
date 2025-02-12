@@ -25,7 +25,7 @@ void	finalize_tokens(t_token *token_list)
 		if (curr->segments)
 		{
 			joined = join_segments(curr);
-			/*if (joined[0] == '\0')*/
+			/*if (!joined || joined[0] == '\0'*/
 			/*{*/
 			/*	ft_free(&joined);*/
 			/*	curr->word = NULL;*/
