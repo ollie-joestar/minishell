@@ -138,7 +138,8 @@ typedef struct s_data
 	char				**ev;	 
 	t_envlist			*env;	
 	char				**path;   
-	int					status;
+	int				status;
+	int				ambig_redir;
 	struct sigaction	sa;
 	char				*line;	
 	t_token				*token;
