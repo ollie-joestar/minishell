@@ -79,6 +79,11 @@ int main(int argc, char **argv, char **ev)
 			continue ;
 		}
 		process_tokens(data);
+		if (data->ambig_redir)
+		{
+			ft_free(&data->line);
+			continue ;
+		}
 		/*print_tokens(data->token);*/
 		/*ft_printf("Initiating exec data->\n");*/
 		/*init_exec_data(data);*/
@@ -86,7 +91,9 @@ int main(int argc, char **argv, char **ev)
 		/*ft_printf("after init_exec_data\n");*/
 		/*print_exec(data->exec);*/
 		/*ft_printf("\nExecuting->\n");*/
+		setup_signal_mode(data, 0);
 		run(data);
+		setup_signal_mode(data, 1);
 	}
 	bruh(data, NULL, 0);
 }
