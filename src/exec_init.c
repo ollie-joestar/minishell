@@ -6,7 +6,7 @@
 /*   By: oohnivch <oohnivch@student.42vienna.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 19:35:55 by oohnivch          #+#    #+#             */
-/*   Updated: 2025/02/11 17:43:00 by oohnivch         ###   ########.fr       */
+/*   Updated: 2025/02/13 16:17:16 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,6 +128,7 @@ void	init_cmd(t_data *data, t_exec *exec)
 	if (exec->type == CMD)
 	{
 		parse_path(data);
+		/*ft_printf("exec->cmd: %s\n", exec->cmd);*/
 		set_cmd_path(data, exec);
 	}
 }
@@ -168,7 +169,6 @@ void	init_exec(t_data *data)
 	if (!data->token)
 		return ;
 	init_exec_data(data);
-	/*print_exec(data->exec);*/
 	/*ft_printf("if i see this, then i need to go for a smoke\n\n\n");*/
 	while (data->exec && data->exec->prev)
 		data->exec = data->exec->prev;
@@ -178,7 +178,8 @@ void	init_exec(t_data *data)
 		if (exec->av_list)
 		{
 			init_argv(data, exec);
-			(free_av_list(exec), init_cmd(data, exec));
+			free_av_list(exec);
+			init_cmd(data, exec);
 		}
 		/*else*/
 		/*	ft_printf("No av_list\n");*/

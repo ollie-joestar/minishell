@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 11:02:42 by oohnivch          #+#    #+#             */
-/*   Updated: 2025/01/31 19:21:38 by oohnivch         ###   ########.fr       */
+/*   Updated: 2025/02/13 15:27:26 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,12 @@ t_envlist	*parse_env(t_data *data, char **ev)
 			tmp = create_env(name, value);
 		else
 			add_env(tmp, create_env(name, value));
+		name = NULL;
+		value = NULL;
 	}
 	while (tmp->prev)
 		tmp = tmp->prev;
-	shlvl(data, tmp);
-	return (tmp);
+	return (shlvl(data, tmp), tmp);
 }
 
 void	parse_env_into_ev(t_data *data)
@@ -118,6 +119,7 @@ void	underscore(t_data *data, t_exec *exec)
 	else
 	{
 		list = create_env("_", value);
+		value = NULL;
 		if (!list)
 			bruh(data, "Malloc fail env.c:125", 69);
 		add_env(data->env, list);

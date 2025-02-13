@@ -6,7 +6,7 @@
 /*   By: oohnivch <oohnivch@student.42vienna.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 12:29:43 by oohnivch          #+#    #+#             */
-/*   Updated: 2025/02/11 18:34:43 by oohnivch         ###   ########.fr       */
+/*   Updated: 2025/02/13 16:52:26 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,12 +87,14 @@ void	clean_exec(t_data *data)
 {
 	t_exec	*tmp;
 
-	if (data->exec && data->exec->prev)
-		data->exec = data->exec->prev;
+	/*if (data->exec && data->exec->prev)*/
+	/*	data->exec = data->exec->prev;*/
+	if (data->pid_list)
+		clean_pids(data);
 	while (data->exec)
 	{
-		if (data->exec->piped)
-			close_pipe_exec(data, data->exec);
+		/*if (data->exec->piped)*/
+		/*	close_pipe_exec(data, data->exec);*/
 		tmp = data->exec;
 		data->exec = data->exec->next;
 		/*ft_printf("Cleaning exec\n");*/

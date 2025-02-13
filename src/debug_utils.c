@@ -6,11 +6,26 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 10:10:42 by oohnivch          #+#    #+#             */
-/*   Updated: 2025/01/27 14:14:22 by oohnivch         ###   ########.fr       */
+/*   Updated: 2025/02/13 16:48:29 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+void	print_pids(t_data *data)
+{
+	t_pidlist	*pid;
+
+	pid = data->pid_list;
+	while (pid && pid->prev)
+		pid = pid->prev;
+	ft_printf("Printing pids\n");
+	while (pid)
+	{
+		ft_printf("[%d]\n", pid->pid);
+		pid = pid->next;
+	}
+}
 
 void	print_token(t_token *token)
 {
@@ -85,7 +100,7 @@ void	print_av_list(t_exec	*exec)
 		ft_printf("\t\t[%s]\n", av_list->arg);
 		av_list = av_list->next;
 	}
-	ft_printf("\n");
+	/*ft_printf("\n");*/
 }
 
 void	print_av(t_exec	*exec)
@@ -175,4 +190,28 @@ void	print_stds(void)
 	ft_printf("STDIN: %d\n", dup(STDIN_FILENO));
 	ft_printf("STDOUT: %d\n", dup(STDOUT_FILENO));
 	ft_printf("STDERR: %d\n", dup(STDERR_FILENO));
+}
+
+void	print_execution(t_exec *exec)
+{
+	int	i;
+
+	i = -1;
+	ft_printf("\n\nPrinting execution [%d]\n", ++i);
+	if (!exec)
+	{
+		ft_printf("No exec\n");
+		return ;
+	}
+	if (exec->type == CMD)
+		ft_printf("\tType: CMD\n");
+	else
+		ft_printf("\tType: BUILTIN\n");
+	ft_printf("\tCommand: %s\n", exec->cmd);
+	print_redirs(exec);
+	ft_printf("\tPipe: %d %d\n", exec->pipe[RD], exec->pipe[WR]);
+	ft_printf("\tPrev: %s\n", exec->prev ? exec->prev->cmd : "NULL");
+	ft_printf("\tNext: %s\n", exec->next ? exec->next->cmd : "NULL");
+	print_av_list(exec);
+	print_av(exec);
 }

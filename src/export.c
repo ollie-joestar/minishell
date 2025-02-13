@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 11:32:53 by oohnivch          #+#    #+#             */
-/*   Updated: 2025/02/11 17:49:30 by oohnivch         ###   ########.fr       */
+/*   Updated: 2025/02/13 15:33:05 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,30 +80,32 @@ t_envlist	*create_env(char *name, char *value)
 static void	process_export(t_data *data, t_exec *exec, int j)
 {
 	t_envlist	*list;
-	char		*value;
-	char		*name;
+	char		*new_name;
+	char		*new_value;
 
 	if (ft_strchr(exec->av[j], '='))
 	{
-		name = ft_substr(exec->av[j], 0, ft_strchr(exec->av[j], '=') - exec->av[j]);
-		value = ft_strdup(ft_strchr(exec->av[j], '=') + 1);
+		new_name = ft_substr(exec->av[j], 0, ft_strchr(exec->av[j], '=') - exec->av[j]);
+		new_value = ft_strdup(ft_strchr(exec->av[j], '=') + 1);
 	}
 	else
 	{
-		name = ft_strdup(exec->av[j]);
-		value = ft_strdup("");
+		new_name = ft_strdup(exec->av[j]);
+		new_value = ft_strdup("");
 	}
-	list = find_env(data->env, name);
+	list = find_env(data->env, new_name);
 	if (list && ft_strchr(exec->av[j], '='))
-		(ft_free(&list->value), list->value = ft_strdup(value));
+		(ft_free(&list->value), list->value = ft_strdup(new_value));
 	else if (ft_strchr(exec->av[j], '='))
 	{
-		list = create_env(name, value);
+		list = create_env(new_name, new_value);
+		new_name = NULL;
+		new_value = NULL;
 		if (!list)
 			bruh(data, "Memory allocation failed:export.c:102", 69);
 		add_env(data->env, list);
 	}
-	(ft_free(&name), ft_free(&value));
+	(ft_free(&new_name), ft_free(&new_value));
 }
 
 void	export(t_data *data, t_exec *exec)
@@ -111,6 +113,7 @@ void	export(t_data *data, t_exec *exec)
 	int	i;
 	int	j;
 
+	/*ft_printf("avlen: %d\n", ft_arrlen(exec->av));*/
 	if (ft_arrlen(exec->av) == 1)
 		return (print_export(data));
 	j = 0;

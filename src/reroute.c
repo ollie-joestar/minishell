@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 11:41:48 by oohnivch          #+#    #+#             */
-/*   Updated: 2025/01/31 14:32:59 by oohnivch         ###   ########.fr       */
+/*   Updated: 2025/02/13 16:33:38 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static void	rerouteinfile(t_data *data, t_exec *exec)
 	/*}*/
 	/*while (exec->in && exec->in->next)*/
 	/*	exec->in = exec->in->next;*/
-	/*ft_printerr("rerouteinfile\n");*/
+	/*mspec2(exec->cmd, "rerouteinfile\n");*/
 	/*ft_printerr("name: %s\n", exec->redir->file);*/
 	fd = open(exec->redir->file, O_RDONLY);
 	if (fd == -1)
@@ -35,12 +35,16 @@ static void	rerouteinfile(t_data *data, t_exec *exec)
 		mspe(exec->redir->file);
 		/*msperror2(exec->redir->file, "No such file or directory");*/
 		/*ft_printerr("minishell: %s: No such file or directory\n", exec->redir->file);*/
-		bruh(data, NULL, 1);
+		data -> status = 1;
+		if (lpid(data) == 0)
+			bruh(data, NULL, 1);
+		return ;
+		/*bruh(data, NULL, 1);*/
 	}
 	if (exec_len(exec) > 1 || exec->type == CMD)
 		dup2(fd, STDIN_FILENO);
-	/*dup2(fd, STDIN_FILENO);*/
 	close(fd);
+	/*dup2(fd, STDIN_FILENO);*/
 	if (exec->redir->type == HEREDOC)
 		unlink(exec->redir->file);
 }
@@ -51,7 +55,7 @@ static void	rerouteoutfile(t_data *data, t_exec *exec)
 
 	fd = 0;
 	/*fd = checkfile(exec->out->file);*/
-	/*ft_printerr("rerouteoutfile\n");*/
+	/*mspec2(exec->cmd, "rerouteoutfile\n");*/
 	/*ft_printerr("name: %s\n", exec->redir->file);*/
 	if (exec->redir->type == REPLACE && fd == 0)
 		fd = open(exec->redir->file, O_CREAT | O_TRUNC | O_RDWR, 0664);
@@ -64,7 +68,9 @@ static void	rerouteoutfile(t_data *data, t_exec *exec)
 		/*perror(exec->redir->file);*/
 		/*ft_printerr("minishell: %s: No such file or directory\n", exec->redir->file);*/
 		data->status = 1;
-		bruh(data, NULL, 1);
+		if (lpid(data) == 0)
+			bruh(data, NULL, 1);
+		return ;
 	}
 	dup2(fd, STDOUT_FILENO);
 	close(fd);
@@ -72,7 +78,7 @@ static void	rerouteoutfile(t_data *data, t_exec *exec)
 
 static void	rerouteinpipe(t_exec *exec)
 {
-	/*ft_printerr("rerouteinpipe\n");*/
+	/*mspec2(exec->cmd, "rerouteinpipe\n");*/
 	close(exec->prev->pipe[WR]);
 	dup2(exec->prev->pipe[RD], STDIN_FILENO);
 	close(exec->prev->pipe[RD]);
@@ -80,7 +86,7 @@ static void	rerouteinpipe(t_exec *exec)
 
 static void	rerouteoutpipe(t_exec *exec)
 {
-	/*ft_printerr("rerouteoutpipe\n");*/
+	/*mspec2(exec->cmd, "rerouteoutpipe\n");*/
 	close(exec->pipe[RD]);
 	dup2(exec->pipe[WR], STDOUT_FILENO);
 	close(exec->pipe[WR]);
@@ -88,19 +94,19 @@ static void	rerouteoutpipe(t_exec *exec)
 
 void	reroute(t_data *data, t_exec *exec)
 {
-	/*t_input		*in;*/
-	/*t_output	*out;*/
 	t_redir		*redir;
+	t_exec		*restore;
 
-	/*while (redir && redir->prev)*/
-	/*	redir = redir->prev;*/
+	if (data->exec == exec)
+		restore = exec;
+	else
+		restore = NULL;
+	/*mspec2(exec->cmd, "REROUTING!\n");*/
 	while (exec->redir && exec->redir->prev)
 		exec->redir = exec->redir->prev;
 	redir = exec->redir;
 	while (exec->redir)
 	{
-		/*ft_printerr("reroute %s\n", exec->redir->file);*/
-		/*ft_printerr("type: %d\n", exec->redir->type);*/
 		if (exec->redir->type == INPUT || exec->redir->type == HEREDOC)
 			rerouteinfile(data, exec);
 		else if (exec->redir->type == REPLACE || exec->redir->type == APPEND)
@@ -108,16 +114,10 @@ void	reroute(t_data *data, t_exec *exec)
 		exec->redir = exec->redir->next;
 	}
 	exec->redir = redir;
-	/*in = exec->in;*/
-	/*out = exec->out;*/
-	/*while (exec->in && (exec_len(exec) > 1 || exec->type == CMD))*/
-	/*	(rerouteinfile(data, exec), exec->in = exec->in->next);*/
-	/*exec->in = in;*/
-	/*while (exec->out)*/
-	/*	(rerouteoutfile(data, exec), exec->out = exec->out->next);*/
-	/*exec->out = out;*/
 	if (!has_input(exec) && exec->prev)
 		rerouteinpipe(exec);
 	if (!has_output(exec) && exec->next)
 		rerouteoutpipe(exec);
+	if (restore)
+		data->exec = restore;
 }

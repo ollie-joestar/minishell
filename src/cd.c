@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 13:49:00 by oohnivch          #+#    #+#             */
-/*   Updated: 2025/01/31 17:03:51 by oohnivch         ###   ########.fr       */
+/*   Updated: 2025/02/13 17:37:20 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,28 @@ char	*cd_special_path_check(t_data *data, char *path)
 		return (path);
 }
 
+void	failed_cd(t_data *data, char *path)
+{
+	char	*tmp;
+	struct stat file_stat;
+	
+	tmp = ft_strjoin("cd: ", path);
+	if (access(path, F_OK) == 0)
+	{
+		if (stat(path, &file_stat) == 0)
+		{
+			if (S_ISDIR(file_stat.st_mode))
+				mspec2(tmp, "Permission denied\n");
+			else
+				mspec2(tmp, "Not a directory\n");
+		}
+	}
+	else
+		mspec2(tmp, "No such file or directory\n");
+	data->status = 1;
+	ft_free(&tmp);
+}
+
 void	cd(t_data *data, t_exec *exec)
 {
 	char	*path;
@@ -89,13 +111,7 @@ void	cd(t_data *data, t_exec *exec)
 		if (!path)
 			return ;
 		if (chdir(path) == -1)
-		{
-			if (access(path, F_OK) == -1)
-				ft_printerr("minishell: cd: %s: No such file or directory\n", path);
-			else
-				ft_printerr("minishell: cd: %s: Not a directory\n", path);
-			data->status = 1;
-		}
+			failed_cd(data, path);
 		else if (!ft_strncmp(exec->av[1], "-", 2))
 			(ft_printf("%s\n", get_oldpwd(data)->value), data->status = 0);
 		else
@@ -104,6 +120,7 @@ void	cd(t_data *data, t_exec *exec)
 	else
 		cd_home(data, exec);
 	update_pwd(data);
+	/*ft_free(&path);*/
 }
 
 /*int	valid_dotdot_path(char *path)*/

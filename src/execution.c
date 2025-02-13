@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 16:35:58 by oohnivch          #+#    #+#             */
-/*   Updated: 2025/02/11 18:41:04 by oohnivch         ###   ########.fr       */
+/*   Updated: 2025/02/13 17:31:12 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,32 +83,47 @@ void	builtin(t_data *data, t_exec *exec)
 	else
 		bruh(data, "it's not a builtin, my bad (^_^)\n", 127);
 	if (exec_len(exec) > 1)
-		(close_pipe_exec(data, exec), bruh(data, NULL, 0));
+		bruh(data, NULL, 0);
 	else if (ft_strncmp(exec->cmd, "exit", 5))
 		reset_stdout(stdout_copy);
 }
 
 void	do_stuff(t_data *data, t_exec *exec)
 {
-	/*ft_printf("DOING STUFF\n");*/
 	if (exec->next)
 		open_pipe_exec(data, exec);
 	/*signal(SIGINT, SIG_IGN);*/
 	fork1(data);
+	/*if (lpid(data))*/
+	/*	mspec2(exec->cmd, ft_strjoin("forked pid: ", ft_strjoin(ft_itoa(lpid(data)), "\n")));*/
+	/*if (lpid(data))*/
+	/*	mspec("Partent inside doing stuff\n");*/
+	/*if (!lpid(data))*/
 	underscore(data, exec);
-	if (!lpid(data))
+	/*mspec2(exec->cmd, ft_strjoin("forked pid: ", ft_strjoin(ft_itoa(lpid(data)), "\n")));*/
+	if (0 == lpid(data))
 	{
-		/*signal(SIGINT, SIG_DFL);*/
+		/*mspec2(exec->cmd, ft_strjoin(ft_itoa(lpid(data)), "\n"));*/
+		/*mspec2(exec->cmd, "DOING STUFF\n");*/
+		signal(SIGINT, SIG_DFL);
 		reroute(data, exec);
+		/*print_execution(exec);*/
 		if (exec->type == CMD)
 			command(data, exec);
 		else if (exec->av)
 			builtin(data, exec);
-		bruh(data, NULL, data->status);
+		bruh(data, "BRUH", data->status);
 	}
-	close_pipe_exec(data, exec->prev);
-	if (!exec->next)
+	if (exec->prev && exec->prev->piped)
+	{
+		/*mspec2(exec->cmd, "closing prev exec pipe\n");*/
+		close_pipe_exec(data, exec->prev);
+	}
+	if (!exec->next && exec->piped)
+	{
+		mspec("closing last exec pipe SHOULD NOT BE HERE!!!\n");
 		close_pipe_exec(data, exec);
+	}
 	/*waitpid(data->pid, &data->status, 0);*/
 	/*signal(SIGINT, handle_sigint);*/
 	/*if (WIFSIGNALED(data->status) && WTERMSIG(data->status) == SIGINT)*/
@@ -119,8 +134,11 @@ static void	loop_exec(t_data *data, t_exec *exec)
 {
 	while (exec)
 	{
-		if (exec_len(exec) > 1 || exec->type == CMD)
+		if (exec_len(data->exec) > 1 || exec->type == CMD)
+		{
+			/*mspec("Gonna do stuff\n");*/
 			do_stuff(data, exec);
+		}
 		else if (exec->av)
 			(underscore(data, exec), builtin(data, exec));
 		exec = exec->next;
@@ -133,13 +151,14 @@ void	run(t_data *data)
 	int		exit_status;
 	int		wait_status;
 
-	/*exit_status = 0;*/
+	exit_status = 0;
 	exec = data->exec;
 	/*print_exec(exec);*/
 	loop_exec(data, exec);
 	add_history(data->line);
 	if (exec_len(data->exec) > 1 || exec_has_cmd(data->exec))
 	{
+		/*print_pids(data);*/
 		wait_status = 1;
 		while (wait_status > 0 && wait_status != lpid(data))
 			wait_status = wait(&exit_status);

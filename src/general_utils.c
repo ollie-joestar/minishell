@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 16:36:14 by oohnivch          #+#    #+#             */
-/*   Updated: 2025/02/11 18:42:12 by oohnivch         ###   ########.fr       */
+/*   Updated: 2025/02/13 15:44:05 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,23 +93,31 @@ size_t	ft_arrlen(char **arr)
 	return (i);
 }
 
-void	safe_close(int fd)
+int	safe_close(int fd)
 {
-	if (fd == -1)
-		mspe("Tried to close invalid fd\n");
-	if (fd == 0)
-		mspe("Tried to close invalid fd\n");
-	if (fd == 1)
-		mspe("Tried to close invalid fd\n");
-	if (fd == 2)
-		mspe("Tried to close invalid fd\n");
-	if (fd > 2)
-	{
-		if (-1 == close(fd))
-		{
-			mspe("Tried to close invalid fd\n");
-		}
-	}
+	int	ret;
+
+	ret = 0;
+	/*ft_printerr("Closing fd: %d\n", fd);*/
+	ret = close(fd);
+	if (ret == -1)
+		mspe2("failed to close fd", ft_strjoin(ft_itoa(fd), "\n"));
+	return (ret);
+	/*if (fd == -1)*/
+	/*	mspe("Tried to close invalid fd\n");*/
+	/*if (fd == 0)*/
+	/*	mspe("Tried to close stdin fd\n");*/
+	/*if (fd == 1)*/
+	/*	mspe("Tried to close stdout fd\n");*/
+	/*if (fd == 2)*/
+	/*	mspe("Tried to close errno fd\n");*/
+	/*if (fd > 2)*/
+	/*{*/
+	/*mspec("closing fd\n");*/
+	/*ft_printerr("Closing fd: %d\n", fd);*/
+		/*if (-1 == close(fd))*/
+		/*	mspe("failed to close fd\n");*/
+	/*}*/
 }
 
 void	skip_spaces(char *input, int *i)

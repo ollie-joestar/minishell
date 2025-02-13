@@ -112,8 +112,9 @@ typedef	struct s_avlist {
 typedef struct s_exec {
 	int					type; // BUILTIN | CMD
 	t_redir				*redir; // linked list of redirections
-	t_input				*in; // linked list of input files
-	t_output			*out; // linked list of output files
+	/*int					rerouted; // 1 if the command is redirected*/
+	/*t_input				*in; // linked list of input files*/
+	/*t_output			*out; // linked list of output files*/
 	int					piped; // 1 if the command is piped
 	int					pipe[2]; // pipe file descriptors
 	char				*cmd; // full path to the command
@@ -138,8 +139,8 @@ typedef struct s_data
 	char				**ev;	 
 	t_envlist			*env;	
 	char				**path;   
-	int				status;
-	int				ambig_redir;
+	int					status;
+	int					ambig_redir;
 	struct sigaction	sa;
 	char				*line;	
 	t_token				*token;
@@ -240,7 +241,7 @@ void		reroute(t_data *data, t_exec *exec);
 /*t_input	*get_first_input(t_input *input);*/
 /*t_output	*get_first_output(t_output *output);*/
 t_redir		*get_first_redir(t_redir *redir);
-void		safe_close(int fd);
+int			safe_close(int fd);
 void		check_exit_status(t_data *data, int exit_status);
 size_t		exec_len(t_exec *exec);
 int			exec_has_cmd(t_exec *exec);
@@ -314,5 +315,7 @@ void		print_arr(char **arr);
 void		print_exec(t_exec *exec);
 void		print_env(t_data *data);
 void		print_av(t_exec	*exec);
+void		print_execution(t_exec *exec);
+void		print_pids(t_data *data);
 
 #endif

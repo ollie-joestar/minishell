@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 09:38:58 by oohnivch          #+#    #+#             */
-/*   Updated: 2025/02/11 17:50:31 by oohnivch         ###   ########.fr       */
+/*   Updated: 2025/02/13 15:47:46 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,8 +90,8 @@ int main(int argc, char **argv, char **ev)
 		init_exec(data);
 		/*ft_printf("after init_exec_data\n");*/
 		/*print_exec(data->exec);*/
-		/*ft_printf("\nExecuting->\n");*/
 		setup_signal_mode(data, 0);
+		/*ft_printf("\nExecuting->\n");*/
 		run(data);
 		setup_signal_mode(data, 1);
 	}

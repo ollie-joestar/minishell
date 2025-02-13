@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 16:29:57 by oohnivch          #+#    #+#             */
-/*   Updated: 2025/01/27 16:54:04 by oohnivch         ###   ########.fr       */
+/*   Updated: 2025/02/13 11:55:51 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,12 +40,17 @@ void	add_to_av_list(t_data *data, t_exec *exec, t_token *token)
 {
 	t_avlist	*av_list;
 
+	if (!token)
+	{
+		ft_printerr("No token argv.c:45\n");
+		return ;
+	}
 	av_list = ft_calloc(1, sizeof(t_avlist));
 	if (!av_list)
-		bruh(data, "Malloc failed argv.c:21", 69);
+		bruh(data, "Malloc failed argv.c:50", 69);
 	av_list->arg = ft_strdup(token->word);
 	if (!av_list->arg)
-		bruh(data, "Malloc failed argv.c:24", 69);
+		bruh(data, "Malloc failed argv.c:53", 69);
 	if (exec->av_list)
 	{
 		exec->av_list->next = av_list;

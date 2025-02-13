@@ -6,7 +6,7 @@
 /*   By: oohnivch <oohnivch@student.42vienna.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 10:54:18 by oohnivch          #+#    #+#             */
-/*   Updated: 2025/01/31 16:37:25 by oohnivch         ###   ########.fr       */
+/*   Updated: 2025/02/13 17:02:20 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,13 @@ while (next_pid(data) != lpid(data))
 }
 */
 
-void	next_pid(t_data *data)
-{
-	if (!data->pid_list)
-		return ;
-	data->pid_list = data->pid_list->next;
-}
-
+/*void	next_pid(t_data *data)*/
+/*{*/
+/*	if (!data->pid_list)*/
+/*		return ;*/
+/*	data->pid_list = data->pid_list->next;*/
+/*}*/
+/**/
 pid_t	pid(t_data *data)
 {
 	if (!data->pid_list)
@@ -56,7 +56,11 @@ void	add_pid(t_data *data, pid_t pid)
 	new->pid = pid;
 	new->next = NULL;
 	if (data->pid_list)
+	{
+		while (data->pid_list->next)
+			data->pid_list = data->pid_list->next;
 		data->pid_list->next = new;
+	}
 	new->prev = data->pid_list;
 	data->pid_list = new;
 }
