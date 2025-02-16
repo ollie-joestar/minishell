@@ -166,6 +166,8 @@ char	*expand_segment(t_data *data, t_segment *seg, t_token *token)
 	expanded = expand(data, seg->text);
 	if (!expanded)
 		return (ft_strdup(""));
+	if (!seg->single_quoted && !seg->double_quoted && seg->text[0] == '$' && expanded[0] == '\0')
+        	seg->env_not_found = true;
 	return (expanded);
 }
 
