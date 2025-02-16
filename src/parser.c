@@ -92,17 +92,6 @@ char	*finalize_redirection_token(t_data *data, t_token *token)
 	return (result);
 }
 
-/*int	check_ambiguous_redirect(t_data *data, t_token *filename_token)*/
-/*{*/
-/*	if (!filename_token->word || filename_token->word[0] == '\0')*/
-/*	{*/
-/*		mspec2(filename_token->word, " ambiguous redirect\n");*/
-/*		data->status = 1;*/
-/*		return (1);*/
-/*	}*/
-/*	return (0);*/
-/*}*/
-/**/
 void	free_token_segments(t_token *token)
 {
 	t_segment	*seg;
@@ -173,8 +162,6 @@ char	*expand_segment(t_data *data, t_segment *seg, t_token *token)
 {
 	char	*expanded;
 
-	/*if (token->type != WORD && token->type != PIPE)*/
-	/*	return (expand_redirection_segment(data, seg, token));*/
 	(void)token;
 	if (seg->single_quoted)
 		return (ft_strdup(seg->text));
