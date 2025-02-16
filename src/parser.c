@@ -48,7 +48,7 @@ void	finalize_tokens(t_token *token_list)
 			}
 			else
 				curr->word = joined;
-			seg = curr_segments;
+			seg = curr->segments;
 			while (seg)
 			{
 				next = seg->next;
