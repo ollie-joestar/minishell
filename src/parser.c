@@ -18,6 +18,7 @@ void	finalize_tokens(t_token *token_list)
 	t_segment	*seg;
 	t_segment	*next;
 	char		*joined;
+	bool		set_nothing_type;
 
 	curr = token_list;
 	while (curr)
@@ -25,14 +26,29 @@ void	finalize_tokens(t_token *token_list)
 		if (curr->segments)
 		{
 			joined = join_segments(curr);
-			/*if (!joined || joined[0] == '\0'*/
-			/*{*/
-			/*	ft_free(&joined);*/
-			/*	curr->word = NULL;*/
-			/*}*/
-			/*else*/
-			/*	curr->word = joined;*/
-			seg = curr->segments;
+			set_nothing_type = false;
+			if (!joined || joined[0] == '\0')
+			{
+				seg = curr->segments;		
+				while (seg)
+				{
+					if (seg->env_not_found)
+					{
+						set_nothing_type = true;
+						break;
+					}
+					seg = seg->next;
+				}
+			}
+			if (set_nothing_type)
+			{
+				ft_free(&joined);
+				curr->word = ft_strdup("");
+				curr->type = NOTHING;
+			}
+			else
+				curr->word = joined;
+			seg = curr_segments;
 			while (seg)
 			{
 				next = seg->next;
@@ -41,7 +57,6 @@ void	finalize_tokens(t_token *token_list)
 				seg = next;
 			}
 			curr->segments = NULL;
-			curr->word = joined;
 		}
 		curr = curr->next;
 	}
