@@ -35,13 +35,15 @@ typedef enum e_token_type {
 	HEREDOC = 3,
 	REPLACE = 4,
 	APPEND = 5,
-	VAR = 6
+	VAR = 6,
+	NOTHING = 7
 }   t_token_type;
 
 typedef struct s_segment {
-	char				*text;
-	bool				single_quoted;
-	bool				double_quoted;
+	char			*text;
+	bool			single_quoted;
+	bool			double_quoted;
+	bool                	env_not_found;
 	struct s_segment	*next;
 } t_segment;
 
