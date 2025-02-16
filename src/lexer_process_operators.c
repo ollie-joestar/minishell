@@ -6,31 +6,27 @@
 /*   By: hanjkim <@student.42vienna.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/19 13:59:03 by hanjkim           #+#    #+#             */
-/*   Updated: 2025/02/02 18:28:24 by hanjkim          ###   ########.fr       */
+/*   Updated: 2025/02/16 17:45:55 by hanjkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static t_token *process_double_op(char *input, int *i, int *start, t_data *data)
+t_token *process_double_op(char *input, int *i, int *start, t_data *data)
 {
-    t_token *token;
-    t_segment *seg;
+    t_token     *token;
+    t_segment   *seg;
 
     token = create_empty_token();
     seg = create_segment(false, false);
     if (!token || !seg)
-    {
-	free(token);
-	free(seg);
-        return (free_tokens(data), NULL);
-    }
+        return (free(token), free(seg), free_tokens(data), NULL);
     if (append_char_to_segment(seg, input[*i]) == -1
         || append_char_to_segment(seg, input[*i + 1]) == -1)
-        {
-		free_segment(&seg);
+    {
+        free_segment(&seg);
         return (free_token_node(&token), NULL);
-	}
+    }
     if (input[*i] == '<')
         token->type = HEREDOC;
     else
@@ -41,10 +37,10 @@ static t_token *process_double_op(char *input, int *i, int *start, t_data *data)
     return (token);
 }
 
-static t_token *process_single_op(char *input, int *i, int *start, t_data *data)
+t_token *process_single_op(char *input, int *i, int *start, t_data *data)
 {
-    t_token   *token;
-    t_segment *seg;
+    t_token     *token;
+    t_segment   *seg;
 
     token = create_empty_token();
     seg = create_segment(false, false);

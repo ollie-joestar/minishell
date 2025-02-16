@@ -6,7 +6,7 @@
 /*   By: hanjkim <@student.42vienna.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/29 15:50:16 by hanjkim           #+#    #+#             */
-/*   Updated: 2025/01/19 17:30:30 by hanjkim          ###   ########.fr       */
+/*   Updated: 2025/02/16 17:36:48 by hanjkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,13 @@ static int	process_quoted_segment(char *input, int *i, t_token *token,
 	while (input[*i] && input[*i] != quote_char)
 	{
 		if (append_char_to_segment(seg, input[*i]) == -1)
-			return (free(seg->text), free(seg), -1);
+			return (ft_free(&seg->text), free(seg), -1);
 		(*i)++;
 	}
 	if (input[*i] == quote_char)
 		(*i)++;
 	else
-		return (free(seg->text), free(seg), -1);
+		return (ft_free(&seg->text), free(seg), -1);
 	add_segment_to_token(token, seg);
 	return (0);
 }
@@ -47,29 +47,18 @@ static int	process_unquoted_chars(char *input, int *i, t_token *token)
 	seg = create_segment(false, false);
 	if (!seg)
 		return (-1);
-	while (input[*i]
-		&& input[*i] != ' ' && input[*i] != '\t'
-		&& input[*i] != '<' && input[*i] != '>' && input[*i] != '|'
-		&& input[*i] != '\'' && input[*i] != '"')
+	while (input[*i] && !ft_strchr(" \t<>|'\"", input[*i]))
 	{
 		if (input[*i] == '\\' && input[*i + 1])
 		{
 			(*i)++;
 			if (append_char_to_segment(seg, input[*i]) == -1)
-			{
-				free(seg->text);
-				free(seg);
-				return (-1);
-			}
+				return (ft_free(&seg->text), free(seg), -1);
 			(*i)++;
 			continue ;
 		}
 		if (append_char_to_segment(seg, input[*i]) == -1)
-		{
-			free(seg->text);
-			free(seg);
-			return (-1);
-		}
+			return (ft_free(&seg->text), free(seg), -1);
 		(*i)++;
 	}
 	add_segment_to_token(token, seg);
@@ -88,8 +77,7 @@ t_token	*parse_word_token(char *input, int *start, t_data *data)
 	token = create_empty_token();
 	if (!token)
 		return (NULL);
-	while (input[i] && input[i] != ' ' && input[i] != '\t'
-		&& input[i] != '<' && input[i] != '>' && input[i] != '|')
+	while (input[i] && !ft_strchr(" \t<>|", input[i]))
 	{
 		if (input[i] == SQ)
 			res = process_quoted_segment(input, &i, token, true);

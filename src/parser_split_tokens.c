@@ -6,7 +6,7 @@
 /*   By: hanjkim <@student.42vienna.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/29 20:03:14 by hanjkim           #+#    #+#             */
-/*   Updated: 2025/02/11 17:17:08 by oohnivch         ###   ########.fr       */
+/*   Updated: 2025/02/16 16:40:27 by hanjkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,9 @@ bool	should_split_token(t_token *token)
 		if (!seg->single_quoted && !seg->double_quoted)
 		{
 			any_unquoted = true;
-			if (ft_strchr(seg->text, ' ') || ft_strchr(seg->text, '\t') ||
-				ft_strchr(seg->text, '\r') || ft_strchr(seg->text, '\v') ||
-				ft_strchr(seg->text, '\f'))
+			if (ft_strchr(seg->text, ' ') || ft_strchr(seg->text, '\t')
+				|| ft_strchr(seg->text, '\r') || ft_strchr(seg->text, '\v')
+				|| ft_strchr(seg->text, '\f'))
 				contains_space = true;
 		}
 		seg = seg->next;

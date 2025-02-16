@@ -6,7 +6,7 @@
 /*   By: hanjkim <@student.42vienna.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/08 19:48:26 by hanjkim           #+#    #+#             */
-/*   Updated: 2025/01/19 14:33:40 by hanjkim          ###   ########.fr       */
+/*   Updated: 2025/02/16 16:54:06 by hanjkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,11 @@ static bool	has_unquoted_operator(t_token *token)
 	{
 		if (!seg->single_quoted && !seg->double_quoted)
 		{
-			if (!ft_strncmp(seg->text, "<", 2) ||
-				!ft_strncmp(seg->text, "<<", 3) ||
-				!ft_strncmp(seg->text, ">", 2) ||
-				!ft_strncmp(seg->text, ">>", 3) ||
-				!ft_strncmp(seg->text, "|", 2))
+			if (!ft_strncmp(seg->text, "<", 2)
+				|| !ft_strncmp(seg->text, "<<", 3)
+				|| !ft_strncmp(seg->text, ">", 2)
+				|| !ft_strncmp(seg->text, ">>", 3)
+				|| !ft_strncmp(seg->text, "|", 2))
 				return (true);
 		}
 		seg = seg->next;

@@ -6,58 +6,71 @@
 /*   By: hanjkim <@student.42vienna.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 18:49:14 by hanjkim           #+#    #+#             */
-/*   Updated: 2025/02/02 19:06:44 by hanjkim          ###   ########.fr       */
+/*   Updated: 2025/02/16 17:00:30 by hanjkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+bool	should_mark_nothing(t_token *token, char *joined)
+{
+	t_segment	*seg;
+	bool		has_unquoted_missing;
+	bool		has_quoted;
+
+	seg = token->segments;
+	has_unquoted_missing = false;
+	has_quoted = false;
+	if (!joined || joined[0] == '\0')
+	{
+		while (seg)
+		{
+			if (!seg->single_quoted && !seg->double_quoted
+				&& seg->env_not_found)
+				has_unquoted_missing = true;
+			if (seg->single_quoted || seg->double_quoted)
+				has_quoted = true;
+			seg = seg->next;
+		}
+	}
+	return (has_unquoted_missing && !has_quoted);
+}
+
+void	finalize_token(t_token *token)
+{
+	t_segment	*tmp;
+	char		*joined;
+	bool		mark;
+
+	if (!token->segments)
+		return ;
+	joined = join_segments(token);
+	mark = should_mark_nothing(token, joined);
+	if (mark)
+	{
+		ft_free(&joined);
+		token->word = ft_strdup("");
+		token->type = NOTHING;
+	}
+	else
+		token->word = joined;
+	while (token->segments)
+	{
+		tmp = token->segments;
+		token->segments = token->segments->next;
+		ft_free(&tmp->text);
+		free(tmp);
+	}
+}
+
 void	finalize_tokens(t_token *token_list)
 {
-	t_token		*curr;
-	t_segment	*seg;
-	t_segment	*next;
-	char		*joined;
-	bool		set_nothing_type;
+	t_token	*curr;
 
 	curr = token_list;
 	while (curr)
 	{
-		if (curr->segments)
-		{
-			joined = join_segments(curr);
-			set_nothing_type = false;
-			if (!joined || joined[0] == '\0')
-			{
-				seg = curr->segments;		
-				while (seg)
-				{
-					if (seg->env_not_found)
-					{
-						set_nothing_type = true;
-						break;
-					}
-					seg = seg->next;
-				}
-			}
-			if (set_nothing_type)
-			{
-				ft_free(&joined);
-				curr->word = ft_strdup("");
-				curr->type = NOTHING;
-			}
-			else
-				curr->word = joined;
-			seg = curr->segments;
-			while (seg)
-			{
-				next = seg->next;
-				ft_free(&seg->text);
-				free(seg);
-				seg = next;
-			}
-			curr->segments = NULL;
-		}
+		finalize_token(curr);
 		curr = curr->next;
 	}
 }
@@ -85,125 +98,9 @@ char	*finalize_redirection_token(t_data *data, t_token *token)
 		ft_free(&result);
 		ft_free(&expanded_segment);
 		result = temp;
-		if (!result)
-			return (NULL);
 		seg = seg->next;
 	}
 	return (result);
-}
-
-void	free_token_segments(t_token *token)
-{
-	t_segment	*seg;
-	t_segment	*next;
-
-	seg = token->segments;
-	while (seg)
-	{
-		next = seg->next;
-		ft_free(&seg->text);
-		free(seg);
-		seg = next;
-	}
-	token->segments = NULL;
-}
-
-void	process_redirection(t_data *data, t_token **token)
-{
-	t_token	*redirection_token;
-	t_token	*filename_token;
-	char	*final_filename;
-	char	*original_filename;
-
-	redirection_token = *token;
-	filename_token = redirection_token->next;
-	if (!filename_token)
-	{
-		unexpected_token(data, NULL);
-		return ;
-	}
-	filename_token->type = WORD;
-	if (redirection_token->type == HEREDOC)
-	{
-		filename_token = handle_heredoc(data, redirection_token,
-				filename_token);
-		if (!filename_token)
-			return ;
-	}
-	else if (redirection_token->type == INPUT
-		|| redirection_token->type == REPLACE
-		|| redirection_token->type == APPEND)
-		filename_token->type = redirection_token->type;
-	final_filename = finalize_redirection_token(data, filename_token);
-	if (!final_filename || final_filename[0] == '\0')
-	{
-		original_filename = join_segments(filename_token);
-		mspec2(original_filename, "ambiguous redirect\n");
-		ft_free(&original_filename);
-		data->status = 1;
-		data->ambig_redir = 1;
-		ft_free(&final_filename);
-		return;
-	}
-	free_token_segments(filename_token);
-	filename_token->word = final_filename;
-	filename_token->prev = redirection_token->prev;
-	if (filename_token->next)
-		filename_token->next->prev = filename_token;
-	if (filename_token->prev)
-		filename_token->prev->next = filename_token;
-	else
-		data->token = filename_token;
-	free_old_token(redirection_token);
-	*token = filename_token;
-}
-
-char	*expand_segment(t_data *data, t_segment *seg, t_token *token)
-{
-	char	*expanded;
-
-	(void)token;
-	if (seg->single_quoted)
-		return (ft_strdup(seg->text));
-	expanded = expand(data, seg->text);
-	if (!expanded)
-		return (ft_strdup(""));
-	if (!seg->single_quoted && !seg->double_quoted && seg->text[0] == '$' && expanded[0] == '\0')
-        	seg->env_not_found = true;
-	return (expanded);
-}
-
-void	expand_tokens(t_data *data)
-{
-	t_token		*current;
-	char		*expanded;
-	t_segment	*seg;
-
-	data->ambig_redir = 0;
-	current = data->token;
-	while (current != NULL)
-	{
-		seg = current->segments;
-		while (seg)
-		{
-			expanded = expand_segment(data, seg, current);
-			if (!expanded)
-				return ;
-			ft_free(&seg->text);
-			seg->text = expanded;
-			seg = seg->next;
-			if (current->type != WORD && current->type != PIPE)
-			{
-				process_redirection(data, &current);
-				if (data->ambig_redir)
-				{
-					free_tokens(data);
-					return ;
-				}
-			}
-		}
-		current = current->next;
-	}
 }
 
 void	process_tokens(t_data *data)

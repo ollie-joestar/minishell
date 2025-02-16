@@ -174,7 +174,6 @@ t_token		*create_token_from_string(char *str);
 t_token		*create_empty_token(void);
 t_segment	*create_segment(bool single_quoted, bool double_quoted);
 void		add_segment_to_token(t_token *token, t_segment *seg);
-void		finalize_tokens(t_token *token_list);
 t_token		*parse_word_token(char *input, int *start, t_data *data);
 t_token		*process_operator(char *input, int *i, int *start, t_data *data);
 
@@ -201,6 +200,8 @@ int			handle_regular_char(char c, t_expander *expander);
 int			handle_special_dollar(t_data *data, char *word, t_expander *expander);
 t_token		*handle_heredoc(t_data *data, t_token *redirection_token,
 			t_token *filename_token);
+char		*finalize_redirection_token(t_data *data, t_token *token);
+void		finalize_tokens(t_token *token_list);
 
 // Parser utils
 void		*ft_realloc(void *str, size_t old_size, size_t new_size);
@@ -307,6 +308,7 @@ void		free_old_token(t_token *token);
 void		free_env_list(t_envlist *env);
 void		free_arr(char ***arr);
 void		free_token_node(t_token **token);
+void		free_token_segments(t_token *token);
 void		free_segment(t_segment **seg);
 void		free_av_list(t_exec *exec);
 
