@@ -114,11 +114,12 @@ typedef	struct s_avlist {
 typedef struct s_exec {
 	int					type; // BUILTIN | CMD
 	t_redir				*redir; // linked list of redirections
-	/*int					rerouted; // 1 if the command is redirected*/
 	/*t_input				*in; // linked list of input files*/
 	/*t_output			*out; // linked list of output files*/
 	int					piped; // 1 if the command is piped
 	int					pipe[2]; // pipe file descriptors
+	int					needs_restore; // 1 if the command is redirected
+	int					stds[2]; // pipe file descriptors
 	char				*cmd; // full path to the command
 	char				**av;
 	t_avlist			*av_list;

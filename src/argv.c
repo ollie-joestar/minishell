@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 16:29:57 by oohnivch          #+#    #+#             */
-/*   Updated: 2025/02/13 11:55:51 by oohnivch         ###   ########.fr       */
+/*   Updated: 2025/02/17 12:47:00 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,12 @@ t_avlist	*first_av_list(t_avlist *av_list)
 {
 	while (av_list && av_list->prev)
 		av_list = av_list->prev;
-	while (!*av_list->arg)
-	{
-		if (!av_list->next)
-			break ;
-		av_list = av_list->next;
-	}
+	/*while (!*av_list->arg)*/
+	/*{*/
+	/*	if (!av_list->next)*/
+	/*		break ;*/
+	/*	av_list = av_list->next;*/
+	/*}*/
 	return (av_list);
 }
 

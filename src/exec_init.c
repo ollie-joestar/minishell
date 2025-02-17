@@ -6,7 +6,7 @@
 /*   By: oohnivch <oohnivch@student.42vienna.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 19:35:55 by oohnivch          #+#    #+#             */
-/*   Updated: 2025/02/13 16:17:16 by oohnivch         ###   ########.fr       */
+/*   Updated: 2025/02/17 12:52:19 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,12 +71,12 @@ size_t	av_list_len(t_avlist *av_list)
 	len = 0;
 	while (av_list->prev)
 		av_list = av_list->prev;
-	while (av_list->arg && !(*av_list->arg))
-	{
-		if (!av_list->next)
-			return (0);
-		av_list = av_list->next;
-	}
+	/*while (av_list->arg && !(*av_list->arg))*/
+	/*{*/
+	/*	if (!av_list->next)*/
+	/*		return (0);*/
+	/*	av_list = av_list->next;*/
+	/*}*/
 	while (av_list)
 	{
 		av_list = av_list->next;
@@ -110,18 +110,20 @@ void	init_exec_data(t_data *data)
 void	init_cmd(t_data *data, t_exec *exec)
 {
 	int	i;
-	int	limit;
+	/*int	limit;*/
 
 	i = 0;
-	limit = ft_arrlen(exec->av);
+	/*limit = ft_arrlen(exec->av);*/
 	if (!exec->av || !exec->av[0])
 		bruh(data, "No argv in exec for cmd\n", 1);
-	while (i < limit && !*exec->av[i])
-		i++;
-	if (i == limit)
-		exec->cmd = ft_strdup("");
-	else
-		exec->cmd = ft_strdup(exec->av[i]);
+	/*while (i < limit && !*exec->av[i])*/
+	/*	i++;*/
+	/*if (i == limit)*/
+	/*	exec->cmd = ft_strdup("");*/
+	/*else*/
+	/*	exec->cmd = ft_strdup(exec->av[i]);*/
+	/**/
+	exec->cmd = ft_strdup(exec->av[i]);
 	if (!exec->cmd)
 		bruh(data, "Failed to allocate memory for cmd", 69);
 	check_for_builtin(exec);
@@ -139,9 +141,11 @@ void	init_argv(t_data *data, t_exec *exec)
 	size_t		len;
 	size_t		flag;
 
+	/*ft_printf("init_argv\n");*/
 	i = -1;
 	len = av_list_len(exec->av_list);
 	flag = len;
+	/*ft_printf("len: %i\n", len);*/
 	exec->av = ft_calloc(len + 1 + (flag == 0), sizeof(char *));
 	if (!exec->av)
 		bruh(NULL, "Malloc failed exec_init.c:171", 69);
@@ -156,6 +160,7 @@ void	init_argv(t_data *data, t_exec *exec)
 		exec->av[i] = ft_strdup(exec->av_list->arg);
 		if (!exec->av[i])
 			bruh(data, "Malloc failed exec_init.c:171", 69);
+		/*ft_printf("exec->av[%i]: %s\n", i, exec->av[i]);*/
 		if (!exec->av_list->next)
 			break ;
 		exec->av_list = exec->av_list->next;
@@ -175,12 +180,14 @@ void	init_exec(t_data *data)
 	exec = data->exec;
 	while (exec)
 	{
+		/*print_exec(exec);*/
 		if (exec->av_list)
 		{
 			init_argv(data, exec);
 			free_av_list(exec);
 			init_cmd(data, exec);
 		}
+		/*print_exec(exec);*/
 		/*else*/
 		/*	ft_printf("No av_list\n");*/
 		exec->redir = get_first_redir(exec->redir);
