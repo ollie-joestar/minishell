@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 12:32:11 by oohnivch          #+#    #+#             */
-/*   Updated: 2025/02/13 12:54:25 by oohnivch         ###   ########.fr       */
+/*   Updated: 2025/02/18 15:34:38 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ void	set_path(t_data *data, t_exec *exec)
 	int		i;
 
 	i = -1;
+	if (!*exec->cmd)
+		return ;
 	while (data->path && *data->path && data->path[++i])
 	{
 		tpm = ft_strjoin(data->path[i], exec->cmd);

@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 13:39:47 by oohnivch          #+#    #+#             */
-/*   Updated: 2025/02/02 14:55:53 by hanjkim          ###   ########.fr       */
+/*   Updated: 2025/02/18 15:28:01 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,13 +113,22 @@ static int	warning_heredoc(char *line, char *lim)
 	return (0);
 }
 
+void	free_and_expand(t_data *data, char **line)
+{
+	char	*tmp;
+
+	tmp = expand(data, *line);
+	ft_free(line);
+	*line = tmp;
+}
+
 char	*here_doc(t_data *data, char *l, int dont_expand)
 {
 	int		fd;
 	char	*line;
 	char	*file;
 
-	g_signal = 0;
+	/*g_signal = 0;*/
 	file = random_name();
 	fd = open(file, O_CREAT | O_RDWR, 0664);
 	if (fd < 0)
@@ -132,7 +141,11 @@ char	*here_doc(t_data *data, char *l, int dont_expand)
 		if (warning_heredoc(line, l))
 			break ;
 		if (!dont_expand)
-			line = expand(data, line);
+		{
+			free_and_expand(data, &line);
+			/*ft_free(&line);*/
+			/*line = expand(data, line);*/
+		}
 		if (line)
 			write(fd, line, ft_strlen(line));
 		(write(fd, "\n", 1), ft_free(&line));

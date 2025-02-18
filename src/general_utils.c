@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 16:36:14 by oohnivch          #+#    #+#             */
-/*   Updated: 2025/02/13 15:44:05 by oohnivch         ###   ########.fr       */
+/*   Updated: 2025/02/18 16:06:11 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,8 +100,8 @@ int	safe_close(int fd)
 	ret = 0;
 	/*ft_printerr("Closing fd: %d\n", fd);*/
 	ret = close(fd);
-	if (ret == -1)
-		mspe2("failed to close fd", ft_strjoin(ft_itoa(fd), "\n"));
+	/*if (ret == -1)*/
+	/*	mspe("failed to close fd");*/
 	return (ret);
 	/*if (fd == -1)*/
 	/*	mspe("Tried to close invalid fd\n");*/

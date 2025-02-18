@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 16:35:58 by oohnivch          #+#    #+#             */
-/*   Updated: 2025/02/17 16:44:36 by oohnivch         ###   ########.fr       */
+/*   Updated: 2025/02/18 14:48:48 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,49 +54,46 @@ void	command(t_data *data, t_exec *exec)
 	}
 }
 
-/*static void	store_stds(t_exec *exec)*/
-/*{*/
-/*	exec->stds[RD] = dup(STDIN_FILENO);*/
-/*	exec->stds[WR] = dup(STDOUT_FILENO);*/
-/*	exec->needs_restore = 1;*/
-/*}*/
-/**/
-/*static void restore_stds(t_exec *exec)*/
-/*{*/
-/*	if (exec->needs_restore)*/
-/*	{*/
-/*		if (exec->stds[RD] != STDIN_FILENO)*/
-/*		{*/
-/*			dup2(exec->stds[RD], STDIN_FILENO);*/
-/*			safe_close(exec->stds[RD]);*/
-/*		}*/
-/*		if (exec->stds[WR] != STDOUT_FILENO)*/
-/*		{*/
-/*			dup2(exec->stds[WR], STDOUT_FILENO);*/
-/*			safe_close(exec->stds[WR]);*/
-/*		}*/
-/*		exec->needs_restore = 0;*/
-/*	}*/
-/*}*/
-/**/
-static void	reset_stdout(int stdout_copy)
+void	store_stds(t_exec *exec)
 {
-	if (stdout_copy == -1 || stdout_copy == STDOUT_FILENO)
-		return ;
-	/*safe_close(STDOUT_FILENO);*/
-	dup2(stdout_copy, STDOUT_FILENO);
-	safe_close(stdout_copy);
+	exec->stds[RD] = dup(STDIN_FILENO);
+	exec->stds[WR] = dup(STDOUT_FILENO);
+	exec->needs_restore = 1;
 }
 
+void	restore_stds(t_exec *exec)
+{
+	if (exec->needs_restore)
+	{
+		if (exec->stds[RD] != STDIN_FILENO)
+		{
+			dup2(exec->stds[RD], STDIN_FILENO);
+			safe_close(exec->stds[RD]);
+		}
+		if (exec->stds[WR] != STDOUT_FILENO)
+		{
+			dup2(exec->stds[WR], STDOUT_FILENO);
+			safe_close(exec->stds[WR]);
+		}
+		exec->needs_restore = 0;
+	}
+}
+
+/*static void	reset_stdout(int stdout_copy)*/
+/*{*/
+/*	if (stdout_copy == -1 || stdout_copy == STDOUT_FILENO)*/
+/*		return ;*/
+	/*safe_close(STDOUT_FILENO);*/
+/*	dup2(stdout_copy, STDOUT_FILENO);*/
+/*	safe_close(stdout_copy);*/
+/*}*/
+/**/
 void	builtin(t_data *data, t_exec *exec)
 {
-	int32_t	stdout_copy;
-
-	stdout_copy = -1;
 	if (exec_len(exec) == 1)
-		(stdout_copy = dup(STDOUT_FILENO), reroute(data, exec));
+		(store_stds(exec), reroute(data, exec));
 	if (!(ft_strncmp(exec->cmd, "exit", 5)))
-		(reset_stdout(stdout_copy), ft_exit(data, exec));
+		(restore_stds(exec), ft_exit(data, exec));
 	else if (!(ft_strncmp(exec->cmd, "echo", 5)))
 		echo(data, exec);
 	else if (!(ft_strncmp(exec->cmd, "cd", 3)))
@@ -111,10 +108,10 @@ void	builtin(t_data *data, t_exec *exec)
 		unset(data, exec);
 	else
 		bruh(data, "it's not a builtin, my bad (^_^)\n", 127);
+	if (ft_strncmp(exec->cmd, "exit", 5))
+		restore_stds(exec);
 	if (exec_len(exec) > 1)
 		bruh(data, NULL, 0);
-	else if (ft_strncmp(exec->cmd, "exit", 5))
-		reset_stdout(stdout_copy);
 }
 
 void	do_stuff(t_data *data, t_exec *exec)

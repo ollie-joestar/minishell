@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 11:41:48 by oohnivch          #+#    #+#             */
-/*   Updated: 2025/02/13 16:33:38 by oohnivch         ###   ########.fr       */
+/*   Updated: 2025/02/18 15:48:41 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,35 +16,23 @@ static void	rerouteinfile(t_data *data, t_exec *exec)
 {
 	int	fd;
 
-	/*if (exec_len(exec) == 1 && exec->type != CMD)*/
-	/*{*/
-	/*	if (exec->redir->type == HEREDOC)*/
-	/*		unlink(exec->redir->file);*/
-	/*	return ;*/
-	/*}*/
-	/*while (exec->in && exec->in->next)*/
-	/*	exec->in = exec->in->next;*/
-	/*mspec2(exec->cmd, "rerouteinfile\n");*/
-	/*ft_printerr("name: %s\n", exec->redir->file);*/
 	fd = open(exec->redir->file, O_RDONLY);
 	if (fd == -1)
 	{
-		/*ft_putstr_fd(exec->in->file, STDERR_FILENO);*/
-		/*ft_putstr_fd("minishell: ", STDERR_FILENO);*/
-		/*ft_putstr_fd(": No such file or directory\n", STDERR_FILENO);*/
 		mspe(exec->redir->file);
-		/*msperror2(exec->redir->file, "No such file or directory");*/
-		/*ft_printerr("minishell: %s: No such file or directory\n", exec->redir->file);*/
 		data -> status = 1;
 		if (lpid(data) == 0)
-			bruh(data, NULL, 1);
+		{
+			(close_pipe_exec(data, exec), close_pipe_exec(data, exec->prev));
+			(restore_stds(exec), bruh(data, NULL, 1));
+		}
+		else
+			restore_stds(exec);
 		return ;
-		/*bruh(data, NULL, 1);*/
 	}
 	if (exec_len(exec) > 1 || exec->type == CMD)
 		dup2(fd, STDIN_FILENO);
 	close(fd);
-	/*dup2(fd, STDIN_FILENO);*/
 	if (exec->redir->type == HEREDOC)
 		unlink(exec->redir->file);
 }
@@ -69,7 +57,12 @@ static void	rerouteoutfile(t_data *data, t_exec *exec)
 		/*ft_printerr("minishell: %s: No such file or directory\n", exec->redir->file);*/
 		data->status = 1;
 		if (lpid(data) == 0)
-			bruh(data, NULL, 1);
+		{
+			(close_pipe_exec(data, exec), close_pipe_exec(data, exec->prev));
+			(restore_stds(exec), bruh(data, NULL, 1));
+		}
+		else
+			restore_stds(exec);
 		return ;
 	}
 	dup2(fd, STDOUT_FILENO);

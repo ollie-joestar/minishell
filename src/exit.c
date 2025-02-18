@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 11:19:32 by oohnivch          #+#    #+#             */
-/*   Updated: 2025/01/31 16:59:36 by oohnivch         ###   ########.fr       */
+/*   Updated: 2025/02/18 14:03:46 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,7 @@ void	ft_exit(t_data *data, t_exec *exec)
 {
 	char	*tmp;
 
+	restore_stds(exec);
 	if (exec->av && exec->av[1])
 	{
 		numeric_check(data, exec->av[1]);

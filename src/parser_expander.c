@@ -6,7 +6,7 @@
 /*   By: hanjkim <@student.42vienna.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 20:46:04 by hanjkim           #+#    #+#             */
-/*   Updated: 2025/02/16 17:12:03 by hanjkim          ###   ########.fr       */
+/*   Updated: 2025/02/18 15:29:52 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,8 @@ char	*expand(t_data *data, char *word)
 {
 	t_expander	expander;
 
+	if (!word || !data)
+		return (NULL);
 	if (!initialize_expander(&expander, word))
 		return (NULL);
 	while (word[expander.index_word] != '\0')

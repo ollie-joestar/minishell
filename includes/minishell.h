@@ -277,6 +277,8 @@ void		set_path(t_data *data, t_exec *exec);
 void		set_cmd_path(t_data *data, t_exec *exec);
 
 // Builtins
+void		store_stds(t_exec *exec);
+void		restore_stds(t_exec *exec);
 void		echo(t_data *data, t_exec *exec);
 void		cd(t_data *data, t_exec *exec);
 void		cd_home(t_data *data, t_exec *exec);

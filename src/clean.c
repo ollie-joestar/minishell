@@ -6,7 +6,7 @@
 /*   By: oohnivch <oohnivch@student.42vienna.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 12:29:43 by oohnivch          #+#    #+#             */
-/*   Updated: 2025/02/13 16:52:26 by oohnivch         ###   ########.fr       */
+/*   Updated: 2025/02/18 16:06:30 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,7 @@ void	clean_exec(t_data *data)
 		clean_redir(tmp);
 		/*clean_input(tmp);*/
 		/*clean_output(tmp);*/
+		close_pipe_exec(data, tmp);
 		free(tmp);
 		tmp = NULL;
 	}
@@ -125,5 +126,7 @@ void	bruh(t_data *data, char *s, int status)
 		data = NULL;
 	}
 	rl_clear_history();
+	safe_close(STDOUT_FILENO);
+	safe_close(STDIN_FILENO);
 	exit(status);
 }
