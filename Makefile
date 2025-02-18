@@ -6,7 +6,7 @@
 #    By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/14 16:34:42 by oohnivch          #+#    #+#              #
-#    Updated: 2025/02/16 16:31:07 by hanjkim          ###   ########.fr        #
+#    Updated: 2025/02/17 17:01:11 by hanjkim          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 #									Variables								   #
@@ -80,7 +80,6 @@ SRC = main.c \
 	  exit.c \
 	  export.c \
 	  unset.c \
-	  expander.c \
 	  debug_utils.c \
 
 # SRC_BONUS = main_bonus.c annihilate_bonus.c extract_bonus.c access_bonus.c \

@@ -6,61 +6,59 @@
 /*   By: hanjkim <@student.42vienna.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/29 15:50:16 by hanjkim           #+#    #+#             */
-/*   Updated: 2025/02/16 17:36:48 by hanjkim          ###   ########.fr       */
+/*   Updated: 2025/02/18 16:26:02 by hanjkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static int	process_quoted_segment(char *input, int *i, t_token *token,
+static int process_quoted_segment(char *input, int *i, t_token *token,
 	bool single_quote)
 {
-	char		quote_char;
-	t_segment	*seg;
+	char quote_char;
+	int start;
+	char *segment_str;
+	t_segment *seg;
 
+	(*i)++;
+	start = *i;
 	if (single_quote)
 		quote_char = '\'';
 	else
 		quote_char = '\"';
+	while (input[*i] && input[*i] != quote_char)
+		(*i)++;
+	segment_str = ft_substr(input, start, *i - start);
+	if (!segment_str)
+		return (-1);
 	seg = create_segment(single_quote, !single_quote);
 	if (!seg)
-		return (-1);
-	(*i)++;
-	while (input[*i] && input[*i] != quote_char)
-	{
-		if (append_char_to_segment(seg, input[*i]) == -1)
-			return (ft_free(&seg->text), free(seg), -1);
-		(*i)++;
-	}
-	if (input[*i] == quote_char)
-		(*i)++;
-	else
-		return (ft_free(&seg->text), free(seg), -1);
+		return (ft_free(&segment_str), -1);
+	ft_free(&seg->text);
+	seg->text = segment_str;
 	add_segment_to_token(token, seg);
+	(*i)++;
 	return (0);
 }
 
-static int	process_unquoted_chars(char *input, int *i, t_token *token)
-{
-	t_segment	*seg;
 
+static int process_unquoted_segment(char *input, int *i, t_token *token)
+{
+	int start;
+	char *segment_str;
+	t_segment *seg;
+
+	start = *i;
+	while (input[*i] && !ft_strchr(" \t<>|'\"", input[*i]))
+		(*i)++;
+	segment_str = ft_substr(input, start, *i - start);
+	if (!segment_str)
+		return (-1);
 	seg = create_segment(false, false);
 	if (!seg)
-		return (-1);
-	while (input[*i] && !ft_strchr(" \t<>|'\"", input[*i]))
-	{
-		if (input[*i] == '\\' && input[*i + 1])
-		{
-			(*i)++;
-			if (append_char_to_segment(seg, input[*i]) == -1)
-				return (ft_free(&seg->text), free(seg), -1);
-			(*i)++;
-			continue ;
-		}
-		if (append_char_to_segment(seg, input[*i]) == -1)
-			return (ft_free(&seg->text), free(seg), -1);
-		(*i)++;
-	}
+		return (ft_free(&segment_str), free_segment(&token->segments), -1);
+	ft_free(&seg->text);
+	seg->text = segment_str;
 	add_segment_to_token(token, seg);
 	return (0);
 }
@@ -84,7 +82,7 @@ t_token	*parse_word_token(char *input, int *start, t_data *data)
 		else if (input[i] == DQ)
 			res = process_quoted_segment(input, &i, token, false);
 		else
-			res = process_unquoted_chars(input, &i, token);
+			res = process_unquoted_segment(input, &i, token);
 		if (res == -1)
 			return (free_tokens(data), NULL);
 	}
