@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 13:49:00 by oohnivch          #+#    #+#             */
-/*   Updated: 2025/02/13 17:37:20 by oohnivch         ###   ########.fr       */
+/*   Updated: 2025/02/18 18:12:22 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ char	*cd_special_path_check(t_data *data, char *path)
 	t_envlist	*env;
 
 	if (!ft_strncmp(path, "~", 2))
-		return (get_home(data));
+		return (ft_strdup(get_home(data)));
 	else if (!ft_strncmp(path, "~/", 3))
 	{
 		home = get_home(data);
@@ -71,10 +71,10 @@ char	*cd_special_path_check(t_data *data, char *path)
 			data->status = EXIT_FAILURE;
 			return (NULL);
 		}
-		return (env->value);
+		return (ft_strdup(env->value));
 	}
 	else
-		return (path);
+		return (ft_strdup(path));
 }
 
 void	failed_cd(t_data *data, char *path)
@@ -99,10 +99,23 @@ void	failed_cd(t_data *data, char *path)
 	ft_free(&tmp);
 }
 
+void	pwd_error(char *path)
+{
+	char	*tmp;
+
+	if (!path)
+		return ;
+	tmp = ft_strjoin("getcwd: ", "cannot access parent directories");
+	if (!ft_strncmp(path, "..", 3) || !ft_strncmp(path, ".", 2))
+		mspec2(tmp, "No such file or directory\n");
+	ft_free(&tmp);
+}
+
 void	cd(t_data *data, t_exec *exec)
 {
 	char	*path;
 
+	path = NULL;
 	if (ft_arrlen(exec->av) > 2)
 		(mspec("cd: too many arguments\n"), data->status = 1);
 	else if (ft_arrlen(exec->av) == 2)
@@ -111,7 +124,7 @@ void	cd(t_data *data, t_exec *exec)
 		if (!path)
 			return ;
 		if (chdir(path) == -1)
-			failed_cd(data, path);
+			(failed_cd(data, path), ft_free(&path));
 		else if (!ft_strncmp(exec->av[1], "-", 2))
 			(ft_printf("%s\n", get_oldpwd(data)->value), data->status = 0);
 		else
@@ -119,82 +132,7 @@ void	cd(t_data *data, t_exec *exec)
 	}
 	else
 		cd_home(data, exec);
-	update_pwd(data);
-	/*ft_free(&path);*/
+	if (!update_pwd(data))
+		pwd_error(exec->av[1]);
+	ft_free(&path);
 }
-
-/*int	valid_dotdot_path(char *path)*/
-/*{*/
-/*	while (*path)*/
-/*	{*/
-/*		if (!ft_strncmp(path, "../", 3))*/
-/*			path += 3;*/
-/*		else if (!ft_strncmp(path, "..", 3) || !ft_strncmp(path, "./", 2))*/
-/*			path += 2;*/
-/*		else if (!ft_strncmp(path, ".", 2))*/
-/*			path += 1;*/
-/*		else*/
-/*			return (false);*/
-/*	}*/
-/*	return (true);*/
-/*}*/
-
-/*bool	too_many_arguments(t_var *var, t_node *cmd)*/
-/*{*/
-/*	if (cmd->content[1] && cmd->content[2])*/
-/*	{*/
-/*		error_msg(var, ": too many arguments", 1);*/
-/*		return (true);*/
-/*	}*/
-/*	return (false);*/
-/*}*/
-/**/
-/*void	cd_dotdot(t_var *var, char *path)*/
-/*{*/
-/*	char	*rv_path;*/
-/*	char	*cwd;*/
-/**/
-/*	if (var->cwd && var->cwd[ft_strlen(var->cwd) - 1] == '/')*/
-/*		rv_path = ft_strjoin_nofree(var->cwd, path);*/
-/*	else*/
-/*		rv_path = ft_strjoin_three(var->cwd, path, '/');*/
-/*	if (!rv_path)*/
-/*		return (perror("cd"), status_1(var));*/
-/*	free(var->cwd);*/
-/*	chdir(path);*/
-/*	cwd = getcwd(NULL, 0);*/
-/*	if (!cwd)*/
-/*	{*/
-/*		ft_putstr_fd("cd: error retrieving current directory:", STDERR_FILENO);*/
-/*		perror(" getcwd: cannot access parent directories");*/
-/*		var->cwd = rv_path;*/
-/*	}*/
-/*	else*/
-/*	{*/
-/*		var->cwd = cwd;*/
-/*		free(rv_path);*/
-/*	}*/
-/*	update_env_after_cd(var, "OLDPWD=", NEED ENV HERE);*/
-/*	update_env_after_cd(var, "PWD=", var->cwd);*/
-/*}*/
-/**/
-/*void	command_cd(t_var *var, char *path)*/
-/*{*/
-/*	if (!path)*/
-/*		return (cd_home(var, path));*/
-/*	if (valid_dotdot_path(path))*/
-/*		return (cd_dotdot(var, path));*/
-/*	if (chdir(path) == -1)*/
-/*	{*/
-/*		ft_putstr_fd("cd: ", STDERR_FILENO);*/
-/*		perror(path);*/
-/*		return (status_1(var));*/
-/*	}*/
-/*	update_env_after_cd(var, "OLDPWD=", NEED ENV HERE);*/
-/*	free(var->cwd);*/
-/*	var->cwd = getcwd(NULL, 0);*/
-/*	if (var->cwd)*/
-/*		update_env_after_cd(var, "PWD=", var->cwd);*/
-/*	var->status = EXIT_SUCCESS;*/
-/*}*/
-/**/

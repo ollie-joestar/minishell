@@ -284,7 +284,7 @@ void		cd(t_data *data, t_exec *exec);
 void		cd_home(t_data *data, t_exec *exec);
 char		*get_home(t_data *data);
 void		pwd(t_data *data, t_exec *exec);
-void		update_pwd(t_data *data);
+int			update_pwd(t_data *data);
 t_envlist   *get_pwd(t_data *data);
 t_envlist   *get_oldpwd(t_data *data);
 void		ft_exit(t_data *data, t_exec *exec);

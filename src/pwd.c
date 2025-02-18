@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 14:56:43 by oohnivch          #+#    #+#             */
-/*   Updated: 2025/01/31 16:19:43 by oohnivch         ###   ########.fr       */
+/*   Updated: 2025/02/18 18:10:08 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ t_envlist	*get_pwd(t_data *data)
 	return (env);
 }
 
-void	update_pwd(t_data *data)
+int	update_pwd(t_data *data)
 {
 	t_envlist	*env;
 	t_envlist	*oldpwd;
@@ -56,13 +56,14 @@ void	update_pwd(t_data *data)
 	cwd = getcwd(NULL, 0);
 	if (!cwd)
 	{
-		mspec("pwd: error retrieving current directory\n");
+		mspec("cd: error retrieving current directory\n");
 		data->status = 1;
-		return ;
+		return (0);
 	}
 	ft_free(&oldpwd->value);
 	oldpwd->value = pwd->value;
 	pwd->value = cwd;
+	return (1);
 }
 
 void	pwd(t_data *data, t_exec *exec)
@@ -73,7 +74,7 @@ void	pwd(t_data *data, t_exec *exec)
 	pwd = getcwd(NULL, 0);
 	if (!pwd)
 	{
-		ft_printerr("minishell: pwd: error retrieving current directory\n");
+		mspec2("pwd", "error retrieving current directory\n");
 		data->status = 69;
 		return ;
 	}
