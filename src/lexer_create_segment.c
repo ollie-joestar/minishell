@@ -6,7 +6,7 @@
 /*   By: hanjkim <@student.42vienna.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 18:37:08 by hanjkim           #+#    #+#             */
-/*   Updated: 2024/12/16 20:48:44 by hanjkim          ###   ########.fr       */
+/*   Updated: 2025/02/18 19:26:14 by hanjkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,21 +54,6 @@ void	add_segment_to_token(t_token *token, t_segment *seg)
 	while (curr->next)
 		curr = curr->next;
 	curr->next = seg;
-}
-
-int	append_char_to_segment(t_segment *seg, char c)
-{
-	size_t	old_len;
-	char	*new_text;
-
-	old_len = ft_strlen(seg->text);
-	new_text = ft_realloc(seg->text, old_len, old_len + 2);
-	if (!new_text)
-		return (-1);
-	seg->text = new_text;
-	seg->text[old_len] = c;
-	seg->text[old_len + 1] = '\0';
-	return (0);
 }
 
 t_segment	*create_segment(bool single_quoted, bool double_quoted)

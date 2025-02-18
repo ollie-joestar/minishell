@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 16:35:58 by oohnivch          #+#    #+#             */
-/*   Updated: 2025/02/18 14:48:48 by oohnivch         ###   ########.fr       */
+/*   Updated: 2025/02/18 21:11:47 by hanjkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,7 +131,7 @@ void	do_stuff(t_data *data, t_exec *exec)
 	{
 		/*mspec2(exec->cmd, ft_strjoin(ft_itoa(lpid(data)), "\n"));*/
 		/*mspec2(exec->cmd, "DOING STUFF\n");*/
-		signal(SIGINT, SIG_DFL);
+		/*signal(SIGINT, SIG_DFL);*/
 		reroute(data, exec);
 		/*print_execution(exec);*/
 		if (exec->type == CMD)

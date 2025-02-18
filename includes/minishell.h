@@ -170,7 +170,6 @@ void		set_token_type(t_token *token);
 void		skip_spaces(char *input, int *i);
 int			process_current_c(char *input, int *i, t_data *data);
 int			process_quote_part(char *input, int *i, t_data *data);
-int			append_char(char **buffer, size_t *current_size, char c);
 t_token		*create_token_from_string(char *str);
 t_token		*create_empty_token(void);
 t_segment	*create_segment(bool single_quoted, bool double_quoted);
@@ -188,7 +187,6 @@ t_token		*split_token(t_token *original_token, t_data *data);
 char		**get_split_words(t_token *original_token, t_data *data);
 void		make_split_tokens(t_split_vars *vars, t_token *o_token, t_data *data);
 char		*join_segments(t_token *token);
-int			append_char_to_segment(t_segment *seg, char c);
 
 // Parser functions
 void		process_tokens(t_data *data);
@@ -198,7 +196,7 @@ char		*expand(t_data *data, char *word);
 int			handle_dollar_exp(t_data *data, t_expander *expander);
 int			handle_variable_exp(t_data *data, char *word, t_expander *expander);
 int			handle_regular_char(char c, t_expander *expander);
-int			handle_special_dollar(t_data *data, char *word, t_expander *expander);
+int			process_dollar_value(t_data *data, char *word, t_expander *expander);
 t_token		*handle_heredoc(t_data *data, t_token *redirection_token,
 			t_token *filename_token);
 char		*finalize_redirection_token(t_data *data, t_token *token);

@@ -6,19 +6,19 @@
 /*   By: hanjkim <@student.42vienna.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/29 15:50:16 by hanjkim           #+#    #+#             */
-/*   Updated: 2025/02/18 16:26:02 by hanjkim          ###   ########.fr       */
+/*   Updated: 2025/02/18 21:09:55 by hanjkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static int process_quoted_segment(char *input, int *i, t_token *token,
+static int	process_quoted_segment(char *input, int *i, t_token *token,
 	bool single_quote)
 {
-	char quote_char;
-	int start;
-	char *segment_str;
-	t_segment *seg;
+	char		quote_char;
+	int			start;
+	char		*segment_str;
+	t_segment	*seg;
 
 	(*i)++;
 	start = *i;
@@ -41,12 +41,11 @@ static int process_quoted_segment(char *input, int *i, t_token *token,
 	return (0);
 }
 
-
-static int process_unquoted_segment(char *input, int *i, t_token *token)
+static int	process_unquoted_segment(char *input, int *i, t_token *token)
 {
-	int start;
-	char *segment_str;
-	t_segment *seg;
+	int			start;
+	char		*segment_str;
+	t_segment	*seg;
 
 	start = *i;
 	while (input[*i] && !ft_strchr(" \t<>|'\"", input[*i]))

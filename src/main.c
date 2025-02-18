@@ -6,11 +6,12 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 09:38:58 by oohnivch          #+#    #+#             */
-/*   Updated: 2025/02/16 16:05:39 by hanjkim          ###   ########.fr       */
+/*   Updated: 2025/02/18 21:19:42 by hanjkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
 
 int	skill_check(t_data *data)
 {
@@ -41,6 +42,23 @@ int	skill_check(t_data *data)
 	return (0);
 }
 
+int	stop_right_there_criminal(t_data *data)
+{
+	if (g_signal == SIGINT && !lpid(data))
+	{
+		data->status = 130;
+		g_signal = 0;
+	}
+	if (skill_check(data))
+	{
+		ft_free(&data->line);
+		return (0) ;
+	}
+	if (!data->line || !*data->line)
+		return (0) ;
+	return (1) ;
+}
+
 int main(int argc, char **argv, char **ev)
 {
 	t_data *data;
@@ -60,14 +78,7 @@ int main(int argc, char **argv, char **ev)
 	while (1)
 	{
 		data->line = readline("minishell > "); //funcheck failed
-		if (g_signal == SIGINT && !lpid(data))
-			g_signal = 0;
-		if (skill_check(data))
-		{
-			ft_free(&data->line);
-			continue ;
-		}
-		if (!data->line || !*data->line)
+		if (!stop_right_there_criminal(data))
 			continue ;
 		/*ft_printf("Parsing line->\n");*/
 		parse_line(data);

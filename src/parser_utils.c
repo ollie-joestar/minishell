@@ -6,7 +6,7 @@
 /*   By: hanjkim <@student.42vienna.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/01 21:43:24 by hanjkim           #+#    #+#             */
-/*   Updated: 2025/02/16 16:39:08 by hanjkim          ###   ########.fr       */
+/*   Updated: 2025/02/18 21:01:12 by hanjkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ int	resize_result(t_expander *expander, size_t required_size)
 		expander->result = ft_realloc(expander->result,
 				expander->old_result_size, expander->result_size);
 		if (!expander->result)
-			return (-1);
+			return (1);
 	}
 	return (0);
 }
@@ -75,5 +75,7 @@ char	*initialize_expander(t_expander *expander, char *word)
 	expander->index_res = 0;
 	expander->result_size = word_len + 1;
 	expander->result = ft_calloc(expander->result_size, sizeof(char));
+	if (!expander->result)
+		return (NULL);
 	return (expander->result);
 }

@@ -6,7 +6,7 @@
 /*   By: hanjkim <@student.42vienna.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 20:46:04 by hanjkim           #+#    #+#             */
-/*   Updated: 2025/02/18 16:52:36 by hanjkim          ###   ########.fr       */
+/*   Updated: 2025/02/18 21:02:58 by hanjkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,13 +81,12 @@ char	*expand(t_data *data, char *word)
 		if (word[expander.index_word] == '$')
 		{
 			expander.index_word++;
-			if (handle_special_dollar(data, word, &expander) == -1)
+			if (process_dollar_value(data, word, &expander))
 				return (NULL);
 		}
 		else
 		{
-			if (handle_regular_char(word[expander.index_word++],
-					&expander) == -1)
+			if (handle_regular_char(word[expander.index_word++], &expander))
 				return (NULL);
 		}
 	}

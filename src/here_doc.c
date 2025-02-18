@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 13:39:47 by oohnivch          #+#    #+#             */
-/*   Updated: 2025/02/18 15:28:01 by oohnivch         ###   ########.fr       */
+/*   Updated: 2025/02/18 19:03:17 by hanjkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ static int	warning_heredoc(char *line, char *lim)
 		ft_free(&tmp);
 		mspec(line);
 		ft_free(&line);
-		return (1);
+			return (1);
 	}
 	if (!ft_strncmp(line, lim, ft_strlen(lim) + 1))
 		return (1);

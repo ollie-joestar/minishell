@@ -6,7 +6,7 @@
 /*   By: oohnivch <oohnivch@student.42vienna.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 16:47:48 by oohnivch          #+#    #+#             */
-/*   Updated: 2025/02/17 16:48:59 by oohnivch         ###   ########.fr       */
+/*   Updated: 2025/02/18 21:10:26 by hanjkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,17 +16,17 @@ t_token	*process_double_op(char *input, int *i, int *start, t_data *data)
 {
 	t_token		*token;
 	t_segment	*seg;
+	char		*op_str;
 
 	token = create_empty_token();
 	seg = create_segment(false, false);
 	if (!token || !seg)
 		return (free(token), free(seg), free_tokens(data), NULL);
-	if (append_char_to_segment(seg, input[*i]) == -1
-		|| append_char_to_segment(seg, input[*i + 1]) == -1)
-	{
-		free_segment(&seg);
-		return (free_token_node(&token), NULL);
-	}
+	op_str = ft_substr(input, *i, 2);
+	if (!op_str)
+		return (free_segment(&seg), free_token_node(&token), NULL);
+	ft_free(&seg->text);
+	seg->text = op_str;
 	if (input[*i] == '<')
 		token->type = HEREDOC;
 	else
@@ -41,13 +41,17 @@ t_token	*process_single_op(char *input, int *i, int *start, t_data *data)
 {
 	t_token		*token;
 	t_segment	*seg;
+	char		*op_str;
 
 	token = create_empty_token();
 	seg = create_segment(false, false);
 	if (!token || !seg)
-		bruh(data, "Failed to allocate memory", 1);
-	if (append_char_to_segment(seg, input[*i]) == -1)
-		bruh(data, "Failed to append chars", 1);
+		return (free(token), free(seg), free_tokens(data), NULL);
+	op_str = ft_substr(input, *i, 1);
+	if (!op_str)
+		return (free_segment(&seg), free_token_node(&token), NULL);
+	ft_free(&seg->text);
+	seg->text = op_str;
 	if (input[*i] == '<')
 		token->type = INPUT;
 	else if (input[*i] == '>')

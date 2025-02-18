@@ -6,7 +6,7 @@
 /*   By: hanjkim <@student.42vienna.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 15:13:23 by hanjkim           #+#    #+#             */
-/*   Updated: 2025/02/18 18:20:13 by oohnivch         ###   ########.fr       */
+/*   Updated: 2025/02/18 21:14:02 by hanjkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,15 +34,10 @@ void	setup_signal_handler(t_data *data, void (*handler)(int))
 	sigemptyset(&data->sa.sa_mask);
 	sigaction(SIGINT, &data->sa, NULL);
 	sigaction(SIGQUIT, &data->sa, NULL);
-	/*if (handler == handle_sigint)*/
-	/*	data->status = 130;*/
-	/*else if (data->status == 130)*/
-	/*	data->status = 0;*/
 }
 
 void	setup_signal_mode(t_data *data, int interactive)
 {
-	signal(SIGQUIT, SIG_IGN);
 	if (interactive)
 		setup_signal_handler(data, handle_sigint);
 	else
