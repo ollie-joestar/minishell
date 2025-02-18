@@ -6,7 +6,7 @@
 /*   By: hanjkim <@student.42vienna.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 20:21:09 by hanjkim           #+#    #+#             */
-/*   Updated: 2025/02/16 16:53:02 by hanjkim          ###   ########.fr       */
+/*   Updated: 2025/02/18 16:48:30 by hanjkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,8 @@ void	parse_tokens(t_data *data)
 	int		start;
 	int		end;
 
+	if (!data->line)
+		return ;
 	input = data->line;
 	start = 0;
 	end = 0;
