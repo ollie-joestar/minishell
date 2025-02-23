@@ -6,7 +6,7 @@
 /*   By: hanjkim <@student.42vienna.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 20:21:09 by hanjkim           #+#    #+#             */
-/*   Updated: 2025/02/18 16:48:30 by hanjkim          ###   ########.fr       */
+/*   Updated: 2025/02/23 19:00:36 by hanjkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	set_tokens_type(t_token *token_list)
 void	split_tokens(t_data *data)
 {
 	t_token	*current_token;
-	t_token	*new_tokens_head;
+	t_token	*new_tokens;
 
 	current_token = data->token;
 	data->replacements = NULL;
@@ -35,8 +35,9 @@ void	split_tokens(t_data *data)
 	{
 		if (should_split_token(current_token))
 		{
-			new_tokens_head = split_token(current_token, data);
-			add_replace(data, current_token, new_tokens_head);
+			new_tokens = split_token(current_token, data);
+			replace_tokens(data, current_token, new_tokens);
+			current_token = new_tokens;
 		}
 		current_token = current_token->next;
 	}
@@ -64,5 +65,4 @@ void	parse_line(t_data *data)
 	data->token = NULL;
 	parse_tokens(data);
 	set_tokens_type(data->token);
-	replace_tokens(data);
 }

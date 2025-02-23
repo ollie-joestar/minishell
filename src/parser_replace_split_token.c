@@ -6,73 +6,35 @@
 /*   By: hanjkim <@student.42vienna.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 20:20:47 by hanjkim           #+#    #+#             */
-/*   Updated: 2024/12/02 19:30:46 by hanjkim          ###   ########.fr       */
+/*   Updated: 2025/02/23 18:55:28 by hanjkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	add_replace(t_data *data, t_token *original, t_token *new_head)
+void replace_tokens(t_data *data, t_token *old_token, t_token *new_token)
 {
-	t_replace	*new;
-	t_replace	*last;
+ t_token *last_token;
 
-	new = (t_replace *)ft_calloc(1, sizeof(t_replace));
-	if (!new)
-		bruh(data, "Failed to allocate memory for token replacement", 2);
-	new->original = original;
-	new->new_head = new_head;
-	new->next = NULL;
-	if (!data->replacements)
-		data->replacements = new;
-	else
+    last_token = new_token;
+    while (last_token->next != NULL)
+        last_token = last_token->next;
+    if (old_token->prev) 
 	{
-		last = data->replacements;
-		while (last->next)
-			last = last->next;
-		last->next = new;
-	}
-}
-
-void	replace_token(t_data *data, t_token *original, t_token *new_head)
-{
-	t_token	*new_tail;
-
-	new_tail = new_head;
-	while (new_tail->next != NULL)
-		new_tail = new_tail->next;
-	if (original->prev)
+        old_token->prev->next = new_token;
+        new_token->prev = old_token->prev;
+    }
+    if (!old_token->prev) 
 	{
-		original->prev->next = new_head;
-		new_head->prev = original->prev;
-	}
-	else
+        data->token = new_token;
+        new_token->prev = NULL;
+    }
+    if (old_token->next) 
 	{
-		data->token = new_head;
-		new_head->prev = NULL;
-	}
-	if (original->next)
-	{
-		new_tail->next = original->next;
-		original->next->prev = new_tail;
-	}
-	else
-		new_tail->next = NULL;
-	free_old_token(original);
-}
-
-void	replace_tokens(t_data *data)
-{
-	t_replace	*curr_replace;
-	t_replace	*next_replace;
-
-	curr_replace = data->replacements;
-	while (curr_replace != NULL)
-	{
-		next_replace = curr_replace->next;
-		replace_token(data, curr_replace->original, curr_replace->new_head);
-		free(curr_replace);
-		curr_replace = next_replace;
-	}
-	data->replacements = NULL;
+        last_token->next = old_token->next;
+        old_token->next->prev = last_token;
+    }
+    if (!old_token->next)
+        last_token->next = NULL;
+    free_old_token(old_token);
 }

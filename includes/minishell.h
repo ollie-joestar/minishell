@@ -65,7 +65,7 @@ typedef struct s_split_vars {
 
 typedef struct s_replace {
 	t_token 			*original;
-	t_token 			*new_head;
+	t_token 			*replacement;
 	struct s_replace	*next;
 }		t_replace;
 
@@ -76,6 +76,7 @@ typedef struct s_expander {
 	size_t				index_word;	// index of the current character in the word
 	size_t  			index_res;	// index of the current character in the result
 }		t_expander;
+
 
 typedef struct s_input {
 	int					type; // HERE_DOC | FILE
@@ -144,7 +145,9 @@ typedef struct s_data
 	char				**path;   
 	int					status;
 	int					ambig_redir;
-	struct sigaction	sa;
+	struct sigaction	sa_int;
+	struct sigaction	sa_quit;
+	struct sigaction	sa_child;
 	char				*line;	
 	t_token				*token;
 	t_replace			*replacements;
@@ -159,6 +162,7 @@ void		handle_sigint(int sig);
 void		catch_sigint(int sigint);
 void		setup_signal_handler(t_data *data, void (*handler)(int));
 void		setup_signal_mode(t_data *data, int interactive);
+void		setup_interactive_signals(t_data *data);
 
 /* Lexer functions */
 void		parse_line(t_data *data);
@@ -179,9 +183,7 @@ t_token		*process_operator(char *input, int *i, int *start, t_data *data);
 
 /* Lexer utils */
 bool		should_split_token(t_token *token);
-void		add_replace(t_data *data, t_token *o_token, t_token *new_head);
-void		replace_token(t_data *data, t_token *original_token, t_token *new_tokens_head);
-void		replace_tokens(t_data *data);
+void		replace_tokens(t_data *data, t_token *old_token, t_token *new_token);
 void		split_tokens(t_data *data);
 t_token		*split_token(t_token *original_token, t_data *data);
 char		**get_split_words(t_token *original_token, t_data *data);
@@ -195,7 +197,7 @@ void		process_redirection(t_data *data, t_token **token);
 char		*expand(t_data *data, char *word);
 int			handle_dollar_exp(t_data *data, t_expander *expander);
 int			handle_variable_exp(t_data *data, char *word, t_expander *expander);
-int			handle_regular_char(char c, t_expander *expander);
+int			handle_normal_chars(char c, t_expander *expander);
 int			process_dollar_value(t_data *data, char *word, t_expander *expander);
 t_token		*handle_heredoc(t_data *data, t_token *redirection_token,
 			t_token *filename_token);
@@ -203,7 +205,7 @@ char		*finalize_redirection_token(t_data *data, t_token *token);
 void		finalize_tokens(t_token *token_list);
 
 // Parser utils
-void		*ft_realloc(void *str, size_t old_size, size_t new_size);
+void		*ft_realloc(char *str, size_t old_size, size_t new_size);
 char		*get_env_value(t_data *data, char *name);
 char		*initialize_expander(t_expander *expander, char *word);
 int			resize_result(t_expander *expander, size_t required_size);

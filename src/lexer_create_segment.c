@@ -6,7 +6,7 @@
 /*   By: hanjkim <@student.42vienna.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 18:37:08 by hanjkim           #+#    #+#             */
-/*   Updated: 2025/02/18 19:26:14 by hanjkim          ###   ########.fr       */
+/*   Updated: 2025/02/23 18:19:15 by hanjkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,9 +63,7 @@ t_segment	*create_segment(bool single_quoted, bool double_quoted)
 	seg = ft_calloc(1, sizeof(t_segment));
 	if (!seg)
 		return (NULL);
-	seg->text = ft_calloc(1, sizeof(char));
-	if (!seg->text)
-		return (free(seg), NULL);
+	seg->text = NULL;
 	seg->single_quoted = single_quoted;
 	seg->double_quoted = double_quoted;
 	seg->next = NULL;

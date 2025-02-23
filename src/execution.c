@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 16:35:58 by oohnivch          #+#    #+#             */
-/*   Updated: 2025/02/18 21:11:47 by hanjkim          ###   ########.fr       */
+/*   Updated: 2025/02/23 17:38:46 by hanjkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,7 +131,10 @@ void	do_stuff(t_data *data, t_exec *exec)
 	{
 		/*mspec2(exec->cmd, ft_strjoin(ft_itoa(lpid(data)), "\n"));*/
 		/*mspec2(exec->cmd, "DOING STUFF\n");*/
-		/*signal(SIGINT, SIG_DFL);*/
+		data->sa_child.sa_handler = SIG_DFL;
+		sigemptyset(&data->sa_child.sa_mask);
+		data->sa_child.sa_flags = 0;
+		sigaction(SIGQUIT, &data->sa_child, NULL);
 		reroute(data, exec);
 		/*print_execution(exec);*/
 		if (exec->type == CMD)
@@ -179,12 +182,10 @@ void	run(t_data *data)
 
 	exit_status = 0;
 	exec = data->exec;
-	/*print_exec(exec);*/
 	loop_exec(data, exec);
 	add_history(data->line);
 	if (exec_len(data->exec) > 1 || exec_has_cmd(data->exec))
 	{
-		/*print_pids(data);*/
 		wait_status = 1;
 		while (wait_status > 0 && wait_status != lpid(data))
 			wait_status = wait(&exit_status);
@@ -194,7 +195,5 @@ void	run(t_data *data)
 		while (wait(NULL) > 0)
 			;
 	}
-	/*while ((wait_status = wait(&exit_status)) > 0)*/
-	/*	check_exit_status(data, exit_status);*/
 	(clean_exec(data), ft_free(&data->line));
 }

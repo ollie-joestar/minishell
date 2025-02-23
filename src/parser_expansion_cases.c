@@ -6,7 +6,7 @@
 /*   By: hanjkim <@student.42vienna.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/01 22:44:16 by hanjkim           #+#    #+#             */
-/*   Updated: 2025/02/18 21:07:29 by hanjkim          ###   ########.fr       */
+/*   Updated: 2025/02/23 20:13:51 by hanjkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,7 @@ int	handle_dollar_exp(t_data *data, t_expander *expander)
 	if (!exit_status_str)
 		return (ft_free(&expander->result), 1);
 	len = ft_strlen(exit_status_str);
-	if (resize_result(expander, expander->index_res + len) == 1)
-		return (ft_free(&exit_status_str), 1);
+	resize_result(expander, expander->index_res + len);
 	ft_memcpy(&(expander->result[expander->index_res]), exit_status_str, len);
 	expander->index_res += len;
 	ft_free(&exit_status_str);
@@ -40,24 +39,23 @@ int	handle_variable_exp(t_data *data, char *word, t_expander *expander)
 	start = expander->index_word;
 	while (word[expander->index_word] != '\0'
 		&& (ft_isalnum(word[expander->index_word])
-			|| word[expander->index_word] == '_'))
+		|| word[expander->index_word] == '_'))
 		expander->index_word++;
 	name_length = expander->index_word - start;
 	var_name = ft_calloc(name_length + 1, sizeof(char));
 	if (!var_name)
-		return (1);
+		return (ft_free(&expander->result), 1);
 	ft_strlcpy(var_name, word + start, name_length + 1);
 	var_value = get_env_value(data, var_name);
 	len = ft_strlen(var_value);
-	if (resize_result(expander, expander->index_res + len) == 1)
-		return (ft_free(&var_name), 1);
+	resize_result(expander, expander->index_res + len);
 	ft_memcpy(&(expander->result[expander->index_res]), var_value, len);
 	expander->index_res += len;
 	ft_free(&var_name);
 	return (0);
 }
 
-int	handle_regular_char(char c, t_expander *expander)
+int	handle_normal_chars(char c, t_expander *expander)
 {
 	resize_result(expander, expander->index_res + 1);
 	expander->result[expander->index_res] = c;
@@ -67,19 +65,17 @@ int	handle_regular_char(char c, t_expander *expander)
 
 int	process_dollar_value(t_data *data, char *word, t_expander *expander)
 {
-	char	current_char;
-
-	current_char = word[expander->index_word];
-	if (current_char == '\0')
-		return (handle_regular_char('$', expander));
-	else if (current_char == '?')
+	if (word[expander->index_word] == '\0')
+		handle_normal_chars('$', expander);
+	else if (word[expander->index_word] == '?')
 	{
 		expander->index_word++;
-		return (handle_dollar_exp(data, expander));
+		handle_dollar_exp(data, expander);
 	}
-	else if (ft_isalpha(current_char) || current_char == '_')
-		return (handle_variable_exp(data, word, expander));
+	else if (ft_isalpha(word[expander->index_word])
+		|| word[expander->index_word] == '_')
+		handle_variable_exp(data, word, expander);
 	else
-		return (handle_regular_char('$', expander));
+		handle_normal_chars('$', expander);
 	return (0);
 }

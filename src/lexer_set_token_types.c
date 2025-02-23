@@ -6,13 +6,13 @@
 /*   By: hanjkim <@student.42vienna.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/08 19:48:26 by hanjkim           #+#    #+#             */
-/*   Updated: 2025/02/16 16:54:06 by hanjkim          ###   ########.fr       */
+/*   Updated: 2025/02/19 18:09:43 by hanjkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static bool	has_unquoted_operator(t_token *token)
+bool	has_unquoted_operator(t_token *token)
 {
 	t_segment	*seg;
 
@@ -33,7 +33,7 @@ static bool	has_unquoted_operator(t_token *token)
 	return (false);
 }
 
-static void	assign_token_type_from_joined(t_token *token, char *joined)
+void	assign_token_type_from_joined(t_token *token, char *joined)
 {
 	if (!ft_strncmp(joined, "<", 2))
 		token->type = INPUT;
@@ -45,8 +45,6 @@ static void	assign_token_type_from_joined(t_token *token, char *joined)
 		token->type = APPEND;
 	else if (!ft_strncmp(joined, "|", 2))
 		token->type = PIPE;
-	else
-		token->type = WORD;
 }
 
 void	set_token_type(t_token *token_list)

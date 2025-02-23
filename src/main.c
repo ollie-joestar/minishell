@@ -6,12 +6,11 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 09:38:58 by oohnivch          #+#    #+#             */
-/*   Updated: 2025/02/18 21:19:42 by hanjkim          ###   ########.fr       */
+/*   Updated: 2025/02/23 18:13:07 by hanjkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
 
 int	skill_check(t_data *data)
 {
@@ -52,26 +51,39 @@ int	stop_right_there_criminal(t_data *data)
 	if (skill_check(data))
 	{
 		ft_free(&data->line);
-		return (0) ;
+		return (0);
 	}
 	if (!data->line || !*data->line)
-		return (0) ;
-	return (1) ;
+		return (0);
+	return (1);
 }
 
-int main(int argc, char **argv, char **ev)
+int	parse_and_validate_line(t_data *data)
 {
-	t_data *data;
+	parse_line(data);
+	if (!valid_syntax(data, data->token))
+		return (free_tokens(data), ft_free(&data->line), 0);
+	return (1);
+}
+
+int	process_tokens_and_ambig_check(t_data *data)
+{
+	process_tokens(data);
+	if (data->ambig_redir)
+		return (ft_free(&data->line), 0);
+	return (1);
+}
+
+int	main(int argc, char **argv, char **ev)
+{
+	t_data	*data;
+
 	(void)argc;
 	(void)argv;
-
 	data = ft_calloc(1, sizeof(t_data));
 	if (!data)
 		bruh(data, "Failed to allocate memory", 1);
 	data->env = parse_env(data, ev);
-	/*char	**split_test = ft_split_set("trololo\ttrololo trololo", " \t");*/
-	/*print_arr(split_test);*/
-	/*return (0);*/
 	/*if (!data->env)*/
 	/*	bruh(data, "Failed to parse env", 1);*/
 	setup_signal_mode(data, 1);
@@ -80,22 +92,10 @@ int main(int argc, char **argv, char **ev)
 		data->line = readline("minishell > "); //funcheck failed
 		if (!stop_right_there_criminal(data))
 			continue ;
-		/*ft_printf("Parsing line->\n");*/
-		parse_line(data);
-		/*print_tokens(data->token);*/
-		/*ft_printf("Tokenization->\n");*/
-		if (!valid_syntax(data, data->token))
-		{
-			(free_tokens(data), ft_free(&data->line));
+		if (!parse_and_validate_line(data))
 			continue ;
-		}
-		process_tokens(data);
-		if (data->ambig_redir)
-		{
-			ft_free(&data->line);
+		if (!process_tokens_and_ambig_check(data))
 			continue ;
-		}
-		/*print_tokens(data->token);*/
 		/*ft_printf("Initiating exec data->\n");*/
 		/*init_exec_data(data);*/
 		init_exec(data);

@@ -6,7 +6,7 @@
 /*   By: hanjkim <@student.42vienna.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 20:46:04 by hanjkim           #+#    #+#             */
-/*   Updated: 2025/02/18 21:02:58 by hanjkim          ###   ########.fr       */
+/*   Updated: 2025/02/23 20:19:14 by hanjkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,7 @@ int	process_token_redirection(t_data *data, t_token **token)
 	{
 		process_redirection(data, token);
 		if (data->ambig_redir)
-		{
-			free_tokens(data);
-			return (1);
-		}
+			return (free_tokens(data), 1);
 	}
 	return (0);
 }
@@ -56,8 +53,6 @@ void	expand_tokens(t_data *data)
 		while (seg)
 		{
 			expanded = expand_segment(data, seg, current);
-			if (!expanded)
-				return ;
 			ft_free(&seg->text);
 			seg->text = expanded;
 			seg = seg->next;
@@ -81,14 +76,10 @@ char	*expand(t_data *data, char *word)
 		if (word[expander.index_word] == '$')
 		{
 			expander.index_word++;
-			if (process_dollar_value(data, word, &expander))
-				return (NULL);
+			process_dollar_value(data, word, &expander);
 		}
 		else
-		{
-			if (handle_regular_char(word[expander.index_word++], &expander))
-				return (NULL);
-		}
+			handle_normal_chars(word[expander.index_word++], &expander);
 	}
 	expander.result[expander.index_res] = '\0';
 	return (expander.result);

@@ -6,7 +6,7 @@
 /*   By: hanjkim <@student.42vienna.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 18:49:14 by hanjkim           #+#    #+#             */
-/*   Updated: 2025/02/16 17:00:30 by hanjkim          ###   ########.fr       */
+/*   Updated: 2025/02/23 20:21:45 by hanjkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,7 @@ void	finalize_token(t_token *token)
 	{
 		tmp = token->segments;
 		token->segments = token->segments->next;
-		ft_free(&tmp->text);
-		free(tmp);
+		(ft_free(&tmp->text), free(tmp));
 	}
 }
 
@@ -95,8 +94,7 @@ char	*finalize_redirection_token(t_data *data, t_token *token)
 		if (!expanded_segment)
 			return (ft_free(&result), NULL);
 		temp = join2(result, expanded_segment);
-		ft_free(&result);
-		ft_free(&expanded_segment);
+		(ft_free(&result), ft_free(&expanded_segment));
 		result = temp;
 		seg = seg->next;
 	}
@@ -107,12 +105,7 @@ void	process_tokens(t_data *data)
 {
 	if (!data->token)
 		bruh(data, "No tokens available for processing", 2);
-	while (data->token && data->token->prev != NULL)
-		data->token = data->token->prev;
 	expand_tokens(data);
 	split_tokens(data);
-	replace_tokens(data);
-	while (data->token && data->token->prev != NULL)
-		data->token = data->token->prev;
 	finalize_tokens(data->token);
 }

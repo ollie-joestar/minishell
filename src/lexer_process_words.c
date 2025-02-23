@@ -6,60 +6,58 @@
 /*   By: hanjkim <@student.42vienna.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/29 15:50:16 by hanjkim           #+#    #+#             */
-/*   Updated: 2025/02/18 21:09:55 by hanjkim          ###   ########.fr       */
+/*   Updated: 2025/02/23 18:21:41 by hanjkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static int	process_quoted_segment(char *input, int *i, t_token *token,
+int	process_quoted_segment(char *input, int *i, t_token *token,
 	bool single_quote)
 {
 	char		quote_char;
-	int			start;
-	char		*segment_str;
+	int			seg_start;
+	char		*quoted_text;
 	t_segment	*seg;
 
 	(*i)++;
-	start = *i;
+	seg_start = *i;
 	if (single_quote)
 		quote_char = '\'';
 	else
 		quote_char = '\"';
 	while (input[*i] && input[*i] != quote_char)
 		(*i)++;
-	segment_str = ft_substr(input, start, *i - start);
-	if (!segment_str)
-		return (-1);
+	quoted_text = ft_substr(input, seg_start, *i - seg_start);
+	if (!quoted_text)
+		return (0);
 	seg = create_segment(single_quote, !single_quote);
 	if (!seg)
-		return (ft_free(&segment_str), -1);
-	ft_free(&seg->text);
-	seg->text = segment_str;
+		return (ft_free(&quoted_text), 0);
+	seg->text = quoted_text;
 	add_segment_to_token(token, seg);
 	(*i)++;
-	return (0);
+	return (1);
 }
 
-static int	process_unquoted_segment(char *input, int *i, t_token *token)
+int	process_unquoted_segment(char *input, int *i, t_token *token)
 {
-	int			start;
-	char		*segment_str;
+	int			seg_start;
+	char		*quoted_text;
 	t_segment	*seg;
 
-	start = *i;
+	seg_start = *i;
 	while (input[*i] && !ft_strchr(" \t<>|'\"", input[*i]))
 		(*i)++;
-	segment_str = ft_substr(input, start, *i - start);
-	if (!segment_str)
-		return (-1);
+	quoted_text = ft_substr(input, seg_start, *i - seg_start);
+	if (!quoted_text)
+		return (0);
 	seg = create_segment(false, false);
 	if (!seg)
-		return (ft_free(&segment_str), free_segment(&token->segments), -1);
-	ft_free(&seg->text);
-	seg->text = segment_str;
+		return (ft_free(&quoted_text), free_segment(&token->segments), 0);
+	seg->text = quoted_text;
 	add_segment_to_token(token, seg);
-	return (0);
+	return (1);
 }
 
 t_token	*parse_word_token(char *input, int *start, t_data *data)
@@ -69,7 +67,7 @@ t_token	*parse_word_token(char *input, int *start, t_data *data)
 	int		res;
 
 	i = *start;
-	if (input[i] == '<' || input[i] == '>' || input[i] == '|')
+	if (ft_strchr("<>|", input[i]))
 		return (process_operator(input, &i, start, data));
 	token = create_empty_token();
 	if (!token)
@@ -82,7 +80,7 @@ t_token	*parse_word_token(char *input, int *start, t_data *data)
 			res = process_quoted_segment(input, &i, token, false);
 		else
 			res = process_unquoted_segment(input, &i, token);
-		if (res == -1)
+		if (res == 0)
 			return (free_tokens(data), NULL);
 	}
 	*start = i;
