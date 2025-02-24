@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 13:31:08 by oohnivch          #+#    #+#             */
-/*   Updated: 2025/02/13 11:20:11 by oohnivch         ###   ########.fr       */
+/*   Updated: 2025/02/24 16:45:17 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,22 +34,11 @@ void	echo(t_data *data, t_exec *exec)
 {
 	int	i;
 	int	n;
-	/*int	check;*/
 
 	i = 1;
 	n = 0;
-	// New code
 	while (check_n_flag(exec->av[i]))
 		n = i++;
-	// Old code
-	/*while (1)*/
-	/*{*/
-	/*	check = check_n_flag(exec->av[i]);*/
-	/*	if (check)*/
-	/*		n = i++;*/
-	/*	else*/
-	/*		break ;*/
-	/*}*/
 	while (exec->av[i])
 	{
 		ft_putstr(exec->av[i]);

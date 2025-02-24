@@ -6,77 +6,24 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 11:32:53 by oohnivch          #+#    #+#             */
-/*   Updated: 2025/02/24 15:43:53 by oohnivch         ###   ########.fr       */
+/*   Updated: 2025/02/24 17:45:02 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static void print_export(t_data *data)
+static void	set_name_value(char *av, char **new_name, char **new_value)
 {
-	t_envlist	*list;
-
-	if (!data->env)
-		ft_printerr("No env for export\n");
-	list = dup_env(data->env);
-	if (!list)
-		bruh(data, "Memory allocation failed", 69);
-	sort_env(list);
-	while (list->prev)
-		list = list->prev;
-	while (list)
+	if (ft_strchr(av, '='))
 	{
-		if (ft_strncmp(list->name, "_", 2))
-			ft_printf("declare -x %s=\"%s\"\n", list->name, list->value);
-			/*ft_printf("export %s=\"%s\"\n", list->name, list->value);*/
-		list = list->next;	
+		*new_name = ft_substr(av, 0, ft_strchr(av, '=') - av);
+		*new_value = ft_strdup(ft_strchr(av, '=') + 1);
 	}
-	free_env_list(list);
-}
-
-void	add_env(t_envlist *env, t_envlist *new)
-{
-	while (env->next)
-		env = env->next;
-	while (new->prev)
-		new = new->prev;
-	env->next = new;
-	new->prev = env;
-}
-
-t_envlist	*find_env(t_envlist *env, char *name)
-{
-	while (env->prev)
-		env = env->prev;
-	while (env)
+	else
 	{
-		if (!ft_strncmp(env->name, name, ft_strlen(env->name) + 1))
-			return (env);
-		env = env->next;
+		*new_name = ft_strdup(av);
+		*new_value = ft_strdup("");
 	}
-	return (NULL);
-}
-
-t_envlist	*create_env(char *name, char *value)
-{
-	t_envlist	*list;
-
-	list = ft_calloc(1, sizeof(t_envlist));
-	if (!list)
-		return (NULL);
-	list->name = ft_strdup(name);
-	list->value = ft_strdup(value);
-	/*(ft_free(&name), ft_free(&value));*/
-	if (!list->name)
-		ft_putstr_fd("NO NAME\n", 2);
-	if (!list->value)
-		ft_putstr_fd("NO VALUE\n", 2);
-	if (!list->name || !list->value)
-	{
-		free_env_list(list);
-		return (NULL);
-	}
-	return (list);
 }
 
 static void	process_export(t_data *data, t_exec *exec, int j)
@@ -85,16 +32,7 @@ static void	process_export(t_data *data, t_exec *exec, int j)
 	char		*new_name;
 	char		*new_value;
 
-	if (ft_strchr(exec->av[j], '='))
-	{
-		new_name = ft_substr(exec->av[j], 0, ft_strchr(exec->av[j], '=') - exec->av[j]);
-		new_value = ft_strdup(ft_strchr(exec->av[j], '=') + 1);
-	}
-	else
-	{
-		new_name = ft_strdup(exec->av[j]);
-		new_value = ft_strdup("");
-	}
+	set_name_value(exec->av[j], &new_name, &new_value);
 	list = find_env(data->env, new_name);
 	if (list && ft_strchr(exec->av[j], '='))
 		(ft_free(&list->value), list->value = ft_strdup(new_value));
@@ -109,34 +47,41 @@ static void	process_export(t_data *data, t_exec *exec, int j)
 	(ft_free(&new_name), ft_free(&new_value));
 }
 
+static int	export_check(char *argv, t_data *data)
+{
+	int	i;
+
+	i = 1;
+	if (!ft_isalpha(*argv) && *argv != '_')
+	{
+		data->status = 1;
+		mspec3("export", argv, "not a valid identifier\n");
+		return (0);
+	}
+	while (argv[i] && argv[i] != '=')
+	{
+		if (!ft_isalnum(argv[i]) && argv[i] != '_')
+		{
+			data->status = 1;
+			mspec3("export", argv, "not a valid identifier\n");
+			return (0);
+		}
+		i++;
+	}
+	return (1);
+}
+
 void	export(t_data *data, t_exec *exec)
 {
 	int	i;
-	int	j;
 
-	/*ft_printf("avlen: %d\n", ft_arrlen(exec->av));*/
 	if (ft_arrlen(exec->av) == 1)
 		return (print_export(data));
-	j = 0;
-	while (exec->av[++j])
+	i = 0;
+	while (exec->av[++i])
 	{
-		if (exec->av[j][0] && (exec->av[j][0] != '_' && !ft_isalpha(exec->av[j][0])))
-		{
-			ft_printerr("minishell: export: `%s': not a valid identifier\n", exec->av[j]);
-			data->status = 1;
-			return ;
-		}
-		i = 1;
-		while (exec->av[j][i] && exec->av[j][i] != '=')
-		{
-			if (!ft_isalnum(exec->av[j][i]) && exec->av[j][i] != '_')
-			{
-				ft_printerr("minishell: export: `%s': not a valid identifier\n", exec->av[1]);
-				data->status = 1;
-				return ;
-			}
-			i++;
-		}
-		process_export(data, exec, j);
+		if (export_check(exec->av[i], data))
+			continue ;
+		process_export(data, exec, i);
 	}
 }

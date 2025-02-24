@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 11:39:11 by oohnivch          #+#    #+#             */
-/*   Updated: 2025/01/27 14:17:44 by oohnivch         ###   ########.fr       */
+/*   Updated: 2025/02/24 17:57:03 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ void	parse_path(t_data *data)
 {
 	t_envlist	*curr_env_node;
 
-//	free_path(data);
 	if (!data->env)
 		return ;
 	if (data->path)
@@ -56,4 +55,33 @@ void	parse_path(t_data *data)
 	}
 	if (data->path)
 		add_slash(data, data->path);
+}
+
+int	checkfile(char *file)
+{
+	char	*path_to_file;
+	int		i;
+	int		name_len;
+
+	i = 1;
+	name_len = ft_strlen(file) - 1;
+	if (name_len <= 0)
+		return (-1);
+	while (file[name_len - i] != '/' && i <= name_len)
+		i++;
+	if (i == name_len)
+		return (0);
+	path_to_file = ft_substr(file, 0, name_len - i);
+	if (access(path_to_file, F_OK) == 0)
+	{
+		if (access(path_to_file, W_OK) == -1)
+		{
+			ft_free(&path_to_file);
+			return (-1);
+		}
+		ft_free(&path_to_file);
+	}
+	else
+		return (-1);
+	return (0);
 }

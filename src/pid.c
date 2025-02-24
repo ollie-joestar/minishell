@@ -6,26 +6,12 @@
 /*   By: oohnivch <oohnivch@student.42vienna.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 10:54:18 by oohnivch          #+#    #+#             */
-/*   Updated: 2025/02/13 17:02:20 by oohnivch         ###   ########.fr       */
+/*   Updated: 2025/02/24 17:57:23 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-/*
-while (next_pid(data) != lpid(data))
-{
-	handle this shit;
-}
-*/
-
-/*void	next_pid(t_data *data)*/
-/*{*/
-/*	if (!data->pid_list)*/
-/*		return ;*/
-/*	data->pid_list = data->pid_list->next;*/
-/*}*/
-/**/
 pid_t	pid(t_data *data)
 {
 	if (!data->pid_list)

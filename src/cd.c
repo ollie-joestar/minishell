@@ -6,39 +6,11 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 13:49:00 by oohnivch          #+#    #+#             */
-/*   Updated: 2025/02/24 15:34:19 by oohnivch         ###   ########.fr       */
+/*   Updated: 2025/02/24 16:30:30 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-void	pwd_error(char *path)
-{
-	char	*tmp;
-
-	if (!path)
-		return ;
-	tmp = ft_strjoin("getcwd: ", "cannot access parent directories");
-	if (!ft_strncmp(path, "..", 3) || !ft_strncmp(path, ".", 2))
-		mspec2(tmp, "No such file or directory\n");
-	ft_free(&tmp);
-}
-
-char	*get_home(t_data *data)
-{
-	t_envlist	*env;
-
-	while (data->env && data->env->prev)
-		data->env = data->env->prev;
-	env = data->env;
-	while (env)
-	{
-		if (!ft_strncmp(env->name, "HOME", 5))
-			return (env->value);
-		env = env->next;
-	}
-	return (NULL);
-}
 
 void	cd_home(t_data *data, t_exec *exec)
 {
@@ -94,9 +66,9 @@ char	*cd_special_path_check(t_data *data, char *path)
 
 void	failed_cd(t_data *data, char *path)
 {
-	char	*tmp;
-	struct stat file_stat;
-	
+	char		*tmp;
+	struct stat	file_stat;
+
 	tmp = ft_strjoin("cd: ", path);
 	if (access(path, F_OK) == 0)
 	{

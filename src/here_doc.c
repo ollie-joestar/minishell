@@ -6,59 +6,23 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 13:39:47 by oohnivch          #+#    #+#             */
-/*   Updated: 2025/02/18 19:03:17 by hanjkim          ###   ########.fr       */
+/*   Updated: 2025/02/24 17:53:14 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-t_token	*handle_heredoc(t_data *data, t_token *redirection_token,
-						t_token *filename_token)
-{
-	int			dont_expand;
-	char		*temp_word;
-	char		*here_result;
-	t_segment	*seg;
-
-	dont_expand = 0;
-	seg = filename_token->segments;
-	while (seg)
-	{
-		if (seg->single_quoted || seg->double_quoted)
-		{
-			dont_expand = 1;
-			break ;
-		}
-		seg = seg->next;
-	}
-	/*dont_expand = (filename_token->segments->double_quoted*/
-	/*		|| filename_token->segments->single_quoted);*/
-	temp_word = join_segments(filename_token);
-	if (!temp_word)
-		bruh(data, "Failed to join filename segments for HEREDOC", 2);
-	here_result = here_doc(data, temp_word, dont_expand);
-	ft_free(&temp_word);
-	free_token_node(&filename_token);
-	filename_token = create_token_from_string(here_result);
-	ft_free(&here_result);
-	if (!filename_token)
-		return (NULL);
-	filename_token->type = HEREDOC;
-	filename_token->next = redirection_token->next;
-	return (filename_token);
-}
-
-static int	handle_heredoc_signal(t_data *data, char **line, char **file, int fd)
+static int	handle_heredoc_signal(t_data *data, char **ln, char **f, int fd)
 {
 	if (g_signal == SIGINT)
 	{
-		ft_free(line);
-		safe_close(fd);
-		unlink(*file);
-		fd = open(*file, O_CREAT | O_RDWR, 0664);
+		ft_free(ln);
+		close(fd);
+		unlink(*f);
+		fd = open(*f, O_CREAT | O_RDWR, 0664);
 		if (fd < 0)
 			bruh(data, "minishell: failed here_doc.c:49", 2);
-		safe_close(fd);
+		close(fd);
 		data->status = 130;
 		return (1);
 	}
@@ -78,10 +42,10 @@ static char	*random_name(void)
 		return (NULL);
 	name = ft_calloc(37, sizeof(char));
 	if (!name)
-		return (safe_close(fd), NULL);
+		return (close(fd), NULL);
 	if (read(fd, name, 31) != 31)
-		return (safe_close(fd), ft_free(&name), NULL);
-	safe_close(fd);
+		return (close(fd), ft_free(&name), NULL);
+	close(fd);
 	i = 31;
 	while (--i >= 0)
 		name[i + 5] = base[(unsigned char)name[i] % 16];
@@ -106,7 +70,7 @@ static int	warning_heredoc(char *line, char *lim)
 		ft_free(&tmp);
 		mspec(line);
 		ft_free(&line);
-			return (1);
+		return (1);
 	}
 	if (!ft_strncmp(line, lim, ft_strlen(lim) + 1))
 		return (1);
@@ -128,7 +92,6 @@ char	*here_doc(t_data *data, char *l, int dont_expand)
 	char	*line;
 	char	*file;
 
-	/*g_signal = 0;*/
 	file = random_name();
 	fd = open(file, O_CREAT | O_RDWR, 0664);
 	if (fd < 0)
@@ -141,14 +104,10 @@ char	*here_doc(t_data *data, char *l, int dont_expand)
 		if (warning_heredoc(line, l))
 			break ;
 		if (!dont_expand)
-		{
 			free_and_expand(data, &line);
-			/*ft_free(&line);*/
-			/*line = expand(data, line);*/
-		}
 		if (line)
 			write(fd, line, ft_strlen(line));
 		(write(fd, "\n", 1), ft_free(&line));
 	}
-	return (safe_close(fd), ft_free(&line), file);
+	return (close(fd), ft_free(&line), file);
 }

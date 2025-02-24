@@ -6,7 +6,7 @@
 /*   By: oohnivch <oohnivch@student.42vienna.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 13:59:00 by oohnivch          #+#    #+#             */
-/*   Updated: 2025/01/31 17:13:19 by oohnivch         ###   ########.fr       */
+/*   Updated: 2025/02/24 17:06:42 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,54 +81,3 @@ void	mspec3(char *str1, char *str2, char *str3)
 	ft_putstr_fd(error, 2);
 	ft_free(&error);
 }
-/*static int	golden(va_list args, char **result)*/
-/*{*/
-/*	char	*string;*/
-/*	char	*tmp;*/
-/**/
-/*	string = va_arg(args, char *);*/
-	/*ft_printerr("Combining: %s\n", string);*/
-/*	if (!string)*/
-/*	{*/
-		/*ft_printerr("the string in requiem is NULL\n");*/
-/*		return (-1);*/
-/*	}*/
-/*	tmp = *result;*/
-	/*ft_printerr("\t\ttmp: %s\n", tmp);*/
-/*	*result = experience(*result, string);*/
-	/*ft_printerr("\t\tresult: %s\n", *result);*/
-/*	if (!*result)*/
-/*	{*/
-		/*ft_printerr("the result in requiem is NULL\n");*/
-/*		return (ft_free(&tmp), -1);*/
-/*	}*/
-/*	ft_free(&tmp);*/
-/*	return (0);*/
-/*}*/
-/**/
-/*int	requiem(int	n, ...)*/
-/*{*/
-/*	va_list	args;*/
-/*	char	*result;*/
-/*	int		return_value;*/
-/*	int		check;*/
-/**/
-	/*ft_printerr("Golden experience requiem!\n");*/
-/*	if (n < 1)*/
-/*		return (-1);*/
-/*	result = NULL;*/
-/*	va_start(args, n);*/
-/*	while (n--)*/
-/*	{*/
-/*		check = golden(args, &result);*/
-/*		if (check == -1)*/
-/*		{*/
-			/*ft_printerr("the check in requiem is -1 when combining string number %d\n", debug - n);*/
-/*			break ;*/
-/*		}*/
-/*	}*/
-/*	va_end(args);*/
-/*	return_value = ft_putstr_fd(result, 2);*/
-/*	ft_free(&result);*/
-/*	return (return_value);*/
-/*}*/

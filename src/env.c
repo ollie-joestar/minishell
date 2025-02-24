@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 11:02:42 by oohnivch          #+#    #+#             */
-/*   Updated: 2025/02/24 16:08:56 by oohnivch         ###   ########.fr       */
+/*   Updated: 2025/02/24 17:02:52 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,40 +52,41 @@ t_envlist	*parse_env(t_data *data, char **ev)
 	return (list);
 }
 
+void	parse_env_into_ev_process(t_data *data, t_envlist *node, int i)
+{
+	char	*tmp;
+
+	tmp = data->ev[i];
+	data->ev[i] = ft_strjoin(node->name, "=");
+	if (!data->ev[i])
+		bruh(data, "Strjoin failed env.c:62", 69);
+	ft_free(&tmp);
+	tmp = data->ev[i];
+	data->ev[i] = join2(tmp, node->value);
+	if (!data->ev[i] && node->value)
+		bruh(data, "Join2 failed env.c:67", 69);
+	ft_free(&tmp);
+}
+
 void	parse_env_into_ev(t_data *data)
 {
 	int			i;
 	t_envlist	*curr_env_node;
-	char		*tmp;
 
 	i = 0;
 	if (!data->env)
 		return (free_arr(&data->ev));
-	while (data->env->prev)
-		data->env = data->env->prev;
 	i = env_len(data->env);
-	if (data->ev)
-		free_arr(&data->ev);
+	free_arr(&data->ev);
 	data->ev = ft_calloc(i + 1, sizeof(char *));
 	if (!data->ev)
 		bruh(data, "Malloc error parse_env_into_ev:67", 69);
-	i = 0;
+	i = -1;
 	curr_env_node = data->env;
 	while (curr_env_node)
 	{
-		tmp = data->ev[i];
-		data->ev[i] = ft_strjoin(curr_env_node->name, "=");
-		if (!data->ev[i])
-			bruh(data, "Malloc error parse_env_into_ev:75", 69);
-		ft_free(&tmp);
-		tmp = data->ev[i];
-		/*data->ev[i] = ft_strjoin(data->ev[i], curr_env_node->value);*/
-		data->ev[i] = join2(tmp, curr_env_node->value);
-		if (!data->ev[i] && curr_env_node->value)
-			bruh(data, "Malloc error parse_env_into_ev:80", 69);
-		ft_free(&tmp);
+		parse_env_into_ev_process(data, curr_env_node, ++i);
 		curr_env_node = curr_env_node->next;
-		i++;
 	}
 }
 
@@ -93,7 +94,6 @@ void	print_env(t_data *data)
 {
 	t_envlist	*list;
 
-	/*ft_putstr_fd("priting env\n", 1);*/
 	if (!data->env)
 		return ;
 	while (data->env->prev)
@@ -103,32 +103,5 @@ void	print_env(t_data *data)
 	{
 		ft_printf("%s=%s\n", list->name, list->value);
 		list = list->next;
-	}
-}
-
-void	underscore(t_data *data, t_exec *exec)
-{
-	t_envlist	*list;
-	char		*value;
-	int			i;
-
-	if (exec_len(data->exec) > 1)
-		if (lpid(data))
-			return ;
-	i = ft_arrlen(exec->av) - 1;
-	if (i < 0)
-		value = ft_strdup("");
-	else
-		value = ft_strdup(exec->av[i]);
-	list = find_env(data->env, "_");
-	if (list)
-		(ft_free(&list->value), list->value = value);
-	else
-	{
-		list = create_env("_", value);
-		ft_free(&value);
-		if (!list)
-			bruh(data, "Malloc fail env.c:125", 69);
-		add_env(data->env, list);
 	}
 }

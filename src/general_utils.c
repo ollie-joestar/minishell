@@ -6,16 +6,38 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 16:36:14 by oohnivch          #+#    #+#             */
-/*   Updated: 2025/02/18 16:06:11 by oohnivch         ###   ########.fr       */
+/*   Updated: 2025/02/24 17:02:47 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-// safe fork function
-// if fork fails, it prints the error message and exits the program
-// if fork succeeds, it adds the pid to the pid list
-// returns the pid of the forked process
+void	underscore(t_data *data, t_exec *exec)
+{
+	t_envlist	*list;
+	char		*value;
+	int			i;
+
+	if (exec_len(data->exec) > 1)
+		if (lpid(data))
+			return ;
+	i = ft_arrlen(exec->av) - 1;
+	if (i < 0)
+		value = ft_strdup("");
+	else
+		value = ft_strdup(exec->av[i]);
+	list = find_env(data->env, "_");
+	if (list)
+		(ft_free(&list->value), list->value = value);
+	else
+	{
+		list = create_env("_", value);
+		ft_free(&value);
+		if (!list)
+			bruh(data, "Malloc fail env.c:125", 69);
+		add_env(data->env, list);
+	}
+}
 
 char	*join2(char const *s1, char const *s2)
 {
@@ -52,35 +74,6 @@ int	fork1(t_data *data)
 	return (pid);
 }
 
-int	checkfile(char *file)
-{
-	char *path_to_file;
-	int	i;
-	int	name_len;
-
-	i = 1;
-	name_len = ft_strlen(file) - 1;
-	if (name_len <= 0)
-		return (-1);
-	while (file[name_len - i] != '/' && i <= name_len)
-		i++;
-	if (i == name_len)
-		return (0);
-	path_to_file = ft_substr(file, 0, name_len - i);
-	if (access(path_to_file, F_OK) == 0)
-	{
-		if (access(path_to_file, W_OK) == -1)
-		{
-			ft_free(&path_to_file);
-			return (-1);
-		}
-		ft_free(&path_to_file);
-	}
-	else
-		return (-1);
-	return (0);
-}
-
 size_t	ft_arrlen(char **arr)
 {
 	size_t	i;
@@ -91,33 +84,6 @@ size_t	ft_arrlen(char **arr)
 	while (arr[i])
 		i++;
 	return (i);
-}
-
-int	safe_close(int fd)
-{
-	int	ret;
-
-	ret = 0;
-	/*ft_printerr("Closing fd: %d\n", fd);*/
-	ret = close(fd);
-	/*if (ret == -1)*/
-	/*	mspe("failed to close fd");*/
-	return (ret);
-	/*if (fd == -1)*/
-	/*	mspe("Tried to close invalid fd\n");*/
-	/*if (fd == 0)*/
-	/*	mspe("Tried to close stdin fd\n");*/
-	/*if (fd == 1)*/
-	/*	mspe("Tried to close stdout fd\n");*/
-	/*if (fd == 2)*/
-	/*	mspe("Tried to close errno fd\n");*/
-	/*if (fd > 2)*/
-	/*{*/
-	/*mspec("closing fd\n");*/
-	/*ft_printerr("Closing fd: %d\n", fd);*/
-		/*if (-1 == close(fd))*/
-		/*	mspe("failed to close fd\n");*/
-	/*}*/
 }
 
 void	skip_spaces(char *input, int *i)

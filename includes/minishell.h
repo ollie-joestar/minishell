@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   minishell.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: oohnivch <oohnivch@student.42vienna.com>   +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/02/24 18:03:12 by oohnivch          #+#    #+#             */
+/*   Updated: 2025/02/24 18:05:16 by oohnivch         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef MINISHELL_H
 # define MINISHELL_H
 # include "../libft/includes/libft.h"
@@ -200,7 +212,7 @@ int			handle_variable_exp(t_data *data, char *word, t_expander *expander);
 int			handle_normal_chars(char c, t_expander *expander);
 int			process_dollar_value(t_data *data, char *word, t_expander *expander);
 t_token		*handle_heredoc(t_data *data, t_token *redirection_token,
-			t_token *filename_token);
+				t_token *filename_token);
 char		*finalize_redirection_token(t_data *data, t_token *token);
 void		finalize_tokens(t_token *token_list);
 
@@ -217,7 +229,7 @@ bool		missing_file(t_token *token);
 bool		pipe_in_front(t_token *token);
 bool		valid_syntax(t_data *data, t_token *token);
 bool		is_redirection(t_token *token);
-bool 		unexpected_token_with_join(t_data *data, t_token *token);
+bool		unexpected_token_with_join(t_data *data, t_token *token);
 
 // OLLIE
 //
@@ -229,6 +241,12 @@ char		**create_argv(t_data *data, t_token *token);
 size_t		argv_size(t_token *token);
 t_avlist	*next_valid_av_list(t_avlist *av_list);
 t_avlist	*first_av_list(t_avlist *av_list);
+void		init_cmd(t_data *data, t_exec *exec);
+void		init_argv(t_data *data, t_exec *exec);
+void		check_for_builtin(t_exec *exec);
+void		add_redir(t_data *data, t_exec *exec, t_token *token);
+void		add_exec(t_data *data);
+size_t		av_list_len(t_avlist *av_list);
 
 // Executing functions
 void		run(t_data *data);
@@ -245,10 +263,11 @@ void		reroute(t_data *data, t_exec *exec);
 /*t_input	*get_first_input(t_input *input);*/
 /*t_output	*get_first_output(t_output *output);*/
 t_redir		*get_first_redir(t_redir *redir);
-int			safe_close(int fd);
+/*int			safe_close(int fd);*/
 void		check_exit_status(t_data *data, int exit_status);
 size_t		exec_len(t_exec *exec);
 int			exec_has_cmd(t_exec *exec);
+void		failed_cmd_full(t_data *data, t_exec *exec);
 
 // Redirections
 int			has_input(t_exec *exec);
@@ -257,11 +276,11 @@ int			has_output(t_exec *exec);
 // BEST FUNCTION EVER
 void		shlvl(t_data *data, t_envlist *env);
 // Environment functions
-t_envlist   *parse_env(t_data *data, char **ev);
+t_envlist	*parse_env(t_data *data, char **ev);
 size_t		env_len(t_envlist *env);
 char		*expand(t_data *data, char *s);
 void		sort_env(t_envlist *list);
-t_envlist   *dup_env(t_envlist *list);
+t_envlist	*dup_env(t_envlist *list);
 t_envlist	*create_new_env(t_data *data);
 t_envlist	*find_env(t_envlist *env, char *name);
 void		parse_env_into_ev(t_data *data);
@@ -285,13 +304,13 @@ void		cd_home(t_data *data, t_exec *exec);
 char		*get_home(t_data *data);
 void		pwd(t_data *data, t_exec *exec);
 int			update_pwd(t_data *data);
-t_envlist   *get_pwd(t_data *data);
-t_envlist   *get_oldpwd(t_data *data);
+t_envlist	*get_pwd(t_data *data);
+t_envlist	*get_oldpwd(t_data *data);
+void		pwd_error(char *path);
 void		ft_exit(t_data *data, t_exec *exec);
-/*void		numeric_long_check(t_data *data, char *str);*/
 void		export(t_data *data, t_exec *exec);
+void		print_export(t_data *data);
 void		unset(t_data *data, t_exec *exec);
-
 
 // HereDoc
 char		*here_doc(t_data *data, char *l, int to_expand);
@@ -304,6 +323,7 @@ void		mspe(char *str);
 void		mspe2(char *str1, char *str2);
 void		mspec(char *str);
 void		mspec2(char *str1, char *str2);
+void		mspec3(char *str1, char *str2, char *str3);
 
 // Free functions
 void		free_tokens(t_data *data);
@@ -322,7 +342,8 @@ void		print_arr(char **arr);
 void		print_exec(t_exec *exec);
 void		print_env(t_data *data);
 void		print_av(t_exec	*exec);
-void		print_execution(t_exec *exec);
+void		print_execution(t_exec *exec, int i);
 void		print_pids(t_data *data);
+void		print_av_list(t_exec *exec);
 
 #endif

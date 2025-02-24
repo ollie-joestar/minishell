@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 12:17:06 by oohnivch          #+#    #+#             */
-/*   Updated: 2025/01/21 19:53:10 by oohnivch         ###   ########.fr       */
+/*   Updated: 2025/02/24 17:06:21 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,21 +67,19 @@ void	sort_env(t_envlist *list)
 		tmp = list;
 		while (tmp && tmp->next)
 		{
-			if (ft_strncmp(tmp->name, tmp->next->name, ft_strlen(tmp->name)) > 0)
+			if (ft_strncmp(tmp->name, tmp->next->name, ft_strlen(tmp->name)))
 				swap_env_nodes(tmp, tmp->next);
 			tmp = tmp->next;
 		}
 	}
 }
 
-t_envlist *dup_env(t_envlist *list)
+t_envlist	*dup_env(t_envlist *list)
 {
 	t_envlist	*new;
 	t_envlist	*tmp;
 
 	new = NULL;
-	while (list->prev)
-		list = list->prev;
 	while (list)
 	{
 		tmp = ft_calloc(1, sizeof(t_envlist));
@@ -92,7 +90,10 @@ t_envlist *dup_env(t_envlist *list)
 		if (!tmp->name || !tmp->value)
 			return (free_env_list(tmp), free_env_list(new), NULL);
 		if (new)
-			(new->next = tmp, tmp->prev = new);
+		{
+			new->next = tmp;
+			tmp->prev = new;
+		}
 		new = tmp;
 		list = list->next;
 	}

@@ -6,7 +6,7 @@
 #    By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/14 16:34:42 by oohnivch          #+#    #+#              #
-#    Updated: 2025/02/23 17:46:48 by hanjkim          ###   ########.fr        #
+#    Updated: 2025/02/24 18:05:45 by oohnivch         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 #									Variables								   #
@@ -41,7 +41,9 @@ OBJ_PATH = obj/
 
 SRC = main.c \
 	  argv.c \
+	  builtin_utils.c \
 	  cd.c \
+	  cd_utils.c \
 	  clean.c \
 	  cmd_path.c \
 	  echo.c \
@@ -49,11 +51,13 @@ SRC = main.c \
 	  no_env.c \
 	  env_utils.c \
 	  exec_init.c \
+	  exec_init_utils.c \
 	  exec_utils.c \
 	  execution.c \
 	  error.c \
 	  general_utils.c \
 	  here_doc.c \
+	  here_doc_utils.c \
 	  lexer.c \
 	  lexer_create_tokens.c \
 	  lexer_process_words.c \
@@ -79,8 +83,10 @@ SRC = main.c \
 	  signal.c \
 	  exit.c \
 	  export.c \
+	  export_utils.c \
 	  unset.c \
 	  debug_utils.c \
+	  debug_utils2.c \
 
 # SRC_BONUS = main_bonus.c annihilate_bonus.c extract_bonus.c access_bonus.c \
 			# general_utils_bonus.c process_bonus.c reroute_bonus.c here_doc_bonus.c

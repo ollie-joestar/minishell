@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 11:41:48 by oohnivch          #+#    #+#             */
-/*   Updated: 2025/02/18 15:48:41 by oohnivch         ###   ########.fr       */
+/*   Updated: 2025/02/24 17:58:48 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,12 +39,9 @@ static void	rerouteinfile(t_data *data, t_exec *exec)
 
 static void	rerouteoutfile(t_data *data, t_exec *exec)
 {
-	int fd;
+	int	fd;
 
 	fd = 0;
-	/*fd = checkfile(exec->out->file);*/
-	/*mspec2(exec->cmd, "rerouteoutfile\n");*/
-	/*ft_printerr("name: %s\n", exec->redir->file);*/
 	if (exec->redir->type == REPLACE && fd == 0)
 		fd = open(exec->redir->file, O_CREAT | O_TRUNC | O_RDWR, 0664);
 	else if (fd == 0)
@@ -52,9 +49,6 @@ static void	rerouteoutfile(t_data *data, t_exec *exec)
 	if (fd == -1)
 	{
 		mspe(exec->redir->file);
-		/*ft_putstr_fd("minishell: ", STDERR_FILENO);*/
-		/*perror(exec->redir->file);*/
-		/*ft_printerr("minishell: %s: No such file or directory\n", exec->redir->file);*/
 		data->status = 1;
 		if (lpid(data) == 0)
 		{
@@ -71,7 +65,6 @@ static void	rerouteoutfile(t_data *data, t_exec *exec)
 
 static void	rerouteinpipe(t_exec *exec)
 {
-	/*mspec2(exec->cmd, "rerouteinpipe\n");*/
 	close(exec->prev->pipe[WR]);
 	dup2(exec->prev->pipe[RD], STDIN_FILENO);
 	close(exec->prev->pipe[RD]);
@@ -79,7 +72,6 @@ static void	rerouteinpipe(t_exec *exec)
 
 static void	rerouteoutpipe(t_exec *exec)
 {
-	/*mspec2(exec->cmd, "rerouteoutpipe\n");*/
 	close(exec->pipe[RD]);
 	dup2(exec->pipe[WR], STDOUT_FILENO);
 	close(exec->pipe[WR]);
@@ -94,7 +86,6 @@ void	reroute(t_data *data, t_exec *exec)
 		restore = exec;
 	else
 		restore = NULL;
-	/*mspec2(exec->cmd, "REROUTING!\n");*/
 	while (exec->redir && exec->redir->prev)
 		exec->redir = exec->redir->prev;
 	redir = exec->redir;

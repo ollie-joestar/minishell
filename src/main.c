@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 09:38:58 by oohnivch          #+#    #+#             */
-/*   Updated: 2025/02/24 16:06:28 by oohnivch         ###   ########.fr       */
+/*   Updated: 2025/02/24 17:54:37 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,26 +84,18 @@ int	main(int argc, char **argv, char **ev)
 	if (!data)
 		bruh(data, "Failed to allocate memory", 1);
 	data->env = parse_env(data, ev);
-	/*print_env(data);*/
-	/*if (!data->env)*/
-	/*	bruh(data, "Failed to parse env", 1);*/
 	setup_signal_mode(data, 1);
 	while (1)
 	{
-		data->line = readline("minishell > "); //funcheck failed
+		data->line = readline("minishell > ");
 		if (!stop_right_there_criminal(data))
 			continue ;
 		if (!parse_and_validate_line(data))
 			continue ;
 		if (!process_tokens_and_ambig_check(data))
 			continue ;
-		/*ft_printf("Initiating exec data->\n");*/
-		/*init_exec_data(data);*/
 		init_exec(data);
-		/*ft_printf("after init_exec_data\n");*/
-		/*print_exec(data->exec);*/
 		setup_signal_mode(data, 0);
-		/*ft_printf("\nExecuting->\n");*/
 		run(data);
 		setup_signal_mode(data, 1);
 	}

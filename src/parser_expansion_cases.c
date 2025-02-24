@@ -6,7 +6,7 @@
 /*   By: hanjkim <@student.42vienna.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/01 22:44:16 by hanjkim           #+#    #+#             */
-/*   Updated: 2025/02/23 20:13:51 by hanjkim          ###   ########.fr       */
+/*   Updated: 2025/02/24 18:01:30 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	handle_variable_exp(t_data *data, char *word, t_expander *expander)
 	start = expander->index_word;
 	while (word[expander->index_word] != '\0'
 		&& (ft_isalnum(word[expander->index_word])
-		|| word[expander->index_word] == '_'))
+			|| word[expander->index_word] == '_'))
 		expander->index_word++;
 	name_length = expander->index_word - start;
 	var_name = ft_calloc(name_length + 1, sizeof(char));
