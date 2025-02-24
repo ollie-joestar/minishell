@@ -6,7 +6,7 @@
 /*   By: oohnivch <oohnivch@student.42vienna.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 18:03:12 by oohnivch          #+#    #+#             */
-/*   Updated: 2025/02/24 18:05:16 by oohnivch         ###   ########.fr       */
+/*   Updated: 2025/02/24 19:00:35 by hanjkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,8 @@
 
 # define CMD_NAME "./minishell"
 
-typedef enum e_token_type {
+typedef enum e_token_type
+{
 	WORD = 0,
 	PIPE = 1,
 	INPUT = 2,
@@ -49,82 +50,92 @@ typedef enum e_token_type {
 	APPEND = 5,
 	VAR = 6,
 	NOTHING = 7
-}   t_token_type;
+}	t_token_type;
 
-typedef struct s_segment {
-	char			*text;
-	bool			single_quoted;
-	bool			double_quoted;
-	bool                	env_not_found;
+typedef struct s_segment
+{
+	char				*text;
+	bool				single_quoted;
+	bool				double_quoted;
+	bool				env_not_found;
 	struct s_segment	*next;
-} t_segment;
+}				t_segment;
 
-typedef struct s_token {
+typedef struct s_token
+{
 	char				*word;
 	t_segment			*segments;
 	t_token_type		type;
 	struct s_token		*next;
 	struct s_token		*prev;
-}		t_token;
+}				t_token;
 
-typedef struct s_split_vars {
+typedef struct s_split
+{
 	char				**words;
 	t_token				*new_head;
 	t_token				*new_tail;
 	t_token				*new_token;
 	int					i;
-}		t_split_vars;
+}				t_split;
 
-typedef struct s_replace {
-	t_token 			*original;
-	t_token 			*replacement;
+typedef struct s_replace
+{
+	t_token				*original;
+	t_token				*replacement;
 	struct s_replace	*next;
-}		t_replace;
+}				t_replace;
 
-typedef struct s_expander {
+typedef struct s_exp
+{
 	char				*result;
 	size_t				result_size;
 	size_t				old_result_size;
-	size_t				index_word;	// index of the current character in the word
-	size_t  			index_res;	// index of the current character in the result
-}		t_expander;
+	size_t				index_word;
+	size_t				index_res;
+}				t_exp;
 
-
-typedef struct s_input {
+typedef struct s_input
+{
 	int					type; // HERE_DOC | FILE
 	char				*file;
 	struct s_input		*next;
 	struct s_input		*prev;
 }			t_input;
 
-typedef struct s_output {
+typedef struct s_output
+{
 	t_token_type		type; // REPLACE | APPEND
 	char				*file;
 	struct s_output		*next;
 	struct s_output		*prev;
 }			t_output;
 
-typedef struct s_redir {
+typedef struct s_redir
+{
 	int					type; // INPUT | HEREDOC | REPLACE | APPEND
 	char				*file;
 	struct s_redir		*next;
 	struct s_redir		*prev;
 }			t_redir;
 
-typedef struct s_envlist {
+typedef struct s_envlist
+{
 	char				*name;
 	char				*value;
 	struct s_envlist	*next;
 	struct s_envlist	*prev;
 }				t_envlist;
 
-typedef	struct s_avlist {
+typedef struct s_avlist
+{
 	char				*arg;
 	struct s_avlist		*next;
 	struct s_avlist		*prev;
 }				t_avlist;
 
-typedef struct s_exec {
+typedef struct s_exec
+{
 	int					type; // BUILTIN | CMD
 	t_redir				*redir; // linked list of redirections
 	/*t_input				*in; // linked list of input files*/
@@ -136,40 +147,40 @@ typedef struct s_exec {
 	char				*cmd; // full path to the command
 	char				**av;
 	t_avlist			*av_list;
-	struct s_exec   	*prev;
-	struct s_exec   	*next;
+	struct s_exec		*prev;
+	struct s_exec		*next;
 }			t_exec;
 
-typedef struct s_pidlist {
+typedef struct s_pidlist
+{
 	pid_t				pid;
 	struct s_pidlist	*prev;
 	struct s_pidlist	*next;
 }				t_pidlist;
 
-
 typedef struct s_data
 {
 	t_pidlist			*pid_list;
 	pid_t				pid_last;
-	t_exec				*exec;   
-	char				**ev;	 
-	t_envlist			*env;	
-	char				**path;   
+	t_exec				*exec;
+	char				**ev;
+	t_envlist			*env;
+	char				**path;
 	int					status;
 	int					ambig_redir;
 	struct sigaction	sa_int;
 	struct sigaction	sa_quit;
 	struct sigaction	sa_child;
-	char				*line;	
+	char				*line;
 	t_token				*token;
 	t_replace			*replacements;
-	t_expander			*expander;
-	size_t				current_size; 
+	t_exp				*expander;
+	size_t				current_size;
 	char				*buffer;
-}   t_data;
+}				t_data;
 
 /* Signal functions */
-extern volatile sig_atomic_t g_signal;
+extern volatile sig_atomic_t	g_signal;
 void		handle_sigint(int sig);
 void		catch_sigint(int sigint);
 void		setup_signal_handler(t_data *data, void (*handler)(int));
@@ -179,7 +190,7 @@ void		setup_interactive_signals(t_data *data);
 /* Lexer functions */
 void		parse_line(t_data *data);
 void		parse_tokens(t_data *data);
-void		parse_and_create_token(t_data *data, char *input, int *start, int *end);
+void		parse_make_token(t_data *data, char *input, int *start, int *end);
 t_token		*create_token(char *str, bool quote, bool single_or_double);
 void		add_token_to_end(t_token **head, t_token *new_token);
 void		set_token_type(t_token *token);
@@ -195,11 +206,11 @@ t_token		*process_operator(char *input, int *i, int *start, t_data *data);
 
 /* Lexer utils */
 bool		should_split_token(t_token *token);
-void		replace_tokens(t_data *data, t_token *old_token, t_token *new_token);
+void		replace_tokens(t_data *data, t_token *o_token, t_token *n_token);
 void		split_tokens(t_data *data);
 t_token		*split_token(t_token *original_token, t_data *data);
 char		**get_split_words(t_token *original_token, t_data *data);
-void		make_split_tokens(t_split_vars *vars, t_token *o_token, t_data *data);
+void		make_split_tokens(t_split *vars, t_token *o_token, t_data *data);
 char		*join_segments(t_token *token);
 
 // Parser functions
@@ -207,10 +218,10 @@ void		process_tokens(t_data *data);
 void		expand_tokens(t_data *data);	
 void		process_redirection(t_data *data, t_token **token);
 char		*expand(t_data *data, char *word);
-int			handle_dollar_exp(t_data *data, t_expander *expander);
-int			handle_variable_exp(t_data *data, char *word, t_expander *expander);
-int			handle_normal_chars(char c, t_expander *expander);
-int			process_dollar_value(t_data *data, char *word, t_expander *expander);
+int			handle_dollar_exp(t_data *data, t_exp *exp);
+int			handle_variable_exp(t_data *data, char *word, t_exp *exp);
+int			handle_normal_chars(char c, t_exp *exp);
+int			process_dollar_value(t_data *data, char *word, t_exp *exp);
 t_token		*handle_heredoc(t_data *data, t_token *redirection_token,
 				t_token *filename_token);
 char		*finalize_redirection_token(t_data *data, t_token *token);
@@ -219,8 +230,8 @@ void		finalize_tokens(t_token *token_list);
 // Parser utils
 void		*ft_realloc(char *str, size_t old_size, size_t new_size);
 char		*get_env_value(t_data *data, char *name);
-char		*initialize_expander(t_expander *expander, char *word);
-int			resize_result(t_expander *expander, size_t required_size);
+char		*initialize_expander(t_exp *exp, char *word);
+int			resize_result(t_exp *exp, size_t required_size);
 
 // Syntax checker
 void		unexpected_token(t_data *data, char *str);

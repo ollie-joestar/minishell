@@ -6,7 +6,7 @@
 /*   By: hanjkim <@student.42vienna.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 20:46:04 by hanjkim           #+#    #+#             */
-/*   Updated: 2025/02/23 20:19:14 by hanjkim          ###   ########.fr       */
+/*   Updated: 2025/02/24 18:42:54 by hanjkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,22 +65,22 @@ void	expand_tokens(t_data *data)
 
 char	*expand(t_data *data, char *word)
 {
-	t_expander	expander;
+	t_exp	exp;
 
 	if (!word || !data)
 		return (NULL);
-	if (!initialize_expander(&expander, word))
+	if (!initialize_expander(&exp, word))
 		return (NULL);
-	while (word[expander.index_word] != '\0')
+	while (word[exp.index_word] != '\0')
 	{
-		if (word[expander.index_word] == '$')
+		if (word[exp.index_word] == '$')
 		{
-			expander.index_word++;
-			process_dollar_value(data, word, &expander);
+			exp.index_word++;
+			process_dollar_value(data, word, &exp);
 		}
 		else
-			handle_normal_chars(word[expander.index_word++], &expander);
+			handle_normal_chars(word[exp.index_word++], &exp);
 	}
-	expander.result[expander.index_res] = '\0';
-	return (expander.result);
+	exp.result[exp.index_res] = '\0';
+	return (exp.result);
 }

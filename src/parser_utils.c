@@ -6,7 +6,7 @@
 /*   By: hanjkim <@student.42vienna.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/01 21:43:24 by hanjkim           #+#    #+#             */
-/*   Updated: 2025/02/23 19:47:08 by hanjkim          ###   ########.fr       */
+/*   Updated: 2025/02/24 18:46:34 by hanjkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,31 +49,31 @@ char	*get_env_value(t_data *data, char *var_name)
 	return (NULL);
 }
 
-int	resize_result(t_expander *expander, size_t required_size)
+int	resize_result(t_exp *exp, size_t required_size)
 {
-	if (required_size >= expander->result_size)
+	if (required_size >= exp->result_size)
 	{
-		expander->old_result_size = expander->result_size;
-		expander->result_size = required_size + 1;
-		expander->result = ft_realloc(expander->result,
-				expander->old_result_size, expander->result_size);
+		exp->old_result_size = exp->result_size;
+		exp->result_size = required_size + 1;
+		exp->result = ft_realloc(exp->result,
+				exp->old_result_size, exp->result_size);
 	}
 	return (0);
 }
 
-char	*initialize_expander(t_expander *expander, char *word)
+char	*initialize_expander(t_exp *exp, char *word)
 {
 	size_t	word_len;
 
 	word_len = ft_strlen(word);
-	expander->result = NULL;
-	expander->result_size = 0;
-	expander->old_result_size = 0;
-	expander->index_word = 0;
-	expander->index_res = 0;
-	expander->result_size = word_len + 1;
-	expander->result = ft_calloc(expander->result_size, sizeof(char));
-	if (!expander->result)
+	exp->result = NULL;
+	exp->result_size = 0;
+	exp->old_result_size = 0;
+	exp->index_word = 0;
+	exp->index_res = 0;
+	exp->result_size = word_len + 1;
+	exp->result = ft_calloc(exp->result_size, sizeof(char));
+	if (!exp->result)
 		return (NULL);
-	return (expander->result);
+	return (exp->result);
 }

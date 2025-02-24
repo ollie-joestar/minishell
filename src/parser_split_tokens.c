@@ -6,13 +6,13 @@
 /*   By: hanjkim <@student.42vienna.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/29 20:03:14 by hanjkim           #+#    #+#             */
-/*   Updated: 2025/02/24 18:01:50 by oohnivch         ###   ########.fr       */
+/*   Updated: 2025/02/24 18:49:08 by hanjkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	init_split_vars(t_split_vars *vars)
+void	init_split_vars(t_split *vars)
 {
 	vars->words = NULL;
 	vars->new_head = NULL;
@@ -70,7 +70,7 @@ t_token	*create_token_from_string(char *str)
 	return (new_token);
 }
 
-void	make_split_tokens(t_split_vars *vars, t_token *original, t_data *data)
+void	make_split_tokens(t_split *vars, t_token *original, t_data *data)
 {
 	t_token	*new_token;
 
@@ -100,7 +100,7 @@ void	make_split_tokens(t_split_vars *vars, t_token *original, t_data *data)
 
 t_token	*split_token(t_token *original_token, t_data *data)
 {
-	t_split_vars	vars;
+	t_split			vars;
 	char			*joined;
 
 	init_split_vars(&vars);

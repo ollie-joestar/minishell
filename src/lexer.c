@@ -6,7 +6,7 @@
 /*   By: hanjkim <@student.42vienna.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 20:21:09 by hanjkim           #+#    #+#             */
-/*   Updated: 2025/02/23 19:00:36 by hanjkim          ###   ########.fr       */
+/*   Updated: 2025/02/24 18:54:42 by hanjkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	parse_tokens(t_data *data)
 	start = 0;
 	end = 0;
 	while (input[start] != '\0')
-		parse_and_create_token(data, input, &start, &end);
+		parse_make_token(data, input, &start, &end);
 }
 
 void	parse_line(t_data *data)

@@ -6,11 +6,25 @@
 /*   By: oohnivch <oohnivch@student.42vienna.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 17:51:14 by oohnivch          #+#    #+#             */
-/*   Updated: 2025/02/24 17:53:04 by oohnivch         ###   ########.fr       */
+/*   Updated: 2025/02/24 19:06:57 by hanjkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+int	heredoc_dont_expand_check(t_token *filename_token)
+{
+	t_segment	*seg;
+
+	seg = filename_token->segments;
+	while (seg)
+	{
+		if (seg->single_quoted || seg->double_quoted)
+			return (1);
+		seg = seg->next;
+	}
+	return (0);
+}
 
 t_token	*handle_heredoc(t_data *data, t_token *redirection_token,
 						t_token *filename_token)
@@ -18,19 +32,8 @@ t_token	*handle_heredoc(t_data *data, t_token *redirection_token,
 	int			dont_expand;
 	char		*temp_word;
 	char		*here_result;
-	t_segment	*seg;
 
-	dont_expand = 0;
-	seg = filename_token->segments;
-	while (seg)
-	{
-		if (seg->single_quoted || seg->double_quoted)
-		{
-			dont_expand = 1;
-			break ;
-		}
-		seg = seg->next;
-	}
+	dont_expand = heredoc_dont_expand_check(filename_token);
 	temp_word = join_segments(filename_token);
 	if (!temp_word)
 		bruh(data, "Failed to join filename segments for HEREDOC", 2);

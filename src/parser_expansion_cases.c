@@ -6,29 +6,29 @@
 /*   By: hanjkim <@student.42vienna.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/01 22:44:16 by hanjkim           #+#    #+#             */
-/*   Updated: 2025/02/24 18:01:30 by oohnivch         ###   ########.fr       */
+/*   Updated: 2025/02/24 18:45:04 by hanjkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	handle_dollar_exp(t_data *data, t_expander *expander)
+int	handle_dollar_exp(t_data *data, t_exp *exp)
 {
 	char	*exit_status_str;
 	size_t	len;
 
 	exit_status_str = ft_itoa(data->status);
 	if (!exit_status_str)
-		return (ft_free(&expander->result), 1);
+		return (ft_free(&exp->result), 1);
 	len = ft_strlen(exit_status_str);
-	resize_result(expander, expander->index_res + len);
-	ft_memcpy(&(expander->result[expander->index_res]), exit_status_str, len);
-	expander->index_res += len;
+	resize_result(exp, exp->index_res + len);
+	ft_memcpy(&(exp->result[exp->index_res]), exit_status_str, len);
+	exp->index_res += len;
 	ft_free(&exit_status_str);
 	return (0);
 }
 
-int	handle_variable_exp(t_data *data, char *word, t_expander *expander)
+int	handle_variable_exp(t_data *data, char *word, t_exp *exp)
 {
 	char	*var_name;
 	char	*var_value;
@@ -36,46 +36,46 @@ int	handle_variable_exp(t_data *data, char *word, t_expander *expander)
 	size_t	start;
 	size_t	len;
 
-	start = expander->index_word;
-	while (word[expander->index_word] != '\0'
-		&& (ft_isalnum(word[expander->index_word])
-			|| word[expander->index_word] == '_'))
-		expander->index_word++;
-	name_length = expander->index_word - start;
+	start = exp->index_word;
+	while (word[exp->index_word] != '\0'
+		&& (ft_isalnum(word[exp->index_word])
+			|| word[exp->index_word] == '_'))
+		exp->index_word++;
+	name_length = exp->index_word - start;
 	var_name = ft_calloc(name_length + 1, sizeof(char));
 	if (!var_name)
-		return (ft_free(&expander->result), 1);
+		return (ft_free(&exp->result), 1);
 	ft_strlcpy(var_name, word + start, name_length + 1);
 	var_value = get_env_value(data, var_name);
 	len = ft_strlen(var_value);
-	resize_result(expander, expander->index_res + len);
-	ft_memcpy(&(expander->result[expander->index_res]), var_value, len);
-	expander->index_res += len;
+	resize_result(exp, exp->index_res + len);
+	ft_memcpy(&(exp->result[exp->index_res]), var_value, len);
+	exp->index_res += len;
 	ft_free(&var_name);
 	return (0);
 }
 
-int	handle_normal_chars(char c, t_expander *expander)
+int	handle_normal_chars(char c, t_exp *exp)
 {
-	resize_result(expander, expander->index_res + 1);
-	expander->result[expander->index_res] = c;
-	expander->index_res++;
+	resize_result(exp, exp->index_res + 1);
+	exp->result[exp->index_res] = c;
+	exp->index_res++;
 	return (0);
 }
 
-int	process_dollar_value(t_data *data, char *word, t_expander *expander)
+int	process_dollar_value(t_data *data, char *word, t_exp *exp)
 {
-	if (word[expander->index_word] == '\0')
-		handle_normal_chars('$', expander);
-	else if (word[expander->index_word] == '?')
+	if (word[exp->index_word] == '\0')
+		handle_normal_chars('$', exp);
+	else if (word[exp->index_word] == '?')
 	{
-		expander->index_word++;
-		handle_dollar_exp(data, expander);
+		exp->index_word++;
+		handle_dollar_exp(data, exp);
 	}
-	else if (ft_isalpha(word[expander->index_word])
-		|| word[expander->index_word] == '_')
-		handle_variable_exp(data, word, expander);
+	else if (ft_isalpha(word[exp->index_word])
+		|| word[exp->index_word] == '_')
+		handle_variable_exp(data, word, exp);
 	else
-		handle_normal_chars('$', expander);
+		handle_normal_chars('$', exp);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: hanjkim <@student.42vienna.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/29 18:29:01 by hanjkim           #+#    #+#             */
-/*   Updated: 2025/02/18 16:03:15 by hanjkim          ###   ########.fr       */
+/*   Updated: 2025/02/24 18:54:30 by hanjkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	add_token_to_end(t_token **head, t_token *new_token)
 	new_token->prev = current;
 }
 
-void	parse_and_create_token(t_data *data, char *input, int *start, int *end)
+void	parse_make_token(t_data *data, char *input, int *start, int *end)
 {
 	t_token	*new_token;
 
