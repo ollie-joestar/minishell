@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 11:32:53 by oohnivch          #+#    #+#             */
-/*   Updated: 2025/02/13 15:33:05 by oohnivch         ###   ########.fr       */
+/*   Updated: 2025/02/24 15:43:53 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ void	add_env(t_envlist *env, t_envlist *new)
 {
 	while (env->next)
 		env = env->next;
+	while (new->prev)
+		new = new->prev;
 	env->next = new;
 	new->prev = env;
 }
@@ -64,7 +66,7 @@ t_envlist	*create_env(char *name, char *value)
 		return (NULL);
 	list->name = ft_strdup(name);
 	list->value = ft_strdup(value);
-	(ft_free(&name), ft_free(&value));
+	/*(ft_free(&name), ft_free(&value));*/
 	if (!list->name)
 		ft_putstr_fd("NO NAME\n", 2);
 	if (!list->value)
@@ -99,8 +101,7 @@ static void	process_export(t_data *data, t_exec *exec, int j)
 	else if (ft_strchr(exec->av[j], '='))
 	{
 		list = create_env(new_name, new_value);
-		new_name = NULL;
-		new_value = NULL;
+		(ft_free(&new_name), ft_free(&new_value));
 		if (!list)
 			bruh(data, "Memory allocation failed:export.c:102", 69);
 		add_env(data->env, list);

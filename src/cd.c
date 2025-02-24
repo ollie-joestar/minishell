@@ -6,11 +6,23 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 13:49:00 by oohnivch          #+#    #+#             */
-/*   Updated: 2025/02/18 18:12:22 by oohnivch         ###   ########.fr       */
+/*   Updated: 2025/02/24 15:34:19 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+void	pwd_error(char *path)
+{
+	char	*tmp;
+
+	if (!path)
+		return ;
+	tmp = ft_strjoin("getcwd: ", "cannot access parent directories");
+	if (!ft_strncmp(path, "..", 3) || !ft_strncmp(path, ".", 2))
+		mspec2(tmp, "No such file or directory\n");
+	ft_free(&tmp);
+}
 
 char	*get_home(t_data *data)
 {
@@ -44,8 +56,11 @@ void	cd_home(t_data *data, t_exec *exec)
 	{
 		mspe2("cd :", path);
 		data->status = EXIT_FAILURE;
+		return ;
 	}
 	data->status = EXIT_SUCCESS;
+	if (!update_pwd(data))
+		pwd_error(path);
 }
 
 char	*cd_special_path_check(t_data *data, char *path)
@@ -99,18 +114,6 @@ void	failed_cd(t_data *data, char *path)
 	ft_free(&tmp);
 }
 
-void	pwd_error(char *path)
-{
-	char	*tmp;
-
-	if (!path)
-		return ;
-	tmp = ft_strjoin("getcwd: ", "cannot access parent directories");
-	if (!ft_strncmp(path, "..", 3) || !ft_strncmp(path, ".", 2))
-		mspec2(tmp, "No such file or directory\n");
-	ft_free(&tmp);
-}
-
 void	cd(t_data *data, t_exec *exec)
 {
 	char	*path;
@@ -131,7 +134,7 @@ void	cd(t_data *data, t_exec *exec)
 			data->status = 0;
 	}
 	else
-		cd_home(data, exec);
+		return (cd_home(data, exec));
 	if (!update_pwd(data))
 		pwd_error(exec->av[1]);
 	ft_free(&path);

@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 16:35:58 by oohnivch          #+#    #+#             */
-/*   Updated: 2025/02/23 17:38:46 by hanjkim          ###   ########.fr       */
+/*   Updated: 2025/02/24 15:48:04 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,17 +37,10 @@ void	command(t_data *data, t_exec *exec)
 	if (!exec->cmd)
 		bruh(data, NULL, 0);
 	(parse_env_into_ev(data), execve(exec->cmd, exec->av, data->ev));
-	/*mspec2(exec->cmd, "Failed\n");*/
 	if (ft_strchr(exec->cmd, '/') || !data->path || !*data->path)
 		failed_cmd_full(data, exec);
-	else if (1)
+	else
 	{
-		/*if (!data->path)*/
-		/*{*/
-		/*	if (0 == access(exec->cmd, F_OK) && ft_strncmp(exec->cmd, ".", 2) &&*/
-		/*		ft_strncmp(exec->cmd, "..", 3))*/
-		/*		(mspe(exec->cmd), bruh(data, NULL, 126));*/
-		/*}*/
 		if (exec->cmd != NULL)
 			mspec2(exec->cmd, "command not found\n");
 		bruh(data, NULL, 127);

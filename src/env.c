@@ -6,22 +6,20 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 11:02:42 by oohnivch          #+#    #+#             */
-/*   Updated: 2025/02/13 15:27:26 by oohnivch         ###   ########.fr       */
+/*   Updated: 2025/02/24 16:08:56 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-t_envlist	*parse_env(t_data *data, char **ev)
+t_envlist	*parse_env_process(t_data *data, char **ev)
 {
 	int			i;
-	t_envlist	*tmp;
+	t_envlist	*list;
 	char		*name;
 	char		*value;
 
-	if (!ev || !*ev)
-		return (create_new_env(data));
-	tmp = NULL;
+	list = NULL;
 	i = -1;
 	while (ev[++i])
 	{
@@ -31,30 +29,38 @@ t_envlist	*parse_env(t_data *data, char **ev)
 		value = ft_strdup(ft_strchr(ev[i], '=') + 1);
 		if (!value)
 			(ft_free(&name), bruh(data, "Memory allocation failed", 69));
-		if (!tmp)
-			tmp = create_env(name, value);
+		if (!list)
+			list = create_env(name, value);
 		else
-			add_env(tmp, create_env(name, value));
-		name = NULL;
-		value = NULL;
+			add_env(list, create_env(name, value));
+		(ft_free(&name), ft_free(&value));
 	}
-	while (tmp->prev)
-		tmp = tmp->prev;
-	return (shlvl(data, tmp), tmp);
+	while (list->prev)
+		list = list->prev;
+	return (list);
+}
+
+t_envlist	*parse_env(t_data *data, char **ev)
+{
+	t_envlist	*list;
+
+	if (!ev || !*ev)
+		return (create_new_env(data));
+	else
+		list = parse_env_process(data, ev);
+	shlvl(data, list);
+	return (list);
 }
 
 void	parse_env_into_ev(t_data *data)
 {
-	int	i;
+	int			i;
 	t_envlist	*curr_env_node;
-	char	*tmp;
+	char		*tmp;
 
 	i = 0;
 	if (!data->env)
-	{
-		data->ev = NULL;
-		return ;
-	}
+		return (free_arr(&data->ev));
 	while (data->env->prev)
 		data->env = data->env->prev;
 	i = env_len(data->env);
@@ -87,6 +93,7 @@ void	print_env(t_data *data)
 {
 	t_envlist	*list;
 
+	/*ft_putstr_fd("priting env\n", 1);*/
 	if (!data->env)
 		return ;
 	while (data->env->prev)
@@ -119,10 +126,9 @@ void	underscore(t_data *data, t_exec *exec)
 	else
 	{
 		list = create_env("_", value);
-		value = NULL;
+		ft_free(&value);
 		if (!list)
 			bruh(data, "Malloc fail env.c:125", 69);
 		add_env(data->env, list);
-		ft_free(&value);
 	}
 }
