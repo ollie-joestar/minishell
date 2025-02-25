@@ -6,7 +6,7 @@
 /*   By: hanjkim <@student.42vienna.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 16:15:16 by hanjkim           #+#    #+#             */
-/*   Updated: 2025/02/18 16:45:59 by hanjkim          ###   ########.fr       */
+/*   Updated: 2025/02/25 20:11:08 by hanjkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	free_tokens(t_data *data)
 	{
 		next = current->next;
 		if (current->word != NULL)
-			free(current->word);
+			ft_free(&current->word);
 		free_token_segments(current);
 		free(current);
 		current = next;
@@ -60,7 +60,7 @@ void	free_segment(t_segment **seg)
 	{
 		next = (*seg)->next;
 		if ((*seg)->text)
-			free((*seg)->text);
+			ft_free(&(*seg)->text);
 		free(*seg);
 		*seg = next;
 	}

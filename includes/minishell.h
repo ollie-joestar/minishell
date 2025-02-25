@@ -6,7 +6,7 @@
 /*   By: oohnivch <oohnivch@student.42vienna.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 18:03:12 by oohnivch          #+#    #+#             */
-/*   Updated: 2025/02/24 19:00:35 by hanjkim          ###   ########.fr       */
+/*   Updated: 2025/02/25 19:24:13 by hanjkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,15 +69,6 @@ typedef struct s_token
 	struct s_token		*next;
 	struct s_token		*prev;
 }				t_token;
-
-typedef struct s_split
-{
-	char				**words;
-	t_token				*new_head;
-	t_token				*new_tail;
-	t_token				*new_token;
-	int					i;
-}				t_split;
 
 typedef struct s_replace
 {
@@ -195,9 +186,7 @@ t_token		*create_token(char *str, bool quote, bool single_or_double);
 void		add_token_to_end(t_token **head, t_token *new_token);
 void		set_token_type(t_token *token);
 void		skip_spaces(char *input, int *i);
-int			process_current_c(char *input, int *i, t_data *data);
-int			process_quote_part(char *input, int *i, t_data *data);
-t_token		*create_token_from_string(char *str);
+t_token		*create_token_for_string(char *str);
 t_token		*create_empty_token(void);
 t_segment	*create_segment(bool single_quoted, bool double_quoted);
 void		add_segment_to_token(t_token *token, t_segment *seg);
@@ -209,8 +198,7 @@ bool		should_split_token(t_token *token);
 void		replace_tokens(t_data *data, t_token *o_token, t_token *n_token);
 void		split_tokens(t_data *data);
 t_token		*split_token(t_token *original_token, t_data *data);
-char		**get_split_words(t_token *original_token, t_data *data);
-void		make_split_tokens(t_split *vars, t_token *o_token, t_data *data);
+t_token		*make_split_tokens(char **words, t_data *data, int i);
 char		*join_segments(t_token *token);
 
 // Parser functions
@@ -246,7 +234,6 @@ bool		unexpected_token_with_join(t_data *data, t_token *token);
 //
 // Exec initialization
 void		init_exec(t_data *data);
-/*void		init_exec_data(t_data *data);*/
 void		add_to_av_list(t_data *data, t_exec *exec, t_token *token);
 char		**create_argv(t_data *data, t_token *token);
 size_t		argv_size(t_token *token);
@@ -271,10 +258,7 @@ void		add_pid(t_data *data, pid_t pid);
 void		open_pipe_exec(t_data *data, t_exec *exec);
 void		close_pipe_exec(t_data *data, t_exec *exec);
 void		reroute(t_data *data, t_exec *exec);
-/*t_input	*get_first_input(t_input *input);*/
-/*t_output	*get_first_output(t_output *output);*/
 t_redir		*get_first_redir(t_redir *redir);
-/*int			safe_close(int fd);*/
 void		check_exit_status(t_data *data, int exit_status);
 size_t		exec_len(t_exec *exec);
 int			exec_has_cmd(t_exec *exec);

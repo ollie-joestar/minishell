@@ -6,7 +6,7 @@
 /*   By: oohnivch <oohnivch@student.42vienna.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 17:51:14 by oohnivch          #+#    #+#             */
-/*   Updated: 2025/02/24 19:06:57 by hanjkim          ###   ########.fr       */
+/*   Updated: 2025/02/25 19:24:26 by hanjkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ t_token	*handle_heredoc(t_data *data, t_token *redirection_token,
 	here_result = here_doc(data, temp_word, dont_expand);
 	ft_free(&temp_word);
 	free_token_node(&filename_token);
-	filename_token = create_token_from_string(here_result);
+	filename_token = create_token_for_string(here_result);
 	ft_free(&here_result);
 	if (!filename_token)
 		return (NULL);

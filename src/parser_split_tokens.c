@@ -6,20 +6,11 @@
 /*   By: hanjkim <@student.42vienna.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/29 20:03:14 by hanjkim           #+#    #+#             */
-/*   Updated: 2025/02/24 18:49:08 by hanjkim          ###   ########.fr       */
+/*   Updated: 2025/02/25 20:08:50 by hanjkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-void	init_split_vars(t_split *vars)
-{
-	vars->words = NULL;
-	vars->new_head = NULL;
-	vars->new_tail = NULL;
-	vars->new_token = NULL;
-	vars->i = -1;
-}
 
 bool	should_split_token(t_token *token)
 {
@@ -47,7 +38,7 @@ bool	should_split_token(t_token *token)
 	return (any_unquoted && contains_space);
 }
 
-t_token	*create_token_from_string(char *str)
+t_token	*create_token_for_string(char *str)
 {
 	t_token		*new_token;
 	t_segment	*seg;
@@ -58,60 +49,59 @@ t_token	*create_token_from_string(char *str)
 	seg = create_segment(false, false);
 	if (!seg)
 		return (free(new_token), NULL);
-	free(seg->text);
+	ft_free(&seg->text);
 	seg->text = ft_strdup(str);
 	if (!seg->text)
-	{
-		free(seg);
-		free(new_token);
-		return (NULL);
-	}
+		return (free(seg), free(new_token), NULL);
 	add_segment_to_token(new_token, seg);
 	return (new_token);
 }
 
-void	make_split_tokens(t_split *vars, t_token *original, t_data *data)
+t_token	*make_split_tokens(char **words, t_data *data, int i)
 {
+	t_token	*first_token;
+	t_token	*last_token;
 	t_token	*new_token;
 
-	(void)original;
-	while (vars->words[++vars->i] != NULL)
+	first_token = NULL;
+	last_token = NULL;
+	while (words[++i] != NULL)
 	{
-		new_token = create_token_from_string(vars->words[vars->i]);
+		new_token = create_token_for_string(words[i]);
 		if (!new_token)
-		{
-			free_arr(&vars->words);
-			bruh(data, "Split_tok fail", 2);
-		}
+			((free_arr(&words), bruh(data, "Split_tok fail", 2)));
 		new_token->type = WORD;
-		if (!vars->new_head)
+		if (!first_token)
 		{
-			vars->new_head = new_token;
-			vars->new_tail = new_token;
+			first_token = new_token;
+			last_token = new_token;
 		}
 		else
 		{
-			vars->new_tail->next = new_token;
-			new_token->prev = vars->new_tail;
-			vars->new_tail = new_token;
+			last_token->next = new_token;
+			new_token->prev = last_token;
+			last_token = new_token;
 		}
 	}
+	return (first_token);
 }
 
 t_token	*split_token(t_token *original_token, t_data *data)
 {
-	t_split			vars;
 	char			*joined;
+	char			**words;
+	t_token			*new_tokens;
+	int				i;
 
-	init_split_vars(&vars);
+	i = -1;
 	joined = join_segments(original_token);
 	if (!joined)
 		bruh(data, "Failed to join token segments", 2);
-	vars.words = ft_split_set(joined, " \t\n\r\v\f");
+	words = ft_split_set(joined, " \t\n\r\v\f");
 	ft_free(&joined);
-	if (!vars.words)
+	if (!words)
 		bruh(data, "Failed to split token words", 2);
-	make_split_tokens(&vars, original_token, data);
-	free_arr(&vars.words);
-	return (vars.new_head);
+	new_tokens = make_split_tokens(words, data, i);
+	free_arr(&words);
+	return (new_tokens);
 }
