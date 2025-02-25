@@ -6,7 +6,7 @@
 /*   By: hanjkim <@student.42vienna.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 20:46:04 by hanjkim           #+#    #+#             */
-/*   Updated: 2025/02/24 18:42:54 by hanjkim          ###   ########.fr       */
+/*   Updated: 2025/02/25 16:02:57 by hanjkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,8 @@ char	*expand(t_data *data, char *word)
 		if (word[exp.index_word] == '$')
 		{
 			exp.index_word++;
-			process_dollar_value(data, word, &exp);
+			if (process_dollar_value(data, word, &exp))
+				return (ft_free(&exp.result), NULL);
 		}
 		else
 			handle_normal_chars(word[exp.index_word++], &exp);

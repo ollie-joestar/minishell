@@ -6,7 +6,7 @@
 /*   By: hanjkim <@student.42vienna.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/01 21:43:24 by hanjkim           #+#    #+#             */
-/*   Updated: 2025/02/24 18:46:34 by hanjkim          ###   ########.fr       */
+/*   Updated: 2025/02/25 16:08:44 by hanjkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,8 @@ int	resize_result(t_exp *exp, size_t required_size)
 		exp->result_size = required_size + 1;
 		exp->result = ft_realloc(exp->result,
 				exp->old_result_size, exp->result_size);
+		if (!exp->result)
+			return (1);
 	}
 	return (0);
 }

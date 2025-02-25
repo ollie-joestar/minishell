@@ -6,7 +6,7 @@
 /*   By: hanjkim <@student.42vienna.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/01 22:44:16 by hanjkim           #+#    #+#             */
-/*   Updated: 2025/02/24 18:45:04 by hanjkim          ###   ########.fr       */
+/*   Updated: 2025/02/25 16:38:06 by hanjkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ int	handle_dollar_exp(t_data *data, t_exp *exp)
 	if (!exit_status_str)
 		return (ft_free(&exp->result), 1);
 	len = ft_strlen(exit_status_str);
-	resize_result(exp, exp->index_res + len);
+	if (resize_result(exp, exp->index_res + len))
+		return (ft_free(&exit_status_str), 1);
 	ft_memcpy(&(exp->result[exp->index_res]), exit_status_str, len);
 	exp->index_res += len;
 	ft_free(&exit_status_str);
@@ -48,7 +49,8 @@ int	handle_variable_exp(t_data *data, char *word, t_exp *exp)
 	ft_strlcpy(var_name, word + start, name_length + 1);
 	var_value = get_env_value(data, var_name);
 	len = ft_strlen(var_value);
-	resize_result(exp, exp->index_res + len);
+	if (resize_result(exp, exp->index_res + len))
+		return (ft_free(&var_name), 1);
 	ft_memcpy(&(exp->result[exp->index_res]), var_value, len);
 	exp->index_res += len;
 	ft_free(&var_name);
@@ -70,11 +72,15 @@ int	process_dollar_value(t_data *data, char *word, t_exp *exp)
 	else if (word[exp->index_word] == '?')
 	{
 		exp->index_word++;
-		handle_dollar_exp(data, exp);
+		if (handle_dollar_exp(data, exp))
+			return (1);
 	}
 	else if (ft_isalpha(word[exp->index_word])
 		|| word[exp->index_word] == '_')
-		handle_variable_exp(data, word, exp);
+	{
+		if (handle_variable_exp(data, word, exp))
+			return (1);
+	}
 	else
 		handle_normal_chars('$', exp);
 	return (0);
