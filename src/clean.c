@@ -6,7 +6,7 @@
 /*   By: oohnivch <oohnivch@student.42vienna.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 12:29:43 by oohnivch          #+#    #+#             */
-/*   Updated: 2025/02/24 17:00:09 by oohnivch         ###   ########.fr       */
+/*   Updated: 2025/02/25 13:18:06 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,5 +86,6 @@ void	bruh(t_data *data, char *s, int status)
 	rl_clear_history();
 	close(STDOUT_FILENO);
 	close(STDIN_FILENO);
+	close(STDERR_FILENO);
 	exit(status);
 }

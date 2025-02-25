@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 11:41:48 by oohnivch          #+#    #+#             */
-/*   Updated: 2025/02/24 17:58:48 by oohnivch         ###   ########.fr       */
+/*   Updated: 2025/02/25 13:15:12 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ static void	rerouteinfile(t_data *data, t_exec *exec)
 	if (exec_len(exec) > 1 || exec->type == CMD)
 		dup2(fd, STDIN_FILENO);
 	close(fd);
+	close_pipe_exec(data, exec->prev);
 	if (exec->redir->type == HEREDOC)
 		unlink(exec->redir->file);
 }

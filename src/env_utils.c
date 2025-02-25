@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 12:17:06 by oohnivch          #+#    #+#             */
-/*   Updated: 2025/02/24 17:06:21 by oohnivch         ###   ########.fr       */
+/*   Updated: 2025/02/25 13:49:50 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ size_t	env_len(t_envlist *env)
 	return (len);
 }
 
-static	int	sorted_env(t_envlist *list)
+int	sorted_env(t_envlist *list)
 {
 	t_envlist	*tmp;
 
@@ -58,18 +58,20 @@ static void	swap_env_nodes(t_envlist *first, t_envlist *second)
 
 void	sort_env(t_envlist *list)
 {
+	t_envlist	*lst;
 	t_envlist	*tmp;
 
 	while (list->prev)
 		list = list->prev;
 	while (!sorted_env(list))
 	{
-		tmp = list;
-		while (tmp && tmp->next)
+		lst = list;
+		while (lst && lst->next)
 		{
-			if (ft_strncmp(tmp->name, tmp->next->name, ft_strlen(tmp->name)))
-				swap_env_nodes(tmp, tmp->next);
-			tmp = tmp->next;
+			tmp = lst->next;
+			if (ft_strncmp(lst->name, tmp->name, ft_strlen(lst->name)) > 0)
+				swap_env_nodes(lst, lst->next);
+			lst = lst->next;
 		}
 	}
 }

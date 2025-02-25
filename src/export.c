@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 11:32:53 by oohnivch          #+#    #+#             */
-/*   Updated: 2025/02/24 17:45:02 by oohnivch         ###   ########.fr       */
+/*   Updated: 2025/02/25 10:39:56 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,22 +49,26 @@ static void	process_export(t_data *data, t_exec *exec, int j)
 
 static int	export_check(char *argv, t_data *data)
 {
-	int	i;
+	int		i;
+	char	*s1;
+	char	*s2;
 
 	i = 1;
-	if (!ft_isalpha(*argv) && *argv != '_')
+	if (*argv && (!ft_isalpha(*argv) && *argv != '_'))
 	{
 		data->status = 1;
-		mspec3("export", argv, "not a valid identifier\n");
-		return (0);
+		s1 = ft_strjoin("`", argv);
+		s2 = ft_strjoin(s1, "': not a valid identifier\n");
+		return ((mspec2("export", s2), ft_free(&s2), ft_free(&s1)), 0);
 	}
 	while (argv[i] && argv[i] != '=')
 	{
 		if (!ft_isalnum(argv[i]) && argv[i] != '_')
 		{
 			data->status = 1;
-			mspec3("export", argv, "not a valid identifier\n");
-			return (0);
+			s1 = ft_strjoin("`", argv);
+			s2 = ft_strjoin(s1, "': not a valid identifier\n");
+			return ((mspec2("export", s2), ft_free(&s2), ft_free(&s1)), 0);
 		}
 		i++;
 	}
@@ -80,8 +84,8 @@ void	export(t_data *data, t_exec *exec)
 	i = 0;
 	while (exec->av[++i])
 	{
-		if (export_check(exec->av[i], data))
-			continue ;
+		if (!export_check(exec->av[i], data))
+			return ;
 		process_export(data, exec, i);
 	}
 }

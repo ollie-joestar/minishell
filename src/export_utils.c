@@ -6,7 +6,7 @@
 /*   By: oohnivch <oohnivch@student.42vienna.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 17:43:33 by oohnivch          #+#    #+#             */
-/*   Updated: 2025/02/24 17:47:35 by oohnivch         ###   ########.fr       */
+/*   Updated: 2025/02/25 13:49:31 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	print_export(t_data *data)
 	t_envlist	*list;
 
 	if (!data->env)
-		ft_printerr("No env for export\n");
+		mspec("No env for export\n");
 	list = dup_env(data->env);
 	if (!list)
 		bruh(data, "Memory allocation failed", 69);
