@@ -6,7 +6,7 @@
 /*   By: oohnivch <oohnivch@student.42vienna.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 17:43:33 by oohnivch          #+#    #+#             */
-/*   Updated: 2025/02/25 13:49:31 by oohnivch         ###   ########.fr       */
+/*   Updated: 2025/02/25 16:07:06 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ void	print_export(t_data *data)
 
 void	add_env(t_envlist *env, t_envlist *new)
 {
+	if (!env || !new)
+		return ;
 	while (env->next)
 		env = env->next;
 	while (new->prev)
