@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 12:17:06 by oohnivch          #+#    #+#             */
-/*   Updated: 2025/02/25 13:49:50 by oohnivch         ###   ########.fr       */
+/*   Updated: 2025/02/26 18:48:29 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,27 +53,35 @@ static void	swap_env_nodes(t_envlist *first, t_envlist *second)
 	first->prev = second;
 	first->next = second->next;
 	second->prev = tmp;
+	if (tmp)
+		tmp->next = second;
+	if (second->next)
+		second->next->prev = first;
 	second->next = first;
 }
 
-void	sort_env(t_envlist *list)
+t_envlist	*sort_env(t_envlist *list)
 {
-	t_envlist	*lst;
-	t_envlist	*tmp;
+	t_envlist	*frst;
+	t_envlist	*scnd;
 
 	while (list->prev)
 		list = list->prev;
 	while (!sorted_env(list))
 	{
-		lst = list;
-		while (lst && lst->next)
+		frst = list;
+		while (frst && frst->next)
 		{
-			tmp = lst->next;
-			if (ft_strncmp(lst->name, tmp->name, ft_strlen(lst->name)) > 0)
-				swap_env_nodes(lst, lst->next);
-			lst = lst->next;
+			scnd = frst->next;
+			if (ft_strncmp(frst->name, scnd->name, ft_strlen(frst->name)) > 0)
+			{
+				swap_env_nodes(frst, scnd);
+				break ;
+			}
+			frst = frst->next;
 		}
 	}
+	return (list);
 }
 
 t_envlist	*dup_env(t_envlist *list)
@@ -86,7 +94,7 @@ t_envlist	*dup_env(t_envlist *list)
 	{
 		tmp = ft_calloc(1, sizeof(t_envlist));
 		if (!tmp)
-			return (NULL);
+			return (free_env_list(new), NULL);
 		tmp->name = ft_strdup(list->name);
 		tmp->value = ft_strdup(list->value);
 		if (!tmp->name || !tmp->value)

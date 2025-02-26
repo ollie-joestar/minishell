@@ -6,7 +6,7 @@
 #    By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/14 16:34:42 by oohnivch          #+#    #+#              #
-#    Updated: 2025/02/25 11:55:17 by oohnivch         ###   ########.fr        #
+#    Updated: 2025/02/26 17:20:41 by oohnivch         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 #									Variables								   #
@@ -16,9 +16,7 @@ CC = cc
 CFLAGS = -Wall -Wextra -Werror -g
 MFLAGS = --no-print-directory -C
 HEADER = -I./includes
-# HEADER_BONUS = -I./includes_bonus/
 NAME = minishell
-# BONUS = pipex_bonus
 
 LIBDIR = ./libft
 LIB = $(LIBDIR)/libft.a
@@ -164,4 +162,7 @@ logo:
 
 rebonus: fclean bonus
 
-.PHONY: all clean fclean re logo
+leak: all
+	valgrind -s --leak-check=full --show-leak-kinds=all --trace-children=yes --track-fds=yes ./$(NAME)
+
+.PHONY: all leak clean fclean re logo

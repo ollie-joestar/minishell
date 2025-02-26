@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 13:39:47 by oohnivch          #+#    #+#             */
-/*   Updated: 2025/02/24 17:53:14 by oohnivch         ###   ########.fr       */
+/*   Updated: 2025/02/26 17:27:22 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static int	handle_heredoc_signal(t_data *data, char **ln, char **f, int fd)
 		unlink(*f);
 		fd = open(*f, O_CREAT | O_RDWR, 0664);
 		if (fd < 0)
-			bruh(data, "minishell: failed here_doc.c:49", 2);
+			bruh(data, "minishell: failed here_doc.c:24", 2);
 		close(fd);
 		data->status = 130;
 		return (1);

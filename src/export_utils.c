@@ -6,7 +6,7 @@
 /*   By: oohnivch <oohnivch@student.42vienna.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 17:43:33 by oohnivch          #+#    #+#             */
-/*   Updated: 2025/02/26 15:26:44 by oohnivch         ###   ########.fr       */
+/*   Updated: 2025/02/26 18:50:49 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	print_export(t_data *data)
 	list = dup_env(data->env);
 	if (!list)
 		bruh(data, "Memory allocation failed", 69);
-	sort_env(list);
+	list = sort_env(list);
 	while (list->prev)
 		list = list->prev;
 	while (list)
@@ -33,6 +33,8 @@ void	print_export(t_data *data)
 			else
 				ft_printf("declare -x %s=\"%s\"\n", list->name, list->value);
 		}
+		if (!list->next)
+			break ;
 		list = list->next;
 	}
 	free_env_list(list);

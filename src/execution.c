@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 16:35:58 by oohnivch          #+#    #+#             */
-/*   Updated: 2025/02/26 13:02:35 by oohnivch         ###   ########.fr       */
+/*   Updated: 2025/02/26 18:59:08 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	command(t_data *data, t_exec *exec)
 {
 	if (!exec->cmd)
-		bruh(data, NULL, 0);
+		bruh(data, NULL, data->status);
 	(parse_env_into_ev(data), execve(exec->cmd, exec->av, data->ev));
 	if (ft_strchr(exec->cmd, '/') || !data->path || !*data->path)
 		failed_cmd_full(data, exec);
@@ -50,7 +50,7 @@ void	builtin(t_data *data, t_exec *exec)
 	if (ft_strncmp(exec->cmd, "exit", 5))
 		restore_stds(exec);
 	if (exec_len(exec) > 1)
-		bruh(data, NULL, 0);
+		bruh(data, NULL, data->status);
 }
 
 void	do_stuff(t_data *data, t_exec *exec)

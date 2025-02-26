@@ -6,7 +6,7 @@
 /*   By: oohnivch <oohnivch@student.42vienna.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 18:03:12 by oohnivch          #+#    #+#             */
-/*   Updated: 2025/02/26 15:27:09 by oohnivch         ###   ########.fr       */
+/*   Updated: 2025/02/26 17:22:29 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -256,7 +256,7 @@ void		shlvl(t_data *data, t_envlist *env);
 t_envlist	*parse_env(t_data *data, char **ev);
 size_t		env_len(t_envlist *env);
 char		*expand(t_data *data, char *s);
-void		sort_env(t_envlist *list);
+t_envlist	*sort_env(t_envlist *list);
 t_envlist	*dup_env(t_envlist *list);
 t_envlist	*create_new_env(t_data *data);
 t_envlist	*find_env(t_envlist *env, char *name);
