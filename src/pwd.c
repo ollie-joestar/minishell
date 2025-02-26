@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 14:56:43 by oohnivch          #+#    #+#             */
-/*   Updated: 2025/02/24 17:57:42 by oohnivch         ###   ########.fr       */
+/*   Updated: 2025/02/26 15:31:37 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ int	update_pwd(t_data *data)
 void	pwd(t_data *data, t_exec *exec)
 {
 	char	*pwd;
+	char	*tmp;
 
 	(void)exec;
 	pwd = getcwd(NULL, 0);
@@ -75,7 +76,14 @@ void	pwd(t_data *data, t_exec *exec)
 		data->status = 69;
 		return ;
 	}
-	ft_putendl_fd(pwd, STDOUT_FILENO);
+	if (pid(data) == 0)
+	{
+		tmp = join2(pwd, "\n");
+		safe_print(tmp);
+		ft_free(&tmp);
+	}
+	else
+		ft_putendl_fd(pwd, STDOUT_FILENO);
 	ft_free(&pwd);
 	data->status = 0;
 }

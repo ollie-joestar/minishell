@@ -6,7 +6,7 @@
 /*   By: oohnivch <oohnivch@student.42vienna.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 18:03:12 by oohnivch          #+#    #+#             */
-/*   Updated: 2025/02/25 19:24:13 by hanjkim          ###   ########.fr       */
+/*   Updated: 2025/02/26 15:27:09 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,22 +86,6 @@ typedef struct s_exp
 	size_t				index_res;
 }				t_exp;
 
-typedef struct s_input
-{
-	int					type; // HERE_DOC | FILE
-	char				*file;
-	struct s_input		*next;
-	struct s_input		*prev;
-}			t_input;
-
-typedef struct s_output
-{
-	t_token_type		type; // REPLACE | APPEND
-	char				*file;
-	struct s_output		*next;
-	struct s_output		*prev;
-}			t_output;
-
 typedef struct s_redir
 {
 	int					type; // INPUT | HEREDOC | REPLACE | APPEND
@@ -129,8 +113,6 @@ typedef struct s_exec
 {
 	int					type; // BUILTIN | CMD
 	t_redir				*redir; // linked list of redirections
-	/*t_input				*in; // linked list of input files*/
-	/*t_output			*out; // linked list of output files*/
 	int					piped; // 1 if the command is piped
 	int					pipe[2]; // pipe file descriptors
 	int					needs_restore; // 1 if the command is redirected
@@ -306,6 +288,10 @@ void		ft_exit(t_data *data, t_exec *exec);
 void		export(t_data *data, t_exec *exec);
 void		print_export(t_data *data);
 void		unset(t_data *data, t_exec *exec);
+void		safe_print(char *str);
+char		*combine_env(t_data *data, char *name, char *value);
+void		safe_print_env(t_data *data, char *name, char *value);
+void		safe_print_export(t_data *data, char *name, char *value);
 
 // HereDoc
 char		*here_doc(t_data *data, char *l, int to_expand);

@@ -6,7 +6,7 @@
 /*   By: oohnivch <oohnivch@student.42vienna.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 17:43:33 by oohnivch          #+#    #+#             */
-/*   Updated: 2025/02/25 16:07:06 by oohnivch         ###   ########.fr       */
+/*   Updated: 2025/02/26 15:26:44 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,12 @@ void	print_export(t_data *data)
 	while (list)
 	{
 		if (ft_strncmp(list->name, "_", 2))
-			ft_printf("declare -x %s=\"%s\"\n", list->name, list->value);
+		{
+			if (pid(data) == 0)
+				safe_print_export(data, list->name, list->value);
+			else
+				ft_printf("declare -x %s=\"%s\"\n", list->name, list->value);
+		}
 		list = list->next;
 	}
 	free_env_list(list);

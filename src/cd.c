@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 13:49:00 by oohnivch          #+#    #+#             */
-/*   Updated: 2025/02/24 16:30:30 by oohnivch         ###   ########.fr       */
+/*   Updated: 2025/02/26 15:13:52 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,19 @@ void	failed_cd(t_data *data, char *path)
 	ft_free(&tmp);
 }
 
+static void	print_cd_minus(t_data *data, char *path)
+{
+	char	*str;
+
+	str = join2(path, "\n");
+	if (pid(data) == 0)
+		safe_print(str);
+	else
+		ft_putstr(str);
+	ft_free(&str);
+	data->status = 0;
+}
+
 void	cd(t_data *data, t_exec *exec)
 {
 	char	*path;
@@ -101,7 +114,7 @@ void	cd(t_data *data, t_exec *exec)
 		if (chdir(path) == -1)
 			(failed_cd(data, path), ft_free(&path));
 		else if (!ft_strncmp(exec->av[1], "-", 2))
-			(ft_printf("%s\n", get_oldpwd(data)->value), data->status = 0);
+			print_cd_minus(data, get_oldpwd(data)->value);
 		else
 			data->status = 0;
 	}

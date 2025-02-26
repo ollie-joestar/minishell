@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 11:41:48 by oohnivch          #+#    #+#             */
-/*   Updated: 2025/02/25 13:15:12 by oohnivch         ###   ########.fr       */
+/*   Updated: 2025/02/26 15:48:11 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ static void	rerouteinfile(t_data *data, t_exec *exec)
 	if (exec_len(exec) > 1 || exec->type == CMD)
 		dup2(fd, STDIN_FILENO);
 	close(fd);
-	close_pipe_exec(data, exec->prev);
 	if (exec->redir->type == HEREDOC)
 		unlink(exec->redir->file);
 }
@@ -64,32 +63,29 @@ static void	rerouteoutfile(t_data *data, t_exec *exec)
 	close(fd);
 }
 
-static void	rerouteinpipe(t_exec *exec)
+static void	rerouteinpipe(t_data *data, t_exec *exec)
 {
-	close(exec->prev->pipe[WR]);
 	dup2(exec->prev->pipe[RD], STDIN_FILENO);
-	close(exec->prev->pipe[RD]);
+	close_pipe_exec(data, exec->prev);
 }
 
-static void	rerouteoutpipe(t_exec *exec)
+static void	rerouteoutpipe(t_data *data, t_exec *exec)
 {
-	close(exec->pipe[RD]);
 	dup2(exec->pipe[WR], STDOUT_FILENO);
-	close(exec->pipe[WR]);
+	close_pipe_exec(data, exec);
 }
 
 void	reroute(t_data *data, t_exec *exec)
 {
 	t_redir		*redir;
-	t_exec		*restore;
 
-	if (data->exec == exec)
-		restore = exec;
-	else
-		restore = NULL;
 	while (exec->redir && exec->redir->prev)
 		exec->redir = exec->redir->prev;
 	redir = exec->redir;
+	if (exec->prev)
+		rerouteinpipe(data, exec);
+	if (exec->next)
+		rerouteoutpipe(data, exec);
 	while (exec->redir)
 	{
 		if (exec->redir->type == INPUT || exec->redir->type == HEREDOC)
@@ -99,10 +95,4 @@ void	reroute(t_data *data, t_exec *exec)
 		exec->redir = exec->redir->next;
 	}
 	exec->redir = redir;
-	if (!has_input(exec) && exec->prev)
-		rerouteinpipe(exec);
-	if (!has_output(exec) && exec->next)
-		rerouteoutpipe(exec);
-	if (restore)
-		data->exec = restore;
 }
