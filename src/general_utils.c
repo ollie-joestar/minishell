@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 16:36:14 by oohnivch          #+#    #+#             */
-/*   Updated: 2025/02/25 13:31:32 by oohnivch         ###   ########.fr       */
+/*   Updated: 2025/02/26 19:01:02 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ int	fork1(t_data *data)
 
 	pid = fork();
 	if (pid == -1)
-		bruh(data, "spoons!!!!!\n", 1);
+		bruh(data, "spoons!!!!!\n", 69);
 	add_pid(data, pid);
 	return (pid);
 }
