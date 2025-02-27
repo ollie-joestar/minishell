@@ -6,7 +6,7 @@
 /*   By: hanjkim <@student.42vienna.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/29 20:03:14 by hanjkim           #+#    #+#             */
-/*   Updated: 2025/02/25 20:08:50 by hanjkim          ###   ########.fr       */
+/*   Updated: 2025/02/27 15:17:35 by hanjkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ t_token	*make_split_tokens(char **words, t_data *data, int i)
 	{
 		new_token = create_token_for_string(words[i]);
 		if (!new_token)
-			((free_arr(&words), bruh(data, "Split_tok fail", 2)));
+			((free_arr(&words), free_tokens(data), bruh(data, "Oh", 2)));
 		new_token->type = WORD;
 		if (!first_token)
 		{

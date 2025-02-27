@@ -6,7 +6,7 @@
 /*   By: hanjkim <@student.42vienna.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 20:46:04 by hanjkim           #+#    #+#             */
-/*   Updated: 2025/02/25 16:02:57 by hanjkim          ###   ########.fr       */
+/*   Updated: 2025/02/27 15:08:24 by hanjkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ char	*expand_segment(t_data *data, t_segment *seg, t_token *token)
 		return (ft_strdup(seg->text));
 	expanded = expand(data, seg->text);
 	if (!expanded)
-		return (ft_strdup(""));
+		return (NULL);
 	if (!seg->single_quoted && !seg->double_quoted && seg->text[0] == '$'
 		&& expanded[0] == '\0')
 		seg->env_not_found = true;
@@ -53,6 +53,8 @@ void	expand_tokens(t_data *data)
 		while (seg)
 		{
 			expanded = expand_segment(data, seg, current);
+			if (!expanded)
+				return ;
 			ft_free(&seg->text);
 			seg->text = expanded;
 			seg = seg->next;
