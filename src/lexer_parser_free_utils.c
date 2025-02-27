@@ -6,12 +6,13 @@
 /*   By: hanjkim <@student.42vienna.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 16:15:16 by hanjkim           #+#    #+#             */
-/*   Updated: 2025/02/25 20:11:08 by hanjkim          ###   ########.fr       */
+/*   Updated: 2025/02/27 16:15:32 by hanjkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
+// Free the segments of a token
 void	free_token_segments(t_token *token)
 {
 	t_segment	*seg;
@@ -30,6 +31,7 @@ void	free_token_segments(t_token *token)
 	token->segments = NULL;
 }
 
+// Free all tokens by rewinding the token list
 void	free_tokens(t_data *data)
 {
 	t_token	*current;
@@ -52,6 +54,7 @@ void	free_tokens(t_data *data)
 	data->token = NULL;
 }
 
+// Free a single token's segments
 void	free_segment(t_segment **seg)
 {
 	t_segment	*next;
@@ -66,6 +69,7 @@ void	free_segment(t_segment **seg)
 	}
 }
 
+// Annihilate old token
 void	free_old_token(t_token *token)
 {
 	if (!token)
@@ -78,6 +82,7 @@ void	free_old_token(t_token *token)
 	token = NULL;
 }
 
+// Free a single token node
 void	free_token_node(t_token **token)
 {
 	if (token == NULL || *token == NULL)

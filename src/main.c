@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 09:38:58 by oohnivch          #+#    #+#             */
-/*   Updated: 2025/02/27 15:49:41 by hanjkim          ###   ########.fr       */
+/*   Updated: 2025/02/27 16:28:00 by hanjkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,10 @@ int	stop_right_there_criminal(t_data *data)
 		return (0);
 	}
 	if (!data->line || !*data->line)
+	{
+		ft_free(&data->line);
 		return (0);
+	}
 	return (1);
 }
 

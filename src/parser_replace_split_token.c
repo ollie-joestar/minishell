@@ -6,12 +6,13 @@
 /*   By: oohnivch <oohnivch@student.42vienna.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 18:01:54 by oohnivch          #+#    #+#             */
-/*   Updated: 2025/02/24 18:52:39 by hanjkim          ###   ########.fr       */
+/*   Updated: 2025/02/27 16:15:21 by hanjkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+// Replace the old token with the new token
 void	replace_tokens(t_data *data, t_token *o_token, t_token *n_token)
 {
 	t_token	*last_token;

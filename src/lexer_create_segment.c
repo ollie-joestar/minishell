@@ -6,12 +6,13 @@
 /*   By: hanjkim <@student.42vienna.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 18:37:08 by hanjkim           #+#    #+#             */
-/*   Updated: 2025/02/23 18:19:15 by hanjkim          ###   ########.fr       */
+/*   Updated: 2025/02/27 16:09:55 by hanjkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+// Join all segments of a token into a single string
 char	*join_segments(t_token *token)
 {
 	size_t		total_len;
@@ -41,6 +42,7 @@ char	*join_segments(t_token *token)
 	return (joined);
 }
 
+// Add a string segment to a token's segment placeholder
 void	add_segment_to_token(t_token *token, t_segment *seg)
 {
 	t_segment	*curr;
@@ -56,6 +58,7 @@ void	add_segment_to_token(t_token *token, t_segment *seg)
 	curr->next = seg;
 }
 
+// Create a new segment with the given quote markers
 t_segment	*create_segment(bool single_quoted, bool double_quoted)
 {
 	t_segment	*seg;

@@ -6,12 +6,13 @@
 /*   By: hanjkim <@student.42vienna.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 15:07:37 by hanjkim           #+#    #+#             */
-/*   Updated: 2025/02/11 16:13:58 by oohnivch         ###   ########.fr       */
+/*   Updated: 2025/02/27 19:12:53 by hanjkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+// Checks if the token is a redirection
 bool	is_redirection(t_token *token)
 {
 	if (token->type == INPUT || token->type == REPLACE
@@ -20,6 +21,8 @@ bool	is_redirection(t_token *token)
 	return (false);
 }
 
+// Joins all segments of a token into a single string
+// and sets up the tokens for syntax error messages
 bool	unexpected_token_with_join(t_data *data, t_token *token)
 {
 	char	*joined;

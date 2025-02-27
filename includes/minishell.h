@@ -6,7 +6,7 @@
 /*   By: oohnivch <oohnivch@student.42vienna.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 18:03:12 by oohnivch          #+#    #+#             */
-/*   Updated: 2025/02/27 15:49:24 by hanjkim          ###   ########.fr       */
+/*   Updated: 2025/02/27 19:09:01 by hanjkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -157,7 +157,6 @@ typedef struct s_data
 extern volatile sig_atomic_t	g_signal;
 void		handle_sigint(int sig);
 void		catch_sigint(int sigint);
-void		setup_signal_handler(t_data *data, void (*handler)(int));
 void		setup_signal_mode(t_data *data, int interactive);
 void		setup_interactive_signals(t_data *data);
 

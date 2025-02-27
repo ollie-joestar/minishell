@@ -6,12 +6,13 @@
 /*   By: hanjkim <@student.42vienna.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/29 20:03:14 by hanjkim           #+#    #+#             */
-/*   Updated: 2025/02/27 15:17:35 by hanjkim          ###   ########.fr       */
+/*   Updated: 2025/02/27 19:03:25 by hanjkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+// Check if the token should be split based on quotation
 bool	should_split_token(t_token *token)
 {
 	t_segment	*seg;
@@ -38,6 +39,7 @@ bool	should_split_token(t_token *token)
 	return (any_unquoted && contains_space);
 }
 
+// Create a token for the new string
 t_token	*create_token_for_string(char *str)
 {
 	t_token		*new_token;
@@ -57,6 +59,23 @@ t_token	*create_token_for_string(char *str)
 	return (new_token);
 }
 
+// Append the new token to the end of the token list
+void	append_token(t_token **first, t_token **last, t_token *new_token)
+{
+	if (!*first)
+	{
+		*first = new_token;
+		*last = new_token;
+	}
+	else
+	{
+		(*last)->next = new_token;
+		new_token->prev = *last;
+		*last = new_token;
+	}
+}
+
+//Make a new token for each word in the split string
 t_token	*make_split_tokens(char **words, t_data *data, int i)
 {
 	t_token	*first_token;
@@ -69,23 +88,15 @@ t_token	*make_split_tokens(char **words, t_data *data, int i)
 	{
 		new_token = create_token_for_string(words[i]);
 		if (!new_token)
-			((free_arr(&words), free_tokens(data), bruh(data, "Oh", 2)));
+			((free_token_node(&first_token),
+					free_arr(&words), bruh(data, "Oh", 2)));
 		new_token->type = WORD;
-		if (!first_token)
-		{
-			first_token = new_token;
-			last_token = new_token;
-		}
-		else
-		{
-			last_token->next = new_token;
-			new_token->prev = last_token;
-			last_token = new_token;
-		}
+		append_token(&first_token, &last_token, new_token);
 	}
 	return (first_token);
 }
 
+// Split the token into multiple tokens
 t_token	*split_token(t_token *original_token, t_data *data)
 {
 	char			*joined;

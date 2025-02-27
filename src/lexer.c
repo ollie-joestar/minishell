@@ -6,12 +6,13 @@
 /*   By: hanjkim <@student.42vienna.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 20:21:09 by hanjkim           #+#    #+#             */
-/*   Updated: 2025/02/27 14:59:01 by hanjkim          ###   ########.fr       */
+/*   Updated: 2025/02/27 16:14:50 by hanjkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+// Cycle through the token list and set it's fate (type)
 void	set_tokens_type(t_token *token_list)
 {
 	t_token	*current;
@@ -24,6 +25,7 @@ void	set_tokens_type(t_token *token_list)
 	}
 }
 
+// Split tokens into multiple tokens if word was quoted or not
 void	split_tokens(t_data *data)
 {
 	t_token	*current_token;
@@ -43,6 +45,7 @@ void	split_tokens(t_data *data)
 	}
 }
 
+// Go through the input and decide where to make tokens
 void	parse_tokens(t_data *data)
 {
 	char	*input;
@@ -58,6 +61,7 @@ void	parse_tokens(t_data *data)
 		parse_make_token(data, input, &start, &end);
 }
 
+// Main lexer function to parse the line
 void	parse_line(t_data *data)
 {
 	if (data->token != NULL)

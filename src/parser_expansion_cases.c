@@ -6,12 +6,13 @@
 /*   By: hanjkim <@student.42vienna.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/01 22:44:16 by hanjkim           #+#    #+#             */
-/*   Updated: 2025/02/25 17:03:07 by hanjkim          ###   ########.fr       */
+/*   Updated: 2025/02/27 16:16:56 by hanjkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+// Dollar expansion cases
 int	handle_dollar_exp(t_data *data, t_exp *exp)
 {
 	char	*exit_status_str;
@@ -29,6 +30,7 @@ int	handle_dollar_exp(t_data *data, t_exp *exp)
 	return (0);
 }
 
+// Variable expansion cases (what a mess)
 int	handle_variable_exp(t_data *data, char *word, t_exp *exp)
 {
 	char	*var_name;
@@ -57,6 +59,7 @@ int	handle_variable_exp(t_data *data, char *word, t_exp *exp)
 	return (0);
 }
 
+// Append every character to the result string
 int	handle_normal_chars(char c, t_exp *exp)
 {
 	resize_result(exp, exp->index_res + 1);
@@ -65,6 +68,7 @@ int	handle_normal_chars(char c, t_exp *exp)
 	return (0);
 }
 
+// Process environment variables
 int	process_dollar_value(t_data *data, char *word, t_exp *exp)
 {
 	if (word[exp->index_word] == '\0')

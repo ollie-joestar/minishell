@@ -6,12 +6,13 @@
 /*   By: hanjkim <@student.42vienna.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 20:46:04 by hanjkim           #+#    #+#             */
-/*   Updated: 2025/02/27 15:08:24 by hanjkim          ###   ########.fr       */
+/*   Updated: 2025/02/27 19:04:44 by hanjkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+// Expand a segment of a token and empty token check
 char	*expand_segment(t_data *data, t_segment *seg, t_token *token)
 {
 	char	*expanded;
@@ -28,6 +29,7 @@ char	*expand_segment(t_data *data, t_segment *seg, t_token *token)
 	return (expanded);
 }
 
+// Process redirections and check for ambiguous redirections
 int	process_token_redirection(t_data *data, t_token **token)
 {
 	if ((*token)->type != WORD && (*token)->type != PIPE)
@@ -39,6 +41,7 @@ int	process_token_redirection(t_data *data, t_token **token)
 	return (0);
 }
 
+//Cycle through all tokens and expand them
 void	expand_tokens(t_data *data)
 {
 	t_token		*current;
@@ -65,6 +68,7 @@ void	expand_tokens(t_data *data)
 	}
 }
 
+// Expansion begins here
 char	*expand(t_data *data, char *word)
 {
 	t_exp	exp;

@@ -6,12 +6,14 @@
 /*   By: oohnivch <oohnivch@student.42vienna.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 17:51:14 by oohnivch          #+#    #+#             */
-/*   Updated: 2025/02/27 14:51:58 by oohnivch         ###   ########.fr       */
+/*   Updated: 2025/02/27 19:14:18 by hanjkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+// Checks if the filename token has segments that are single or double quoted
+// To check if the filename should be expanded
 int	heredoc_dont_expand_check(t_token *filename_token)
 {
 	t_segment	*seg;
@@ -26,6 +28,8 @@ int	heredoc_dont_expand_check(t_token *filename_token)
 	return (0);
 }
 
+// Joins all segments of the filename token into a single string
+// To use it as a filename for the here_doc
 t_token	*handle_heredoc(t_data *data, t_token *redirection_token,
 						t_token *filename_token)
 {

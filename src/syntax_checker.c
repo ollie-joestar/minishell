@@ -6,12 +6,13 @@
 /*   By: hanjkim <@student.42vienna.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 18:06:16 by hanjkim           #+#    #+#             */
-/*   Updated: 2025/02/10 17:04:42 by hanjkim          ###   ########.fr       */
+/*   Updated: 2025/02/27 19:11:30 by hanjkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+// Check if there is a pipe in front of the token
 bool	pipe_in_front(t_token *token)
 {
 	if (token && token->type == PIPE)
@@ -19,6 +20,7 @@ bool	pipe_in_front(t_token *token)
 	return (false);
 }
 
+// Check if there is a double pipe
 bool	double_pipe(t_token *token)
 {
 	if (token == NULL)
@@ -33,6 +35,7 @@ bool	double_pipe(t_token *token)
 	return (false);
 }
 
+// Check if the token is a redirection without a filename
 bool	missing_filename(t_token *token)
 {
 	if (token == NULL)
@@ -47,6 +50,7 @@ bool	missing_filename(t_token *token)
 	return (false);
 }
 
+// Prints an error message for unexpected token in the line
 void	unexpected_token(t_data *data, char *str)
 {
 	ft_putstr_fd("syntax error near unexpected token `", STDERR_FILENO);
@@ -58,6 +62,7 @@ void	unexpected_token(t_data *data, char *str)
 	data->status = STDERR_FILENO;
 }
 
+// Check if the syntax is valid for several cases
 bool	valid_syntax(t_data *data, t_token *token)
 {
 	if (pipe_in_front(token))

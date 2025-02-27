@@ -6,12 +6,13 @@
 /*   By: hanjkim <@student.42vienna.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 16:26:35 by hanjkim           #+#    #+#             */
-/*   Updated: 2025/02/27 15:01:46 by hanjkim          ###   ########.fr       */
+/*   Updated: 2025/02/27 16:06:43 by hanjkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+// Get the filename token for the redirection token
 t_token	*get_filename_token(t_data *data, t_token *redir_token)
 {
 	t_token	*filename_token;
@@ -35,6 +36,7 @@ t_token	*get_filename_token(t_data *data, t_token *redir_token)
 	return (filename_token);
 }
 
+// Check if the redirection is ambiguous
 int	check_ambiguous_redirect(t_data *data, t_token *filename_token,
 										char **final_filename)
 {
@@ -56,6 +58,7 @@ int	check_ambiguous_redirect(t_data *data, t_token *filename_token,
 	return (0);
 }
 
+// Link the filename token to the redirection token
 void	link_filename_token(t_data *data, t_token *redir_token,
 							t_token *filename_token, char *final_filename)
 {
@@ -71,6 +74,7 @@ void	link_filename_token(t_data *data, t_token *redir_token,
 	free_old_token(redir_token);
 }
 
+// Process redirection token
 void	process_redirection(t_data *data, t_token **token)
 {
 	t_token	*redir_token;

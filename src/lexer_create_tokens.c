@@ -6,12 +6,13 @@
 /*   By: hanjkim <@student.42vienna.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/29 18:29:01 by hanjkim           #+#    #+#             */
-/*   Updated: 2025/02/25 19:36:12 by hanjkim          ###   ########.fr       */
+/*   Updated: 2025/02/27 16:12:02 by hanjkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+// Add a token to the end of the token list
 void	add_token_to_end(t_token **head, t_token *new_token)
 {
 	t_token	*current;
@@ -30,6 +31,7 @@ void	add_token_to_end(t_token **head, t_token *new_token)
 	new_token->prev = current;
 }
 
+// Birth a token from the input string
 void	parse_make_token(t_data *data, char *input, int *start, int *end)
 {
 	t_token	*new_token;
@@ -45,6 +47,7 @@ void	parse_make_token(t_data *data, char *input, int *start, int *end)
 	*end = *start;
 }
 
+// Create an empty shell of a placeholder token
 t_token	*create_empty_token(void)
 {
 	t_token	*new_token;

@@ -6,12 +6,13 @@
 /*   By: hanjkim <@student.42vienna.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 18:49:14 by hanjkim           #+#    #+#             */
-/*   Updated: 2025/02/27 15:34:33 by hanjkim          ###   ########.fr       */
+/*   Updated: 2025/02/27 19:07:32 by hanjkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+// Check if the token should be marked as NOTHING
 bool	should_mark_nothing(t_token *token, char *joined)
 {
 	t_segment	*seg;
@@ -36,6 +37,7 @@ bool	should_mark_nothing(t_token *token, char *joined)
 	return (has_unquoted_missing && !has_quoted);
 }
 
+// Final step of tokenization to send to execution
 void	finalize_token(t_token *token)
 {
 	t_segment	*tmp;
@@ -63,6 +65,7 @@ void	finalize_token(t_token *token)
 	}
 }
 
+// Cycle through all tokens and finalize them
 void	finalize_tokens(t_token *token_list)
 {
 	t_token	*curr;
@@ -75,6 +78,7 @@ void	finalize_tokens(t_token *token_list)
 	}
 }
 
+// Finalize filename token in case of redirection
 char	*finalize_redirection_token(t_data *data, t_token *token)
 {
 	t_segment	*seg;
@@ -104,6 +108,7 @@ char	*finalize_redirection_token(t_data *data, t_token *token)
 	return (result);
 }
 
+// Main parser function
 void	process_tokens(t_data *data)
 {
 	if (!data->token)

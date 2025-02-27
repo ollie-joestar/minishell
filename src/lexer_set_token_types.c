@@ -6,12 +6,13 @@
 /*   By: hanjkim <@student.42vienna.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/08 19:48:26 by hanjkim           #+#    #+#             */
-/*   Updated: 2025/02/27 15:33:43 by hanjkim          ###   ########.fr       */
+/*   Updated: 2025/02/27 16:09:05 by hanjkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+// Check if the token has an unquoted operator
 bool	has_unquoted_operator(t_token *token)
 {
 	t_segment	*seg;
@@ -33,6 +34,7 @@ bool	has_unquoted_operator(t_token *token)
 	return (false);
 }
 
+// Assign type based on reconstructed segment string
 void	assign_token_type_from_joined(t_token *token, char *joined)
 {
 	if (!ft_strncmp(joined, "<", 2))
@@ -47,6 +49,7 @@ void	assign_token_type_from_joined(t_token *token, char *joined)
 		token->type = PIPE;
 }
 
+// literally just check if nothing token is nothing
 void	set_nothing_type(t_token *token, char *joined)
 {
 	ft_free(&joined);
@@ -56,6 +59,7 @@ void	set_nothing_type(t_token *token, char *joined)
 	token->type = NOTHING;
 }
 
+// Reconstruct copy of string and check type to be assigned
 void	set_token_type(t_token *token_list)
 {
 	t_token	*current;

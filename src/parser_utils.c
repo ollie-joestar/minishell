@@ -6,12 +6,13 @@
 /*   By: hanjkim <@student.42vienna.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/01 21:43:24 by hanjkim           #+#    #+#             */
-/*   Updated: 2025/02/25 16:08:44 by hanjkim          ###   ########.fr       */
+/*   Updated: 2025/02/27 19:05:45 by hanjkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+// Reallocates memory size for a string
 void	*ft_realloc(char *str, size_t old_size, size_t new_size)
 {
 	char	*new_str;
@@ -32,6 +33,7 @@ void	*ft_realloc(char *str, size_t old_size, size_t new_size)
 	return (new_str);
 }
 
+// Returns the value of an environment variable
 char	*get_env_value(t_data *data, char *var_name)
 {
 	t_envlist	*current;
@@ -49,6 +51,7 @@ char	*get_env_value(t_data *data, char *var_name)
 	return (NULL);
 }
 
+// Increases the result string by 1 byte 
 int	resize_result(t_exp *exp, size_t required_size)
 {
 	if (required_size >= exp->result_size)
@@ -63,6 +66,7 @@ int	resize_result(t_exp *exp, size_t required_size)
 	return (0);
 }
 
+// Initializes the expander struct
 char	*initialize_expander(t_exp *exp, char *word)
 {
 	size_t	word_len;

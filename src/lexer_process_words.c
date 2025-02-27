@@ -6,12 +6,13 @@
 /*   By: hanjkim <@student.42vienna.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/29 15:50:16 by hanjkim           #+#    #+#             */
-/*   Updated: 2025/02/23 18:21:41 by hanjkim          ###   ########.fr       */
+/*   Updated: 2025/02/27 16:11:14 by hanjkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+// Process a quoted segment (either SQ or DQ)
 int	process_quoted_segment(char *input, int *i, t_token *token,
 	bool single_quote)
 {
@@ -40,6 +41,7 @@ int	process_quoted_segment(char *input, int *i, t_token *token,
 	return (1);
 }
 
+// Process segment free of quotes
 int	process_unquoted_segment(char *input, int *i, t_token *token)
 {
 	int			seg_start;
@@ -60,6 +62,7 @@ int	process_unquoted_segment(char *input, int *i, t_token *token)
 	return (1);
 }
 
+// Inspect the input and create a token based on the input checks
 t_token	*parse_word_token(char *input, int *start, t_data *data)
 {
 	t_token	*token;
