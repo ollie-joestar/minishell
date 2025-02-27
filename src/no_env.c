@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 12:02:31 by oohnivch          #+#    #+#             */
-/*   Updated: 2025/02/25 13:23:12 by oohnivch         ###   ########.fr       */
+/*   Updated: 2025/02/27 14:59:38 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,14 +84,14 @@ t_envlist	*create_new_env(t_data *data)
 	{
 		pwd = create_new_pwd(data);
 		if (!pwd)
-			bruh(data, "Memory allocation failed", 69);
+			(free_env_list(list), bruh(data, "Memory allocation failed", 69));
 		add_env(pwd, list);
 	}
 	if (!find_env(list, "_"))
 	{
 		underscore = create_underscore(data);
 		if (!underscore)
-			bruh(data, "Memory allocation failed", 69);
+			(free_env_list(list), bruh(data, "Memory allocation failed", 69));
 		add_env(list, underscore);
 	}
 	while (list && list->prev)

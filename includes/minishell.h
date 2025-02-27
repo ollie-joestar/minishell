@@ -6,13 +6,14 @@
 /*   By: oohnivch <oohnivch@student.42vienna.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 18:03:12 by oohnivch          #+#    #+#             */
-/*   Updated: 2025/02/26 17:22:29 by oohnivch         ###   ########.fr       */
+/*   Updated: 2025/02/27 14:57:54 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
 # include "../libft/includes/libft.h"
+# include <stdio.h>
 # include <fcntl.h>
 # include <sys/wait.h>
 # include <sys/ioctl.h>

@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 12:17:06 by oohnivch          #+#    #+#             */
-/*   Updated: 2025/02/26 18:48:29 by oohnivch         ###   ########.fr       */
+/*   Updated: 2025/02/27 15:09:09 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,30 +84,21 @@ t_envlist	*sort_env(t_envlist *list)
 	return (list);
 }
 
-t_envlist	*dup_env(t_envlist *list)
+void	print_env(t_data *data)
 {
-	t_envlist	*new;
-	t_envlist	*tmp;
+	t_envlist	*list;
 
-	new = NULL;
+	if (!data->env)
+		return ;
+	while (data->env->prev)
+		data->env = data->env->prev;
+	list = data->env;
 	while (list)
 	{
-		tmp = ft_calloc(1, sizeof(t_envlist));
-		if (!tmp)
-			return (free_env_list(new), NULL);
-		tmp->name = ft_strdup(list->name);
-		tmp->value = ft_strdup(list->value);
-		if (!tmp->name || !tmp->value)
-			return (free_env_list(tmp), free_env_list(new), NULL);
-		if (new)
-		{
-			new->next = tmp;
-			tmp->prev = new;
-		}
-		new = tmp;
+		if (pid(data) == 0)
+			safe_print_env(data, list->name, list->value);
+		else
+			ft_printf("%s=%s\n", list->name, list->value);
 		list = list->next;
 	}
-	while (new->prev)
-		new = new->prev;
-	return (new);
 }

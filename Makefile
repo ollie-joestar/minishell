@@ -6,7 +6,7 @@
 #    By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/14 16:34:42 by oohnivch          #+#    #+#              #
-#    Updated: 2025/02/26 17:20:41 by oohnivch         ###   ########.fr        #
+#    Updated: 2025/02/27 14:56:46 by oohnivch         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 #									Variables								   #
@@ -33,9 +33,7 @@ YELLOW = \033[0;33m
 # **************************************************************************** #
 
 SRC_PATH = src/
-# SRC_PATH_BONUS = src_bonus/
 OBJ_PATH = obj/
-# OBJ_PATH_BONUS = obj_bonus/
 
 SRC = main.c \
 	  argv.c \
@@ -86,13 +84,8 @@ SRC = main.c \
 	  debug_utils.c \
 	  debug_utils2.c \
 
-# SRC_BONUS = main_bonus.c annihilate_bonus.c extract_bonus.c access_bonus.c \
-			# general_utils_bonus.c process_bonus.c reroute_bonus.c here_doc_bonus.c
-
 OBJ = $(SRC:%.c=%.o)
-# OBJ_BONUS = $(SRC_BONUS:%.c=%.o)
 OBJS = $(addprefix $(OBJ_PATH), $(OBJ))
-# OBJS_BONUS = $(addprefix $(OBJ_PATH_BONUS), $(OBJ_BONUS))
 
 # **************************************************************************** #
 #									Rules									   #
@@ -100,16 +93,10 @@ OBJS = $(addprefix $(OBJ_PATH), $(OBJ))
 
 all: $(OBJ_PATH) $(NAME)
 
-# bonus: $(OBJ_PATH_BONUS) $(BONUS)
 
-# $(NAME): $(OBJS) $(LIB) | bernhard
 $(NAME): $(OBJS) $(LIB) | logo
 	@$(CC) $(CFLAGS) $(OBJS) $(LIB) -o $(NAME) $(LINKFLAG)
 	@echo "\n$(GREEN)******** $(NAME) Created! ********$(NORMAL)\n"
-
-# $(BONUS): $(OBJS_BONUS) $(LIB)
-# 	@$(CC) $(CFLAGS) $(OBJS_BONUS) $(LIB) -o $(BONUS) 
-# 	@echo "\n$(PURPLE)******** $(BONUS) Created! ********$(NORMAL)\n"
 
 $(OBJ_PATH)%.o: $(SRC_PATH)%.c $(LIB)
 	@if ! $(CC) $(CFLAGS) -o $@ -c $< $(HEADER) 2> error.txt; then\
@@ -120,20 +107,8 @@ $(OBJ_PATH)%.o: $(SRC_PATH)%.c $(LIB)
 		exit 1; \
 	fi
 
-# $(OBJ_PATH_BONUS)%.o: $(SRC_PATH_BONUS)%.c $(LIB)
-# 	@if ! $(CC) $(CFLAGS) -o $@ -c $< $(HEADER_BONUS) 2> error.txt; then\
-#  		echo "$(RED)!!!!!!!! ERROR !!!!!!!!$(NORMAL)"; \
-#  		echo "$(YELLOW)Error caused by $<$(NORMAL)\n"; \
-#  		sed '$$d' error.txt; \
-#  		echo "\n$(RED)Aborting makefile........$(NORMAL)"; \
-#  		exit 1; \
-#  	fi
-
 $(OBJ_PATH):
 	@mkdir $(OBJ_PATH)
-
-# $(OBJ_PATH_BONUS):
-# 	@mkdir $(OBJ_PATH_BONUS)
 
 $(LIB):
 	@make $(MFLAGS) $(LIBDIR) all
@@ -159,8 +134,6 @@ logo:
 	@echo "▐▛▚▞▜▌  █  ▐▛▚▖▐▌  █  ▐▌ ▐▌▐▌   ▐▌   ▐▌   "
 	@echo "▐▌  ▐▌  █  ▐▌ ▝▜▌  █  ▐▛▀▜▌▐▛▀▀▘▐▌   ▐▌   "
 	@echo "▐▌  ▐▌▗▄█▄▖▐▌  ▐▌▗▄█▄▖▐▌ ▐▌▐▙▄▄▖▐▙▄▄▖▐▙▄▄▖$(NORMAL)\n"
-
-rebonus: fclean bonus
 
 leak: all
 	valgrind -s --leak-check=full --show-leak-kinds=all --trace-children=yes --track-fds=yes ./$(NAME)

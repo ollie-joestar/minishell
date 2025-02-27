@@ -6,18 +6,11 @@
 /*   By: oohnivch <oohnivch@student.42vienna.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 17:15:50 by oohnivch          #+#    #+#             */
-/*   Updated: 2025/02/26 15:48:31 by oohnivch         ###   ########.fr       */
+/*   Updated: 2025/02/27 15:07:27 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-void	store_stds(t_exec *exec)
-{
-	exec->stds[RD] = dup(STDIN_FILENO);
-	exec->stds[WR] = dup(STDOUT_FILENO);
-	exec->needs_restore = 1;
-}
 
 void	safe_print_export(t_data *data, char *name, char *value)
 {
@@ -61,6 +54,13 @@ void	safe_print_env(t_data *data, char *name, char *value)
 		bruh(data, "Failed to allocate memory for env\n", 1);
 	safe_print(tmp);
 	ft_free(&tmp);
+}
+
+void	store_stds(t_exec *exec)
+{
+	exec->stds[RD] = dup(STDIN_FILENO);
+	exec->stds[WR] = dup(STDOUT_FILENO);
+	exec->needs_restore = 1;
 }
 
 void	restore_stds(t_exec *exec)

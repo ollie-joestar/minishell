@@ -6,11 +6,32 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 11:02:42 by oohnivch          #+#    #+#             */
-/*   Updated: 2025/02/26 15:28:14 by oohnivch         ###   ########.fr       */
+/*   Updated: 2025/02/27 15:32:41 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+t_envlist	*parse_env_subprocess(t_data *dt, char **n, char **v, t_envlist *l)
+{
+	t_envlist	*node;
+
+	node = NULL;
+	if (!l)
+		l = create_env(*n, *v);
+	else
+	{
+		node = create_env(*n, *v);
+		if (!node)
+			(free_env_list(l), ft_free(n), ft_free(v),
+				bruh(dt, "Memory allocation failed", 69));
+		add_env(l, node);
+	}
+	(ft_free(n), ft_free(v));
+	if (!l)
+		bruh(dt, "Memory allocation failed", 69);
+	return (l);
+}
 
 t_envlist	*parse_env_process(t_data *data, char **ev)
 {
@@ -24,18 +45,15 @@ t_envlist	*parse_env_process(t_data *data, char **ev)
 	while (ev[++i])
 	{
 		name = ft_substr(ev[i], 0, ft_strchr(ev[i], '=') - ev[i]);
-		if (!name)
-			bruh(data, "Memory allocation failed", 69);
 		value = ft_strdup(ft_strchr(ev[i], '=') + 1);
-		if (!value)
-			(ft_free(&name), bruh(data, "Memory allocation failed", 69));
+		if (!name || !value)
+			(free_env_list(list), ft_free(&name), ft_free(&value),
+				bruh(data, "Memory allocation failed", 69));
+		list = parse_env_subprocess(data, &name, &value, list);
 		if (!list)
-			list = create_env(name, value);
-		else
-			add_env(list, create_env(name, value));
-		(ft_free(&name), ft_free(&value));
+			bruh(data, "Memory allocation failed", 69);
 	}
-	while (list->prev)
+	while (list && list->prev)
 		list = list->prev;
 	return (list);
 }
@@ -48,7 +66,11 @@ t_envlist	*parse_env(t_data *data, char **ev)
 		return (create_new_env(data));
 	else
 		list = parse_env_process(data, ev);
+	if (!list)
+		bruh(data, "Memory allocation failed", 69);
 	shlvl(data, list);
+	if (!list)
+		bruh(data, "Memory allocation failed", 69);
 	return (list);
 }
 
@@ -87,24 +109,5 @@ void	parse_env_into_ev(t_data *data)
 	{
 		parse_env_into_ev_process(data, curr_env_node, ++i);
 		curr_env_node = curr_env_node->next;
-	}
-}
-
-void	print_env(t_data *data)
-{
-	t_envlist	*list;
-
-	if (!data->env)
-		return ;
-	while (data->env->prev)
-		data->env = data->env->prev;
-	list = data->env;
-	while (list)
-	{
-		if (pid(data) == 0)
-			safe_print_env(data, list->name, list->value);
-		else
-			ft_printf("%s=%s\n", list->name, list->value);
-		list = list->next;
 	}
 }

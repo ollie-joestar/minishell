@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 13:39:47 by oohnivch          #+#    #+#             */
-/*   Updated: 2025/02/26 17:27:22 by oohnivch         ###   ########.fr       */
+/*   Updated: 2025/02/27 15:46:34 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,19 +59,11 @@ static char	*random_name(void)
 
 static int	warning_heredoc(char *line, char *lim)
 {
-	char	*tmp;
 	char	*warning;
 
 	warning = "warning: here-document delimited by end-of-file (wanted `";
 	if (!line)
-	{
-		tmp = ft_strjoin(warning, lim);
-		line = ft_strjoin(tmp, "')\n");
-		ft_free(&tmp);
-		mspec(line);
-		ft_free(&line);
-		return (1);
-	}
+		return (mspec3(warning, lim, "')\n"), 1);
 	if (!ft_strncmp(line, lim, ft_strlen(lim) + 1))
 		return (1);
 	return (0);
@@ -83,6 +75,8 @@ void	free_and_expand(t_data *data, char **line)
 
 	tmp = expand(data, *line);
 	ft_free(line);
+	if (!tmp)
+		bruh(data, "minishell: failed here_doc.c:79", 2);
 	*line = tmp;
 }
 
@@ -93,9 +87,11 @@ char	*here_doc(t_data *data, char *l, int dont_expand)
 	char	*file;
 
 	file = random_name();
+	if (!file)
+		bruh(data, "minishell: failed here_doc name generation", 2);
 	fd = open(file, O_CREAT | O_RDWR, 0664);
 	if (fd < 0)
-		bruh(data, "minishell: failed here_doc creation", 2);
+		(ft_free(&file), bruh(data, "minishell: failed here_doc creation", 2));
 	while (1)
 	{
 		line = readline("> ");

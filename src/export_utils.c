@@ -6,7 +6,7 @@
 /*   By: oohnivch <oohnivch@student.42vienna.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 17:43:33 by oohnivch          #+#    #+#             */
-/*   Updated: 2025/02/26 18:50:49 by oohnivch         ###   ########.fr       */
+/*   Updated: 2025/02/27 15:08:37 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,4 +84,32 @@ t_envlist	*create_env(char *name, char *value)
 		return (NULL);
 	}
 	return (list);
+}
+
+t_envlist	*dup_env(t_envlist *list)
+{
+	t_envlist	*new;
+	t_envlist	*tmp;
+
+	new = NULL;
+	while (list)
+	{
+		tmp = ft_calloc(1, sizeof(t_envlist));
+		if (!tmp)
+			return (free_env_list(new), NULL);
+		tmp->name = ft_strdup(list->name);
+		tmp->value = ft_strdup(list->value);
+		if (!tmp->name || !tmp->value)
+			return (free_env_list(tmp), free_env_list(new), NULL);
+		if (new)
+		{
+			new->next = tmp;
+			tmp->prev = new;
+		}
+		new = tmp;
+		list = list->next;
+	}
+	while (new->prev)
+		new = new->prev;
+	return (new);
 }

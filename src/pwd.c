@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 14:56:43 by oohnivch          #+#    #+#             */
-/*   Updated: 2025/02/26 15:31:37 by oohnivch         ###   ########.fr       */
+/*   Updated: 2025/02/27 15:34:39 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,14 +40,12 @@ t_envlist	*get_pwd(t_data *data)
 
 int	update_pwd(t_data *data)
 {
-	t_envlist	*env;
 	t_envlist	*oldpwd;
 	t_envlist	*pwd;
 	char		*cwd;
 
-	while (data->env->prev)
+	while (data->env && data->env->prev)
 		data->env = data->env->prev;
-	env = data->env;
 	oldpwd = get_oldpwd(data);
 	pwd = get_pwd(data);
 	cwd = getcwd(NULL, 0);
