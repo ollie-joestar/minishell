@@ -6,7 +6,7 @@
 /*   By: hanjkim <@student.42vienna.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/08 19:48:26 by hanjkim           #+#    #+#             */
-/*   Updated: 2025/02/19 18:09:43 by hanjkim          ###   ########.fr       */
+/*   Updated: 2025/02/27 15:33:43 by hanjkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,15 @@ void	assign_token_type_from_joined(t_token *token, char *joined)
 		token->type = PIPE;
 }
 
+void	set_nothing_type(t_token *token, char *joined)
+{
+	ft_free(&joined);
+	token->word = ft_strdup("");
+	if (!token->word)
+		return ;
+	token->type = NOTHING;
+}
+
 void	set_token_type(t_token *token_list)
 {
 	t_token	*current;
@@ -57,6 +66,8 @@ void	set_token_type(t_token *token_list)
 	while (current != NULL)
 	{
 		joined = join_segments(current);
+		if (!joined)
+			return ;
 		if (joined)
 		{
 			operator_unquoted = has_unquoted_operator(current);

@@ -6,7 +6,7 @@
 /*   By: hanjkim <@student.42vienna.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 18:49:14 by hanjkim           #+#    #+#             */
-/*   Updated: 2025/02/25 20:05:25 by hanjkim          ###   ########.fr       */
+/*   Updated: 2025/02/27 15:34:33 by hanjkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,12 +45,13 @@ void	finalize_token(t_token *token)
 	if (!token->segments)
 		return ;
 	joined = join_segments(token);
+	if (!joined)
+		return ;
 	mark = should_mark_nothing(token, joined);
 	if (mark)
 	{
-		ft_free(&joined);
-		token->word = ft_strdup("");
-		token->type = NOTHING;
+		set_nothing_type(token, joined);
+		return ;
 	}
 	else
 		token->word = joined;
@@ -94,6 +95,8 @@ char	*finalize_redirection_token(t_data *data, t_token *token)
 		if (!expanded_segment)
 			return (ft_free(&result), NULL);
 		temp = join2(result, expanded_segment);
+		if (!temp)
+			return (ft_free(&result), ft_free(&expanded_segment), NULL);
 		(ft_free(&result), ft_free(&expanded_segment));
 		result = temp;
 		seg = seg->next;

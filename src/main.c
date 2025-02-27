@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 09:38:58 by oohnivch          #+#    #+#             */
-/*   Updated: 2025/02/27 15:31:54 by oohnivch         ###   ########.fr       */
+/*   Updated: 2025/02/27 15:49:41 by hanjkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,7 @@ int	skill_check(t_data *data)
 			while (data->line[i] && data->line[i] != DQ)
 				i++;
 			if (data->line[i] != DQ)
-				return (ft_putstr_fd("skill issue. \
-Try 123test.com/de/IQ-Test\n", 2), 1);
+				return (ft_putstr_fd("skill issue.\n", 2), 1);
 		}
 		else if (data->line[i] == SQ)
 		{
@@ -36,8 +35,7 @@ Try 123test.com/de/IQ-Test\n", 2), 1);
 			while (data->line[i] && data->line[i] != SQ)
 				i++;
 			if (data->line[i] != SQ)
-				return (ft_putstr_fd("skill issue. \
-Try 123test.com/de/IQ-Test\n", 2), 1);
+				return (ft_putstr_fd("skill issue.\n", 2), 1);
 		}
 	}
 	return (0);

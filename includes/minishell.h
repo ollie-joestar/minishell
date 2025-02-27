@@ -6,7 +6,7 @@
 /*   By: oohnivch <oohnivch@student.42vienna.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 18:03:12 by oohnivch          #+#    #+#             */
-/*   Updated: 2025/02/27 14:57:54 by oohnivch         ###   ########.fr       */
+/*   Updated: 2025/02/27 15:49:24 by hanjkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -168,6 +168,7 @@ void		parse_make_token(t_data *data, char *input, int *start, int *end);
 t_token		*create_token(char *str, bool quote, bool single_or_double);
 void		add_token_to_end(t_token **head, t_token *new_token);
 void		set_token_type(t_token *token);
+void		set_nothing_type(t_token *token, char *joined);
 void		skip_spaces(char *input, int *i);
 t_token		*create_token_for_string(char *str);
 t_token		*create_empty_token(void);

@@ -6,7 +6,7 @@
 /*   By: hanjkim <@student.42vienna.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 16:26:35 by hanjkim           #+#    #+#             */
-/*   Updated: 2025/02/18 16:19:31 by hanjkim          ###   ########.fr       */
+/*   Updated: 2025/02/27 15:01:46 by hanjkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@ int	check_ambiguous_redirect(t_data *data, t_token *filename_token,
 	if (!*final_filename || (*final_filename)[0] == '\0')
 	{
 		orig_filename = join_segments(filename_token);
+		if (!orig_filename)
+			orig_filename = ft_strdup("");
 		mspec2(orig_filename, "ambiguous redirect\n");
 		ft_free(&orig_filename);
 		data->status = 1;
