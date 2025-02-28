@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 09:38:58 by oohnivch          #+#    #+#             */
-/*   Updated: 2025/02/27 16:28:00 by hanjkim          ###   ########.fr       */
+/*   Updated: 2025/02/28 21:46:23 by hanjkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,15 +49,9 @@ int	stop_right_there_criminal(t_data *data)
 		g_signal = 0;
 	}
 	if (skill_check(data))
-	{
-		ft_free(&data->line);
-		return (0);
-	}
+		return (ft_free(&data->line), 0);
 	if (!data->line || !*data->line)
-	{
-		ft_free(&data->line);
-		return (0);
-	}
+		return (ft_free(&data->line), 0);
 	return (1);
 }
 
@@ -73,7 +67,7 @@ int	process_tokens_and_ambig_check(t_data *data)
 {
 	process_tokens(data);
 	if (data->ambig_redir)
-		return (ft_free(&data->line), 0);
+		return (add_history(data->line), ft_free(&data->line), 0);
 	return (1);
 }
 

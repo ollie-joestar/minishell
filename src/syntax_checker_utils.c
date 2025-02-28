@@ -6,7 +6,7 @@
 /*   By: hanjkim <@student.42vienna.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 15:07:37 by hanjkim           #+#    #+#             */
-/*   Updated: 2025/02/27 19:12:53 by hanjkim          ###   ########.fr       */
+/*   Updated: 2025/02/28 16:01:21 by hanjkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ bool	unexpected_token_with_join(t_data *data, t_token *token)
 		if (joined && joined[0] != '\0')
 			err_token = joined;
 	unexpected_token(data, err_token);
+	add_history(joined);
 	ft_free(&joined);
 	return (false);
 }

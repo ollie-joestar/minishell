@@ -6,7 +6,7 @@
 /*   By: hanjkim <@student.42vienna.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 15:13:23 by hanjkim           #+#    #+#             */
-/*   Updated: 2025/02/27 19:09:56 by hanjkim          ###   ########.fr       */
+/*   Updated: 2025/02/28 21:54:26 by hanjkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ void	check_exit_status(t_data *data, int exit_status)
 		sig = WTERMSIG(exit_status);
 		if (sig == SIGQUIT)
 		{
-			ft_putendl_fd("(Quit) Core dumped", STDOUT_FILENO);
+			ft_putendl_fd("(Quit) Core dumped", STDERR_FILENO);
 			data->status = 131;
 		}
 		else

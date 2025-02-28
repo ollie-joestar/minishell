@@ -6,7 +6,7 @@
 /*   By: hanjkim <@student.42vienna.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 20:46:04 by hanjkim           #+#    #+#             */
-/*   Updated: 2025/02/27 19:04:44 by hanjkim          ###   ########.fr       */
+/*   Updated: 2025/02/28 19:02:34 by hanjkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,12 @@ char	*expand_segment(t_data *data, t_segment *seg, t_token *token)
 	char	*expanded;
 
 	(void)token;
+	data->segment = seg;
 	if (seg->single_quoted)
 		return (ft_strdup(seg->text));
 	expanded = expand(data, seg->text);
 	if (!expanded)
 		return (NULL);
-	if (!seg->single_quoted && !seg->double_quoted && seg->text[0] == '$'
-		&& expanded[0] == '\0')
-		seg->env_not_found = true;
 	return (expanded);
 }
 
@@ -88,6 +86,5 @@ char	*expand(t_data *data, char *word)
 		else
 			handle_normal_chars(word[exp.index_word++], &exp);
 	}
-	exp.result[exp.index_res] = '\0';
 	return (exp.result);
 }

@@ -6,7 +6,7 @@
 /*   By: hanjkim <@student.42vienna.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 16:26:35 by hanjkim           #+#    #+#             */
-/*   Updated: 2025/02/27 16:06:43 by hanjkim          ###   ########.fr       */
+/*   Updated: 2025/02/28 22:58:33 by hanjkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,23 +36,58 @@ t_token	*get_filename_token(t_data *data, t_token *redir_token)
 	return (filename_token);
 }
 
-// Check if the redirection is ambiguous
+// Check if the filename token has split words
+int	check_split_words(t_data *data, t_token *filename_token,
+						char **final_filename)
+{
+	char		**split_words;
+	char		*orig_filename;
+	int			count;
+	int			i;
+
+	orig_filename = join_segments(filename_token);
+	if (!orig_filename)
+		orig_filename = ft_strdup("");
+	split_words = ft_split_set(*final_filename, " \t\n\r\v\f");
+	if (!split_words)
+		return (ft_free(&orig_filename), 0);
+	count = 0;
+	i = -1;
+	if (split_words)
+		while (split_words[++i])
+			count++;
+	if (split_words && has_unquoted_segment(filename_token) && count > 1)
+	{
+		data->status = 1;
+		data->ambig_redir = 1;
+		mspec2(orig_filename, "ambiguous redirect\n");
+		ft_free(&orig_filename);
+		return (ft_free(final_filename), free_arr(&split_words), 1);
+	}
+	return (free_arr(&split_words), ft_free(&orig_filename), 0);
+}
+
+// Check if the redirection is ambiguous (ie invalid filename)
 int	check_ambiguous_redirect(t_data *data, t_token *filename_token,
-										char **final_filename)
+								char **final_filename)
 {
 	char	*orig_filename;
 
 	*final_filename = finalize_redirection_token(data, filename_token);
+	if (check_split_words(data, filename_token, final_filename))
+		return (1);
 	if (!*final_filename || (*final_filename)[0] == '\0')
 	{
 		orig_filename = join_segments(filename_token);
 		if (!orig_filename)
 			orig_filename = ft_strdup("");
-		mspec2(orig_filename, "ambiguous redirect\n");
-		ft_free(&orig_filename);
+		if ((*final_filename)[0] == '\0' && data->segment->env_not_found)
+			mspec2(orig_filename, "ambiguous redirect\n");
+		else if ((*final_filename)[0] == '\0')
+			mspec2(orig_filename, "No such file or directory\n");
 		data->status = 1;
 		data->ambig_redir = 1;
-		ft_free(final_filename);
+		(ft_free(&orig_filename), ft_free(final_filename));
 		return (1);
 	}
 	return (0);

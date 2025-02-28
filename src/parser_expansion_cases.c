@@ -6,7 +6,7 @@
 /*   By: hanjkim <@student.42vienna.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/01 22:44:16 by hanjkim           #+#    #+#             */
-/*   Updated: 2025/02/27 16:16:56 by hanjkim          ###   ########.fr       */
+/*   Updated: 2025/02/28 19:03:08 by hanjkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,7 @@ int	handle_variable_exp(t_data *data, char *word, t_exp *exp)
 
 	start = exp->index_word;
 	while (word[exp->index_word] != '\0'
-		&& (ft_isalnum(word[exp->index_word])
-			|| word[exp->index_word] == '_'))
+		&& (ft_isalnum(word[exp->index_word]) || word[exp->index_word] == '_'))
 		exp->index_word++;
 	name_length = exp->index_word - start;
 	var_name = ft_calloc(name_length + 1, sizeof(char));
@@ -50,6 +49,8 @@ int	handle_variable_exp(t_data *data, char *word, t_exp *exp)
 		return (ft_free(&exp->result), 1);
 	ft_strlcpy(var_name, word + start, name_length + 1);
 	var_value = get_env_value(data, var_name);
+	if (!var_value)
+		data->segment->env_not_found = 1;
 	len = ft_strlen(var_value);
 	if (resize_result(exp, exp->index_res + len))
 		return (ft_free(&var_name), 1);

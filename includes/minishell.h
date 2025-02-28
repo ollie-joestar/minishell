@@ -6,7 +6,7 @@
 /*   By: oohnivch <oohnivch@student.42vienna.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 18:03:12 by oohnivch          #+#    #+#             */
-/*   Updated: 2025/02/27 19:09:01 by hanjkim          ###   ########.fr       */
+/*   Updated: 2025/02/28 23:22:17 by hanjkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,6 +147,7 @@ typedef struct s_data
 	struct sigaction	sa_child;
 	char				*line;
 	t_token				*token;
+	t_segment			*segment;
 	t_replace			*replacements;
 	t_exp				*expander;
 	size_t				current_size;
@@ -155,6 +156,8 @@ typedef struct s_data
 
 /* Signal functions */
 extern volatile sig_atomic_t	g_signal;
+void		hd_sigint_check(t_data *data, char **line, char **file, int fd);
+int			handle_heredoc_signal(t_data *data, char **ln, char **f, int fd);
 void		handle_sigint(int sig);
 void		catch_sigint(int sigint);
 void		setup_signal_mode(t_data *data, int interactive);
@@ -185,6 +188,7 @@ t_token		*make_split_tokens(char **words, t_data *data, int i);
 char		*join_segments(t_token *token);
 
 // Parser functions
+bool		has_unquoted_segment(t_token *token);
 void		process_tokens(t_data *data);
 void		expand_tokens(t_data *data);	
 void		process_redirection(t_data *data, t_token **token);
@@ -296,6 +300,10 @@ void		safe_print_export(t_data *data, char *name, char *value);
 
 // HereDoc
 char		*here_doc(t_data *data, char *l, int to_expand);
+int			warning_heredoc(char *line, char *lim);
+void		free_and_expand(t_data *data, char **line);
+int			check_and_write_line(int fd, char **line);
+
 // General utils
 void		bruh(t_data *data, char *s, int status);
 size_t		ft_arrlen(char **arr);

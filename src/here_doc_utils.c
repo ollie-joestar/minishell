@@ -6,11 +6,27 @@
 /*   By: oohnivch <oohnivch@student.42vienna.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 17:51:14 by oohnivch          #+#    #+#             */
-/*   Updated: 2025/02/27 19:14:18 by hanjkim          ###   ########.fr       */
+/*   Updated: 2025/02/28 23:24:09 by hanjkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+// checks if SIGINT is caught during here_doc
+void	hd_sigint_check(t_data *data, char **line, char **file, int fd)
+{
+	if (handle_heredoc_signal(data, line, file, fd))
+		return ;
+}
+
+int	check_and_write_line(int fd, char **line)
+{
+	if (!*line)
+		return (1);
+	write(fd, *line, ft_strlen(*line));
+	(write(fd, "\n", 1), ft_free(line));
+	return (0);
+}
 
 // Checks if the filename token has segments that are single or double quoted
 // To check if the filename should be expanded

@@ -6,7 +6,7 @@
 /*   By: hanjkim <@student.42vienna.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/29 15:50:16 by hanjkim           #+#    #+#             */
-/*   Updated: 2025/02/27 16:11:14 by hanjkim          ###   ########.fr       */
+/*   Updated: 2025/02/28 19:33:09 by hanjkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,5 @@ t_token	*parse_word_token(char *input, int *start, t_data *data)
 		if (res == 0)
 			return (free_tokens(data), NULL);
 	}
-	*start = i;
-	return (token);
+	return (*start = i, token);
 }

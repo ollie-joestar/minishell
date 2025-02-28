@@ -6,13 +6,13 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 13:39:47 by oohnivch          #+#    #+#             */
-/*   Updated: 2025/02/27 15:49:33 by hanjkim          ###   ########.fr       */
+/*   Updated: 2025/02/28 23:23:09 by hanjkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-static int	handle_heredoc_signal(t_data *data, char **ln, char **f, int fd)
+int	handle_heredoc_signal(t_data *data, char **ln, char **f, int fd)
 {
 	if (g_signal == SIGINT)
 	{
@@ -57,13 +57,17 @@ static char	*random_name(void)
 	return (name);
 }
 
-static int	warning_heredoc(char *line, char *lim)
+int	warning_heredoc(char *line, char *lim)
 {
 	char	*warning;
 
 	warning = "warning: here-document delimited by end-of-file (wanted `";
 	if (!line)
+	{
+		if (g_signal == SIGINT)
+			return (1);
 		return (mspec3(warning, lim, "')\n"), 1);
+	}
 	if (!ft_strncmp(line, lim, ft_strlen(lim) + 1))
 		return (1);
 	return (0);
@@ -86,6 +90,7 @@ char	*here_doc(t_data *data, char *l, int dont_expand)
 	char	*line;
 	char	*file;
 
+	line = NULL;
 	file = random_name();
 	if (!file)
 		bruh(data, "minishell: failed here_doc name generation", 2);
@@ -94,16 +99,16 @@ char	*here_doc(t_data *data, char *l, int dont_expand)
 		(ft_free(&file), bruh(data, "minishell: failed here_doc creation", 2));
 	while (1)
 	{
+		if (g_signal == SIGINT)
+			break ;
 		line = readline("> ");
-		if (handle_heredoc_signal(data, &line, &file, fd))
-			return (file);
+		hd_sigint_check(data, &line, &file, fd);
 		if (warning_heredoc(line, l))
 			break ;
 		if (!dont_expand)
 			free_and_expand(data, &line);
-		if (line)
-			write(fd, line, ft_strlen(line));
-		(write(fd, "\n", 1), ft_free(&line));
+		if (check_and_write_line(fd, &line))
+			break ;
 	}
 	return (close(fd), ft_free(&line), file);
 }

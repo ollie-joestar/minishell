@@ -6,11 +6,26 @@
 /*   By: hanjkim <@student.42vienna.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/01 21:43:24 by hanjkim           #+#    #+#             */
-/*   Updated: 2025/02/27 19:05:45 by hanjkim          ###   ########.fr       */
+/*   Updated: 2025/02/28 21:00:44 by hanjkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+// Check if a token has an unquoted segment
+bool	has_unquoted_segment(t_token *token)
+{
+	t_segment	*seg;
+
+	seg = token->segments;
+	while (seg)
+	{
+		if (!seg->single_quoted && !seg->double_quoted)
+			return (true);
+		seg = seg->next;
+	}
+	return (false);
+}
 
 // Reallocates memory size for a string
 void	*ft_realloc(char *str, size_t old_size, size_t new_size)

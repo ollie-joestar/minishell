@@ -6,7 +6,7 @@
 /*   By: hanjkim <@student.42vienna.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 18:49:14 by hanjkim           #+#    #+#             */
-/*   Updated: 2025/02/27 19:07:32 by hanjkim          ###   ########.fr       */
+/*   Updated: 2025/02/28 19:04:21 by hanjkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ void	finalize_tokens(t_token *token_list)
 	}
 }
 
-// Finalize filename token in case of redirection
+/*// Finalize filename token in case of redirection*/
 char	*finalize_redirection_token(t_data *data, t_token *token)
 {
 	t_segment	*seg;
@@ -112,7 +112,7 @@ char	*finalize_redirection_token(t_data *data, t_token *token)
 void	process_tokens(t_data *data)
 {
 	if (!data->token)
-		bruh(data, "No tokens available for processing", 2);
+		return ;
 	expand_tokens(data);
 	split_tokens(data);
 	finalize_tokens(data->token);
