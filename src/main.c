@@ -59,7 +59,10 @@ int	parse_and_validate_line(t_data *data)
 {
 	parse_line(data);
 	if (!valid_syntax(data, data->token))
-		return (free_tokens(data), ft_free(&data->line), 0);
+	{
+		add_history(data->line)
+;		return (free_tokens(data), ft_free(&data->line), 0);
+	}
 	return (1);
 }
 
