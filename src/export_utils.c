@@ -6,7 +6,7 @@
 /*   By: oohnivch <oohnivch@student.42vienna.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 17:43:33 by oohnivch          #+#    #+#             */
-/*   Updated: 2025/03/03 12:47:43 by oohnivch         ###   ########.fr       */
+/*   Updated: 2025/03/03 14:30:27 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,6 @@ void	print_export(t_data *data)
 	if (!list)
 		bruh(data, "Malloc failed in print export", 69);
 	list = sort_env(list);
-	while (list->prev)
-		list = list->prev;
 	while (list)
 	{
 		if (ft_strncmp(list->name, "_", 2))

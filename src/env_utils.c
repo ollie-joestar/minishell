@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 12:17:06 by oohnivch          #+#    #+#             */
-/*   Updated: 2025/03/03 12:44:18 by oohnivch         ###   ########.fr       */
+/*   Updated: 2025/03/03 14:30:06 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,10 +65,10 @@ t_envlist	*sort_env(t_envlist *list)
 	t_envlist	*frst;
 	t_envlist	*scnd;
 
-	while (list->prev)
-		list = list->prev;
 	while (!sorted_env(list))
 	{
+		while (list->prev)
+			list = list->prev;
 		frst = list;
 		while (frst && frst->next)
 		{
@@ -81,6 +81,8 @@ t_envlist	*sort_env(t_envlist *list)
 			frst = frst->next;
 		}
 	}
+	while (list->prev)
+		list = list->prev;
 	return (list);
 }
 
