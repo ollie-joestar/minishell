@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
+/*   By: oohnivch <oohnivch@student.42vienna.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/13 11:02:42 by oohnivch          #+#    #+#             */
-/*   Updated: 2025/02/27 15:32:41 by oohnivch         ###   ########.fr       */
+/*   Created: 2025/03/03 15:50:38 by oohnivch          #+#    #+#             */
+/*   Updated: 2025/03/03 16:44:05 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,12 @@ t_envlist	*parse_env_subprocess(t_data *dt, char **n, char **v, t_envlist *l)
 		node = create_env(*n, *v);
 		if (!node)
 			(free_env_list(l), ft_free(n), ft_free(v),
-				bruh(dt, "Memory allocation failed", 69));
+				bruh(dt, "Malloc failed""env.c:27", 69));
 		add_env(l, node);
 	}
 	(ft_free(n), ft_free(v));
 	if (!l)
-		bruh(dt, "Memory allocation failed", 69);
+		bruh(dt, "Malloc failed env.c:32", 69);
 	return (l);
 }
 
@@ -40,8 +40,10 @@ t_envlist	*parse_env_process(t_data *data, char **ev)
 	char		*name;
 	char		*value;
 
-	list = NULL;
 	i = -1;
+	list = NULL;
+	name = NULL;
+	value = NULL;
 	while (ev[++i])
 	{
 		name = ft_substr(ev[i], 0, ft_strchr(ev[i], '=') - ev[i]);

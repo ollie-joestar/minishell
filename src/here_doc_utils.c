@@ -6,7 +6,7 @@
 /*   By: oohnivch <oohnivch@student.42vienna.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 17:51:14 by oohnivch          #+#    #+#             */
-/*   Updated: 2025/02/28 23:24:09 by hanjkim          ###   ########.fr       */
+/*   Updated: 2025/03/03 17:59:44 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,13 @@ void	hd_sigint_check(t_data *data, char **line, char **file, int fd)
 		return ;
 }
 
+// wow, this function prints a line to a file descriptor
 int	check_and_write_line(int fd, char **line)
 {
-	if (!*line)
+	if (!line || !*line)
 		return (1);
-	write(fd, *line, ft_strlen(*line));
-	(write(fd, "\n", 1), ft_free(line));
+	ft_putendl_fd(*line, fd);
+	ft_free(line);
 	return (0);
 }
 

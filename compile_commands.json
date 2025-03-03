@@ -1,0 +1,1770 @@
+[
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-g",
+      "-c",
+      "-I.",
+      "-o",
+      "obj/ft_isalpha.o",
+      "src/ft_isalpha.c"
+    ],
+    "directory": "/home/oohnivch/common_core/minishell/libft",
+    "file": "/home/oohnivch/common_core/minishell/libft/src/ft_isalpha.c",
+    "output": "/home/oohnivch/common_core/minishell/libft/obj/ft_isalpha.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-g",
+      "-c",
+      "-I.",
+      "-o",
+      "obj/ft_isdigit.o",
+      "src/ft_isdigit.c"
+    ],
+    "directory": "/home/oohnivch/common_core/minishell/libft",
+    "file": "/home/oohnivch/common_core/minishell/libft/src/ft_isdigit.c",
+    "output": "/home/oohnivch/common_core/minishell/libft/obj/ft_isdigit.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-g",
+      "-c",
+      "-I.",
+      "-o",
+      "obj/ft_isalnum.o",
+      "src/ft_isalnum.c"
+    ],
+    "directory": "/home/oohnivch/common_core/minishell/libft",
+    "file": "/home/oohnivch/common_core/minishell/libft/src/ft_isalnum.c",
+    "output": "/home/oohnivch/common_core/minishell/libft/obj/ft_isalnum.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-g",
+      "-c",
+      "-I.",
+      "-o",
+      "obj/ft_isascii.o",
+      "src/ft_isascii.c"
+    ],
+    "directory": "/home/oohnivch/common_core/minishell/libft",
+    "file": "/home/oohnivch/common_core/minishell/libft/src/ft_isascii.c",
+    "output": "/home/oohnivch/common_core/minishell/libft/obj/ft_isascii.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-g",
+      "-c",
+      "-I.",
+      "-o",
+      "obj/ft_isprint.o",
+      "src/ft_isprint.c"
+    ],
+    "directory": "/home/oohnivch/common_core/minishell/libft",
+    "file": "/home/oohnivch/common_core/minishell/libft/src/ft_isprint.c",
+    "output": "/home/oohnivch/common_core/minishell/libft/obj/ft_isprint.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-g",
+      "-c",
+      "-I.",
+      "-o",
+      "obj/ft_toupper.o",
+      "src/ft_toupper.c"
+    ],
+    "directory": "/home/oohnivch/common_core/minishell/libft",
+    "file": "/home/oohnivch/common_core/minishell/libft/src/ft_toupper.c",
+    "output": "/home/oohnivch/common_core/minishell/libft/obj/ft_toupper.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-g",
+      "-c",
+      "-I.",
+      "-o",
+      "obj/ft_tolower.o",
+      "src/ft_tolower.c"
+    ],
+    "directory": "/home/oohnivch/common_core/minishell/libft",
+    "file": "/home/oohnivch/common_core/minishell/libft/src/ft_tolower.c",
+    "output": "/home/oohnivch/common_core/minishell/libft/obj/ft_tolower.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-g",
+      "-c",
+      "-I.",
+      "-o",
+      "obj/ft_isspace.o",
+      "src/ft_isspace.c"
+    ],
+    "directory": "/home/oohnivch/common_core/minishell/libft",
+    "file": "/home/oohnivch/common_core/minishell/libft/src/ft_isspace.c",
+    "output": "/home/oohnivch/common_core/minishell/libft/obj/ft_isspace.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-g",
+      "-c",
+      "-I.",
+      "-o",
+      "obj/ft_strlen.o",
+      "src/ft_strlen.c"
+    ],
+    "directory": "/home/oohnivch/common_core/minishell/libft",
+    "file": "/home/oohnivch/common_core/minishell/libft/src/ft_strlen.c",
+    "output": "/home/oohnivch/common_core/minishell/libft/obj/ft_strlen.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-g",
+      "-c",
+      "-I.",
+      "-o",
+      "obj/ft_strlcpy.o",
+      "src/ft_strlcpy.c"
+    ],
+    "directory": "/home/oohnivch/common_core/minishell/libft",
+    "file": "/home/oohnivch/common_core/minishell/libft/src/ft_strlcpy.c",
+    "output": "/home/oohnivch/common_core/minishell/libft/obj/ft_strlcpy.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-g",
+      "-c",
+      "-I.",
+      "-o",
+      "obj/ft_strlcat.o",
+      "src/ft_strlcat.c"
+    ],
+    "directory": "/home/oohnivch/common_core/minishell/libft",
+    "file": "/home/oohnivch/common_core/minishell/libft/src/ft_strlcat.c",
+    "output": "/home/oohnivch/common_core/minishell/libft/obj/ft_strlcat.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-g",
+      "-c",
+      "-I.",
+      "-o",
+      "obj/ft_strchr.o",
+      "src/ft_strchr.c"
+    ],
+    "directory": "/home/oohnivch/common_core/minishell/libft",
+    "file": "/home/oohnivch/common_core/minishell/libft/src/ft_strchr.c",
+    "output": "/home/oohnivch/common_core/minishell/libft/obj/ft_strchr.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-g",
+      "-c",
+      "-I.",
+      "-o",
+      "obj/ft_strrchr.o",
+      "src/ft_strrchr.c"
+    ],
+    "directory": "/home/oohnivch/common_core/minishell/libft",
+    "file": "/home/oohnivch/common_core/minishell/libft/src/ft_strrchr.c",
+    "output": "/home/oohnivch/common_core/minishell/libft/obj/ft_strrchr.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-g",
+      "-c",
+      "-I.",
+      "-o",
+      "obj/ft_strncmp.o",
+      "src/ft_strncmp.c"
+    ],
+    "directory": "/home/oohnivch/common_core/minishell/libft",
+    "file": "/home/oohnivch/common_core/minishell/libft/src/ft_strncmp.c",
+    "output": "/home/oohnivch/common_core/minishell/libft/obj/ft_strncmp.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-g",
+      "-c",
+      "-I.",
+      "-o",
+      "obj/ft_strnstr.o",
+      "src/ft_strnstr.c"
+    ],
+    "directory": "/home/oohnivch/common_core/minishell/libft",
+    "file": "/home/oohnivch/common_core/minishell/libft/src/ft_strnstr.c",
+    "output": "/home/oohnivch/common_core/minishell/libft/obj/ft_strnstr.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-g",
+      "-c",
+      "-I.",
+      "-o",
+      "obj/ft_atoi.o",
+      "src/ft_atoi.c"
+    ],
+    "directory": "/home/oohnivch/common_core/minishell/libft",
+    "file": "/home/oohnivch/common_core/minishell/libft/src/ft_atoi.c",
+    "output": "/home/oohnivch/common_core/minishell/libft/obj/ft_atoi.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-g",
+      "-c",
+      "-I.",
+      "-o",
+      "obj/ft_strdup.o",
+      "src/ft_strdup.c"
+    ],
+    "directory": "/home/oohnivch/common_core/minishell/libft",
+    "file": "/home/oohnivch/common_core/minishell/libft/src/ft_strdup.c",
+    "output": "/home/oohnivch/common_core/minishell/libft/obj/ft_strdup.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-g",
+      "-c",
+      "-I.",
+      "-o",
+      "obj/ft_substr.o",
+      "src/ft_substr.c"
+    ],
+    "directory": "/home/oohnivch/common_core/minishell/libft",
+    "file": "/home/oohnivch/common_core/minishell/libft/src/ft_substr.c",
+    "output": "/home/oohnivch/common_core/minishell/libft/obj/ft_substr.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-g",
+      "-c",
+      "-I.",
+      "-o",
+      "obj/ft_strjoin.o",
+      "src/ft_strjoin.c"
+    ],
+    "directory": "/home/oohnivch/common_core/minishell/libft",
+    "file": "/home/oohnivch/common_core/minishell/libft/src/ft_strjoin.c",
+    "output": "/home/oohnivch/common_core/minishell/libft/obj/ft_strjoin.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-g",
+      "-c",
+      "-I.",
+      "-o",
+      "obj/ft_strtrim.o",
+      "src/ft_strtrim.c"
+    ],
+    "directory": "/home/oohnivch/common_core/minishell/libft",
+    "file": "/home/oohnivch/common_core/minishell/libft/src/ft_strtrim.c",
+    "output": "/home/oohnivch/common_core/minishell/libft/obj/ft_strtrim.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-g",
+      "-c",
+      "-I.",
+      "-o",
+      "obj/ft_split.o",
+      "src/ft_split.c"
+    ],
+    "directory": "/home/oohnivch/common_core/minishell/libft",
+    "file": "/home/oohnivch/common_core/minishell/libft/src/ft_split.c",
+    "output": "/home/oohnivch/common_core/minishell/libft/obj/ft_split.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-g",
+      "-c",
+      "-I.",
+      "-o",
+      "obj/ft_itoa.o",
+      "src/ft_itoa.c"
+    ],
+    "directory": "/home/oohnivch/common_core/minishell/libft",
+    "file": "/home/oohnivch/common_core/minishell/libft/src/ft_itoa.c",
+    "output": "/home/oohnivch/common_core/minishell/libft/obj/ft_itoa.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-g",
+      "-c",
+      "-I.",
+      "-o",
+      "obj/ft_strmapi.o",
+      "src/ft_strmapi.c"
+    ],
+    "directory": "/home/oohnivch/common_core/minishell/libft",
+    "file": "/home/oohnivch/common_core/minishell/libft/src/ft_strmapi.c",
+    "output": "/home/oohnivch/common_core/minishell/libft/obj/ft_strmapi.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-g",
+      "-c",
+      "-I.",
+      "-o",
+      "obj/ft_striteri.o",
+      "src/ft_striteri.c"
+    ],
+    "directory": "/home/oohnivch/common_core/minishell/libft",
+    "file": "/home/oohnivch/common_core/minishell/libft/src/ft_striteri.c",
+    "output": "/home/oohnivch/common_core/minishell/libft/obj/ft_striteri.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-g",
+      "-c",
+      "-I.",
+      "-o",
+      "obj/ft_split_set.o",
+      "src/ft_split_set.c"
+    ],
+    "directory": "/home/oohnivch/common_core/minishell/libft",
+    "file": "/home/oohnivch/common_core/minishell/libft/src/ft_split_set.c",
+    "output": "/home/oohnivch/common_core/minishell/libft/obj/ft_split_set.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-g",
+      "-c",
+      "-I.",
+      "-o",
+      "obj/ft_memset.o",
+      "src/ft_memset.c"
+    ],
+    "directory": "/home/oohnivch/common_core/minishell/libft",
+    "file": "/home/oohnivch/common_core/minishell/libft/src/ft_memset.c",
+    "output": "/home/oohnivch/common_core/minishell/libft/obj/ft_memset.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-g",
+      "-c",
+      "-I.",
+      "-o",
+      "obj/ft_bzero.o",
+      "src/ft_bzero.c"
+    ],
+    "directory": "/home/oohnivch/common_core/minishell/libft",
+    "file": "/home/oohnivch/common_core/minishell/libft/src/ft_bzero.c",
+    "output": "/home/oohnivch/common_core/minishell/libft/obj/ft_bzero.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-g",
+      "-c",
+      "-I.",
+      "-o",
+      "obj/ft_memcpy.o",
+      "src/ft_memcpy.c"
+    ],
+    "directory": "/home/oohnivch/common_core/minishell/libft",
+    "file": "/home/oohnivch/common_core/minishell/libft/src/ft_memcpy.c",
+    "output": "/home/oohnivch/common_core/minishell/libft/obj/ft_memcpy.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-g",
+      "-c",
+      "-I.",
+      "-o",
+      "obj/ft_memmove.o",
+      "src/ft_memmove.c"
+    ],
+    "directory": "/home/oohnivch/common_core/minishell/libft",
+    "file": "/home/oohnivch/common_core/minishell/libft/src/ft_memmove.c",
+    "output": "/home/oohnivch/common_core/minishell/libft/obj/ft_memmove.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-g",
+      "-c",
+      "-I.",
+      "-o",
+      "obj/ft_memchr.o",
+      "src/ft_memchr.c"
+    ],
+    "directory": "/home/oohnivch/common_core/minishell/libft",
+    "file": "/home/oohnivch/common_core/minishell/libft/src/ft_memchr.c",
+    "output": "/home/oohnivch/common_core/minishell/libft/obj/ft_memchr.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-g",
+      "-c",
+      "-I.",
+      "-o",
+      "obj/ft_memcmp.o",
+      "src/ft_memcmp.c"
+    ],
+    "directory": "/home/oohnivch/common_core/minishell/libft",
+    "file": "/home/oohnivch/common_core/minishell/libft/src/ft_memcmp.c",
+    "output": "/home/oohnivch/common_core/minishell/libft/obj/ft_memcmp.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-g",
+      "-c",
+      "-I.",
+      "-o",
+      "obj/ft_calloc.o",
+      "src/ft_calloc.c"
+    ],
+    "directory": "/home/oohnivch/common_core/minishell/libft",
+    "file": "/home/oohnivch/common_core/minishell/libft/src/ft_calloc.c",
+    "output": "/home/oohnivch/common_core/minishell/libft/obj/ft_calloc.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-g",
+      "-c",
+      "-I.",
+      "-o",
+      "obj/ft_putnbr_fd.o",
+      "src/ft_putnbr_fd.c"
+    ],
+    "directory": "/home/oohnivch/common_core/minishell/libft",
+    "file": "/home/oohnivch/common_core/minishell/libft/src/ft_putnbr_fd.c",
+    "output": "/home/oohnivch/common_core/minishell/libft/obj/ft_putnbr_fd.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-g",
+      "-c",
+      "-I.",
+      "-o",
+      "obj/ft_putchar_fd.o",
+      "src/ft_putchar_fd.c"
+    ],
+    "directory": "/home/oohnivch/common_core/minishell/libft",
+    "file": "/home/oohnivch/common_core/minishell/libft/src/ft_putchar_fd.c",
+    "output": "/home/oohnivch/common_core/minishell/libft/obj/ft_putchar_fd.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-g",
+      "-c",
+      "-I.",
+      "-o",
+      "obj/ft_putstr_fd.o",
+      "src/ft_putstr_fd.c"
+    ],
+    "directory": "/home/oohnivch/common_core/minishell/libft",
+    "file": "/home/oohnivch/common_core/minishell/libft/src/ft_putstr_fd.c",
+    "output": "/home/oohnivch/common_core/minishell/libft/obj/ft_putstr_fd.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-g",
+      "-c",
+      "-I.",
+      "-o",
+      "obj/ft_putendl_fd.o",
+      "src/ft_putendl_fd.c"
+    ],
+    "directory": "/home/oohnivch/common_core/minishell/libft",
+    "file": "/home/oohnivch/common_core/minishell/libft/src/ft_putendl_fd.c",
+    "output": "/home/oohnivch/common_core/minishell/libft/obj/ft_putendl_fd.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-g",
+      "-c",
+      "-I.",
+      "-o",
+      "obj/ft_printf.o",
+      "src/ft_printf.c"
+    ],
+    "directory": "/home/oohnivch/common_core/minishell/libft",
+    "file": "/home/oohnivch/common_core/minishell/libft/src/ft_printf.c",
+    "output": "/home/oohnivch/common_core/minishell/libft/obj/ft_printf.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-g",
+      "-c",
+      "-I.",
+      "-o",
+      "obj/ft_putchar.o",
+      "src/ft_putchar.c"
+    ],
+    "directory": "/home/oohnivch/common_core/minishell/libft",
+    "file": "/home/oohnivch/common_core/minishell/libft/src/ft_putchar.c",
+    "output": "/home/oohnivch/common_core/minishell/libft/obj/ft_putchar.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-g",
+      "-c",
+      "-I.",
+      "-o",
+      "obj/ft_putnbr.o",
+      "src/ft_putnbr.c"
+    ],
+    "directory": "/home/oohnivch/common_core/minishell/libft",
+    "file": "/home/oohnivch/common_core/minishell/libft/src/ft_putnbr.c",
+    "output": "/home/oohnivch/common_core/minishell/libft/obj/ft_putnbr.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-g",
+      "-c",
+      "-I.",
+      "-o",
+      "obj/ft_putstr.o",
+      "src/ft_putstr.c"
+    ],
+    "directory": "/home/oohnivch/common_core/minishell/libft",
+    "file": "/home/oohnivch/common_core/minishell/libft/src/ft_putstr.c",
+    "output": "/home/oohnivch/common_core/minishell/libft/obj/ft_putstr.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-g",
+      "-c",
+      "-I.",
+      "-o",
+      "obj/ft_puthex.o",
+      "src/ft_puthex.c"
+    ],
+    "directory": "/home/oohnivch/common_core/minishell/libft",
+    "file": "/home/oohnivch/common_core/minishell/libft/src/ft_puthex.c",
+    "output": "/home/oohnivch/common_core/minishell/libft/obj/ft_puthex.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-g",
+      "-c",
+      "-I.",
+      "-o",
+      "obj/ft_putptr.o",
+      "src/ft_putptr.c"
+    ],
+    "directory": "/home/oohnivch/common_core/minishell/libft",
+    "file": "/home/oohnivch/common_core/minishell/libft/src/ft_putptr.c",
+    "output": "/home/oohnivch/common_core/minishell/libft/obj/ft_putptr.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-g",
+      "-c",
+      "-I.",
+      "-o",
+      "obj/ft_putuint.o",
+      "src/ft_putuint.c"
+    ],
+    "directory": "/home/oohnivch/common_core/minishell/libft",
+    "file": "/home/oohnivch/common_core/minishell/libft/src/ft_putuint.c",
+    "output": "/home/oohnivch/common_core/minishell/libft/obj/ft_putuint.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-g",
+      "-c",
+      "-I.",
+      "-o",
+      "obj/ft_printerr.o",
+      "src/ft_printerr.c"
+    ],
+    "directory": "/home/oohnivch/common_core/minishell/libft",
+    "file": "/home/oohnivch/common_core/minishell/libft/src/ft_printerr.c",
+    "output": "/home/oohnivch/common_core/minishell/libft/obj/ft_printerr.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-g",
+      "-c",
+      "-I.",
+      "-o",
+      "obj/get_next_line.o",
+      "src/get_next_line.c"
+    ],
+    "directory": "/home/oohnivch/common_core/minishell/libft",
+    "file": "/home/oohnivch/common_core/minishell/libft/src/get_next_line.c",
+    "output": "/home/oohnivch/common_core/minishell/libft/obj/get_next_line.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-g",
+      "-c",
+      "-I.",
+      "-o",
+      "obj/get_next_line_2.o",
+      "src/get_next_line_2.c"
+    ],
+    "directory": "/home/oohnivch/common_core/minishell/libft",
+    "file": "/home/oohnivch/common_core/minishell/libft/src/get_next_line_2.c",
+    "output": "/home/oohnivch/common_core/minishell/libft/obj/get_next_line_2.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-g",
+      "-c",
+      "-I.",
+      "-o",
+      "obj/get_next_line_utils.o",
+      "src/get_next_line_utils.c"
+    ],
+    "directory": "/home/oohnivch/common_core/minishell/libft",
+    "file": "/home/oohnivch/common_core/minishell/libft/src/get_next_line_utils.c",
+    "output": "/home/oohnivch/common_core/minishell/libft/obj/get_next_line_utils.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-g",
+      "-c",
+      "-I.",
+      "-o",
+      "obj/ft_lstnew_bonus.o",
+      "src/ft_lstnew_bonus.c"
+    ],
+    "directory": "/home/oohnivch/common_core/minishell/libft",
+    "file": "/home/oohnivch/common_core/minishell/libft/src/ft_lstnew_bonus.c",
+    "output": "/home/oohnivch/common_core/minishell/libft/obj/ft_lstnew_bonus.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-g",
+      "-c",
+      "-I.",
+      "-o",
+      "obj/ft_lstadd_front_bonus.o",
+      "src/ft_lstadd_front_bonus.c"
+    ],
+    "directory": "/home/oohnivch/common_core/minishell/libft",
+    "file": "/home/oohnivch/common_core/minishell/libft/src/ft_lstadd_front_bonus.c",
+    "output": "/home/oohnivch/common_core/minishell/libft/obj/ft_lstadd_front_bonus.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-g",
+      "-c",
+      "-I.",
+      "-o",
+      "obj/ft_lstsize_bonus.o",
+      "src/ft_lstsize_bonus.c"
+    ],
+    "directory": "/home/oohnivch/common_core/minishell/libft",
+    "file": "/home/oohnivch/common_core/minishell/libft/src/ft_lstsize_bonus.c",
+    "output": "/home/oohnivch/common_core/minishell/libft/obj/ft_lstsize_bonus.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-g",
+      "-c",
+      "-I.",
+      "-o",
+      "obj/ft_lstlast_bonus.o",
+      "src/ft_lstlast_bonus.c"
+    ],
+    "directory": "/home/oohnivch/common_core/minishell/libft",
+    "file": "/home/oohnivch/common_core/minishell/libft/src/ft_lstlast_bonus.c",
+    "output": "/home/oohnivch/common_core/minishell/libft/obj/ft_lstlast_bonus.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-g",
+      "-c",
+      "-I.",
+      "-o",
+      "obj/ft_lstadd_back_bonus.o",
+      "src/ft_lstadd_back_bonus.c"
+    ],
+    "directory": "/home/oohnivch/common_core/minishell/libft",
+    "file": "/home/oohnivch/common_core/minishell/libft/src/ft_lstadd_back_bonus.c",
+    "output": "/home/oohnivch/common_core/minishell/libft/obj/ft_lstadd_back_bonus.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-g",
+      "-c",
+      "-I.",
+      "-o",
+      "obj/ft_lstdelone_bonus.o",
+      "src/ft_lstdelone_bonus.c"
+    ],
+    "directory": "/home/oohnivch/common_core/minishell/libft",
+    "file": "/home/oohnivch/common_core/minishell/libft/src/ft_lstdelone_bonus.c",
+    "output": "/home/oohnivch/common_core/minishell/libft/obj/ft_lstdelone_bonus.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-g",
+      "-c",
+      "-I.",
+      "-o",
+      "obj/ft_lstclear_bonus.o",
+      "src/ft_lstclear_bonus.c"
+    ],
+    "directory": "/home/oohnivch/common_core/minishell/libft",
+    "file": "/home/oohnivch/common_core/minishell/libft/src/ft_lstclear_bonus.c",
+    "output": "/home/oohnivch/common_core/minishell/libft/obj/ft_lstclear_bonus.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-g",
+      "-c",
+      "-I.",
+      "-o",
+      "obj/ft_lstiter_bonus.o",
+      "src/ft_lstiter_bonus.c"
+    ],
+    "directory": "/home/oohnivch/common_core/minishell/libft",
+    "file": "/home/oohnivch/common_core/minishell/libft/src/ft_lstiter_bonus.c",
+    "output": "/home/oohnivch/common_core/minishell/libft/obj/ft_lstiter_bonus.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-g",
+      "-c",
+      "-I.",
+      "-o",
+      "obj/ft_lstmap_bonus.o",
+      "src/ft_lstmap_bonus.c"
+    ],
+    "directory": "/home/oohnivch/common_core/minishell/libft",
+    "file": "/home/oohnivch/common_core/minishell/libft/src/ft_lstmap_bonus.c",
+    "output": "/home/oohnivch/common_core/minishell/libft/obj/ft_lstmap_bonus.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-g",
+      "-c",
+      "-I./includes",
+      "-o",
+      "obj/main.o",
+      "src/main.c"
+    ],
+    "directory": "/home/oohnivch/common_core/minishell",
+    "file": "/home/oohnivch/common_core/minishell/src/main.c",
+    "output": "/home/oohnivch/common_core/minishell/obj/main.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-g",
+      "-c",
+      "-I./includes",
+      "-o",
+      "obj/argv.o",
+      "src/argv.c"
+    ],
+    "directory": "/home/oohnivch/common_core/minishell",
+    "file": "/home/oohnivch/common_core/minishell/src/argv.c",
+    "output": "/home/oohnivch/common_core/minishell/obj/argv.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-g",
+      "-c",
+      "-I./includes",
+      "-o",
+      "obj/builtin_utils.o",
+      "src/builtin_utils.c"
+    ],
+    "directory": "/home/oohnivch/common_core/minishell",
+    "file": "/home/oohnivch/common_core/minishell/src/builtin_utils.c",
+    "output": "/home/oohnivch/common_core/minishell/obj/builtin_utils.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-g",
+      "-c",
+      "-I./includes",
+      "-o",
+      "obj/cd.o",
+      "src/cd.c"
+    ],
+    "directory": "/home/oohnivch/common_core/minishell",
+    "file": "/home/oohnivch/common_core/minishell/src/cd.c",
+    "output": "/home/oohnivch/common_core/minishell/obj/cd.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-g",
+      "-c",
+      "-I./includes",
+      "-o",
+      "obj/cd_utils.o",
+      "src/cd_utils.c"
+    ],
+    "directory": "/home/oohnivch/common_core/minishell",
+    "file": "/home/oohnivch/common_core/minishell/src/cd_utils.c",
+    "output": "/home/oohnivch/common_core/minishell/obj/cd_utils.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-g",
+      "-c",
+      "-I./includes",
+      "-o",
+      "obj/clean.o",
+      "src/clean.c"
+    ],
+    "directory": "/home/oohnivch/common_core/minishell",
+    "file": "/home/oohnivch/common_core/minishell/src/clean.c",
+    "output": "/home/oohnivch/common_core/minishell/obj/clean.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-g",
+      "-c",
+      "-I./includes",
+      "-o",
+      "obj/cmd_path.o",
+      "src/cmd_path.c"
+    ],
+    "directory": "/home/oohnivch/common_core/minishell",
+    "file": "/home/oohnivch/common_core/minishell/src/cmd_path.c",
+    "output": "/home/oohnivch/common_core/minishell/obj/cmd_path.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-g",
+      "-c",
+      "-I./includes",
+      "-o",
+      "obj/echo.o",
+      "src/echo.c"
+    ],
+    "directory": "/home/oohnivch/common_core/minishell",
+    "file": "/home/oohnivch/common_core/minishell/src/echo.c",
+    "output": "/home/oohnivch/common_core/minishell/obj/echo.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-g",
+      "-c",
+      "-I./includes",
+      "-o",
+      "obj/env.o",
+      "src/env.c"
+    ],
+    "directory": "/home/oohnivch/common_core/minishell",
+    "file": "/home/oohnivch/common_core/minishell/src/env.c",
+    "output": "/home/oohnivch/common_core/minishell/obj/env.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-g",
+      "-c",
+      "-I./includes",
+      "-o",
+      "obj/no_env.o",
+      "src/no_env.c"
+    ],
+    "directory": "/home/oohnivch/common_core/minishell",
+    "file": "/home/oohnivch/common_core/minishell/src/no_env.c",
+    "output": "/home/oohnivch/common_core/minishell/obj/no_env.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-g",
+      "-c",
+      "-I./includes",
+      "-o",
+      "obj/env_utils.o",
+      "src/env_utils.c"
+    ],
+    "directory": "/home/oohnivch/common_core/minishell",
+    "file": "/home/oohnivch/common_core/minishell/src/env_utils.c",
+    "output": "/home/oohnivch/common_core/minishell/obj/env_utils.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-g",
+      "-c",
+      "-I./includes",
+      "-o",
+      "obj/exec_init.o",
+      "src/exec_init.c"
+    ],
+    "directory": "/home/oohnivch/common_core/minishell",
+    "file": "/home/oohnivch/common_core/minishell/src/exec_init.c",
+    "output": "/home/oohnivch/common_core/minishell/obj/exec_init.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-g",
+      "-c",
+      "-I./includes",
+      "-o",
+      "obj/exec_init_utils.o",
+      "src/exec_init_utils.c"
+    ],
+    "directory": "/home/oohnivch/common_core/minishell",
+    "file": "/home/oohnivch/common_core/minishell/src/exec_init_utils.c",
+    "output": "/home/oohnivch/common_core/minishell/obj/exec_init_utils.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-g",
+      "-c",
+      "-I./includes",
+      "-o",
+      "obj/exec_utils.o",
+      "src/exec_utils.c"
+    ],
+    "directory": "/home/oohnivch/common_core/minishell",
+    "file": "/home/oohnivch/common_core/minishell/src/exec_utils.c",
+    "output": "/home/oohnivch/common_core/minishell/obj/exec_utils.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-g",
+      "-c",
+      "-I./includes",
+      "-o",
+      "obj/execution.o",
+      "src/execution.c"
+    ],
+    "directory": "/home/oohnivch/common_core/minishell",
+    "file": "/home/oohnivch/common_core/minishell/src/execution.c",
+    "output": "/home/oohnivch/common_core/minishell/obj/execution.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-g",
+      "-c",
+      "-I./includes",
+      "-o",
+      "obj/error.o",
+      "src/error.c"
+    ],
+    "directory": "/home/oohnivch/common_core/minishell",
+    "file": "/home/oohnivch/common_core/minishell/src/error.c",
+    "output": "/home/oohnivch/common_core/minishell/obj/error.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-g",
+      "-c",
+      "-I./includes",
+      "-o",
+      "obj/general_utils.o",
+      "src/general_utils.c"
+    ],
+    "directory": "/home/oohnivch/common_core/minishell",
+    "file": "/home/oohnivch/common_core/minishell/src/general_utils.c",
+    "output": "/home/oohnivch/common_core/minishell/obj/general_utils.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-g",
+      "-c",
+      "-I./includes",
+      "-o",
+      "obj/here_doc.o",
+      "src/here_doc.c"
+    ],
+    "directory": "/home/oohnivch/common_core/minishell",
+    "file": "/home/oohnivch/common_core/minishell/src/here_doc.c",
+    "output": "/home/oohnivch/common_core/minishell/obj/here_doc.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-g",
+      "-c",
+      "-I./includes",
+      "-o",
+      "obj/here_doc_utils.o",
+      "src/here_doc_utils.c"
+    ],
+    "directory": "/home/oohnivch/common_core/minishell",
+    "file": "/home/oohnivch/common_core/minishell/src/here_doc_utils.c",
+    "output": "/home/oohnivch/common_core/minishell/obj/here_doc_utils.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-g",
+      "-c",
+      "-I./includes",
+      "-o",
+      "obj/lexer.o",
+      "src/lexer.c"
+    ],
+    "directory": "/home/oohnivch/common_core/minishell",
+    "file": "/home/oohnivch/common_core/minishell/src/lexer.c",
+    "output": "/home/oohnivch/common_core/minishell/obj/lexer.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-g",
+      "-c",
+      "-I./includes",
+      "-o",
+      "obj/lexer_create_tokens.o",
+      "src/lexer_create_tokens.c"
+    ],
+    "directory": "/home/oohnivch/common_core/minishell",
+    "file": "/home/oohnivch/common_core/minishell/src/lexer_create_tokens.c",
+    "output": "/home/oohnivch/common_core/minishell/obj/lexer_create_tokens.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-g",
+      "-c",
+      "-I./includes",
+      "-o",
+      "obj/lexer_process_words.o",
+      "src/lexer_process_words.c"
+    ],
+    "directory": "/home/oohnivch/common_core/minishell",
+    "file": "/home/oohnivch/common_core/minishell/src/lexer_process_words.c",
+    "output": "/home/oohnivch/common_core/minishell/obj/lexer_process_words.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-g",
+      "-c",
+      "-I./includes",
+      "-o",
+      "obj/lexer_set_token_types.o",
+      "src/lexer_set_token_types.c"
+    ],
+    "directory": "/home/oohnivch/common_core/minishell",
+    "file": "/home/oohnivch/common_core/minishell/src/lexer_set_token_types.c",
+    "output": "/home/oohnivch/common_core/minishell/obj/lexer_set_token_types.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-g",
+      "-c",
+      "-I./includes",
+      "-o",
+      "obj/lexer_create_segment.o",
+      "src/lexer_create_segment.c"
+    ],
+    "directory": "/home/oohnivch/common_core/minishell",
+    "file": "/home/oohnivch/common_core/minishell/src/lexer_create_segment.c",
+    "output": "/home/oohnivch/common_core/minishell/obj/lexer_create_segment.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-g",
+      "-c",
+      "-I./includes",
+      "-o",
+      "obj/lexer_process_operators.o",
+      "src/lexer_process_operators.c"
+    ],
+    "directory": "/home/oohnivch/common_core/minishell",
+    "file": "/home/oohnivch/common_core/minishell/src/lexer_process_operators.c",
+    "output": "/home/oohnivch/common_core/minishell/obj/lexer_process_operators.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-g",
+      "-c",
+      "-I./includes",
+      "-o",
+      "obj/lexer_process_redirections.o",
+      "src/lexer_process_redirections.c"
+    ],
+    "directory": "/home/oohnivch/common_core/minishell",
+    "file": "/home/oohnivch/common_core/minishell/src/lexer_process_redirections.c",
+    "output": "/home/oohnivch/common_core/minishell/obj/lexer_process_redirections.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-g",
+      "-c",
+      "-I./includes",
+      "-o",
+      "obj/parser.o",
+      "src/parser.c"
+    ],
+    "directory": "/home/oohnivch/common_core/minishell",
+    "file": "/home/oohnivch/common_core/minishell/src/parser.c",
+    "output": "/home/oohnivch/common_core/minishell/obj/parser.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-g",
+      "-c",
+      "-I./includes",
+      "-o",
+      "obj/parser_split_tokens.o",
+      "src/parser_split_tokens.c"
+    ],
+    "directory": "/home/oohnivch/common_core/minishell",
+    "file": "/home/oohnivch/common_core/minishell/src/parser_split_tokens.c",
+    "output": "/home/oohnivch/common_core/minishell/obj/parser_split_tokens.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-g",
+      "-c",
+      "-I./includes",
+      "-o",
+      "obj/parser_replace_split_token.o",
+      "src/parser_replace_split_token.c"
+    ],
+    "directory": "/home/oohnivch/common_core/minishell",
+    "file": "/home/oohnivch/common_core/minishell/src/parser_replace_split_token.c",
+    "output": "/home/oohnivch/common_core/minishell/obj/parser_replace_split_token.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-g",
+      "-c",
+      "-I./includes",
+      "-o",
+      "obj/parser_expander.o",
+      "src/parser_expander.c"
+    ],
+    "directory": "/home/oohnivch/common_core/minishell",
+    "file": "/home/oohnivch/common_core/minishell/src/parser_expander.c",
+    "output": "/home/oohnivch/common_core/minishell/obj/parser_expander.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-g",
+      "-c",
+      "-I./includes",
+      "-o",
+      "obj/parser_expansion_cases.o",
+      "src/parser_expansion_cases.c"
+    ],
+    "directory": "/home/oohnivch/common_core/minishell",
+    "file": "/home/oohnivch/common_core/minishell/src/parser_expansion_cases.c",
+    "output": "/home/oohnivch/common_core/minishell/obj/parser_expansion_cases.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-g",
+      "-c",
+      "-I./includes",
+      "-o",
+      "obj/parser_utils.o",
+      "src/parser_utils.c"
+    ],
+    "directory": "/home/oohnivch/common_core/minishell",
+    "file": "/home/oohnivch/common_core/minishell/src/parser_utils.c",
+    "output": "/home/oohnivch/common_core/minishell/obj/parser_utils.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-g",
+      "-c",
+      "-I./includes",
+      "-o",
+      "obj/pid.o",
+      "src/pid.c"
+    ],
+    "directory": "/home/oohnivch/common_core/minishell",
+    "file": "/home/oohnivch/common_core/minishell/src/pid.c",
+    "output": "/home/oohnivch/common_core/minishell/obj/pid.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-g",
+      "-c",
+      "-I./includes",
+      "-o",
+      "obj/syntax_checker.o",
+      "src/syntax_checker.c"
+    ],
+    "directory": "/home/oohnivch/common_core/minishell",
+    "file": "/home/oohnivch/common_core/minishell/src/syntax_checker.c",
+    "output": "/home/oohnivch/common_core/minishell/obj/syntax_checker.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-g",
+      "-c",
+      "-I./includes",
+      "-o",
+      "obj/syntax_checker_utils.o",
+      "src/syntax_checker_utils.c"
+    ],
+    "directory": "/home/oohnivch/common_core/minishell",
+    "file": "/home/oohnivch/common_core/minishell/src/syntax_checker_utils.c",
+    "output": "/home/oohnivch/common_core/minishell/obj/syntax_checker_utils.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-g",
+      "-c",
+      "-I./includes",
+      "-o",
+      "obj/lexer_parser_free_utils.o",
+      "src/lexer_parser_free_utils.c"
+    ],
+    "directory": "/home/oohnivch/common_core/minishell",
+    "file": "/home/oohnivch/common_core/minishell/src/lexer_parser_free_utils.c",
+    "output": "/home/oohnivch/common_core/minishell/obj/lexer_parser_free_utils.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-g",
+      "-c",
+      "-I./includes",
+      "-o",
+      "obj/path.o",
+      "src/path.c"
+    ],
+    "directory": "/home/oohnivch/common_core/minishell",
+    "file": "/home/oohnivch/common_core/minishell/src/path.c",
+    "output": "/home/oohnivch/common_core/minishell/obj/path.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-g",
+      "-c",
+      "-I./includes",
+      "-o",
+      "obj/reroute.o",
+      "src/reroute.c"
+    ],
+    "directory": "/home/oohnivch/common_core/minishell",
+    "file": "/home/oohnivch/common_core/minishell/src/reroute.c",
+    "output": "/home/oohnivch/common_core/minishell/obj/reroute.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-g",
+      "-c",
+      "-I./includes",
+      "-o",
+      "obj/reroute_utils.o",
+      "src/reroute_utils.c"
+    ],
+    "directory": "/home/oohnivch/common_core/minishell",
+    "file": "/home/oohnivch/common_core/minishell/src/reroute_utils.c",
+    "output": "/home/oohnivch/common_core/minishell/obj/reroute_utils.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-g",
+      "-c",
+      "-I./includes",
+      "-o",
+      "obj/free.o",
+      "src/free.c"
+    ],
+    "directory": "/home/oohnivch/common_core/minishell",
+    "file": "/home/oohnivch/common_core/minishell/src/free.c",
+    "output": "/home/oohnivch/common_core/minishell/obj/free.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-g",
+      "-c",
+      "-I./includes",
+      "-o",
+      "obj/pwd.o",
+      "src/pwd.c"
+    ],
+    "directory": "/home/oohnivch/common_core/minishell",
+    "file": "/home/oohnivch/common_core/minishell/src/pwd.c",
+    "output": "/home/oohnivch/common_core/minishell/obj/pwd.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-g",
+      "-c",
+      "-I./includes",
+      "-o",
+      "obj/signal.o",
+      "src/signal.c"
+    ],
+    "directory": "/home/oohnivch/common_core/minishell",
+    "file": "/home/oohnivch/common_core/minishell/src/signal.c",
+    "output": "/home/oohnivch/common_core/minishell/obj/signal.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-g",
+      "-c",
+      "-I./includes",
+      "-o",
+      "obj/exit.o",
+      "src/exit.c"
+    ],
+    "directory": "/home/oohnivch/common_core/minishell",
+    "file": "/home/oohnivch/common_core/minishell/src/exit.c",
+    "output": "/home/oohnivch/common_core/minishell/obj/exit.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-g",
+      "-c",
+      "-I./includes",
+      "-o",
+      "obj/export.o",
+      "src/export.c"
+    ],
+    "directory": "/home/oohnivch/common_core/minishell",
+    "file": "/home/oohnivch/common_core/minishell/src/export.c",
+    "output": "/home/oohnivch/common_core/minishell/obj/export.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-g",
+      "-c",
+      "-I./includes",
+      "-o",
+      "obj/export_utils.o",
+      "src/export_utils.c"
+    ],
+    "directory": "/home/oohnivch/common_core/minishell",
+    "file": "/home/oohnivch/common_core/minishell/src/export_utils.c",
+    "output": "/home/oohnivch/common_core/minishell/obj/export_utils.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-g",
+      "-c",
+      "-I./includes",
+      "-o",
+      "obj/unset.o",
+      "src/unset.c"
+    ],
+    "directory": "/home/oohnivch/common_core/minishell",
+    "file": "/home/oohnivch/common_core/minishell/src/unset.c",
+    "output": "/home/oohnivch/common_core/minishell/obj/unset.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-g",
+      "-c",
+      "-I./includes",
+      "-o",
+      "obj/debug_utils.o",
+      "src/debug_utils.c"
+    ],
+    "directory": "/home/oohnivch/common_core/minishell",
+    "file": "/home/oohnivch/common_core/minishell/src/debug_utils.c",
+    "output": "/home/oohnivch/common_core/minishell/obj/debug_utils.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-g",
+      "-c",
+      "-I./includes",
+      "-o",
+      "obj/debug_utils2.o",
+      "src/debug_utils2.c"
+    ],
+    "directory": "/home/oohnivch/common_core/minishell",
+    "file": "/home/oohnivch/common_core/minishell/src/debug_utils2.c",
+    "output": "/home/oohnivch/common_core/minishell/obj/debug_utils2.o"
+  }
+]

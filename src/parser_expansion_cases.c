@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_expansion_cases.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hanjkim <@student.42vienna.com>            +#+  +:+       +#+        */
+/*   By: hanjkim <hanjkim@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/01 22:44:16 by hanjkim           #+#    #+#             */
-/*   Updated: 2025/02/28 19:03:08 by hanjkim          ###   ########.fr       */
+/*   Updated: 2025/03/03 16:40:55 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

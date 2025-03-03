@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer_parser_free_utils.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hanjkim <@student.42vienna.com>            +#+  +:+       +#+        */
+/*   By: hanjkim <hanjkim@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 16:15:16 by hanjkim           #+#    #+#             */
-/*   Updated: 2025/02/27 16:15:32 by hanjkim          ###   ########.fr       */
+/*   Updated: 2025/03/03 16:38:57 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

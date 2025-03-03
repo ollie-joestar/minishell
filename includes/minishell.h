@@ -6,7 +6,7 @@
 /*   By: oohnivch <oohnivch@student.42vienna.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 18:03:12 by oohnivch          #+#    #+#             */
-/*   Updated: 2025/03/03 12:03:41 by oohnivch         ###   ########.fr       */
+/*   Updated: 2025/03/03 19:46:39 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@
 # include <sys/stat.h>
 # include <readline/readline.h>
 # include <readline/history.h>
-# include <limits.h>
 # include <stdbool.h>
 # include <signal.h>
 
@@ -218,7 +217,6 @@ bool		is_redirection(t_token *token);
 bool		unexpected_token_with_join(t_data *data, t_token *token);
 
 // OLLIE
-//
 // Exec initialization
 void		init_exec(t_data *data);
 void		add_to_av_list(t_data *data, t_exec *exec, t_token *token);
@@ -282,7 +280,6 @@ void		store_stds(t_data *data, t_exec *exec);
 void		restore_stds(t_data *data, t_exec *exec);
 void		echo(t_data *data, t_exec *exec);
 void		cd(t_data *data, t_exec *exec);
-/*void		cd_home(t_data *data, t_exec *exec);*/
 char		*get_home(t_data *data);
 void		pwd(t_data *data, t_exec *exec);
 int			update_pwd(t_data *data, int check);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   general_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
+/*   By: oohnivch <oohnivch@student.42vienna.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/14 16:36:14 by oohnivch          #+#    #+#             */
-/*   Updated: 2025/03/03 10:32:46 by oohnivch         ###   ########.fr       */
+/*   Created: 2025/03/03 16:37:31 by oohnivch          #+#    #+#             */
+/*   Updated: 2025/03/03 16:37:33 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

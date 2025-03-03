@@ -6,7 +6,7 @@
 /*   By: oohnivch <oohnivch@student.42vienna.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 13:59:00 by oohnivch          #+#    #+#             */
-/*   Updated: 2025/02/25 10:44:35 by oohnivch         ###   ########.fr       */
+/*   Updated: 2025/03/03 15:47:52 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ void	mspe(char *str)
 	char	*error;
 
 	error = join2("minishell: ", str);
+	if (!error)
+		return ;
 	perror(error);
 	ft_free(&error);
 }

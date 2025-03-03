@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer_process_redirections.c                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hanjkim <@student.42vienna.com>            +#+  +:+       +#+        */
+/*   By: hanjkim <hanjkim@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 16:26:35 by hanjkim           #+#    #+#             */
-/*   Updated: 2025/02/28 22:58:33 by hanjkim          ###   ########.fr       */
+/*   Updated: 2025/03/03 16:39:18 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

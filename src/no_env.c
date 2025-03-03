@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   no_env.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
+/*   By: oohnivch <oohnivch@student.42vienna.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/14 12:02:31 by oohnivch          #+#    #+#             */
-/*   Updated: 2025/03/03 12:38:53 by oohnivch         ###   ########.fr       */
+/*   Created: 2025/03/03 16:40:13 by oohnivch          #+#    #+#             */
+/*   Updated: 2025/03/03 20:05:37 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,10 @@ void	shlvl(t_data *data, t_envlist *list)
 	if (shlvl)
 	{
 		i_value = ft_atoi(shlvl->value);
-		i_value++;
+		if (i_value >= 1000 || i_value < 0)
+			i_value = 0;
+		else
+			i_value++;
 		ft_free(&shlvl->value);
 		new_value = ft_itoa(i_value);
 		shlvl->value = new_value;

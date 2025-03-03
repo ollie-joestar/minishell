@@ -6,7 +6,7 @@
 /*   By: oohnivch <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 14:10:40 by oohnivch          #+#    #+#             */
-/*   Updated: 2025/01/21 12:38:52 by oohnivch         ###   ########.fr       */
+/*   Updated: 2025/03/03 19:12:48 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,10 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	size_t	mem;
 	char	*ptr;
 
-	if (!s || !*s)
+	if (!s)
 		return (NULL);
 	mem = s_check(s, start, len);
-	ptr = malloc ((mem + 1) * sizeof(char));
+	ptr = ft_calloc((mem + 1), sizeof(char));
 	if (ptr == NULL)
 		return (NULL);
 	i = 0;

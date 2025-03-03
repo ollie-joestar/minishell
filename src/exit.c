@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
+/*   By: oohnivch <oohnivch@student.42vienna.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/21 11:19:32 by oohnivch          #+#    #+#             */
-/*   Updated: 2025/03/03 10:55:17 by oohnivch         ###   ########.fr       */
+/*   Created: 2025/03/03 16:36:55 by oohnivch          #+#    #+#             */
+/*   Updated: 2025/03/03 19:03:56 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,30 +61,30 @@ static void	numeric_long_check(t_data *data, char *str)
 static void	numeric_check(t_data *data, char *s)
 {
 	size_t	i;
-	char	*trimmed;
+	char	*trm;
 
-	if (!*s)
+	trm = ft_strtrim(s, " \t\n\v\f\r");
+	if (!trm)
+		bruh(data, "Malloc fail in exit.c:numeric_check", 69);
+	if (!*trm || !ft_strncmp(trm, "-", 2) || !ft_strncmp(trm, "+", 2))
 	{
 		if (isatty(STDIN_FILENO) && isatty(STDOUT_FILENO))
 			ft_putstr_fd("exit\n", 2);
-		(mspec3("exit", s, "numeric argument required\n"), bruh(data, NULL, 2));
+		mspec3("exit", s, "numeric argument required\n");
+		(ft_free(&trm), bruh(data, NULL, 2));
 	}
-	trimmed = ft_strtrim(s, " \t\n\v\f\r");
-	if (!trimmed)
-		bruh(data, "Malloc fail in exit.c:numeric_check", 69);
-	i = trimmed[0] == '-' || trimmed[0] == '+';
-	while (trimmed[i] && i < ft_strlen(trimmed))
+	i = trm[0] == '-' || trm[0] == '+';
+	while (trm[i] && i < ft_strlen(trm))
 	{
-		if (!ft_isdigit(trimmed[i++]))
+		if (!ft_isdigit(trm[i++]))
 		{
 			if (isatty(STDIN_FILENO) && isatty(STDOUT_FILENO))
 				ft_putstr_fd("exit\n", 2);
-			ft_free(&trimmed);
 			mspec3("exit", s, "numeric argument required\n");
-			bruh(data, NULL, 2);
+			(ft_free(&trm), bruh(data, NULL, 2));
 		}
 	}
-	(ft_free(&trimmed), numeric_long_check(data, s));
+	(ft_free(&trm), numeric_long_check(data, s));
 }
 
 void	ft_exit(t_data *data, t_exec *exec)
