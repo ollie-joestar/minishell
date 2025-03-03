@@ -69,3 +69,15 @@ another="anything here"
 <!--[echo] [-n] [$wordNfirstsomething] [else] [$another] [|] [cat] // split by space-->
 <!--[echo] [-n] [$wordNfirstsomething] [else] [anything here] [|] [cat] // expand variable-->
 <!--[echo] [-n] [$wordNfirstsomething] [else] [anything] [here] [|] [cat] // split by space-->
+
+export logic
+
+if found
+
+if '='  overwrites
+if !'=' does nothing
+
+if notfound
+
+if '='  creates with value
+if !'=' creates without value

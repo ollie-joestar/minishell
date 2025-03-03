@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 16:36:14 by oohnivch          #+#    #+#             */
-/*   Updated: 2025/02/26 19:01:02 by oohnivch         ###   ########.fr       */
+/*   Updated: 2025/03/03 10:32:46 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ void	underscore(t_data *data, t_exec *exec)
 		value = ft_strdup("");
 	else
 		value = ft_strdup(exec->av[i]);
+	if (!value)
+		bruh(data, "Malloc fail general_utils.c:30", 69);
 	list = find_env(data->env, "_");
 	if (list)
 		(ft_free(&list->value), list->value = value);

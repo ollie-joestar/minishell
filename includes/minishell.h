@@ -6,7 +6,7 @@
 /*   By: oohnivch <oohnivch@student.42vienna.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 18:03:12 by oohnivch          #+#    #+#             */
-/*   Updated: 2025/02/28 23:22:17 by hanjkim          ###   ########.fr       */
+/*   Updated: 2025/03/03 12:03:41 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -278,14 +278,14 @@ void		set_path(t_data *data, t_exec *exec);
 void		set_cmd_path(t_data *data, t_exec *exec);
 
 // Builtins
-void		store_stds(t_exec *exec);
-void		restore_stds(t_exec *exec);
+void		store_stds(t_data *data, t_exec *exec);
+void		restore_stds(t_data *data, t_exec *exec);
 void		echo(t_data *data, t_exec *exec);
 void		cd(t_data *data, t_exec *exec);
-void		cd_home(t_data *data, t_exec *exec);
+/*void		cd_home(t_data *data, t_exec *exec);*/
 char		*get_home(t_data *data);
 void		pwd(t_data *data, t_exec *exec);
-int			update_pwd(t_data *data);
+int			update_pwd(t_data *data, int check);
 t_envlist	*get_pwd(t_data *data);
 t_envlist	*get_oldpwd(t_data *data);
 void		pwd_error(char *path);
@@ -296,7 +296,7 @@ void		unset(t_data *data, t_exec *exec);
 void		safe_print(char *str);
 char		*combine_env(t_data *data, char *name, char *value);
 void		safe_print_env(t_data *data, char *name, char *value);
-void		safe_print_export(t_data *data, char *name, char *value);
+void		safe_print_export(t_data *data, t_envlist *l, char *n, char *v);
 
 // HereDoc
 char		*here_doc(t_data *data, char *l, int to_expand);

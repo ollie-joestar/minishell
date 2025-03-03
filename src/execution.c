@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 16:35:58 by oohnivch          #+#    #+#             */
-/*   Updated: 2025/02/26 18:59:08 by oohnivch         ###   ########.fr       */
+/*   Updated: 2025/03/03 10:48:41 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,9 @@ void	command(t_data *data, t_exec *exec)
 void	builtin(t_data *data, t_exec *exec)
 {
 	if (exec_len(exec) == 1)
-		(store_stds(exec), reroute(data, exec));
+		(store_stds(data, exec), reroute(data, exec));
 	if (!(ft_strncmp(exec->cmd, "exit", 5)))
-		(restore_stds(exec), ft_exit(data, exec));
+		(restore_stds(data, exec), ft_exit(data, exec));
 	else if (!(ft_strncmp(exec->cmd, "echo", 5)))
 		echo(data, exec);
 	else if (!(ft_strncmp(exec->cmd, "cd", 3)))
@@ -48,7 +48,7 @@ void	builtin(t_data *data, t_exec *exec)
 	else
 		bruh(data, "it's not a builtin, my bad (^_^)\n", 127);
 	if (ft_strncmp(exec->cmd, "exit", 5))
-		restore_stds(exec);
+		restore_stds(data, exec);
 	if (exec_len(exec) > 1)
 		bruh(data, NULL, data->status);
 }

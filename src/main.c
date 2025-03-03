@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 09:38:58 by oohnivch          #+#    #+#             */
-/*   Updated: 2025/02/28 21:46:23 by hanjkim          ###   ########.fr       */
+/*   Updated: 2025/03/03 10:57:07 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,8 +60,8 @@ int	parse_and_validate_line(t_data *data)
 	parse_line(data);
 	if (!valid_syntax(data, data->token))
 	{
-		add_history(data->line)
-;		return (free_tokens(data), ft_free(&data->line), 0);
+		add_history(data->line);
+		return (free_tokens(data), ft_free(&data->line), 0);
 	}
 	return (1);
 }

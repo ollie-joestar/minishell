@@ -6,7 +6,7 @@
 /*   By: oohnivch <oohnivch@student.42vienna.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 17:43:33 by oohnivch          #+#    #+#             */
-/*   Updated: 2025/02/27 15:08:37 by oohnivch         ###   ########.fr       */
+/*   Updated: 2025/03/03 12:47:43 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	print_export(t_data *data)
 		mspec("No env for export\n");
 	list = dup_env(data->env);
 	if (!list)
-		bruh(data, "Memory allocation failed", 69);
+		bruh(data, "Malloc failed in print export", 69);
 	list = sort_env(list);
 	while (list->prev)
 		list = list->prev;
@@ -29,7 +29,7 @@ void	print_export(t_data *data)
 		if (ft_strncmp(list->name, "_", 2))
 		{
 			if (pid(data) == 0)
-				safe_print_export(data, list->name, list->value);
+				safe_print_export(data, list, list->name, list->value);
 			else
 				ft_printf("declare -x %s=\"%s\"\n", list->name, list->value);
 		}
@@ -71,17 +71,13 @@ t_envlist	*create_env(char *name, char *value)
 
 	list = ft_calloc(1, sizeof(t_envlist));
 	if (!list)
-		return (NULL);
+		return (mspec("Malloc failed to create env_list"), NULL);
 	list->name = ft_strdup(name);
 	list->value = ft_strdup(value);
-	if (!list->name)
-		ft_putstr_fd("NO NAME\n", 2);
-	if (!list->value)
-		ft_putstr_fd("NO VALUE\n", 2);
-	if (!list->name || !list->value)
+	if (!list->name || (value && !list->value))
 	{
 		free_env_list(list);
-		return (NULL);
+		return (mspec("Malloc failed to dup into env_list"), NULL);
 	}
 	return (list);
 }
@@ -99,7 +95,7 @@ t_envlist	*dup_env(t_envlist *list)
 			return (free_env_list(new), NULL);
 		tmp->name = ft_strdup(list->name);
 		tmp->value = ft_strdup(list->value);
-		if (!tmp->name || !tmp->value)
+		if (!tmp->name || (!tmp->value && list->value))
 			return (free_env_list(tmp), free_env_list(new), NULL);
 		if (new)
 		{

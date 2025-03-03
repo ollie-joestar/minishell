@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 12:17:06 by oohnivch          #+#    #+#             */
-/*   Updated: 2025/02/27 15:09:09 by oohnivch         ###   ########.fr       */
+/*   Updated: 2025/03/03 12:44:18 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,10 +95,13 @@ void	print_env(t_data *data)
 	list = data->env;
 	while (list)
 	{
-		if (pid(data) == 0)
-			safe_print_env(data, list->name, list->value);
-		else
-			ft_printf("%s=%s\n", list->name, list->value);
+		if (list->value)
+		{
+			if (pid(data) == 0)
+				safe_print_env(data, list->name, list->value);
+			else
+				ft_printf("%s=%s\n", list->name, list->value);
+		}
 		list = list->next;
 	}
 }

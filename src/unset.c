@@ -6,14 +6,23 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 10:37:58 by oohnivch          #+#    #+#             */
-/*   Updated: 2025/02/24 17:59:19 by oohnivch         ###   ########.fr       */
+/*   Updated: 2025/03/03 12:55:24 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static void	remove_var(t_envlist *node)
+static void	remove_var(t_data *data, t_envlist *node)
 {
+	if (!node || !data->env)
+		return ;
+	if (node == data->env)
+	{
+		if (data->env->prev)
+			data->env = data->env->prev;
+		else
+			data->env = data->env->next;
+	}
 	if (node->prev)
 		node->prev->next = node->next;
 	if (node->next)
@@ -38,7 +47,7 @@ void	unset(t_data *data, t_exec *exec)
 			continue ;
 		node = find_env(data->env, exec->av[i]);
 		if (node)
-			remove_var(node);
+			remove_var(data, node);
 		data->status = 0;
 	}
 }

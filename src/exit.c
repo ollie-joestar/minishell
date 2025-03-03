@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 11:19:32 by oohnivch          #+#    #+#             */
-/*   Updated: 2025/02/24 17:44:47 by oohnivch         ###   ########.fr       */
+/*   Updated: 2025/03/03 10:55:17 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,19 +58,20 @@ static void	numeric_long_check(t_data *data, char *str)
 	ft_free(&trimmed);
 }
 
-static void	numeric_check(t_data *data, char *str)
+static void	numeric_check(t_data *data, char *s)
 {
 	size_t	i;
 	char	*trimmed;
 
-	if (!*str)
+	if (!*s)
 	{
 		if (isatty(STDIN_FILENO) && isatty(STDOUT_FILENO))
 			ft_putstr_fd("exit\n", 2);
-		mspec3("exit", str, "numeric argument required\n");
-		bruh(data, NULL, 2);
+		(mspec3("exit", s, "numeric argument required\n"), bruh(data, NULL, 2));
 	}
-	trimmed = ft_strtrim(str, " \t\n\v\f\r");
+	trimmed = ft_strtrim(s, " \t\n\v\f\r");
+	if (!trimmed)
+		bruh(data, "Malloc fail in exit.c:numeric_check", 69);
 	i = trimmed[0] == '-' || trimmed[0] == '+';
 	while (trimmed[i] && i < ft_strlen(trimmed))
 	{
@@ -79,19 +80,18 @@ static void	numeric_check(t_data *data, char *str)
 			if (isatty(STDIN_FILENO) && isatty(STDOUT_FILENO))
 				ft_putstr_fd("exit\n", 2);
 			ft_free(&trimmed);
-			mspec3("exit", str, "numeric argument required\n");
+			mspec3("exit", s, "numeric argument required\n");
 			bruh(data, NULL, 2);
 		}
 	}
-	ft_free(&trimmed);
-	numeric_long_check(data, str);
+	(ft_free(&trimmed), numeric_long_check(data, s));
 }
 
 void	ft_exit(t_data *data, t_exec *exec)
 {
 	char	*tmp;
 
-	restore_stds(exec);
+	restore_stds(data, exec);
 	if (exec->av && exec->av[1])
 	{
 		numeric_check(data, exec->av[1]);
@@ -101,6 +101,8 @@ void	ft_exit(t_data *data, t_exec *exec)
 			if (isatty(STDIN_FILENO) && isatty(STDOUT_FILENO))
 			{
 				tmp = join2("exit\n", "minishell: exit: too many arguments\n");
+				if (!tmp)
+					bruh(data, "Malloc fail in exit.c:105", 69);
 				(ft_putstr_fd(tmp, 2), ft_free(&tmp));
 				return ;
 			}

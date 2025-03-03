@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 12:32:11 by oohnivch          #+#    #+#             */
-/*   Updated: 2025/02/18 15:34:38 by oohnivch         ###   ########.fr       */
+/*   Updated: 2025/03/03 10:30:08 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	set_path(t_data *data, t_exec *exec)
 {
-	char	*tpm;
+	char	*tmp;
 	int		i;
 
 	i = -1;
@@ -22,21 +22,21 @@ void	set_path(t_data *data, t_exec *exec)
 		return ;
 	while (data->path && *data->path && data->path[++i])
 	{
-		tpm = ft_strjoin(data->path[i], exec->cmd);
-		if (access(tpm, X_OK) == 0)
+		tmp = ft_strjoin(data->path[i], exec->cmd);
+		if (!tmp)
+			bruh(data, "Failed to allocate memory for path", 69);
+		if (access(tmp, X_OK) == 0)
 		{
 			ft_free(&exec->cmd);
-			exec->cmd = tpm;
+			exec->cmd = tmp;
 			return ;
 		}
-		if (access(tpm, F_OK) == 0)
+		if (access(tmp, F_OK) == 0)
 		{
 			ft_free(&exec->cmd);
-			exec->cmd = ft_strdup(tpm);
+			exec->cmd = ft_strdup(tmp);
 		}
-		ft_free(&tpm);
-		if (!data->path[i + 1])
-			break ;
+		ft_free(&tmp);
 	}
 }
 

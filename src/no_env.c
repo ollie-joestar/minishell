@@ -6,7 +6,7 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 12:02:31 by oohnivch          #+#    #+#             */
-/*   Updated: 2025/02/27 14:59:38 by oohnivch         ###   ########.fr       */
+/*   Updated: 2025/03/03 12:38:53 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,10 @@ t_envlist	*create_underscore(t_data *data)
 		return (NULL);
 	cwd = getcwd(NULL, 0);
 	if (!cwd)
-		bruh(data, "Memory allocation failed", 69);
+		bruh(data, "Malloc failed no_env.c:25", 69);
 	underscore = ft_strjoin(cwd, "/./minishell");
 	if (!underscore)
-		bruh(data, "Memory allocation failed", 69);
+		bruh(data, "Malloc failed no_env.c:28", 69);
 	ft_free(&cwd);
 	list = create_env("_", underscore);
 	ft_free(&underscore);
@@ -41,7 +41,7 @@ t_envlist	*create_new_pwd(t_data *data)
 		return (NULL);
 	cwd = getcwd(NULL, 0);
 	if (!cwd)
-		bruh(data, "Memory allocation failed", 69);
+		bruh(data, "Malloc failed no_env.c:44", 69);
 	list = create_env("PWD", cwd);
 	ft_free(&cwd);
 	return (list);
@@ -62,7 +62,7 @@ void	shlvl(t_data *data, t_envlist *list)
 		new_value = ft_itoa(i_value);
 		shlvl->value = new_value;
 		if (!shlvl->value)
-			bruh(data, "Memory allocation failed", 69);
+			bruh(data, "Malloc failed no_env.c:65", 69);
 	}
 	else
 	{
@@ -79,19 +79,19 @@ t_envlist	*create_new_env(t_data *data)
 
 	list = create_env("SHLVL", "1");
 	if (!list)
-		bruh(data, "Memory allocation failed", 69);
+		bruh(data, "Malloc failed no_env.c:82", 69);
 	if (!find_env(list, "PWD"))
 	{
 		pwd = create_new_pwd(data);
 		if (!pwd)
-			(free_env_list(list), bruh(data, "Memory allocation failed", 69));
+			(free_env_list(list), bruh(data, "Malloc failed no_env.c:87", 69));
 		add_env(pwd, list);
 	}
 	if (!find_env(list, "_"))
 	{
 		underscore = create_underscore(data);
 		if (!underscore)
-			(free_env_list(list), bruh(data, "Memory allocation failed", 69));
+			(free_env_list(list), bruh(data, "Malloc failed no_env.c:94", 69));
 		add_env(list, underscore);
 	}
 	while (list && list->prev)

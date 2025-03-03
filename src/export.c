@@ -6,11 +6,29 @@
 /*   By: oohnivch <@student.42vienna.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 11:32:53 by oohnivch          #+#    #+#             */
-/*   Updated: 2025/02/26 18:59:27 by oohnivch         ###   ########.fr       */
+/*   Updated: 2025/03/03 12:45:42 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+static int	fail_export(t_data *data, char *arg)
+{
+	char	*tmp1;
+	char	*tmp2;
+
+	data->status = 1;
+	tmp1 = join2("export: `", arg);
+	if (!tmp1)
+		bruh(data, "Failed malloc in fail_export", 69);
+	tmp2 = join2(tmp1, "': not a valid identifier\n");
+	if (!tmp2)
+		(ft_free(&tmp1), bruh(data, "Failed malloc in fail_export", 69));
+	mspec(tmp2);
+	ft_free(&tmp1);
+	ft_free(&tmp2);
+	return (0);
+}
 
 static void	set_name_value(char *av, char **new_name, char **new_value)
 {
@@ -22,7 +40,7 @@ static void	set_name_value(char *av, char **new_name, char **new_value)
 	else
 	{
 		*new_name = ft_strdup(av);
-		*new_value = ft_strdup("");
+		*new_value = NULL;
 	}
 }
 
@@ -33,43 +51,37 @@ static void	process_export(t_data *data, t_exec *exec, int j)
 	char		*new_value;
 
 	set_name_value(exec->av[j], &new_name, &new_value);
+	if (!new_name)
+		bruh(data, "Malloc failed:export.c:55", 69);
 	list = find_env(data->env, new_name);
+	if (!new_value && ft_strchr(exec->av[j], '='))
+		bruh(data, "Malloc failed:export.c:57", 69);
 	if (list && ft_strchr(exec->av[j], '='))
 		(ft_free(&list->value), list->value = ft_strdup(new_value));
-	else if (ft_strchr(exec->av[j], '='))
+	else if (!list)
 	{
 		list = create_env(new_name, new_value);
 		(ft_free(&new_name), ft_free(&new_value));
 		if (!list)
-			bruh(data, "Memory allocation failed:export.c:102", 69);
+			bruh(data, "Malloc failed:export.c:69", 69);
 		add_env(data->env, list);
 	}
 	(ft_free(&new_name), ft_free(&new_value));
 }
 
-static int	export_check(char *argv, t_data *data)
+static int	export_check(char *arg, t_data *data)
 {
 	int		i;
-	char	*s1;
-	char	*s2;
 
 	i = 1;
-	if (*argv && (!ft_isalpha(*argv) && *argv != '_'))
+	if (*arg && (!ft_isalpha(*arg) && *arg != '_'))
 	{
-		data->status = 1;
-		s1 = ft_strjoin("`", argv);
-		s2 = ft_strjoin(s1, "': not a valid identifier\n");
-		return ((mspec2("export", s2), ft_free(&s2), ft_free(&s1)), 0);
+		return (fail_export(data, arg));
 	}
-	while (argv[i] && argv[i] != '=')
+	while (arg[i] && arg[i] != '=')
 	{
-		if (!ft_isalnum(argv[i]) && argv[i] != '_')
-		{
-			data->status = 1;
-			s1 = ft_strjoin("`", argv);
-			s2 = ft_strjoin(s1, "': not a valid identifier\n");
-			return ((mspec2("export", s2), ft_free(&s2), ft_free(&s1)), 0);
-		}
+		if (!ft_isalnum(arg[i]) && arg[i] != '_')
+			return (fail_export(data, arg));
 		i++;
 	}
 	return (1);
