@@ -6,7 +6,7 @@
 /*   By: hanjkim <hanjkim@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 20:46:04 by hanjkim           #+#    #+#             */
-/*   Updated: 2025/03/04 21:00:24 by hanjkim          ###   ########.fr       */
+/*   Updated: 2025/03/04 21:34:01 by hanjkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	expand_tokens(t_data *data)
 		{
 			expanded = expand_segment(data, seg, current);
 			if (!expanded)
-				return ;
+				bruh(data, "Failed to expand segment, dude", 2);
 			ft_free(&seg->text);
 			seg->text = expanded;
 			seg = seg->next;
