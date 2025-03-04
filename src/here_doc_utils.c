@@ -6,7 +6,7 @@
 /*   By: oohnivch <oohnivch@student.42vienna.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 17:51:14 by oohnivch          #+#    #+#             */
-/*   Updated: 2025/03/03 17:59:44 by oohnivch         ###   ########.fr       */
+/*   Updated: 2025/03/04 20:31:09 by hanjkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,8 @@ t_token	*handle_heredoc(t_data *data, t_token *redirection_token,
 		bruh(data, "Failed to join filename segments for HEREDOC", 2);
 	here_result = here_doc(data, temp_word, dont_expand);
 	ft_free(&temp_word);
+	if (!here_result)
+		return (NULL);
 	free_token_node(&filename_token);
 	filename_token = create_token_for_string(here_result);
 	ft_free(&here_result);

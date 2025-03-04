@@ -6,7 +6,7 @@
 /*   By: hanjkim <hanjkim@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/01 21:43:24 by hanjkim           #+#    #+#             */
-/*   Updated: 2025/03/03 16:41:43 by oohnivch         ###   ########.fr       */
+/*   Updated: 2025/03/04 20:59:59 by hanjkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,14 +69,16 @@ char	*get_env_value(t_data *data, char *var_name)
 // Increases the result string by 1 byte 
 int	resize_result(t_exp *exp, size_t required_size)
 {
+	char	*tmp;
+
 	if (required_size >= exp->result_size)
 	{
 		exp->old_result_size = exp->result_size;
 		exp->result_size = required_size + 1;
-		exp->result = ft_realloc(exp->result,
-				exp->old_result_size, exp->result_size);
-		if (!exp->result)
+		tmp = ft_realloc(exp->result, exp->old_result_size, exp->result_size);
+		if (!tmp)
 			return (1);
+		exp->result = tmp;
 	}
 	return (0);
 }

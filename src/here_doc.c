@@ -6,7 +6,7 @@
 /*   By: oohnivch <oohnivch@student.42vienna.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 16:37:46 by oohnivch          #+#    #+#             */
-/*   Updated: 2025/03/03 16:37:47 by oohnivch         ###   ########.fr       */
+/*   Updated: 2025/03/04 20:44:31 by hanjkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,8 +99,8 @@ char	*here_doc(t_data *data, char *l, int dont_expand)
 		(ft_free(&file), bruh(data, "minishell: failed here_doc creation", 2));
 	while (1)
 	{
-		if (g_signal == SIGINT)
-			break ;
+		if (handle_heredoc_signal(data, &line, &file, fd))
+			return (ft_free(&line), ft_free(&file), NULL);
 		line = readline("> ");
 		hd_sigint_check(data, &line, &file, fd);
 		if (warning_heredoc(line, l))

@@ -6,7 +6,7 @@
 /*   By: oohnivch <oohnivch@student.42vienna.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 16:39:59 by oohnivch          #+#    #+#             */
-/*   Updated: 2025/03/03 19:36:56 by oohnivch         ###   ########.fr       */
+/*   Updated: 2025/03/04 20:39:20 by hanjkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,11 @@ int	parse_and_validate_line(t_data *data)
 int	process_tokens_and_ambig_check(t_data *data)
 {
 	process_tokens(data);
+	if (data->status == 130)
+	{
+		add_history(data->line);
+		return (free_tokens(data), ft_free(&data->line), 0);
+	}
 	if (data->ambig_redir)
 		return (add_history(data->line), ft_free(&data->line), 0);
 	return (1);
