@@ -6,7 +6,7 @@
 /*   By: oohnivch <oohnivch@student.42vienna.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 16:37:22 by oohnivch          #+#    #+#             */
-/*   Updated: 2025/03/03 16:37:23 by oohnivch         ###   ########.fr       */
+/*   Updated: 2025/03/04 12:53:11 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,7 @@ void	free_av_list(t_exec *exec)
 	t_avlist	*tmp;
 
 	if (!exec->av_list)
-	{
-		ft_printerr("No av_list to free\n");
 		return ;
-	}
 	while (exec->av_list && exec->av_list->prev)
 		exec->av_list = exec->av_list->prev;
 	while (exec->av_list)

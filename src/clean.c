@@ -6,7 +6,7 @@
 /*   By: oohnivch <oohnivch@student.42vienna.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 12:29:43 by oohnivch          #+#    #+#             */
-/*   Updated: 2025/02/25 13:18:06 by oohnivch         ###   ########.fr       */
+/*   Updated: 2025/03/04 12:52:33 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ void	clean_exec(t_data *data)
 		data->exec = data->exec->next;
 		ft_free(&tmp->cmd);
 		free_arr(&tmp->av);
+		free_av_list(tmp);
 		clean_redir(tmp);
 		close_pipe_exec(data, tmp);
 		free(tmp);
