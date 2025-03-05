@@ -6,7 +6,7 @@
 /*   By: oohnivch <oohnivch@student.42vienna.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 16:39:59 by oohnivch          #+#    #+#             */
-/*   Updated: 2025/03/04 20:39:20 by hanjkim          ###   ########.fr       */
+/*   Updated: 2025/03/05 23:50:51 by hanjkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,7 @@ int	main(int argc, char **argv, char **ev)
 		setup_signal_mode(data, 0);
 		run(data);
 		setup_signal_mode(data, 1);
+		break ;
 	}
 	bruh(data, NULL, data->status);
 }

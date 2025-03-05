@@ -6,7 +6,7 @@
 /*   By: oohnivch <oohnivch@student.42vienna.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 16:47:48 by oohnivch          #+#    #+#             */
-/*   Updated: 2025/02/18 21:10:26 by hanjkim          ###   ########.fr       */
+/*   Updated: 2025/03/05 16:04:02 by hanjkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ t_token	*process_double_op(char *input, int *i, int *start, t_data *data)
 	t_segment	*seg;
 	char		*op_str;
 
+	op_str = NULL;
 	token = create_empty_token();
 	seg = create_segment(false, false);
 	if (!token || !seg)
@@ -43,6 +44,7 @@ t_token	*process_single_op(char *input, int *i, int *start, t_data *data)
 	t_segment	*seg;
 	char		*op_str;
 
+	op_str = NULL;
 	token = create_empty_token();
 	seg = create_segment(false, false);
 	if (!token || !seg)

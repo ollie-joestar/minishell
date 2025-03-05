@@ -6,7 +6,7 @@
 /*   By: hanjkim <hanjkim@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/29 15:50:16 by hanjkim           #+#    #+#             */
-/*   Updated: 2025/03/05 15:41:48 by hanjkim          ###   ########.fr       */
+/*   Updated: 2025/03/05 22:11:08 by hanjkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	process_quoted_segment(char *input, int *i, t_token *token,
 		return (0);
 	seg = create_segment(single_quote, !single_quote);
 	if (!seg)
-		return (ft_free(&quoted_text), 0);
+		return (ft_free(&quoted_text), free_segment(&token->segments), 0);
 	seg->text = quoted_text;
 	add_segment_to_token(token, seg);
 	(*i)++;
@@ -84,7 +84,7 @@ t_token	*parse_word_token(char *input, int *start, t_data *data)
 		else
 			res = process_unquoted_segment(input, &i, token);
 		if (res == 0)
-			return (free_tokens(data), NULL);
+			return (free_token_node(&token), free_tokens(data), NULL);
 	}
 	return (*start = i, token);
 }

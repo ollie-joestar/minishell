@@ -6,7 +6,7 @@
 /*   By: oohnivch <oohnivch@student.42vienna.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 16:37:06 by oohnivch          #+#    #+#             */
-/*   Updated: 2025/03/03 16:37:08 by oohnivch         ###   ########.fr       */
+/*   Updated: 2025/03/05 21:59:16 by hanjkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,9 +50,12 @@ static void	process_export(t_data *data, t_exec *exec, int j)
 	char		*new_name;
 	char		*new_value;
 
+	new_name = NULL;
+	new_value = NULL;
 	set_name_value(exec->av[j], &new_name, &new_value);
-	if (!new_name)
-		bruh(data, "Malloc failed:export.c:55", 69);
+	if (!new_name || !new_value)
+		(ft_free(&new_name), ft_free(&new_value),
+			bruh(data, "Malloc failed:export.c:55", 69));
 	list = find_env(data->env, new_name);
 	if (!new_value && ft_strchr(exec->av[j], '='))
 		bruh(data, "Malloc failed:export.c:57", 69);

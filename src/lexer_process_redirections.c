@@ -6,7 +6,7 @@
 /*   By: hanjkim <hanjkim@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 16:26:35 by hanjkim           #+#    #+#             */
-/*   Updated: 2025/03/05 15:48:12 by hanjkim          ###   ########.fr       */
+/*   Updated: 2025/03/05 23:42:04 by hanjkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ int	check_ambiguous_redirect(t_data *data, t_token *filename_token,
 {
 	char	*orig_filename;
 
+	orig_filename = NULL;
 	*final_filename = finalize_redirection_token(data, filename_token);
 	if (check_split_words(data, filename_token, final_filename))
 		return (ft_free(final_filename), 1);
@@ -116,6 +117,7 @@ void	process_redirection(t_data *data, t_token **token)
 	t_token	*filename_token;
 	char	*final_filename;
 
+	final_filename = NULL;
 	redir_token = *token;
 	filename_token = get_filename_token(data, redir_token);
 	if (!filename_token)

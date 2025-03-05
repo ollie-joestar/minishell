@@ -6,7 +6,7 @@
 /*   By: oohnivch <oohnivch@student.42vienna.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 19:35:55 by oohnivch          #+#    #+#             */
-/*   Updated: 2025/03/03 10:20:15 by oohnivch         ###   ########.fr       */
+/*   Updated: 2025/03/05 16:15:00 by hanjkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void	init_argv(t_data *data, t_exec *exec)
 	len = av_list_len(exec->av_list);
 	exec->av = ft_calloc(len + 1 + (len == 0), sizeof(char *));
 	if (!exec->av)
-		bruh(NULL, "Malloc failed exec_init.c:171", 69);
+		bruh(data, "Malloc failed exec_init.c:171", 69);
 	if (!len)
 	{
 		exec->av[0] = ft_strdup("");

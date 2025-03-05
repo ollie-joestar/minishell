@@ -6,7 +6,7 @@
 /*   By: hanjkim <hanjkim@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/08 19:48:26 by hanjkim           #+#    #+#             */
-/*   Updated: 2025/03/03 16:39:48 by oohnivch         ###   ########.fr       */
+/*   Updated: 2025/03/05 16:04:38 by hanjkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ void	set_token_type(t_token *token_list)
 	char	*joined;
 	bool	operator_unquoted;
 
+	joined = NULL;
 	current = token_list;
 	while (current != NULL)
 	{
