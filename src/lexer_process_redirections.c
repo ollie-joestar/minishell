@@ -6,7 +6,7 @@
 /*   By: hanjkim <hanjkim@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 16:26:35 by hanjkim           #+#    #+#             */
-/*   Updated: 2025/03/03 16:39:18 by oohnivch         ###   ########.fr       */
+/*   Updated: 2025/03/05 15:28:10 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int	check_split_words(t_data *data, t_token *filename_token,
 		orig_filename = ft_strdup("");
 	split_words = ft_split_set(*final_filename, " \t\n\r\v\f");
 	if (!split_words)
-		return (ft_free(&orig_filename), 0);
+		return (ft_free(&orig_filename), 1);
 	count = 0;
 	i = -1;
 	if (split_words)
@@ -74,8 +74,11 @@ int	check_ambiguous_redirect(t_data *data, t_token *filename_token,
 	char	*orig_filename;
 
 	*final_filename = finalize_redirection_token(data, filename_token);
+	// CRIME SOLVED
+	/*if (!*final_filename)*/
+	/*	return (1);*/
 	if (check_split_words(data, filename_token, final_filename))
-		return (1);
+		return (ft_free(final_filename), 1);
 	if (!*final_filename || (*final_filename)[0] == '\0')
 	{
 		orig_filename = join_segments(filename_token);

@@ -6,7 +6,7 @@
 /*   By: hanjkim <hanjkim@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 20:46:04 by hanjkim           #+#    #+#             */
-/*   Updated: 2025/03/04 21:34:01 by hanjkim          ###   ########.fr       */
+/*   Updated: 2025/03/05 15:21:36 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,8 @@ char	*expand(t_data *data, char *word)
 				return (ft_free(&exp.result), NULL);
 		}
 		else
-			handle_normal_chars(word[exp.index_word++], &exp);
+			if (handle_normal_chars(word[exp.index_word++], &exp))
+				return (ft_free(&exp.result), NULL);
 	}
 	return (exp.result);
 }

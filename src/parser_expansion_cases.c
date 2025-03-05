@@ -6,7 +6,7 @@
 /*   By: hanjkim <hanjkim@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/01 22:44:16 by hanjkim           #+#    #+#             */
-/*   Updated: 2025/03/03 16:40:55 by oohnivch         ###   ########.fr       */
+/*   Updated: 2025/03/05 15:20:55 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,8 @@ int	handle_variable_exp(t_data *data, char *word, t_exp *exp)
 // Append every character to the result string
 int	handle_normal_chars(char c, t_exp *exp)
 {
-	resize_result(exp, exp->index_res + 1);
+	if (resize_result(exp, exp->index_res + 1))
+		return (1);
 	exp->result[exp->index_res] = c;
 	exp->index_res++;
 	return (0);
@@ -73,7 +74,10 @@ int	handle_normal_chars(char c, t_exp *exp)
 int	process_dollar_value(t_data *data, char *word, t_exp *exp)
 {
 	if (word[exp->index_word] == '\0')
-		handle_normal_chars('$', exp);
+	{
+		if (handle_normal_chars('$', exp))
+			return (1);
+	}
 	else if (word[exp->index_word] == '?')
 	{
 		exp->index_word++;
@@ -87,6 +91,7 @@ int	process_dollar_value(t_data *data, char *word, t_exp *exp)
 			return (1);
 	}
 	else
-		handle_normal_chars('$', exp);
+		if (handle_normal_chars('$', exp))
+			return (1);
 	return (0);
 }
