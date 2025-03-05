@@ -6,7 +6,7 @@
 /*   By: hanjkim <hanjkim@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 16:26:35 by hanjkim           #+#    #+#             */
-/*   Updated: 2025/03/05 15:28:10 by oohnivch         ###   ########.fr       */
+/*   Updated: 2025/03/05 15:48:12 by hanjkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,9 +74,6 @@ int	check_ambiguous_redirect(t_data *data, t_token *filename_token,
 	char	*orig_filename;
 
 	*final_filename = finalize_redirection_token(data, filename_token);
-	// CRIME SOLVED
-	/*if (!*final_filename)*/
-	/*	return (1);*/
 	if (check_split_words(data, filename_token, final_filename))
 		return (ft_free(final_filename), 1);
 	if (!*final_filename || (*final_filename)[0] == '\0')
