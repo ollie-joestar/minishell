@@ -6,7 +6,7 @@
 /*   By: oohnivch <oohnivch@student.42vienna.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 16:40:13 by oohnivch          #+#    #+#             */
-/*   Updated: 2025/03/06 15:42:19 by oohnivch         ###   ########.fr       */
+/*   Updated: 2025/03/06 16:27:35 by hanjkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,9 +63,9 @@ void	shlvl(t_data *data, t_envlist *list)
 			i_value++;
 		ft_free(&shlvl->value);
 		new_value = ft_itoa(i_value);
-		shlvl->value = new_value;
-		if (!shlvl->value)
+		if (!new_value)
 			(free_env_list(list), bruh(data, "Malloc failed no_env.c:65", 69));
+		shlvl->value = new_value;
 	}
 	else
 	{

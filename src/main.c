@@ -6,7 +6,7 @@
 /*   By: oohnivch <oohnivch@student.42vienna.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 16:39:59 by oohnivch          #+#    #+#             */
-/*   Updated: 2025/03/06 16:09:44 by oohnivch         ###   ########.fr       */
+/*   Updated: 2025/03/06 16:49:29 by hanjkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,6 @@ int	main(int argc, char **argv, char **ev)
 	while (1)
 	{
 		data->line = readline("minishell > ");
-		/*data->line = ft_strdup("ccd notexists");*/
 		if (!stop_right_there_criminal(data))
 			continue ;
 		if (!parse_and_validate_line(data))
@@ -104,7 +103,6 @@ int	main(int argc, char **argv, char **ev)
 		setup_signal_mode(data, 0);
 		run(data);
 		setup_signal_mode(data, 1);
-		/*break ;*/
 	}
 	bruh(data, NULL, data->status);
 }

@@ -6,7 +6,7 @@
 /*   By: oohnivch <oohnivch@student.42vienna.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 16:37:46 by oohnivch          #+#    #+#             */
-/*   Updated: 2025/03/05 23:50:45 by hanjkim          ###   ########.fr       */
+/*   Updated: 2025/03/06 16:47:53 by hanjkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,20 +57,29 @@ static char	*random_name(void)
 	return (name);
 }
 
-int	warning_heredoc(char *line, char *lim)
+int	warning_heredoc(t_data *data, char *line, char *lim)
 {
 	char	*warning;
+	char	*tmp;
+	char	*tmp2;
 
 	warning = "warning: here-document delimited by end-of-file (wanted `";
+	tmp = join2(warning, lim);
+	if (!tmp)
+		bruh(data, "minishell: failed here_doc.c:79", 2);
+	tmp2 = join2(tmp, "')\n");
+	ft_free(&tmp);
+	if (!tmp2)
+		bruh(data, "minishell: failed here_doc.c:79", 2);
 	if (!line)
 	{
 		if (g_signal == SIGINT)
 			return (1);
-		return (mspec3(warning, lim, "')\n"), 1);
+		return (mspec(tmp2), ft_free(&tmp2), 1);
 	}
 	if (!ft_strncmp(line, lim, ft_strlen(lim) + 1))
-		return (1);
-	return (0);
+		return (ft_free(&tmp2), 1);
+	return (ft_free(&tmp2), 0);
 }
 
 void	free_and_expand(t_data *data, char **line)
@@ -103,7 +112,7 @@ char	*here_doc(t_data *data, char *l, int dont_expand)
 			return (ft_free(&line), ft_free(&file), NULL);
 		line = readline("> ");
 		hd_sigint_check(data, &line, &file, fd);
-		if (warning_heredoc(line, l))
+		if (warning_heredoc(data, line, l))
 			break ;
 		if (!dont_expand)
 			free_and_expand(data, &line);

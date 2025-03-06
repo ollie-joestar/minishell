@@ -6,7 +6,7 @@
 /*   By: oohnivch <oohnivch@student.42vienna.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 18:03:12 by oohnivch          #+#    #+#             */
-/*   Updated: 2025/03/06 16:13:08 by oohnivch         ###   ########.fr       */
+/*   Updated: 2025/03/06 16:36:27 by hanjkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -297,7 +297,7 @@ void		safe_print_export(t_data *data, t_envlist *l, char *n, char *v);
 
 // HereDoc
 char		*here_doc(t_data *data, char *l, int to_expand);
-int			warning_heredoc(char *line, char *lim);
+int			warning_heredoc(t_data *data, char *line, char *lim);
 void		free_and_expand(t_data *data, char **line);
 int			check_and_write_line(int fd, char **line);
 

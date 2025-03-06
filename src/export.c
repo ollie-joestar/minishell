@@ -6,7 +6,7 @@
 /*   By: oohnivch <oohnivch@student.42vienna.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 16:37:06 by oohnivch          #+#    #+#             */
-/*   Updated: 2025/03/06 15:46:39 by oohnivch         ###   ########.fr       */
+/*   Updated: 2025/03/06 16:51:08 by hanjkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ static void	process_export(t_data *data, t_exec *exec, int j)
 			bruh(data, "Malloc failed:export.c:69", 69);
 		if (data->env)
 			add_env(data->env, list);
-		else 
+		else
 			data->env = list;
 	}
 	(ft_free(&new_name), ft_free(&new_value));

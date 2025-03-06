@@ -6,13 +6,13 @@
 /*   By: oohnivch <oohnivch@student.42vienna.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 16:37:31 by oohnivch          #+#    #+#             */
-/*   Updated: 2025/03/06 16:03:45 by oohnivch         ###   ########.fr       */
+/*   Updated: 2025/03/06 16:49:50 by hanjkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static void	underscore_norminette(t_data *dt,t_exec *ex, char **v, int *i)
+static void	underscore_norminette(t_data *dt, t_exec *ex, char **v, int *i)
 {
 	*i = ft_arrlen(ex->av) - 1;
 	if (*i < 0)
