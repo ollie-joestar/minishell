@@ -6,38 +6,52 @@
 /*   By: oohnivch <oohnivch@student.42vienna.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 16:35:18 by oohnivch          #+#    #+#             */
-/*   Updated: 2025/03/03 16:35:21 by oohnivch         ###   ########.fr       */
+/*   Updated: 2025/03/06 15:29:45 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+int	set_path_process(t_data *data, t_exec *exec, int i, char **cmd)
+{
+	char	*check;
+
+	check = join2(data->path[i], *cmd);
+	if (!check)
+		(ft_free(cmd), bruh(data, "Failed to allocate memory for path", 69));
+	if (access(check, X_OK) == 0)
+	{
+		ft_free(&exec->cmd);
+		exec->cmd = check;
+		return (1);
+	}
+	if (access(check, F_OK) == 0)
+	{
+		ft_free(&exec->cmd);
+		exec->cmd = check;
+		return (0);
+	}
+	ft_free(&check);
+	return (0);
+}
+
 void	set_path(t_data *data, t_exec *exec)
 {
-	char	*tmp;
+	char	*cmd;
 	int		i;
 
 	i = -1;
-	if (!*exec->cmd)
+	if (!exec->cmd || !*exec->cmd)
 		return ;
+	cmd = ft_strdup(exec->cmd);
+	if (!cmd)
+		bruh(data, "Failed to allocate memory for path", 69);
 	while (data->path && *data->path && data->path[++i])
 	{
-		tmp = ft_strjoin(data->path[i], exec->cmd);
-		if (!tmp)
-			bruh(data, "Failed to allocate memory for path", 69);
-		if (access(tmp, X_OK) == 0)
-		{
-			ft_free(&exec->cmd);
-			exec->cmd = tmp;
-			return ;
-		}
-		if (access(tmp, F_OK) == 0)
-		{
-			ft_free(&exec->cmd);
-			exec->cmd = ft_strdup(tmp);
-		}
-		ft_free(&tmp);
+		if (set_path_process(data, exec, i, &cmd))
+			break ;
 	}
+	ft_free(&cmd);
 }
 
 void	set_cmd_path(t_data *data, t_exec *exec)
