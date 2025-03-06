@@ -6,7 +6,7 @@
 /*   By: oohnivch <oohnivch@student.42vienna.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 16:42:07 by oohnivch          #+#    #+#             */
-/*   Updated: 2025/03/03 16:42:08 by oohnivch         ###   ########.fr       */
+/*   Updated: 2025/03/06 16:07:14 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,12 @@ t_envlist	*get_oldpwd(t_data *data)
 	if (!env)
 	{
 		env = create_env("OLDPWD", "");
-		add_env(data->env, env);
+		if (!env)
+			bruh(data, "Malloc failed in get_oldpwd", 69);
+		if (data->env)
+			add_env(data->env, env);
+		else
+			data->env = env;
 	}
 	return (env);
 }
@@ -33,7 +38,12 @@ t_envlist	*get_pwd(t_data *data)
 	if (!env)
 	{
 		env = create_env("PWD", "");
-		add_env(data->env, env);
+		if (!env)
+			bruh(data, "Malloc failed in get_pwd", 69);
+		if (data->env)
+			add_env(data->env, env);
+		else
+			data->env = env;
 	}
 	return (env);
 }
@@ -46,10 +56,12 @@ int	update_pwd(t_data *data, int check)
 
 	if (check == -1)
 		return (1);
-	while (data->env && data->env->prev)
+	while (data && data->env && data->env->prev)
 		data->env = data->env->prev;
 	oldpwd = get_oldpwd(data);
 	pwd = get_pwd(data);
+	if (!oldpwd || !pwd)
+		return (0);
 	cwd = getcwd(NULL, 0);
 	if (!cwd)
 	{

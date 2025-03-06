@@ -6,7 +6,7 @@
 /*   By: oohnivch <oohnivch@student.42vienna.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 16:37:06 by oohnivch          #+#    #+#             */
-/*   Updated: 2025/03/05 21:59:16 by hanjkim          ###   ########.fr       */
+/*   Updated: 2025/03/06 15:46:39 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,12 +53,10 @@ static void	process_export(t_data *data, t_exec *exec, int j)
 	new_name = NULL;
 	new_value = NULL;
 	set_name_value(exec->av[j], &new_name, &new_value);
-	if (!new_name || !new_value)
+	if (!new_name || (!new_value && ft_strchr(exec->av[j], '=')))
 		(ft_free(&new_name), ft_free(&new_value),
 			bruh(data, "Malloc failed:export.c:55", 69));
 	list = find_env(data->env, new_name);
-	if (!new_value && ft_strchr(exec->av[j], '='))
-		bruh(data, "Malloc failed:export.c:57", 69);
 	if (list && ft_strchr(exec->av[j], '='))
 		(ft_free(&list->value), list->value = ft_strdup(new_value));
 	else if (!list)
@@ -67,7 +65,10 @@ static void	process_export(t_data *data, t_exec *exec, int j)
 		(ft_free(&new_name), ft_free(&new_value));
 		if (!list)
 			bruh(data, "Malloc failed:export.c:69", 69);
-		add_env(data->env, list);
+		if (data->env)
+			add_env(data->env, list);
+		else 
+			data->env = list;
 	}
 	(ft_free(&new_name), ft_free(&new_value));
 }

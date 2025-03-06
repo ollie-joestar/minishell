@@ -6,7 +6,7 @@
 /*   By: oohnivch <oohnivch@student.42vienna.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 16:40:13 by oohnivch          #+#    #+#             */
-/*   Updated: 2025/03/05 16:23:13 by hanjkim          ###   ########.fr       */
+/*   Updated: 2025/03/06 15:42:19 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,8 @@ void	shlvl(t_data *data, t_envlist *list)
 	else
 	{
 		shlvl = create_env("SHLVL", "1");
+		if (!shlvl)
+			(free_env_list(list), bruh(data, "Malloc failed no_env.c:71", 69));
 		add_env(list, shlvl);
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: oohnivch <oohnivch@student.42vienna.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 15:50:38 by oohnivch          #+#    #+#             */
-/*   Updated: 2025/03/06 15:04:47 by hanjkim          ###   ########.fr       */
+/*   Updated: 2025/03/06 15:40:40 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,8 @@ t_envlist	*parse_env_process(t_data *data, char **ev)
 				bruh(data, "Memory allocation failed", 69));
 		list = parse_env_subprocess(data, &name, &value, list);
 		if (!list)
-			bruh(data, "Memory allocation failed", 69);
+			(ft_free(&name), ft_free(&value),
+				bruh(data, "Memory allocation failed", 69));
 	}
 	while (list && list->prev)
 		list = list->prev;

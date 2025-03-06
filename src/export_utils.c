@@ -6,7 +6,7 @@
 /*   By: oohnivch <oohnivch@student.42vienna.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 17:43:33 by oohnivch          #+#    #+#             */
-/*   Updated: 2025/03/03 14:30:27 by oohnivch         ###   ########.fr       */
+/*   Updated: 2025/03/06 15:49:21 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,9 @@ void	add_env(t_envlist *env, t_envlist *new)
 {
 	if (!env || !new)
 		return ;
-	while (env->next)
+	while (env && env->next)
 		env = env->next;
-	while (new->prev)
+	while (new && new->prev)
 		new = new->prev;
 	env->next = new;
 	new->prev = env;
@@ -52,7 +52,9 @@ void	add_env(t_envlist *env, t_envlist *new)
 
 t_envlist	*find_env(t_envlist *env, char *name)
 {
-	while (env->prev)
+	if (!env)
+		return (NULL);
+	while (env && env->prev)
 		env = env->prev;
 	while (env)
 	{

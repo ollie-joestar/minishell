@@ -6,7 +6,7 @@
 /*   By: oohnivch <oohnivch@student.42vienna.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 16:36:30 by oohnivch          #+#    #+#             */
-/*   Updated: 2025/03/06 15:30:11 by oohnivch         ###   ########.fr       */
+/*   Updated: 2025/03/06 16:19:26 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,11 @@ void	command(t_data *data, t_exec *exec)
 void	builtin(t_data *data, t_exec *exec)
 {
 	if (exec_len(exec) == 1)
-		(store_stds(data, exec), reroute(data, exec));
+	{
+		store_stds(data, exec);
+   		if (reroute(data, exec))
+			return (restore_stds(data, exec));
+	}
 	if (!(ft_strncmp(exec->cmd, "exit", 5)))
 		(restore_stds(data, exec), ft_exit(data, exec));
 	else if (!(ft_strncmp(exec->cmd, "echo", 5)))
@@ -102,7 +106,7 @@ void	run(t_data *data)
 	exit_status = 0;
 	exec = data->exec;
 	loop_exec(data, exec);
-	/*add_history(data->line);*/
+	add_history(data->line);
 	if (exec_len(data->exec) > 1 || exec_has_cmd(data->exec))
 	{
 		wait_status = 1;

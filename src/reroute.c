@@ -6,13 +6,13 @@
 /*   By: oohnivch <oohnivch@student.42vienna.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 16:42:15 by oohnivch          #+#    #+#             */
-/*   Updated: 2025/03/03 16:42:16 by oohnivch         ###   ########.fr       */
+/*   Updated: 2025/03/06 16:17:33 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static void	rerouteinfile(t_data *data, t_exec *exec)
+static int	rerouteinfile(t_data *data, t_exec *exec)
 {
 	int	fd;
 	int	check;
@@ -23,14 +23,11 @@ static void	rerouteinfile(t_data *data, t_exec *exec)
 	{
 		mspe(exec->redir->file);
 		data -> status = 1;
+		restore_stds(data, exec);
 		if (lpid(data) == 0)
-		{
-			(close_pipe_exec(data, exec), close_pipe_exec(data, exec->prev));
-			(restore_stds(data, exec), bruh(data, NULL, 1));
-		}
-		else
-			restore_stds(data, exec);
-		return ;
+			(close_pipe_exec(data, exec), close_pipe_exec(data, exec->prev),
+				bruh(data, NULL, 1));
+		return (1);
 	}
 	if (exec_len(exec) > 1 || exec->type == CMD)
 		check = dup2(fd, STDIN_FILENO);
@@ -39,9 +36,10 @@ static void	rerouteinfile(t_data *data, t_exec *exec)
 		unlink(exec->redir->file);
 	if (check == -1)
 		bruh(data, "Failed to dup2 input file", 1);
+	return (0);
 }
 
-static void	rerouteoutfile(t_data *data, t_exec *exec)
+static int	rerouteoutfile(t_data *data, t_exec *exec)
 {
 	int	fd;
 	int	check;
@@ -56,18 +54,17 @@ static void	rerouteoutfile(t_data *data, t_exec *exec)
 	{
 		mspe(exec->redir->file);
 		data->status = 1;
+		restore_stds(data, exec);
 		if (lpid(data) == 0)
-		{
-			(close_pipe_exec(data, exec), close_pipe_exec(data, exec->prev));
-			(restore_stds(data, exec), bruh(data, NULL, 1));
-		}
-		else
-			return (restore_stds(data, exec));
+			(close_pipe_exec(data, exec), close_pipe_exec(data, exec->prev),
+				bruh(data, NULL, 1));
+		return (1);
 	}
 	check = dup2(fd, STDOUT_FILENO);
 	close(fd);
 	if (check == -1)
 		bruh(data, "Failed to dup2 output file", 1);
+	return (0);
 }
 
 static void	rerouteinpipe(t_data *data, t_exec *exec)
@@ -90,10 +87,12 @@ static void	rerouteoutpipe(t_data *data, t_exec *exec)
 		bruh(data, "Failed to dup2 output pipe", 1);
 }
 
-void	reroute(t_data *data, t_exec *exec)
+int	reroute(t_data *data, t_exec *exec)
 {
 	t_redir		*redir;
+	int			check;
 
+	check = 0;
 	while (exec->redir && exec->redir->prev)
 		exec->redir = exec->redir->prev;
 	redir = exec->redir;
@@ -104,10 +103,13 @@ void	reroute(t_data *data, t_exec *exec)
 	while (exec->redir)
 	{
 		if (exec->redir->type == INPUT || exec->redir->type == HEREDOC)
-			rerouteinfile(data, exec);
+			check = rerouteinfile(data, exec);
 		else if (exec->redir->type == REPLACE || exec->redir->type == APPEND)
-			rerouteoutfile(data, exec);
+			check = rerouteoutfile(data, exec);
+		if (check)
+			return (1);
 		exec->redir = exec->redir->next;
 	}
 	exec->redir = redir;
+	return (0);
 }

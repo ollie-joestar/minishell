@@ -6,11 +6,22 @@
 /*   By: oohnivch <oohnivch@student.42vienna.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 16:37:31 by oohnivch          #+#    #+#             */
-/*   Updated: 2025/03/06 15:06:29 by hanjkim          ###   ########.fr       */
+/*   Updated: 2025/03/06 16:03:45 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+static void	underscore_norminette(t_data *dt,t_exec *ex, char **v, int *i)
+{
+	*i = ft_arrlen(ex->av) - 1;
+	if (*i < 0)
+		*v = ft_strdup("");
+	else
+		*v = ft_strdup(ex->av[*i]);
+	if (!*v)
+		bruh(dt, "Malloc fail general_utils.c:30", 69);
+}
 
 void	underscore(t_data *data, t_exec *exec)
 {
@@ -18,16 +29,7 @@ void	underscore(t_data *data, t_exec *exec)
 	char		*value;
 	int			i;
 
-	if (exec_len(data->exec) > 1)
-		if (lpid(data))
-			return ;
-	i = ft_arrlen(exec->av) - 1;
-	if (i < 0)
-		value = ft_strdup("");
-	else
-		value = ft_strdup(exec->av[i]);
-	if (!value)
-		bruh(data, "Malloc fail general_utils.c:30", 69);
+	underscore_norminette(data, exec, &value, &i);
 	list = find_env(data->env, "_");
 	if (list)
 		(ft_free(&list->value), list->value = value);
@@ -37,7 +39,10 @@ void	underscore(t_data *data, t_exec *exec)
 		ft_free(&value);
 		if (!list)
 			bruh(data, "Malloc fail env.c:125", 69);
-		add_env(data->env, list);
+		if (data->env)
+			add_env(data->env, list);
+		else
+			data->env = list;
 	}
 }
 
@@ -87,9 +92,8 @@ size_t	ft_arrlen(char **arr)
 		i++;
 	return (i);
 }
-
-void	skip_spaces(char *input, int *i)
-{
-	while ((input[*i] == ' ' || input[*i] == '\t'))
-		(*i)++;
-}
+/*void	skip_spaces(char *input, int *i)*/
+/*{*/
+/*	while ((input[*i] == ' ' || input[*i] == '\t'))*/
+/*		(*i)++;*/
+/*}*/

@@ -6,7 +6,7 @@
 /*   By: oohnivch <oohnivch@student.42vienna.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 18:03:12 by oohnivch          #+#    #+#             */
-/*   Updated: 2025/03/03 19:46:39 by oohnivch         ###   ########.fr       */
+/*   Updated: 2025/03/06 16:13:08 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -242,7 +242,7 @@ pid_t		lpid(t_data *data);
 void		add_pid(t_data *data, pid_t pid);
 void		open_pipe_exec(t_data *data, t_exec *exec);
 void		close_pipe_exec(t_data *data, t_exec *exec);
-void		reroute(t_data *data, t_exec *exec);
+int			reroute(t_data *data, t_exec *exec);
 t_redir		*get_first_redir(t_redir *redir);
 void		check_exit_status(t_data *data, int exit_status);
 size_t		exec_len(t_exec *exec);

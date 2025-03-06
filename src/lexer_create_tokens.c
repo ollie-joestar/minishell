@@ -6,7 +6,7 @@
 /*   By: hanjkim <hanjkim@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/29 18:29:01 by hanjkim           #+#    #+#             */
-/*   Updated: 2025/03/05 22:08:20 by hanjkim          ###   ########.fr       */
+/*   Updated: 2025/03/06 15:51:47 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,8 @@ void	parse_make_token(t_data *data, char *input, int *start, int *end)
 {
 	t_token	*new_token;
 
-	skip_spaces(input, start);
+	while (input[*start] == '\t' || input[*start] == ' ')
+		(*start)++;
 	*end = *start;
 	if (input[*start] == '\0')
 		return ;

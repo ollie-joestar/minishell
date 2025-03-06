@@ -6,7 +6,7 @@
 /*   By: oohnivch <oohnivch@student.42vienna.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 10:54:18 by oohnivch          #+#    #+#             */
-/*   Updated: 2025/02/24 17:57:23 by oohnivch         ###   ########.fr       */
+/*   Updated: 2025/03/06 16:09:07 by oohnivch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ pid_t	lpid(t_data *data)
 {
 	t_pidlist	*tmp;
 
-	if (!data->pid_list)
-		return (0);
+	if (!data || !data->pid_list)
+		return (-1);
 	tmp = data->pid_list;
 	while (tmp->next)
 		tmp = tmp->next;
