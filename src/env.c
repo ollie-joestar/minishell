@@ -6,7 +6,7 @@
 /*   By: oohnivch <oohnivch@student.42vienna.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 15:50:38 by oohnivch          #+#    #+#             */
-/*   Updated: 2025/03/03 16:44:05 by oohnivch         ###   ########.fr       */
+/*   Updated: 2025/03/06 15:04:47 by hanjkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,14 +82,14 @@ void	parse_env_into_ev_process(t_data *data, t_envlist *node, int i)
 
 	tmp = data->ev[i];
 	data->ev[i] = ft_strjoin(node->name, "=");
+	ft_free(&tmp);
 	if (!data->ev[i])
 		bruh(data, "Strjoin failed env.c:62", 69);
-	ft_free(&tmp);
 	tmp = data->ev[i];
 	data->ev[i] = join2(tmp, node->value);
+	ft_free(&tmp);
 	if (!data->ev[i] && node->value)
 		bruh(data, "Join2 failed env.c:67", 69);
-	ft_free(&tmp);
 }
 
 void	parse_env_into_ev(t_data *data)

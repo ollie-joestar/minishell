@@ -6,7 +6,7 @@
 /*   By: oohnivch <oohnivch@student.42vienna.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 16:36:30 by oohnivch          #+#    #+#             */
-/*   Updated: 2025/03/05 23:50:58 by hanjkim          ###   ########.fr       */
+/*   Updated: 2025/03/06 14:58:14 by hanjkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ void	run(t_data *data)
 	exit_status = 0;
 	exec = data->exec;
 	loop_exec(data, exec);
-	add_history(data->line);
+	/*add_history(data->line);*/
 	if (exec_len(data->exec) > 1 || exec_has_cmd(data->exec))
 	{
 		wait_status = 1;
