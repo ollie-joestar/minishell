@@ -103,7 +103,6 @@ int	main(int argc, char **argv, char **ev)
 		init_exec(data);
 		(setup_signal_mode(data, 0), run(data));
 		data->status = 0;
-		g_signal = 0;
 		setup_signal_mode(data, 1);
 	}
 	bruh(data, NULL, data->status);
