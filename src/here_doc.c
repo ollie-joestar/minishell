@@ -6,7 +6,7 @@
 /*   By: oohnivch <oohnivch@student.42vienna.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 16:37:46 by oohnivch          #+#    #+#             */
-/*   Updated: 2025/03/07 16:39:29 by hanjkim          ###   ########.fr       */
+/*   Updated: 2025/03/07 17:16:35 by hanjkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ int	warning_heredoc(t_data *data, char *line, char *lim)
 	if (!line)
 	{
 		if (g_signal == SIGINT)
-			return (1);
+			return (ft_free(&tmp2), 1);
 		return (mspec(tmp2), ft_free(&tmp2), 1);
 	}
 	if (!ft_strncmp(line, lim, ft_strlen(lim) + 1))
