@@ -69,9 +69,8 @@ int	parse_and_validate_line(t_data *data)
 int	process_tokens_and_ambig_check(t_data *data)
 {
 	process_tokens(data);
-	if (data->status == 130 && data->heredoc_aborted)
+	if (data->status == 130)
 	{
-		data->heredoc_aborted = 0;
 		add_history(data->line);
 		return (free_tokens(data), ft_free(&data->line), 0);
 	}
@@ -101,8 +100,8 @@ int	main(int argc, char **argv, char **ev)
 		if (!process_tokens_and_ambig_check(data))
 			continue ;
 		init_exec(data);
-		(setup_signal_mode(data, 0), run(data));
-		data->status = 0;
+		setup_signal_mode(data, 0);
+		run(data);
 		setup_signal_mode(data, 1);
 	}
 	bruh(data, NULL, data->status);

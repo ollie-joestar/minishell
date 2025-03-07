@@ -16,8 +16,6 @@ int	handle_heredoc_signal(t_data *data, char **ln, char **f, int fd)
 {
 	if (g_signal == SIGINT)
 	{
-		g_signal = 0;
-		data->heredoc_aborted = 1;
 		ft_free(ln);
 		close(fd);
 		unlink(*f);
@@ -101,7 +99,6 @@ char	*here_doc(t_data *data, char *l, int dont_expand)
 	char	*line;
 	char	*file;
 
-	data->heredoc_aborted = 0;
 	line = NULL;
 	file = random_name();
 	if (!file)
@@ -111,9 +108,10 @@ char	*here_doc(t_data *data, char *l, int dont_expand)
 		(ft_free(&file), bruh(data, "minishell: failed here_doc creation", 2));
 	while (1)
 	{
-		line = readline("> ");
 		if (handle_heredoc_signal(data, &line, &file, fd))
 			return (ft_free(&line), ft_free(&file), NULL);
+		line = readline("> ");
+		hd_sigint_check(data, &line, &file, fd);
 		if (warning_heredoc(data, line, l))
 			break ;
 		if (!dont_expand)

@@ -151,7 +151,6 @@ typedef struct s_data
 	t_exp				*expander;
 	size_t				current_size;
 	char				*buffer;
-	int					heredoc_aborted;
 }				t_data;
 
 /* Signal functions */
