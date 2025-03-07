@@ -76,7 +76,7 @@ int	warning_heredoc(t_data *data, char *line, char *lim)
 	if (!line)
 	{
 		if (g_signal == SIGINT)
-			return (1);
+			return (ft_free(&tmp2), 1);
 		return (mspec(tmp2), ft_free(&tmp2), 1);
 	}
 	if (!ft_strncmp(line, lim, ft_strlen(lim) + 1))
