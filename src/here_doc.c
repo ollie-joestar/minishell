@@ -6,7 +6,7 @@
 /*   By: oohnivch <oohnivch@student.42vienna.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 16:37:46 by oohnivch          #+#    #+#             */
-/*   Updated: 2025/03/06 16:47:53 by hanjkim          ###   ########.fr       */
+/*   Updated: 2025/03/07 16:39:29 by hanjkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,9 @@ int	handle_heredoc_signal(t_data *data, char **ln, char **f, int fd)
 		if (fd < 0)
 			bruh(data, "minishell: failed here_doc.c:24", 2);
 		close(fd);
+		data->hd_sigint = 1;
 		data->status = 130;
+		g_signal = 0;
 		return (1);
 	}
 	return (0);
@@ -108,10 +110,9 @@ char	*here_doc(t_data *data, char *l, int dont_expand)
 		(ft_free(&file), bruh(data, "minishell: failed here_doc creation", 2));
 	while (1)
 	{
+		line = readline("> ");
 		if (handle_heredoc_signal(data, &line, &file, fd))
 			return (ft_free(&line), ft_free(&file), NULL);
-		line = readline("> ");
-		hd_sigint_check(data, &line, &file, fd);
 		if (warning_heredoc(data, line, l))
 			break ;
 		if (!dont_expand)

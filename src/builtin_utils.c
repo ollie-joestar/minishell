@@ -6,7 +6,7 @@
 /*   By: oohnivch <oohnivch@student.42vienna.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 17:15:50 by oohnivch          #+#    #+#             */
-/*   Updated: 2025/03/03 12:43:16 by oohnivch         ###   ########.fr       */
+/*   Updated: 2025/03/07 17:04:22 by hanjkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,12 +97,7 @@ void	restore_stds(t_data *data, t_exec *exec)
 
 void	safe_print(char *str)
 {
-	struct sigaction	sa;
-
-	sa.sa_handler = SIG_IGN;
-	sigemptyset(&sa.sa_mask);
-	sa.sa_flags = 0;
-	sigaction(SIGPIPE, &sa, NULL);
+	signal(SIGPIPE, SIG_IGN);
 	ft_putstr(str);
-	sigaction(SIGPIPE, NULL, NULL);
+	signal(SIGPIPE, SIG_DFL);
 }

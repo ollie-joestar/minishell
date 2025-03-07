@@ -6,7 +6,7 @@
 /*   By: oohnivch <oohnivch@student.42vienna.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 18:03:12 by oohnivch          #+#    #+#             */
-/*   Updated: 2025/03/06 16:36:27 by hanjkim          ###   ########.fr       */
+/*   Updated: 2025/03/07 16:20:55 by hanjkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,6 +151,7 @@ typedef struct s_data
 	t_exp				*expander;
 	size_t				current_size;
 	char				*buffer;
+	int					hd_sigint;
 }				t_data;
 
 /* Signal functions */

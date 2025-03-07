@@ -6,7 +6,7 @@
 /*   By: hanjkim <hanjkim@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 20:46:04 by hanjkim           #+#    #+#             */
-/*   Updated: 2025/03/05 15:21:36 by oohnivch         ###   ########.fr       */
+/*   Updated: 2025/03/07 17:10:26 by hanjkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ int	process_token_redirection(t_data *data, t_token **token)
 	if ((*token)->type != WORD && (*token)->type != PIPE)
 	{
 		process_redirection(data, token);
+		if (data->hd_sigint)
+			return (free_tokens(data), 1);
 		if (data->ambig_redir)
 			return (free_tokens(data), 1);
 	}
