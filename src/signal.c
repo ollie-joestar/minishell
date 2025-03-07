@@ -6,7 +6,7 @@
 /*   By: hanjkim <hanjkim@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 15:13:23 by hanjkim           #+#    #+#             */
-/*   Updated: 2025/03/03 16:42:33 by oohnivch         ###   ########.fr       */
+/*   Updated: 2025/03/07 16:24:45 by hanjkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ void	check_exit_status(t_data *data, int exit_status)
 		data->status = WEXITSTATUS(exit_status);
 	else if (WIFSIGNALED(exit_status))
 	{
+		data->hd_sigint = 0;
 		sig = WTERMSIG(exit_status);
 		if (sig == SIGQUIT)
 		{

@@ -6,7 +6,7 @@
 /*   By: oohnivch <oohnivch@student.42vienna.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 16:39:59 by oohnivch          #+#    #+#             */
-/*   Updated: 2025/03/06 16:49:29 by hanjkim          ###   ########.fr       */
+/*   Updated: 2025/03/07 16:41:22 by hanjkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,9 @@ int	skill_check(t_data *data)
 
 int	stop_right_there_criminal(t_data *data)
 {
-	if (g_signal == SIGINT && !lpid(data))
+	if (g_signal == SIGINT)
 	{
+		data->hd_sigint = 0;
 		data->status = 130;
 		g_signal = 0;
 	}
@@ -69,8 +70,9 @@ int	parse_and_validate_line(t_data *data)
 int	process_tokens_and_ambig_check(t_data *data)
 {
 	process_tokens(data);
-	if (data->status == 130)
+	if (data->status == 130 && data->hd_sigint)
 	{
+		data->hd_sigint = 0;
 		add_history(data->line);
 		return (free_tokens(data), ft_free(&data->line), 0);
 	}
